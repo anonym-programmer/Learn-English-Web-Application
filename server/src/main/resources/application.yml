@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rest-project
+    username: postgres
+    password: admin
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddlAuto: create
+    openInView: false
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
