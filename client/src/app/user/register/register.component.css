@@ -1,0 +1,12 @@
+.my-card {
+    margin: 5% auto;
+    width: 40%;
+}
+
+.mat-card-header {
+    justify-content: center;
+}
+
+.full-width {
+    width: 100%;
+}
