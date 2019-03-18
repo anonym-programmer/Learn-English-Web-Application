@@ -1,24 +1,40 @@
 <mat-card class="my-card">
-    <mat-card-header>
-      <mat-card-title><h3>Register</h3></mat-card-title>
-    </mat-card-header>
-    <mat-card-content class="content">
-      <form class="my-form" (ngSubmit)="onSubmit()" #myForm="ngForm" autocomplete="off">
-          <mat-form-field class="full-width">
-            <mat-label>Login</mat-label>
-            <input matInput name="login" #login="ngModel" [(ngModel)]="dto.login">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Password</mat-label>
-            <input matInput name="password" #password="ngModel" [(ngModel)]="dto.password">
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <mat-label>Confirmed Password</mat-label>
-            <input matInput name="confirmedPassword" #confirmedPassword="ngModel" [(ngModel)]="dto.confirmedPassword">
-          </mat-form-field>
-          <mat-card-actions>
-            <button mat-raised-button color="primary">Register</button>
-          </mat-card-actions>
-      </form>
-    </mat-card-content>
-  </mat-card>
+  <mat-card-header>
+    <mat-card-title><h3>Register</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="my-form" [formGroup]="registerForm" (ngSubmit)="onSubmit(registerForm)" autocomplete="off">
+
+      <mat-form-field class="full-width">
+        <mat-label>Login</mat-label>
+        <input matInput formControlName="login" required>
+        <mat-error class="error" *ngIf="login.invalid && (login.dirty || login.touched)">
+          Login is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.login">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" required>
+        <mat-error class="error" *ngIf="password.invalid && (password.dirty || password.touched)">
+          Password is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.password">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Confirmed Password</mat-label>
+        <input matInput formControlName="confirmedPassword" required>
+        <mat-error class="error" *ngIf="confirmedPassword.invalid && (confirmedPassword.dirty || confirmedPassword.touched)">
+          Confirmed Password is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.confirmedPassword">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!registerForm.valid">Register</button>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

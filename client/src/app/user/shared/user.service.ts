@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { CreateUserDTO } from './create-user-dto.model';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +12,7 @@ export class UserService {
 
     constructor(private http: HttpClient) { }
 
-    create(dto: CreateUserDTO): Observable<CreateUserDTO> {
-        return this.http.post<CreateUserDTO>(this.baseUrl, dto);
+    create(data: FormGroup): Observable<FormGroup> {
+      return this.http.post<FormGroup>(this.baseUrl, data);
     }
 }
