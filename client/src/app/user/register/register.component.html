@@ -16,7 +16,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Password</mat-label>
-        <input matInput formControlName="password" required>
+        <input matInput formControlName="password" type="password"  required>
         <mat-error class="error" *ngIf="password.invalid && (password.dirty || password.touched)">
           Password is required
         </mat-error>
@@ -25,7 +25,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Confirmed Password</mat-label>
-        <input matInput formControlName="confirmedPassword" required>
+        <input matInput formControlName="confirmedPassword" type="password" required>
         <mat-error class="error" *ngIf="confirmedPassword.invalid && (confirmedPassword.dirty || confirmedPassword.touched)">
           Confirmed Password is required
         </mat-error>

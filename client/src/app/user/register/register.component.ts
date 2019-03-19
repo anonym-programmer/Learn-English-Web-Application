@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../shared/user.service';
 import { CreateUserDTO } from '../shared/create-user-dto.model';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +16,7 @@ export class RegisterComponent implements OnInit {
   dtoError = new CreateUserDTO();
   registerForm: FormGroup;
 
-  constructor(private service: UserService) { }
+  constructor(private service: UserService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -33,9 +35,17 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.service.create(this.registerForm.value).subscribe(
       data => {
-        console.log(this.registerForm.value);
+        this.showSuccess();
+        let control: AbstractControl = null;
+        this.registerForm.reset();
+        this.registerForm.markAsUntouched();
+        Object.keys(this.registerForm.controls).forEach((name) => {
+          control = this.registerForm.controls[name];
+          control.setErrors(null);
+        });
       },
       error => {
+        this.showFailure();
         this.dtoError = error.error;
 
         if (this.dtoError.login != null) {
@@ -49,8 +59,19 @@ export class RegisterComponent implements OnInit {
         if (this.dtoError.confirmedPassword != null) {
           this.registerForm.controls['confirmedPassword'].reset();
         }
+      }
+    );
+  }
 
-        console.log(this.dtoError);
-      });
+  private showSuccess() {
+    swal(
+      'Good job!',
+      'You have successfully created new account!',
+      'success'
+    );
+  }
+
+  private showFailure() {
+    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }
