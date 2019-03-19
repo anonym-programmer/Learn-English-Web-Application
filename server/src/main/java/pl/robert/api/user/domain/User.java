@@ -24,6 +24,9 @@ class User {
     @Column(length = COL_LENGTH_MAX_LOGIN, unique = true, nullable = false)
     String login;
 
+    @Column(unique = true, nullable = false)
+    String email;
+
     @Column(length = COL_LENGTH_MAX_PASSWORD, nullable = false)
     String password;
 }

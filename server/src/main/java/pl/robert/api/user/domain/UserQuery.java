@@ -10,6 +10,7 @@ class UserQuery {
                 .builder()
                 .login(dto.getLogin())
                 .password(dto.getPassword())
+                .email(dto.getEmail())
                 .build();
     }
 }

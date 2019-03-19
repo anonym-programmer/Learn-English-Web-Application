@@ -13,7 +13,7 @@ class UserValidator implements UserValidatorConstants {
     UserRepository repository;
 
     void checkInputData(CreateUserDTO dto, BindingResult result) {
-        dto.setLogin(dto.getLogin().trim());
+        trimDtoFields(dto);
 
         if (dto.getLogin().isEmpty()) {
             result.rejectValue(F_LOGIN, C_EMPTY, M_LOGIN_EMPTY);
@@ -46,6 +46,23 @@ class UserValidator implements UserValidatorConstants {
         if (!dto.getPassword().equals(dto.getConfirmedPassword())) {
             result.rejectValue(F_CONFIRMED_PASSWORD, C_NOT_MATCH, M_CONFIRMED_PASSWORD_NOT_MATCH);
         }
+
+        if (dto.getEmail().isEmpty()) {
+            result.rejectValue(F_EMAIL, C_EMPTY, M_EMAIL_EMPTY);
+        }
+
+        if (isEmailExist(dto.getEmail())) {
+            result.rejectValue(F_EMAIL, C_EXIST, M_EMAIL_EXISTS);
+        }
+
+        if (isEmailInvalid(dto.getEmail())) {
+            result.rejectValue(F_EMAIL, C_WRONG_FORMAT, M_EMAIL_WRONG_FORMAT);
+        }
+    }
+
+    private void trimDtoFields(CreateUserDTO dto) {
+        dto.setLogin(dto.getLogin().trim());
+        dto.setEmail(dto.getEmail().trim());
     }
 
     private boolean isLengthLowerThanGivenField(String field, int length) {
@@ -58,5 +75,13 @@ class UserValidator implements UserValidatorConstants {
 
     private boolean isLoginExist(String login) {
         return repository.findByLogin(login) != null;
+    }
+
+    private boolean isEmailExist(String email) {
+        return repository.findByEmail(email) != null;
+    }
+
+    private boolean isEmailInvalid(String email) {
+        return !email.matches(EMAIL_REGEX);
     }
 }

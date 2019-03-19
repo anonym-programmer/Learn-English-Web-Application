@@ -1,20 +1,30 @@
 .my-card {
-    margin: 5% auto;
-    width: 40%;
+  margin: 5% auto;
+  width: 40%;
+  height: 580px;
 }
 
 .mat-card-header {
-    justify-content: center;
+  justify-content: center;
 }
 
 .full-width {
-    width: 100%;
+  width: 100%;
 }
 
-.mat-form-field, .mat-card-actions {
-    margin-top: 30px;
+.mat-form-field, .mat-card-footer {
+  margin-top: 30px;
+}
+
+.mat-checkbox {
+  display: block;
+  margin-left: 18px;
+}
+
+button {
+  margin: 40px 0 0 18px;
 }
 
 .error {
-    display: block;
+  display: block;
 }

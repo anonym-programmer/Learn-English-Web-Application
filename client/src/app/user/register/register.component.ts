@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
-import { CreateUserDTO } from '../shared/create-user-dto.model';
-import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import {Component, OnInit} from '@angular/core';
+import {UserService} from '../shared/user.service';
+import {CreateUserDTO} from '../shared/create-user-dto.model';
+import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
+import {ToastrService} from 'ngx-toastr';
 import swal from 'sweetalert2';
 
 @Component({
@@ -16,21 +16,34 @@ export class RegisterComponent implements OnInit {
   dtoError = new CreateUserDTO();
   registerForm: FormGroup;
 
-  constructor(private service: UserService, private toastr: ToastrService) { }
+  constructor(private service: UserService, private toastr: ToastrService) {
+  }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
       'login': new FormControl(this.dto.login, [Validators.required]),
+      'email': new FormControl(this.dto.email, [Validators.required]),
       'password': new FormControl(this.dto.password, [Validators.required]),
-      'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required])
+      'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required]),
+      'rules': new FormControl('', [Validators.requiredTrue])
     });
   }
 
-  get login() { return this.registerForm.get('login'); }
+  get login() {
+    return this.registerForm.get('login');
+  }
 
-  get password() { return this.registerForm.get('password'); }
+  get email() {
+    return this.registerForm.get('email');
+  }
 
-  get confirmedPassword() { return this.registerForm.get('confirmedPassword'); }
+  get password() {
+    return this.registerForm.get('password');
+  }
+
+  get confirmedPassword() {
+    return this.registerForm.get('confirmedPassword');
+  }
 
   onSubmit() {
     this.service.create(this.registerForm.value).subscribe(
@@ -50,6 +63,10 @@ export class RegisterComponent implements OnInit {
 
         if (this.dtoError.login != null) {
           this.registerForm.controls['login'].reset();
+        }
+
+        if (this.dtoError.email != null) {
+          this.registerForm.controls['email'].reset();
         }
 
         if (this.dtoError.password != null) {

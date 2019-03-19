@@ -9,6 +9,7 @@ class UserFactory {
                 .builder()
                 .login(dto.getLogin())
                 .password(dto.getPassword())
+                .email(dto.getEmail())
                 .build();
     }
 }

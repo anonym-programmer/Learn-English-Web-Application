@@ -11,4 +11,5 @@ public class CreateUserQuery {
 
     String login;
     String password;
+    String email;
 }

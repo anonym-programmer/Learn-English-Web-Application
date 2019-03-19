@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 public class CreateUserDTO {
 
     String login;
+    String email;
     String password;
     String confirmedPassword;
 }
