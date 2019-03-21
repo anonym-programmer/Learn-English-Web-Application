@@ -8,8 +8,8 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.user.domain.dto.CreateUserDTO;
 import pl.robert.api.user.query.CreateUserQuery;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class UserFacade {
 
     UserValidator validator;

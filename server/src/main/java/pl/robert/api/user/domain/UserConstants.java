@@ -6,6 +6,8 @@ public interface UserConstants {
     int COL_LENGTH_MAX_LOGIN = 20;
     int COL_LENGTH_MIN_PASSWORD = 5;
     int COL_LENGTH_MAX_PASSWORD = 20;
+    int COL_LENGTH_ENCODED_PASSWORD = 60;
+    int COL_LENGTH_ROLE = 11;
     int COL_LENGTH_CONFIRMATION_TOKEN = 36;
     int COL_LENGTH_DATE_IN_SECONDS = 11;
 

@@ -6,8 +6,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.user.domain.dto.CreateUserDTO;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class UserValidator implements UserConstants {
 
     UserRepository repository;

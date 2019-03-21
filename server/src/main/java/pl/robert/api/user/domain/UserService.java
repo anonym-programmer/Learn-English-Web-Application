@@ -8,8 +8,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class UserService {
 
     UserRepository repository;

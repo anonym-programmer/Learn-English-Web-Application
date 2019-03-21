@@ -15,8 +15,8 @@ import javax.validation.Valid;
 @RestController
 @RequestMapping("/api/user")
 @CrossOrigin("http://localhost:4200")
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class UserController {
 
     UserFacade facade;

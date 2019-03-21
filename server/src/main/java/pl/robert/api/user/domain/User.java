@@ -4,17 +4,19 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
+import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_ENCODED_PASSWORD;
 import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_MAX_LOGIN;
-import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_MAX_PASSWORD;
 
 @Entity
 @Table(name = "users")
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Builder
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 class User {
 
     @Id
@@ -27,8 +29,11 @@ class User {
     @Column(unique = true, nullable = false)
     String email;
 
-    @Column(length = COL_LENGTH_MAX_PASSWORD, nullable = false)
+    @Column(length = COL_LENGTH_ENCODED_PASSWORD, nullable = false)
     String password;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<Role> roles = new HashSet<>();
 
     @Column(name = "is_enabled")
     boolean isEnabled;

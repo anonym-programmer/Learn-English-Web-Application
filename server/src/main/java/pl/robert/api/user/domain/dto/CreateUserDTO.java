@@ -11,9 +11,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @Getter @Setter
 @NoArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateUserDTO implements UserConstants {
 
     @NotEmpty(message = M_LOGIN_EMPTY)
