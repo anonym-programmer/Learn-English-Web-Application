@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
   onSubmit() {
     this.service.create(this.registerForm.value).subscribe(
       data => {
-        this.showSuccess();
+        this.showInfo();
         let control: AbstractControl = null;
         this.registerForm.reset();
         this.registerForm.markAsUntouched();
@@ -79,11 +79,13 @@ export class RegisterComponent implements OnInit {
     );
   }
 
-  private showSuccess() {
+  private showInfo() {
     swal(
-      'Good job!',
-      'You have successfully created new account!',
-      'success'
+      'Account confirmation',
+      'Confirmation token has been sent to your email.' + '<br>' +
+               'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
+               'and u will be not able to log into application!',
+      'info'
     );
   }
 

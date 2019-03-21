@@ -29,4 +29,7 @@ class User {
 
     @Column(length = COL_LENGTH_MAX_PASSWORD, nullable = false)
     String password;
+
+    @Column(name = "is_enabled")
+    boolean isEnabled;
 }

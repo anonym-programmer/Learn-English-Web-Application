@@ -1,12 +1,10 @@
 package pl.robert.api.user.domain;
 
-import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import pl.robert.api.user.domain.dto.CreateUserDTO;
 import pl.robert.api.user.query.CreateUserQuery;
 
@@ -14,13 +12,9 @@ import pl.robert.api.user.query.CreateUserQuery;
 @AllArgsConstructor
 public class UserFacade {
 
-    UserRepository repository;
     UserValidator validator;
-
-    public CreateUserQuery add(CreateUserDTO dto) {
-        repository.saveAndFlush(UserFactory.create(dto));
-        return UserQuery.query(dto);
-    }
+    UserService userService;
+    TokenService tokenService;
 
     public void checkInputData(CreateUserDTO dto, BindingResult result) {
         if (!result.hasErrors()) {
@@ -29,10 +23,14 @@ public class UserFacade {
     }
 
     public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        Multimap<String, String> errors = ArrayListMultimap.create();
-        for (FieldError error : result.getFieldErrors()) {
-            errors.put(error.getField(), error.getDefaultMessage());
-        }
-        return errors;
+        return userService.fillMultiMapWithErrors(result);
+    }
+
+    public CreateUserQuery add(CreateUserDTO dto) {
+        User user = UserFactory.create(dto);
+        userService.save(user);
+        tokenService.generateToken(user);
+
+        return UserQuery.query(dto);
     }
 }
