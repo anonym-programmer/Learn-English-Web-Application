@@ -10,6 +10,6 @@ import lombok.experimental.FieldDefaults;
 public class CreateUserQuery {
 
     String login;
-    String password;
     String email;
+    String password;
 }

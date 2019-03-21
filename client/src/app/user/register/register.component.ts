@@ -24,8 +24,7 @@ export class RegisterComponent implements OnInit {
       'login': new FormControl(this.dto.login, [Validators.required]),
       'email': new FormControl(this.dto.email, [Validators.required]),
       'password': new FormControl(this.dto.password, [Validators.required]),
-      'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required]),
-      'rules': new FormControl('', [Validators.requiredTrue])
+      'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required])
     });
   }
 

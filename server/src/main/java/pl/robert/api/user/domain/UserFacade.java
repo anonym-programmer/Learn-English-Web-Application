@@ -23,7 +23,9 @@ public class UserFacade {
     }
 
     public void checkInputData(CreateUserDTO dto, BindingResult result) {
-        validator.checkInputData(dto, result);
+        if (!result.hasErrors()) {
+            validator.checkInputData(dto, result);
+        }
     }
 
     public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
