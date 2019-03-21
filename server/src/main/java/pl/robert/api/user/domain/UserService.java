@@ -22,11 +22,15 @@ class UserService {
         return errors;
     }
 
-    void save(User user) {
+    void saveAndFlush(User user) {
         repository.saveAndFlush(user);
     }
 
     void delete(User user) {
         repository.delete(user);
+    }
+
+    User findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

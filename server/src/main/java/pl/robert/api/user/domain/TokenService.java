@@ -12,6 +12,8 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -25,7 +27,7 @@ class TokenService {
 
     void generateToken(User user) {
         Token token = new Token(user);
-        tokenRepository.save(token);
+        tokenRepository.saveAndFlush(token);
 
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
@@ -44,5 +46,36 @@ class TokenService {
             logger.info("Deleting token and user cause {} appeared...", e.getClass());
             throw new MailSendException("MessagingException | MailException");
         }
+    }
+
+    boolean confirmToken(String confirmationToken) {
+        cleanAllExpiredTokens();
+        Token token = tokenRepository.findByConfirmationToken(confirmationToken);
+        if (token != null) {
+            User user = userService.findByEmail(token.getUser().getEmail());
+
+            user.setEnabled(true);
+            userService.saveAndFlush(user);
+
+            tokenRepository.delete(token);
+            logger.info("Account confirmation correct!");
+            return true;
+        }
+        logger.warn("Token has been expired.");
+        return false;
+    }
+
+    private void cleanAllExpiredTokens() {
+        List<Token> tokens = tokenRepository.findAll();
+        for (Token token : tokens) {
+            Token tokenToCheck = tokenRepository.findById(token.getId());
+            if (getCurrentTimeInSeconds() - Long.parseLong(tokenToCheck.getCreatedDateInSeconds()) > 900) {
+                tokenRepository.delete(tokenToCheck);
+            }
+        }
+    }
+
+    private long getCurrentTimeInSeconds() {
+        return TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis()));
     }
 }

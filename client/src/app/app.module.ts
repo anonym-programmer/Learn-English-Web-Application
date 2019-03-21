@@ -12,11 +12,13 @@ import {AppComponent} from './app.component';
 import {RegisterComponent} from './user/register/register.component';
 
 import {UserService} from './user/shared/user.service';
+import {ConfirmComponent} from './user/confirm/confirm.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    RegisterComponent,
+    ConfirmComponent
   ],
   imports: [
     BrowserModule,

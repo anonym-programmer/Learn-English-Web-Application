@@ -28,9 +28,13 @@ public class UserFacade {
 
     public CreateUserQuery add(CreateUserDTO dto) {
         User user = UserFactory.create(dto);
-        userService.save(user);
+        userService.saveAndFlush(user);
         tokenService.generateToken(user);
 
         return UserQuery.query(dto);
+    }
+
+    public boolean confirmToken(String confirmationToken) {
+        return tokenService.confirmToken(confirmationToken);
     }
 }

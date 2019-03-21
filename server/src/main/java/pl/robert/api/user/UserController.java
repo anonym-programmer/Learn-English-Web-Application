@@ -26,12 +26,26 @@ class UserController {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
-                    .status(400)
+                    .badRequest()
                     .body(facade.fillMultiMapWithErrors(result).asMap());
         }
 
         return ResponseEntity
                 .ok()
                 .body(facade.add(dto));
+    }
+
+    @GetMapping("/confirm-account")
+    public HttpEntity<?> confirm(@RequestParam("token") String confirmationToken) {
+        boolean isCorrect = facade.confirmToken(confirmationToken);
+        if (!isCorrect) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        return ResponseEntity
+                .ok()
+                .build();
     }
 }
