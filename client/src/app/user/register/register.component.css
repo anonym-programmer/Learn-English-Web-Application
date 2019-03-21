@@ -2,6 +2,7 @@
   margin: 5% auto;
   width: 40%;
   height: 500px;
+  opacity: 0.85;
 }
 
 .mat-card-header {
@@ -14,6 +15,7 @@
 
 .mat-form-field {
   margin-top: 30px;
+  font-weight: bold;
 }
 
 button {

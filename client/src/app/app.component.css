@@ -1,6 +1,5 @@
 header {
   font-size: 25px;
-  background-color: #3F51B5;
 }
 
 .navbar {
@@ -12,7 +11,7 @@ span {
 }
 
 a {
-  color: white;
+  color: #FFFFFF;
   text-decoration: none;
 }
 
@@ -21,5 +20,4 @@ footer {
   bottom: 0;
   width: 100%;
   color: #FFFFFF;
-  background-color: #3F51B5;
 }

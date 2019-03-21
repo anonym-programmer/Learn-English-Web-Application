@@ -1,7 +1,16 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
+@import url('https://fonts.googleapis.com/css?family=IM+Fell+English');
 
 html {
   position: relative;
   min-height: 100%;
+}
+
+body {
+  background-image: url('img/background.jpg');
+  height: 40em; background-size: cover; width: auto;
+  background-position: 50% 50%;
+  font-weight: bold;
+  font-family: 'IM Fell English', serif;
 }
