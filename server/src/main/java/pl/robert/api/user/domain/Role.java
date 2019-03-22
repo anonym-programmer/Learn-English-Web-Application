@@ -13,7 +13,7 @@ import static pl.robert.api.user.domain.UserConstants.COL_LENGTH_ROLE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class Role {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

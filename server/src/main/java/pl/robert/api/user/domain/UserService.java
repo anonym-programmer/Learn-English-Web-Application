@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import pl.robert.api.security.dto.AuthorizationDTO;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -32,5 +33,13 @@ class UserService {
 
     User findByEmail(String email) {
         return repository.findByEmail(email);
+    }
+
+    AuthorizationDTO findByLogin(String login) {
+        User user = repository.findByLogin(login);
+
+        if (user == null) return null;
+
+        return new AuthorizationDTO(user.getLogin(), user.getPassword(), user.isEnabled(), user.getRoles());
     }
 }

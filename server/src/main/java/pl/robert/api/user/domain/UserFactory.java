@@ -1,5 +1,8 @@
 package pl.robert.api.user.domain;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.robert.api.user.domain.dto.CreateUserDTO;
 
 import java.util.Collections;
@@ -12,9 +15,14 @@ class UserFactory {
                 .builder()
                 .login(dto.getLogin())
                 .email(dto.getEmail())
-                .password(dto.getPassword())
+                .password(passwordEncoder().encode(dto.getPassword()))
                 .roles(new HashSet<>(Collections.singleton(new Role(1L, "ROLE_USER"))))
                 .isEnabled(false)
                 .build();
+    }
+
+    @Bean
+    private static PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
+import pl.robert.api.security.dto.AuthorizationDTO;
 import pl.robert.api.user.domain.dto.CreateUserDTO;
 import pl.robert.api.user.query.CreateUserQuery;
 
@@ -36,5 +37,9 @@ public class UserFacade {
 
     public boolean confirmToken(String confirmationToken) {
         return tokenService.confirmToken(confirmationToken);
+    }
+
+    public AuthorizationDTO findByLogin(String login) {
+        return userService.findByLogin(login);
     }
 }
