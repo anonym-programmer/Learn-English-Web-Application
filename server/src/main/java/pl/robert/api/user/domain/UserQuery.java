@@ -8,7 +8,7 @@ class UserQuery {
     static CreateUserQuery query(CreateUserDTO dto) {
         return CreateUserQuery
                 .builder()
-                .login(dto.getLogin())
+                .username(dto.getUsername())
                 .password(dto.getPassword())
                 .email(dto.getEmail())
                 .build();

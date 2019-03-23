@@ -2,8 +2,8 @@ package pl.robert.api.user.domain;
 
 public interface UserConstants {
 
-    int COL_LENGTH_MIN_LOGIN = 2;
-    int COL_LENGTH_MAX_LOGIN = 20;
+    int COL_LENGTH_MIN_USERNAME = 2;
+    int COL_LENGTH_MAX_USERNAME = 20;
     int COL_LENGTH_MIN_PASSWORD = 5;
     int COL_LENGTH_MAX_PASSWORD = 20;
     int COL_LENGTH_ENCODED_PASSWORD = 60;
@@ -14,7 +14,7 @@ public interface UserConstants {
 
     /* Fields */
 
-    String F_LOGIN = "login";
+    String F_USERNAME = "username";
     String F_EMAIL = "email";
     String F_CONFIRMED_PASSWORD = "confirmedPassword";
 
@@ -28,9 +28,9 @@ public interface UserConstants {
     /* Default messages */
 
 
-    String M_LOGIN_EMPTY = "Login cannot be empty";
-    String M_LOGIN_LENGTH = "Login should have between 2 and 20 characters";
-    String M_LOGIN_EXISTS = "Login already exists";
+    String M_USERNAME_EMPTY = "Username cannot be empty";
+    String M_USERNAME_LENGTH = "Username should have between 2 and 20 characters";
+    String M_USERNAME_EXISTS = "Username already exists";
     String M_EMAIL_EMPTY = "Email cannot be empty";
     String M_EMAIL_WRONG_FORMAT = "Please enter valid email";
     String M_EMAIL_EXISTS = "Email already exists";

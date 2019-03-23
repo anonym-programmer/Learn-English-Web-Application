@@ -6,12 +6,12 @@
     <form class="my-form" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)" autocomplete="off">
 
       <mat-form-field class="full-width">
-        <mat-label>Login</mat-label>
-        <input matInput formControlName="login" required>
-        <mat-error class="error" *ngIf="login.invalid && (login.dirty || login.touched)">
-          Login is required
+        <mat-label>Username</mat-label>
+        <input matInput formControlName="username" required>
+        <mat-error class="error" *ngIf="username.invalid && (username.dirty || username.touched)">
+          Username is required
         </mat-error>
-        <mat-error class="error" *ngFor="let error of dtoError.login">{{error}}</mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.username">{{error}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">

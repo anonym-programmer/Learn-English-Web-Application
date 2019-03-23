@@ -35,11 +35,11 @@ class UserService {
         return repository.findByEmail(email);
     }
 
-    AuthorizationDTO findByLogin(String login) {
-        User user = repository.findByLogin(login);
+    AuthorizationDTO findByUsername(String username) {
+        User user = repository.findByUsername(username);
 
         if (user == null) return null;
 
-        return new AuthorizationDTO(user.getLogin(), user.getPassword(), user.isEnabled(), user.getRoles());
+        return new AuthorizationDTO(user.getUsername(), user.getPassword(), user.isEnabled(), user.getRoles());
     }
 }

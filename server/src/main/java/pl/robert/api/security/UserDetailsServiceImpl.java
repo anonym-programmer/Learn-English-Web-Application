@@ -29,8 +29,8 @@ class UserDetailsServiceImpl implements UserDetailsService {
     UserFacade userFacade;
 
     @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        AuthorizationDTO user = userFacade.findByLogin(login);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AuthorizationDTO user = userFacade.findByUsername(username);
 
         if (user == null) throw new UsernameNotFoundException("User not found");
 
@@ -40,7 +40,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
         }
 
         return new org.springframework.security.core.userdetails.User(
-                user.getLogin(),
+                user.getUsername(),
                 user.getPassword(),
                 convertAuthorities(user.getRoles()));
     }

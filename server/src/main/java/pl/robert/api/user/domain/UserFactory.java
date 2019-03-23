@@ -13,7 +13,7 @@ class UserFactory {
     static User create(CreateUserDTO dto) {
         return User
                 .builder()
-                .login(dto.getLogin())
+                .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(passwordEncoder().encode(dto.getPassword()))
                 .roles(new HashSet<>(Collections.singleton(new Role(1L, "ROLE_USER"))))

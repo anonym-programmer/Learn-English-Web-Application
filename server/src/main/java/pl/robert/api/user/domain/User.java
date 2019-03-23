@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static pl.robert.api.user.domain.UserConstants.COL_LENGTH_MAX_USERNAME;
 import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_ENCODED_PASSWORD;
-import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_MAX_LOGIN;
 
 @Entity
 @Table(name = "users")
@@ -23,8 +23,8 @@ class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(length = COL_LENGTH_MAX_LOGIN, unique = true, nullable = false)
-    String login;
+    @Column(length = COL_LENGTH_MAX_USERNAME, unique = true, nullable = false)
+    String username;
 
     @Column(unique = true, nullable = false)
     String email;

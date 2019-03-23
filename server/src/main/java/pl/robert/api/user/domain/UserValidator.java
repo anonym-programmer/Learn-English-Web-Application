@@ -14,8 +14,8 @@ class UserValidator implements UserConstants {
 
     void checkInputData(CreateUserDTO dto, BindingResult result) {
 
-        if (isLoginExist(dto.getLogin())) {
-            result.rejectValue(F_LOGIN, C_EXIST, M_LOGIN_EXISTS);
+        if (isUsernameExist(dto.getUsername())) {
+            result.rejectValue(F_USERNAME, C_EXIST, M_USERNAME_EXISTS);
         }
 
         if (isEmailExist(dto.getEmail())) {
@@ -27,8 +27,8 @@ class UserValidator implements UserConstants {
         }
     }
 
-    private boolean isLoginExist(String login) {
-        return repository.findByLogin(login) != null;
+    private boolean isUsernameExist(String username) {
+        return repository.findByUsername(username) != null;
     }
 
     private boolean isEmailExist(String email) {

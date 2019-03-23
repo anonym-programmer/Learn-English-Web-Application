@@ -21,15 +21,15 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      'login': new FormControl(this.dto.login, [Validators.required]),
+      'username': new FormControl(this.dto.username, [Validators.required]),
       'email': new FormControl(this.dto.email, [Validators.required]),
       'password': new FormControl(this.dto.password, [Validators.required]),
       'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required])
     });
   }
 
-  get login() {
-    return this.registerForm.get('login');
+  get username() {
+    return this.registerForm.get('username');
   }
 
   get email() {
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.create(this.registerForm.value).subscribe(
+    this.service.register(this.registerForm.value).subscribe(
       data => {
         this.showInfo();
         let control: AbstractControl = null;
@@ -60,8 +60,8 @@ export class RegisterComponent implements OnInit {
         this.showFailure();
         this.dtoError = error.error;
 
-        if (this.dtoError.login != null) {
-          this.registerForm.controls['login'].reset();
+        if (this.dtoError.username != null) {
+          this.registerForm.controls['username'].reset();
         }
 
         if (this.dtoError.email != null) {

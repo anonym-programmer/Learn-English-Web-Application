@@ -6,6 +6,8 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true, securedEnabled=true)
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -34,15 +37,31 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    protected void configure(AuthenticationManagerBuilder auth) {
+        auth.eraseCredentials(false);
+        auth.authenticationProvider(daoAuthenticationProvider());
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/", "/api/user", "/api/user/confirm-account").not().authenticated()
+                .antMatchers("/", "/api/base*").permitAll()
+                .antMatchers("/api/user*").hasRole("USER")
+                .antMatchers("/api/admin*").hasRole("ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/j_spring_security_check")
                 .permitAll()
                 .successHandler(new CustomAuthenticationSuccessHandler(1))
             .and()
-                .httpBasic();
+                .httpBasic()
+            .and()
+                .cors()
+            .and()
+                .headers().frameOptions().sameOrigin()
+            .and()
+                .sessionManagement().maximumSessions(1);
     }
 }

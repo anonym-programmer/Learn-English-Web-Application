@@ -1,4 +1,4 @@
-package pl.robert.api.user;
+package pl.robert.api.admin;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/admin")
 @CrossOrigin("http://localhost:4200")
-class UserController {
+class AdminController {
 
     @GetMapping
     public HttpEntity<?> dashboard() {
-        return ResponseEntity.status(200).body("Welcome user!");
+        return ResponseEntity.status(200).body("Welcome admin!");
     }
 }

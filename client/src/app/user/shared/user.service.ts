@@ -8,17 +8,17 @@ import {FormGroup} from '@angular/forms';
 })
 export class UserService {
 
-  readonly createUrl = 'http://localhost:8080/api/user';
-  readonly confirmUrl = 'http://localhost:8080/api/user/confirm-account';
+  readonly createUrl = 'http://localhost:8080/api/base/register';
+  readonly confirmUrl = 'http://localhost:8080/api/base/confirm-account';
 
   constructor(private http: HttpClient) {
   }
 
-  create(data: FormGroup): Observable<FormGroup> {
+  register(data: FormGroup): Observable<FormGroup> {
     return this.http.post<FormGroup>(this.createUrl, data);
   }
 
-  confirm(token: string): Observable<string> {
+  confirmAccount(token: string): Observable<string> {
     return this.http.get<string>(this.confirmUrl + '?token=' + token);
   }
 }

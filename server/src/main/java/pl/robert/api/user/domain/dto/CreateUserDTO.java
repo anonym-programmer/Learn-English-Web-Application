@@ -16,9 +16,9 @@ import javax.validation.constraints.Size;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateUserDTO implements UserConstants {
 
-    @NotEmpty(message = M_LOGIN_EMPTY)
-    @Size(min = COL_LENGTH_MIN_LOGIN, max = COL_LENGTH_MAX_LOGIN, message = M_LOGIN_LENGTH)
-    String login;
+    @NotEmpty(message = M_USERNAME_EMPTY)
+    @Size(min = COL_LENGTH_MIN_USERNAME, max = COL_LENGTH_MAX_USERNAME, message = M_USERNAME_LENGTH)
+    String username;
 
     @NotEmpty(message = M_EMAIL_EMPTY)
     @Email(message = M_EMAIL_WRONG_FORMAT)

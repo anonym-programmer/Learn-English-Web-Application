@@ -39,7 +39,7 @@ public class UserFacade {
         return tokenService.confirmToken(confirmationToken);
     }
 
-    public AuthorizationDTO findByLogin(String login) {
-        return userService.findByLogin(login);
+    public AuthorizationDTO findByUsername(String username) {
+        return userService.findByUsername(username);
     }
 }

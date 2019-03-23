@@ -13,7 +13,7 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthorizationDTO {
 
-    String login;
+    String username;
     String password;
     boolean isVerified;
     Set<Role> roles = new HashSet<>();

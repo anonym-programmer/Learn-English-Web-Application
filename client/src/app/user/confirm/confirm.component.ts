@@ -16,7 +16,7 @@ export class ConfirmComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
-      this.service.confirm(token).subscribe(
+      this.service.confirmAccount(token).subscribe(
         isCorrect => {
           this.showSuccess();
         },
