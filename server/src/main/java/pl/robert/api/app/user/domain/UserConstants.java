@@ -1,4 +1,4 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 public interface UserConstants {
 

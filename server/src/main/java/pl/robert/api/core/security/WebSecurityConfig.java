@@ -1,4 +1,4 @@
-package pl.robert.api.security;
+package pl.robert.api.core.security;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,10 +42,21 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    private static final String[] SWAGGER_API = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**"
+    };
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
-                .antMatchers("/", "/api/base*").permitAll()
+                .antMatchers(SWAGGER_API).permitAll()
+                .antMatchers("/", "/api/base/*").permitAll()
                 .antMatchers("/api/user*").hasRole("USER")
                 .antMatchers("/api/admin*").hasRole("ADMIN")
                 .anyRequest().authenticated()

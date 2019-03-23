@@ -1,4 +1,4 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static pl.robert.api.user.domain.UserConstants.COL_LENGTH_MAX_USERNAME;
-import static pl.robert.api.user.domain.UserValidator.COL_LENGTH_ENCODED_PASSWORD;
+import static pl.robert.api.app.user.domain.UserConstants.COL_LENGTH_MAX_USERNAME;
+import static pl.robert.api.app.user.domain.UserValidator.COL_LENGTH_ENCODED_PASSWORD;
 
 @Entity
 @Table(name = "users")

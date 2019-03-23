@@ -1,9 +1,9 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.robert.api.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 
 import java.util.Collections;
 import java.util.HashSet;

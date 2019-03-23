@@ -1,8 +1,8 @@
-package pl.robert.api.security.dto;
+package pl.robert.api.core.security.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import pl.robert.api.user.domain.Role;
+import pl.robert.api.app.user.domain.Role;
 
 import java.util.HashSet;
 import java.util.Set;

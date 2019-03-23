@@ -1,4 +1,4 @@
-package pl.robert.api.security;
+package pl.robert.api.core.security;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -11,9 +11,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.robert.api.security.dto.AuthorizationDTO;
-import pl.robert.api.user.domain.Role;
-import pl.robert.api.user.domain.UserFacade;
+import pl.robert.api.core.security.dto.AuthorizationDTO;
+import pl.robert.api.app.user.domain.Role;
+import pl.robert.api.app.user.domain.UserFacade;
 
 import java.util.HashSet;
 import java.util.Set;

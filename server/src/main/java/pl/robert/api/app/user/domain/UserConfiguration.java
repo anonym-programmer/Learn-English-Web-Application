@@ -1,4 +1,4 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

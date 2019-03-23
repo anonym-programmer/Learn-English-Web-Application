@@ -1,11 +1,11 @@
-package pl.robert.api.user.domain.dto;
+package pl.robert.api.app.user.domain.dto;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import pl.robert.api.user.domain.UserConstants;
+import pl.robert.api.app.user.domain.UserConstants;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;

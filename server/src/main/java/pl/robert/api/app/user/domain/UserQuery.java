@@ -1,7 +1,7 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
-import pl.robert.api.user.domain.dto.CreateUserDTO;
-import pl.robert.api.user.query.CreateUserQuery;
+import pl.robert.api.app.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.query.CreateUserQuery;
 
 class UserQuery {
 

@@ -1,4 +1,4 @@
-package pl.robert.api.security;
+package pl.robert.api.core.security;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

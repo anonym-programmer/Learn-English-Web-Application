@@ -1,4 +1,4 @@
-package pl.robert.api.base;
+package pl.robert.api.app.base;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -7,8 +7,8 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import pl.robert.api.user.domain.UserFacade;
-import pl.robert.api.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.domain.UserFacade;
+import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 
 import javax.validation.Valid;
 

@@ -1,4 +1,4 @@
-package pl.robert.api.user.query;
+package pl.robert.api.app.user.query;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

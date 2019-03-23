@@ -1,4 +1,4 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import pl.robert.api.security.dto.AuthorizationDTO;
+import pl.robert.api.core.security.dto.AuthorizationDTO;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

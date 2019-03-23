@@ -1,13 +1,13 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.security.dto.AuthorizationDTO;
-import pl.robert.api.user.domain.dto.CreateUserDTO;
-import pl.robert.api.user.query.CreateUserQuery;
+import pl.robert.api.core.security.dto.AuthorizationDTO;
+import pl.robert.api.app.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.query.CreateUserQuery;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

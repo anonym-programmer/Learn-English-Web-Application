@@ -1,10 +1,10 @@
-package pl.robert.api.user.domain;
+package pl.robert.api.app.user.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
