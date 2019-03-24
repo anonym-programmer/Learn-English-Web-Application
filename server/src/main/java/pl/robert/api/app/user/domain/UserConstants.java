@@ -21,8 +21,11 @@ public interface UserConstants {
 
     /* Error codes */
 
-    String C_EXIST = "exist";
+    String C_EXISTS = "exists";
     String C_NOT_MATCH = "notMatch";
+    String C_NOT_EXISTS = "notExists";
+    String C_NOT_ENABLED= "notEnabled";
+    String C_SENT ="sent";
 
 
     /* Default messages */
@@ -34,8 +37,11 @@ public interface UserConstants {
     String M_EMAIL_EMPTY = "Email cannot be empty";
     String M_EMAIL_WRONG_FORMAT = "Please enter valid email";
     String M_EMAIL_EXISTS = "Email already exists";
+    String M_EMAIL_NOT_EXISTS = "Email do not exists";
     String M_PASSWORD_EMPTY = "Password cannot be empty";
     String M_PASSWORD_LENGTH = "Password should have between 5 and 20 characters";
     String M_CONFIRMED_PASSWORD_EMPTY = "Confirmed password cannot be empty";
     String M_CONFIRMED_PASSWORD_NOT_MATCH = "Confirmed password must match with password";
+    String M_ACCOUNT_NOT_ENABLED = "Account is not confirmed after registration";
+    String M_TOKEN_SENT = "Token has been already sent to the given email";
 }

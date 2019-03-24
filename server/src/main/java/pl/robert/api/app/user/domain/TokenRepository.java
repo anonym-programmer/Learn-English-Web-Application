@@ -7,4 +7,6 @@ interface TokenRepository extends JpaRepository<Token, Long> {
     Token findById(long id);
 
     Token findByConfirmationToken(String confirmationToken);
+
+    Token findByUser(User user);
 }

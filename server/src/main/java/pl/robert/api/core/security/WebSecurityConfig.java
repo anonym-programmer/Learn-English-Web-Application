@@ -62,7 +62,6 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
-                .loginPage("/login")
                 .loginProcessingUrl("/j_spring_security_check")
                 .permitAll()
                 .successHandler(new CustomAuthenticationSuccessHandler(1))

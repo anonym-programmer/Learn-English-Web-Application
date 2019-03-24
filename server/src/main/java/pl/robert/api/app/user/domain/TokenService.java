@@ -25,30 +25,30 @@ class TokenService {
     UserService userService;
     JavaMailSender mailSender;
 
-    void generateToken(User user) {
-        Token token = new Token(user);
-        tokenRepository.saveAndFlush(token);
+    void generateRegisterToken(User user) {
+        Token registerToken = new Token(user);
+        tokenRepository.saveAndFlush(registerToken);
 
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
             String htmlMsg = "To confirm your account, please follow the link below:<br>" +
-                    "<a href='http://localhost:4200/confirm-account?token=" + token.getConfirmationToken() + "'>" +
-                    "http://localhost:4200/confirm-account?token=" + token.getConfirmationToken() + "</a>";
+                    "<a href='http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "'>" +
+                    "http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "</a>";
             mimeMessage.setContent(htmlMsg, "text/html");
             helper.setTo(user.getEmail());
             helper.setSubject("Complete Registration!");
             helper.setFrom("Rob");
             mailSender.send(mimeMessage);
         } catch (MessagingException | MailException e) {
-            tokenRepository.delete(token);
+            tokenRepository.delete(registerToken);
             userService.delete(user);
             logger.info("Deleting token and user cause {} appeared...", e.getClass());
             throw new MailSendException("MessagingException | MailException");
         }
     }
 
-    boolean confirmToken(String confirmationToken) {
+    boolean confirmRegisterToken(String confirmationToken) {
         cleanAllExpiredTokens();
         Token token = tokenRepository.findByConfirmationToken(confirmationToken);
         if (token != null) {
@@ -65,6 +65,34 @@ class TokenService {
         return false;
     }
 
+    void generateResetPasswordToken(User user) {
+        Token resetPasswordToken = new Token(user);
+        tokenRepository.save(resetPasswordToken);
+
+        try {
+            MimeMessage mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+            String htmlMsg = "Thank you for your password reset request. Your login is: <b>" + user.getUsername() + "</b><br>" +
+                    "Please follow the link below to reset your password:<br>" +
+                    "<a href='http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "'>" +
+                    "http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "</a>";
+            mimeMessage.setContent(htmlMsg, "text/html");
+            helper.setTo(user.getEmail());
+            helper.setSubject("Forgotten Password!");
+            helper.setFrom("Rob");
+            mailSender.send(mimeMessage);
+        } catch (MessagingException | MailSendException e) {
+            tokenRepository.delete(resetPasswordToken);
+            logger.info("Deleted token cause {} appeared...", e.getClass());
+            throw new MailSendException("MailSendException | MessagingException");
+        }
+    }
+
+    boolean confirmResetPasswordToken(String confirmationToken) {
+        cleanAllExpiredTokens();
+        return tokenRepository.findByConfirmationToken(confirmationToken) != null;
+    }
+
     private void cleanAllExpiredTokens() {
         List<Token> tokens = tokenRepository.findAll();
         for (Token token : tokens) {
@@ -77,5 +105,17 @@ class TokenService {
 
     private long getCurrentTimeInSeconds() {
         return TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis()));
+    }
+
+    Token findByConfirmationToken(String confirmationToken) {
+        return tokenRepository.findByConfirmationToken(confirmationToken);
+    }
+
+    void deleteToken(String confirmationToken) {
+        tokenRepository.delete(findByConfirmationToken(confirmationToken));
+    }
+
+    Token findByUser(User user) {
+        return tokenRepository.findByUser(user);
     }
 }

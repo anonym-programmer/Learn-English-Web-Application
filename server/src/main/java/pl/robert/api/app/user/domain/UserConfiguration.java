@@ -13,9 +13,10 @@ class UserConfiguration {
                       JavaMailSender mailSender) {
 
         UserService userService = new UserService(userRepository);
+        TokenService tokenService = new TokenService(tokenRepository, userService, mailSender);
 
-        return new UserFacade(new UserValidator(userRepository),
+        return new UserFacade(new UserValidator(userService, tokenService),
                               userService,
-                              new TokenService(tokenRepository, userService, mailSender));
+                              tokenService);
     }
 }

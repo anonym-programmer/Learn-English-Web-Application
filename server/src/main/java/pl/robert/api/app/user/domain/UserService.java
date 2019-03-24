@@ -42,4 +42,12 @@ class UserService {
 
         return new AuthorizationDTO(user.getUsername(), user.getPassword(), user.isEnabled(), user.getRoles());
     }
+
+    boolean isUsernameExist(String username) {
+        return repository.findByUsername(username) != null;
+    }
+
+    boolean isEmailExist(String email) {
+        return repository.findByEmail(email) != null;
+    }
 }
