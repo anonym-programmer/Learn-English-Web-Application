@@ -66,16 +66,23 @@ class BaseController {
                 .build();
     }
 
-    @RequestMapping(value = "/reset-password", method = {RequestMethod.GET, RequestMethod.POST})
-    public HttpEntity<?> resetPassword(@RequestParam("token") String resetPasswordToken,
-                                       @RequestBody @Valid ChangePasswordDTO dto, BindingResult result) {
-        boolean isCorrect = facade.confirmResetPasswordToken(resetPasswordToken);
+    @GetMapping("/check-token")
+    public HttpEntity<?> checkToken(@RequestParam("token") String token) {
+        boolean isCorrect = facade.isTokenCorrect(token);
         if (!isCorrect) {
             return ResponseEntity
                     .badRequest()
                     .build();
         }
 
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
+    @RequestMapping(value = "/reset-password", method = {RequestMethod.GET, RequestMethod.POST})
+    public HttpEntity<?> resetPassword(@RequestParam("token") String resetPasswordToken,
+                                       @RequestBody @Valid ChangePasswordDTO dto, BindingResult result) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity

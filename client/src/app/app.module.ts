@@ -12,14 +12,18 @@ import {AppComponent} from './app.component';
 import {RegisterComponent} from './user/register/register.component';
 
 import {UserService} from './user/shared/user.service';
-import {ConfirmComponent} from './user/confirm/confirm.component';
-import { LoginComponent } from './user/login/login.component';
+import {ConfirmComponent} from './user/token/account/confirm.component';
+import {LoginComponent} from './user/login/login.component';
+import {ResetComponent} from './user/token/password/reset.component';
+import {CredentialsComponent} from './user/credentials/credentials.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    CredentialsComponent,
     ConfirmComponent,
+    ResetComponent,
     LoginComponent
   ],
   imports: [

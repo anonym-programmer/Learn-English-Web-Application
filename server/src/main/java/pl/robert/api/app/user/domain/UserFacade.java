@@ -40,6 +40,11 @@ public class UserFacade {
         }
     }
 
+    public boolean isTokenCorrect(String token) {
+        tokenService.cleanAllExpiredTokens();
+        return tokenService.findByConfirmationToken(token) != null;
+    }
+
     public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
         return userService.fillMultiMapWithErrors(result);
     }
@@ -58,10 +63,6 @@ public class UserFacade {
 
     public void generateResetPasswordToken(ForgotCredentialsDTO dto) {
         tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
-    }
-
-    public boolean confirmResetPasswordToken(String confirmationToken) {
-        return tokenService.confirmResetPasswordToken(confirmationToken);
     }
 
     public void changePassword(ChangePasswordDTO dto, String resetPasswordToken) {

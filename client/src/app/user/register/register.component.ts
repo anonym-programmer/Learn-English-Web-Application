@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   dtoError = new CreateUserDTO();
   registerForm: FormGroup;
 
-  constructor(private service: UserService, private toastr: ToastrService) {
-  }
+  constructor(private service: UserService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.registerForm = new FormGroup({

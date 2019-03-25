@@ -1,0 +1,32 @@
+<mat-card class="my-card col-sm-12">
+  <mat-card-header>
+    <mat-card-title><h3>Reset password</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="my-form" [formGroup]="resetForm" (ngSubmit)="onSubmit(resetForm)" autocomplete="off">
+
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" required>
+        <mat-error class="error" *ngIf="password.invalid && (password.dirty || password.touched)">
+          Password is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.password">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Confirmed password</mat-label>
+        <input matInput formControlName="confirmedPassword" type="password" required>
+        <mat-error class="error" *ngIf="confirmedPassword.invalid && (confirmedPassword.dirty || confirmedPassword.touched)">
+          Confirmed password is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.confirmedPassword">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-footer>
+        <button mat-raised-button color="primary" [disabled]="!resetForm.valid">Submit</button>
+      </mat-card-footer>
+
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -88,12 +88,7 @@ class TokenService {
         }
     }
 
-    boolean confirmResetPasswordToken(String confirmationToken) {
-        cleanAllExpiredTokens();
-        return tokenRepository.findByConfirmationToken(confirmationToken) != null;
-    }
-
-    private void cleanAllExpiredTokens() {
+    void cleanAllExpiredTokens() {
         List<Token> tokens = tokenRepository.findAll();
         for (Token token : tokens) {
             Token tokenToCheck = tokenRepository.findById(token.getId());

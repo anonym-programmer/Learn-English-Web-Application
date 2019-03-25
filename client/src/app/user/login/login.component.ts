@@ -15,7 +15,8 @@ export class LoginComponent implements OnInit {
   dtoError = new CreateUserDTO();
   loginForm: FormGroup;
 
-  constructor(private service: UserService, private toastr: ToastrService) { }
+  constructor(private service: UserService,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
