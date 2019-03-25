@@ -4,9 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.app.user.domain.dto.ChangePasswordDTO;
+import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
-import pl.robert.api.app.user.domain.dto.ForgotCredentialsDTO;
+import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -30,7 +30,7 @@ class UserValidator implements UserConstants {
         }
     }
 
-    void checkInputData(ForgotCredentialsDTO dto, BindingResult result) {
+    void checkInputData(ForgotUserCredentialsDTO dto, BindingResult result) {
 
         if (userService.isEmailExist(dto.getEmail()) && !userService.findByEmail(dto.getEmail()).isEnabled()) {
             result.rejectValue(F_EMAIL, C_NOT_ENABLED, M_ACCOUNT_NOT_ENABLED);
@@ -45,7 +45,7 @@ class UserValidator implements UserConstants {
         }
     }
 
-    void checkInputData(ChangePasswordDTO dto, BindingResult result) {
+    void checkInputData(ChangeUserPasswordDTO dto, BindingResult result) {
 
         if (!dto.getPassword().equals(dto.getConfirmedPassword())) {
             result.rejectValue(F_CONFIRMED_PASSWORD, C_NOT_MATCH, M_CONFIRMED_PASSWORD_NOT_MATCH);

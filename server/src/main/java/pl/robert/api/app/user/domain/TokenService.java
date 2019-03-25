@@ -102,12 +102,12 @@ class TokenService {
         return TimeUnit.MILLISECONDS.toSeconds((System.currentTimeMillis()));
     }
 
-    Token findByConfirmationToken(String confirmationToken) {
-        return tokenRepository.findByConfirmationToken(confirmationToken);
-    }
-
     void deleteToken(String confirmationToken) {
         tokenRepository.delete(findByConfirmationToken(confirmationToken));
+    }
+
+    Token findByConfirmationToken(String confirmationToken) {
+        return tokenRepository.findByConfirmationToken(confirmationToken);
     }
 
     Token findByUser(User user) {
