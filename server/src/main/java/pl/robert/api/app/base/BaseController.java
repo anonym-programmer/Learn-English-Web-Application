@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
-import pl.robert.api.app.user.domain.dto.ChangePasswordDTO;
+import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
-import pl.robert.api.app.user.domain.dto.ForgotCredentialsDTO;
+import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
 
 import javax.validation.Valid;
 
@@ -37,6 +37,20 @@ class BaseController {
                 .body(facade.add(dto));
     }
 
+    @GetMapping("/check-token")
+    public HttpEntity<?> checkToken(@RequestParam("token") String token) {
+        boolean isCorrect = facade.isTokenCorrect(token);
+        if (!isCorrect) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
     @GetMapping("/confirm-account")
     public HttpEntity<?> confirmAccount(@RequestParam("token") String confirmationToken) {
         boolean isCorrect = facade.confirmRegisterToken(confirmationToken);
@@ -52,7 +66,7 @@ class BaseController {
     }
 
     @PostMapping("/forgot-credentials")
-    public HttpEntity<?> receiveCredentials(@RequestBody @Valid ForgotCredentialsDTO dto, BindingResult result) {
+    public HttpEntity<?> receiveCredentials(@RequestBody @Valid ForgotUserCredentialsDTO dto, BindingResult result) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
@@ -66,23 +80,9 @@ class BaseController {
                 .build();
     }
 
-    @GetMapping("/check-token")
-    public HttpEntity<?> checkToken(@RequestParam("token") String token) {
-        boolean isCorrect = facade.isTokenCorrect(token);
-        if (!isCorrect) {
-            return ResponseEntity
-                    .badRequest()
-                    .build();
-        }
-
-        return ResponseEntity
-                .ok()
-                .build();
-    }
-
     @RequestMapping(value = "/reset-password", method = {RequestMethod.GET, RequestMethod.POST})
     public HttpEntity<?> resetPassword(@RequestParam("token") String resetPasswordToken,
-                                       @RequestBody @Valid ChangePasswordDTO dto, BindingResult result) {
+                                       @RequestBody @Valid ChangeUserPasswordDTO dto, BindingResult result) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity

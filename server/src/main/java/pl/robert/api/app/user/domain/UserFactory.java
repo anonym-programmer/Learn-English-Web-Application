@@ -22,7 +22,7 @@ class UserFactory {
     }
 
     @Bean
-    private static PasswordEncoder passwordEncoder() {
+    static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

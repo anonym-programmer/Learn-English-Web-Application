@@ -7,7 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import pl.robert.api.core.security.dto.AuthorizationDTO;
+import pl.robert.api.core.security.dto.AuthUserDTO;
+
+import java.util.Optional;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -35,19 +37,23 @@ class UserService {
         return repository.findByEmail(email);
     }
 
-    AuthorizationDTO findByUsername(String username) {
-        User user = repository.findByUsername(username);
-
-        if (user == null) return null;
-
-        return new AuthorizationDTO(user.getUsername(), user.getPassword(), user.isEnabled(), user.getRoles());
-    }
-
     boolean isUsernameExist(String username) {
         return repository.findByUsername(username) != null;
     }
 
     boolean isEmailExist(String email) {
         return repository.findByEmail(email) != null;
+    }
+
+    Optional<AuthUserDTO> findByUsername(String username) {
+        User user = repository.findByUsername(username);
+        return Optional.of(
+                AuthUserDTO
+                        .builder()
+                        .username(user.getUsername())
+                        .password(user.getPassword())
+                        .isEnabled(user.isEnabled())
+                        .roles(user.getRoles())
+                        .build());
     }
 }

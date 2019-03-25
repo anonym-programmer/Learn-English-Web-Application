@@ -5,19 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.robert.api.core.security.dto.AuthorizationDTO;
-import pl.robert.api.app.user.domain.Role;
 import pl.robert.api.app.user.domain.UserFacade;
+import pl.robert.api.core.security.dto.AuthUserDTO;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -30,11 +27,9 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthorizationDTO user = userFacade.findByUsername(username);
+        AuthUserDTO user = userFacade.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
-        if (user == null) throw new UsernameNotFoundException("User not found");
-
-        if (!user.isVerified()) {
+        if (!user.isEnabled()) {
             user.setPassword(UUID.randomUUID().toString());
             logger.warn("User is not verified! Changing password to random UUID!");
         }
@@ -42,14 +37,9 @@ class UserDetailsServiceImpl implements UserDetailsService {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                convertAuthorities(user.getRoles()));
-    }
-
-    private Set<GrantedAuthority> convertAuthorities(Set<Role> roles) {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getRole()));
-        }
-        return authorities;
+                user.getRoles()
+                        .stream()
+                        .map(authority -> new SimpleGrantedAuthority(authority.getRole()))
+                        .collect(Collectors.toSet()));
     }
 }

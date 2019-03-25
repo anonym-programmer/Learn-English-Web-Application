@@ -7,14 +7,15 @@ import pl.robert.api.app.user.domain.Role;
 import java.util.HashSet;
 import java.util.Set;
 
+@Builder
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AuthorizationDTO {
+public class AuthUserDTO {
 
     String username;
     String password;
-    boolean isVerified;
+    boolean isEnabled;
     Set<Role> roles = new HashSet<>();
 }
