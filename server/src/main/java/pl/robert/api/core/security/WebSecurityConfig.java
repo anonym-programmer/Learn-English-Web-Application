@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -56,15 +57,22 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(SWAGGER_API).permitAll()
-                .antMatchers("/", "/api/base/*").permitAll()
+                .antMatchers("/api/base/*").permitAll()
                 .antMatchers("/api/user*").hasRole("USER")
                 .antMatchers("/api/admin*").hasRole("ADMIN")
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
-                .permitAll()
                 .successHandler(new CustomAuthenticationSuccessHandler(1))
+                .failureHandler(new CustomAuthenticationFailureHandler())
+                .permitAll()
+            .and()
+                .logout()
+                .logoutSuccessHandler(new LogoutSuccessHandler(HttpStatus.OK))
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .permitAll()
             .and()
                 .httpBasic()
             .and()

@@ -2,10 +2,10 @@ package pl.robert.api.core;
 
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailSendException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,10 +15,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
+@Slf4j
 @FieldDefaults(level = AccessLevel.PRIVATE)
 class GlobalExceptionHandler {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     Map<String, String> exception = new HashMap<>();
 
@@ -27,22 +26,22 @@ class GlobalExceptionHandler {
         String title;
         String message;
 
-        if (e instanceof MailSendException) {
-            title = "MessagingException || MailSendException";
-            message = "Mail exception apeared...";
+        if (e instanceof MailSendException || e instanceof MailAuthenticationException) {
+            title = "MessagingException || MailAuthenticationException";
+            message = "Mail exception appeared...";
         } else {
             title = "Exception";
-            message = "Exception apeared...";
+            message = "Exception appeared...";
         }
         e.printStackTrace();
-        logger.warn("{} on {} URL", title, request.getRequestURL());
+        log.warn("{} on {} URL", title, request.getRequestURL());
 
         exception.clear();
         exception.put("title", title);
         exception.put("message", message);
 
         return ResponseEntity
-                .badRequest()
+                .unprocessableEntity()
                 .body(exception);
     }
 }

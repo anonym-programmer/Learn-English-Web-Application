@@ -3,9 +3,8 @@ package pl.robert.api.app.user.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.mail.MailException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.mail.MailAuthenticationException;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -15,11 +14,10 @@ import javax.mail.internet.MimeMessage;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class TokenService {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     TokenRepository tokenRepository;
     UserService userService;
@@ -40,11 +38,11 @@ class TokenService {
             helper.setSubject("Complete Registration!");
             helper.setFrom("Rob");
             mailSender.send(mimeMessage);
-        } catch (MessagingException | MailException e) {
+        } catch (MessagingException | MailAuthenticationException e) {
             tokenRepository.delete(registerToken);
             userService.delete(user);
-            logger.info("Deleting token and user cause {} appeared...", e.getClass());
-            throw new MailSendException("MessagingException | MailException");
+            log.info("Deleting token and user cause {} appeared...", e.getClass());
+            throw new MailSendException("MessagingException | MailAuthenticationException");
         }
     }
 
@@ -58,10 +56,10 @@ class TokenService {
             userService.saveAndFlush(user);
 
             tokenRepository.delete(token);
-            logger.info("Account confirmation correct!");
+            log.info("Account confirmation correct!");
             return true;
         }
-        logger.warn("Token has been expired.");
+        log.warn("Token has been expired.");
         return false;
     }
 
@@ -81,10 +79,10 @@ class TokenService {
             helper.setSubject("Forgotten Password!");
             helper.setFrom("Rob");
             mailSender.send(mimeMessage);
-        } catch (MessagingException | MailSendException e) {
+        } catch (MessagingException | MailAuthenticationException e) {
             tokenRepository.delete(resetPasswordToken);
-            logger.info("Deleted token cause {} appeared...", e.getClass());
-            throw new MailSendException("MailSendException | MessagingException");
+            log.info("Deleted token cause {} appeared...", e.getClass());
+            throw new MailSendException("MailSendException | MailAuthenticationException");
         }
     }
 

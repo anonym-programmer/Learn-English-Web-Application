@@ -3,8 +3,7 @@ package pl.robert.api.core.security;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,11 +16,10 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class UserDetailsServiceImpl implements UserDetailsService {
-
-    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     UserFacade userFacade;
 
@@ -31,7 +29,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
         if (!user.isEnabled()) {
             user.setPassword(UUID.randomUUID().toString());
-            logger.warn("User is not verified! Changing password to random UUID!");
+            log.warn("User is not verified! Changing password to random UUID!");
         }
 
         return new org.springframework.security.core.userdetails.User(

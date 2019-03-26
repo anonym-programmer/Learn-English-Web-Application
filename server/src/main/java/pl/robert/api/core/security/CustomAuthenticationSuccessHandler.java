@@ -3,26 +3,26 @@ package pl.robert.api.core.security;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
+@Slf4j
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
-    final Logger log = LoggerFactory.getLogger(getClass());
-
     int maxInactiveInterval;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) {
-        log.info("User {} has been logged in", auth.getName());
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException {
+        log.info("User {} has been logged in!", auth.getName());
         request.getSession().setMaxInactiveInterval(60 * maxInactiveInterval);
         clearAuthenticationAttributes(request);
+        response.sendRedirect("/api/user");
     }
 }
