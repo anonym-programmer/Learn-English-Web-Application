@@ -23,6 +23,5 @@ class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessH
         log.info("User {} has been logged in!", auth.getName());
         request.getSession().setMaxInactiveInterval(60 * maxInactiveInterval);
         clearAuthenticationAttributes(request);
-        response.sendRedirect("/api/user");
     }
 }

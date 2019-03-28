@@ -12,7 +12,6 @@ import {ToastrService} from 'ngx-toastr';
 export class LoginComponent implements OnInit {
 
   dto = new CreateUserDTO();
-  dtoError = new CreateUserDTO();
   loginForm: FormGroup;
 
   constructor(private service: UserService,
@@ -22,7 +21,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       'username': new FormControl(this.dto.username, [Validators.required]),
       'password': new FormControl(this.dto.password, [Validators.required])
-    })
+    });
   }
 
   get username() {
@@ -31,5 +30,23 @@ export class LoginComponent implements OnInit {
 
   get password() {
     return this.loginForm.get('password');
+  }
+
+  onSubmit() {
+    this.service.login(this.loginForm.value).subscribe(
+      success => {
+        this.showSuccess();
+      }, error => {
+        this.showFailure();
+      }
+    );
+  }
+
+  private showSuccess() {
+    this.toastr.success('Successfully logged in!', 'Success')
+  }
+
+  private showFailure() {
+    this.toastr.error('Username or password are invalid.', 'Failure');
   }
 }

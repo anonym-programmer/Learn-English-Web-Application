@@ -6,15 +6,14 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Slf4j
 class CustomAuthenticationFailureHandler implements AuthenticationFailureHandler {
 
     @Override
-    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException {
+    public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) {
         log.error("Failed to login, wrong credentials.");
-        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Username or password is not correct!");
+        response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
     }
 }
 

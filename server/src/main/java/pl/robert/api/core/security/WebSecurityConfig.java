@@ -14,13 +14,15 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true, securedEnabled=true)
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+class WebSecurityConfig extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
 
     UserDetailsServiceImpl userDetailsService;
 
@@ -54,6 +56,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     };
 
     @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers(SWAGGER_API).permitAll()
@@ -64,6 +71,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
+                .successForwardUrl("/api/user")
                 .successHandler(new CustomAuthenticationSuccessHandler(1))
                 .failureHandler(new CustomAuthenticationFailureHandler())
                 .permitAll()

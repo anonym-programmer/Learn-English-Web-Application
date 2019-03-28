@@ -11,7 +11,6 @@
         <mat-error class="error" *ngIf="username.invalid && (username.dirty || username.touched)">
           Username is required
         </mat-error>
-        <mat-error class="error" *ngFor="let error of dtoError.username">{{error}}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -20,7 +19,6 @@
         <mat-error class="error" *ngIf="password.invalid && (password.dirty || password.touched)">
           Password is required
         </mat-error>
-        <mat-error class="error" *ngFor="let error of dtoError.password">{{error}}</mat-error>
       </mat-form-field>
 
       <mat-card-footer>
