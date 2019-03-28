@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.service.register(this.registerForm.value).subscribe(
-      data => {
+      () => {
         this.showInfo();
         let control: AbstractControl = null;
         this.registerForm.reset();

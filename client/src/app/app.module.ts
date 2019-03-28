@@ -9,13 +9,16 @@ import {ToastrModule} from 'ngx-toastr';
 import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 import {AppComponent} from './app.component';
-import {RegisterComponent} from './user/register/register.component';
+import {RegisterComponent} from './base/register/register.component';
 
-import {UserService} from './user/shared/user.service';
-import {ConfirmComponent} from './user/token/account/confirm.component';
-import {LoginComponent} from './user/login/login.component';
-import {ResetComponent} from './user/token/password/reset.component';
-import {CredentialsComponent} from './user/credentials/credentials.component';
+import {UserService} from './base/shared/user.service';
+import {ConfirmComponent} from './base/token/account/confirm.component';
+import {LoginComponent} from './base/login/login.component';
+import {ResetComponent} from './base/token/password/reset.component';
+import {CredentialsComponent} from './base/credentials/credentials.component';
+import {AuthGuard} from './auth/auth.guard';
+import {AuthService} from './auth/auth.service';
+import {DashboardComponent} from './user/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,8 @@ import {CredentialsComponent} from './user/credentials/credentials.component';
     CredentialsComponent,
     ConfirmComponent,
     ResetComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,11 @@ import {CredentialsComponent} from './user/credentials/credentials.component';
     ToastrModule.forRoot(),
     SweetAlert2Module.forRoot()
   ],
-  providers: [UserService],
+  providers: [
+    UserService,
+    AuthGuard,
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

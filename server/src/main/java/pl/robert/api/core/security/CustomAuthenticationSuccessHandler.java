@@ -9,7 +9,6 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationSu
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Slf4j
 @AllArgsConstructor
@@ -19,7 +18,7 @@ class CustomAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessH
     int maxInactiveInterval;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) throws IOException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth) {
         log.info("User {} has been logged in!", auth.getName());
         request.getSession().setMaxInactiveInterval(60 * maxInactiveInterval);
         clearAuthenticationAttributes(request);

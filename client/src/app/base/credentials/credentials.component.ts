@@ -31,7 +31,7 @@ export class CredentialsComponent implements OnInit {
 
   onSubmit() {
     this.service.forgotCredentials(this.credentialForm.value).subscribe(
-      data => {
+      () => {
         this.showInfo();
         let control: AbstractControl = null;
         this.credentialForm.reset();

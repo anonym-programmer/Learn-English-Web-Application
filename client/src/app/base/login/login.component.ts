@@ -3,6 +3,7 @@ import {CreateUserDTO} from '../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../shared/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(private service: UserService,
-              private toastr: ToastrService) { }
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -34,9 +36,11 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.service.login(this.loginForm.value).subscribe(
-      success => {
+      () => {
         this.showSuccess();
-      }, error => {
+        localStorage.setItem('isLoggedIn', 'true');
+        this.router.navigate(['/dashboard'])
+      }, () => {
         this.showFailure();
       }
     );

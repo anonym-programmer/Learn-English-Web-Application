@@ -46,7 +46,7 @@ export class UserService {
     const headers =  new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
 
     return this.http
-      .post(this.loginUrl, body, {headers: headers})
+      .post(this.loginUrl, body, {headers, withCredentials: true})
       .pipe(map(() => true));
   }
 }

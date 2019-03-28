@@ -1,10 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {RegisterComponent} from './user/register/register.component';
-import {ConfirmComponent} from './user/token/account/confirm.component';
-import {LoginComponent} from './user/login/login.component';
-import {ResetComponent} from './user/token/password/reset.component';
-import {CredentialsComponent} from './user/credentials/credentials.component';
+import {RegisterComponent} from './base/register/register.component';
+import {ConfirmComponent} from './base/token/account/confirm.component';
+import {LoginComponent} from './base/login/login.component';
+import {ResetComponent} from './base/token/password/reset.component';
+import {CredentialsComponent} from './base/credentials/credentials.component';
+import {DashboardComponent} from './user/dashboard/dashboard.component';
+import {AuthGuard} from './auth/auth.guard';
 
 const routes: Routes = [
   {path: '*', redirectTo: '/'},
@@ -12,7 +14,9 @@ const routes: Routes = [
   {path: 'confirm-account', component: ConfirmComponent},
   {path: 'forgot-credentials', component: CredentialsComponent},
   {path: 'reset-password', component: ResetComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
