@@ -94,7 +94,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .csrf()
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .ignoringAntMatchers("/j_spring_security_check", "/j_spring_security_logout")
+                .ignoringAntMatchers("/j_spring_security_check", "/j_spring_security_logout", "/api/**")
             .and()
                 .cors()
             .and()

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../shared/user.service';
+import {BaseService} from '../../shared/base.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -10,18 +10,17 @@ import swal from 'sweetalert2';
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor(private service: UserService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
       this.service.confirmAccount(token).subscribe(
-        isCorrect => {
+        () => {
           this.showSuccessAlert();
         },
-        isNotCorrect => {
+        () => {
           this.showErrorAlert();
         }
       );

@@ -9,16 +9,20 @@ import {ToastrModule} from 'ngx-toastr';
 import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 import {AppComponent} from './app.component';
-import {RegisterComponent} from './base/register/register.component';
 
-import {UserService} from './base/shared/user.service';
-import {ConfirmComponent} from './base/token/account/confirm.component';
-import {LoginComponent} from './base/login/login.component';
-import {ResetComponent} from './base/token/password/reset.component';
+import {RegisterComponent} from './base/register/register.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
-import {AuthGuard} from './auth/auth.guard';
-import {AuthService} from './auth/auth.service';
+import {ConfirmComponent} from './base/token/account/confirm.component';
+import {ResetComponent} from './base/token/password/reset.component';
+import {LoginComponent} from './base/login/login.component';
+
 import {DashboardComponent} from './user/dashboard/dashboard.component';
+
+import {AuthGuard} from './auth/auth.guard';
+
+import {BaseService} from './base/shared/base.service';
+import {AuthService} from './auth/auth.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -42,11 +46,11 @@ import {DashboardComponent} from './user/dashboard/dashboard.component';
     SweetAlert2Module.forRoot()
   ],
   providers: [
-    UserService,
     AuthGuard,
-    AuthService
+    BaseService,
+    AuthService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }

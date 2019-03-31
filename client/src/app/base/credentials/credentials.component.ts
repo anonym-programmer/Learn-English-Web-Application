@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../shared/user.service';
+import {BaseService} from '../shared/base.service';
 import swal from 'sweetalert2';
 import {CreateUserDTO} from '../shared/create-user-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
@@ -16,8 +16,8 @@ export class CredentialsComponent implements OnInit {
   dtoError = new CreateUserDTO();
   credentialForm: FormGroup;
 
-  constructor(private service: UserService,
-              private toastr: ToastrService) { }
+  constructor(private service: BaseService, private toastr: ToastrService) {
+  }
 
   ngOnInit() {
     this.credentialForm = new FormGroup({

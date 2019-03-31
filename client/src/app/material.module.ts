@@ -16,19 +16,19 @@ import {FormsModule} from '@angular/forms';
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
-    FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ],
   exports: [
     MatToolbarModule,
     MatCardModule,
     MatFormFieldModule,
-    FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FormsModule
   ]
 })
 

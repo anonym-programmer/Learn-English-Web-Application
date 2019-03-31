@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
-import {UserService} from '../../shared/user.service';
+import {BaseService} from '../../shared/base.service';
 import {CreateUserDTO} from '../../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
@@ -17,21 +17,19 @@ export class ResetComponent implements OnInit {
   dtoError = new CreateUserDTO();
   resetForm: FormGroup;
 
-  constructor(private service: UserService,
-              private toastr: ToastrService,
-              private router: Router,
-              private route: ActivatedRoute) { }
+  constructor(private service: BaseService, private toastr: ToastrService, private router: Router,
+              private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
     this.resetForm = new FormGroup({
       'password': new FormControl(this.dto.password, [Validators.required]),
       'confirmedPassword': new FormControl(this.dto.confirmedPassword, [Validators.required])
     });
-    const token = this.route.queryParams.subscribe(queryParams => {
+    this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
-      this.service.checkToken(token).subscribe(
-        data => {},
-        error => {
+      this.service.checkToken(token).subscribe(() => {},
+        () => {
           this.router.navigate(['/']);
           this.showErrorAlert();
         }
@@ -51,7 +49,7 @@ export class ResetComponent implements OnInit {
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
       this.service.resetPassword(token, this.resetForm.value).subscribe(
-        data => {
+        () => {
           this.showSuccessAlert();
           this.router.navigate(['/']);
         },

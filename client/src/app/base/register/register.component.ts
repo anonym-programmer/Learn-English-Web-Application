@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../shared/user.service';
+import {BaseService} from '../shared/base.service';
 import {CreateUserDTO} from '../shared/create-user-dto.model';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
@@ -16,8 +16,8 @@ export class RegisterComponent implements OnInit {
   dtoError = new CreateUserDTO();
   registerForm: FormGroup;
 
-  constructor(private service: UserService,
-              private toastr: ToastrService) { }
+  constructor(private service: BaseService, private toastr: ToastrService) {
+  }
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -83,8 +83,8 @@ export class RegisterComponent implements OnInit {
     swal(
       'Account confirmation',
       'Confirmation token has been sent to your email.' + '<br>' +
-               'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
-               'and u will be not able to log into application!',
+      'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
+      'and u will be not able to log into application!',
       'info'
     );
   }
