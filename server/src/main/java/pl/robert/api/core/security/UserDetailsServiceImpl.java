@@ -25,7 +25,7 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUserDTO user = userFacade.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        AuthUserDTO user = userFacade.findAuthByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
         if (!user.isEnabled()) {
             user.setPassword(UUID.randomUUID().toString());

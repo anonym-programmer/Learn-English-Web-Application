@@ -7,6 +7,7 @@ import {ResetComponent} from './base/token/password/reset.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
 import {DashboardComponent} from './user/dashboard/dashboard.component';
 import {AuthGuard} from './auth/auth.guard';
+import {ProfileComponent} from './user/profile/profile.component';
 
 const routes: Routes = [
   {path: '*', redirectTo: '/'},
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: 'reset-password', component: ResetComponent},
   {path: 'login', component: LoginComponent},
 
-  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]}
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

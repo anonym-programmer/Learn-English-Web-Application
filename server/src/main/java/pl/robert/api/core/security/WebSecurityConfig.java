@@ -81,7 +81,7 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
                 .successForwardUrl("/api/user")
-                .successHandler(new CustomAuthenticationSuccessHandler(1))
+                .successHandler(new CustomAuthenticationSuccessHandler())
                 .failureHandler(new CustomAuthenticationFailureHandler())
                 .permitAll()
             .and()

@@ -32,9 +32,10 @@ class BaseController {
                     .body(facade.fillMultiMapWithErrors(result).asMap());
         }
 
+        facade.add(dto);
         return ResponseEntity
                 .ok()
-                .body(facade.add(dto));
+                .build();
     }
 
     @GetMapping("/check-token")
@@ -73,8 +74,8 @@ class BaseController {
                     .badRequest()
                     .body(facade.fillMultiMapWithErrors(result).asMap());
         }
-        facade.generateResetPasswordToken(dto);
 
+        facade.generateResetPasswordToken(dto);
         return ResponseEntity
                 .ok()
                 .build();
@@ -89,8 +90,8 @@ class BaseController {
                     .badRequest()
                     .body(facade.fillMultiMapWithErrors(result).asMap());
         }
-        facade.changePassword(dto, resetPasswordToken);
 
+        facade.changePassword(dto, resetPasswordToken);
         return ResponseEntity
                 .ok()
                 .build();

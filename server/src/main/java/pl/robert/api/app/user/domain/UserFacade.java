@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
-import pl.robert.api.app.user.query.CreateUserQuery;
 import pl.robert.api.core.security.dto.AuthUserDTO;
 
 import java.util.Optional;
@@ -21,11 +20,10 @@ public class UserFacade {
     UserService userService;
     TokenService tokenService;
 
-    public CreateUserQuery add(CreateUserDTO dto) {
+    public void add(CreateUserDTO dto) {
         User user = UserFactory.create(dto);
         userService.saveAndFlush(user);
         tokenService.generateRegisterToken(user);
-        return UserQuery.query(dto);
     }
 
     public void checkInputData(CreateUserDTO dto, BindingResult result) {
@@ -70,7 +68,11 @@ public class UserFacade {
         return userService.fillMultiMapWithErrors(result);
     }
 
-    public Optional<AuthUserDTO> findByUsername(String username) {
+    public Optional<AuthUserDTO> findAuthByUsername(String username) {
+        return userService.findAuthByUsername(username);
+    }
+
+    public User findUserByUsername(String username) {
         return userService.findByUsername(username);
     }
 }

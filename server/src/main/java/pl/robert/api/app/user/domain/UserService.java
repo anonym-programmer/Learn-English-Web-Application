@@ -45,7 +45,7 @@ class UserService {
         return repository.findByEmail(email) != null;
     }
 
-    Optional<AuthUserDTO> findByUsername(String username) {
+    Optional<AuthUserDTO> findAuthByUsername(String username) {
         User user = repository.findByUsername(username);
         return Optional.of(
                 AuthUserDTO
@@ -55,5 +55,9 @@ class UserService {
                         .isEnabled(user.isEnabled())
                         .roles(user.getRoles())
                         .build());
+    }
+
+    User findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 }

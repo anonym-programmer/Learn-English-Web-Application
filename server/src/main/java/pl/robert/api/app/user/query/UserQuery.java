@@ -7,9 +7,10 @@ import lombok.experimental.FieldDefaults;
 @Getter @Setter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreateUserQuery {
+public class UserQuery {
 
     String username;
     String email;
     String password;
+    String roles;
 }

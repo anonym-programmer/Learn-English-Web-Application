@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MaterialModule} from './material.module';
 import {ToastrModule} from 'ngx-toastr';
@@ -17,12 +17,14 @@ import {ResetComponent} from './base/token/password/reset.component';
 import {LoginComponent} from './base/login/login.component';
 
 import {DashboardComponent} from './user/dashboard/dashboard.component';
+import {ProfileComponent} from './user/profile/profile.component';
 
 import {AuthGuard} from './auth/auth.guard';
 
 import {BaseService} from './base/shared/base.service';
 import {AuthService} from './auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
+import {UserService} from './user/shared/user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import {CookieService} from 'ngx-cookie-service';
     ConfirmComponent,
     ResetComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -49,8 +52,10 @@ import {CookieService} from 'ngx-cookie-service';
     AuthGuard,
     BaseService,
     AuthService,
-    CookieService
+    CookieService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

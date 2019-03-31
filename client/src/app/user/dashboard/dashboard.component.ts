@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
+import {UserService} from '../shared/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,9 +9,15 @@ import {AuthService} from '../../auth/auth.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  msg: string;
+
+  constructor(private authService: AuthService, private userService: UserService) {
+  }
 
   ngOnInit() {
+    this.userService.greetUser().subscribe(msg => {
+      this.msg = msg;
+    })
   }
 
   onLogout() {

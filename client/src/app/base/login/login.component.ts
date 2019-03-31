@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   dto = new CreateUserDTO();
   loginForm: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService) {
+  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService,
+              private cookieService: CookieService) {
   }
 
   ngOnInit() {
@@ -23,9 +25,6 @@ export class LoginComponent implements OnInit {
       'username': new FormControl(this.dto.username, [Validators.required]),
       'password': new FormControl(this.dto.password, [Validators.required])
     });
-    if (this.authService.isAuthenticated()) {
-      this.router.navigate(['dashboard']);
-    }
   }
 
   get username() {
@@ -42,6 +41,7 @@ export class LoginComponent implements OnInit {
         this.showSuccess();
         this.router.navigate(['dashboard']);
       }, () => {
+        this.cookieService.deleteAll();
         this.showFailure();
       }
     )
