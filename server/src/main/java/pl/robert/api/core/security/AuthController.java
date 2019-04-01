@@ -19,7 +19,7 @@ import pl.robert.api.app.user.domain.UserQueryFactory;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class AuthController {
 
-    UserFacade userFacade;
+    UserFacade facade;
 
     @GetMapping
     public ResponseEntity getAuth(Authentication auth) {
@@ -27,7 +27,7 @@ class AuthController {
             return ResponseEntity
                     .ok()
                     .body(UserQueryFactory
-                            .query(userFacade.findUserByUsername(auth.getName())));
+                            .query(facade.findUserByUsername(auth.getName())));
         }
         return ResponseEntity
                 .badRequest()

@@ -17,6 +17,7 @@ public interface UserConstants {
     String F_USERNAME = "username";
     String F_EMAIL = "email";
     String F_CONFIRMED_PASSWORD = "confirmedPassword";
+    String F_CONFIRMED_EMAIL = "confirmedEmail";
 
 
     /* Error codes */
@@ -30,7 +31,6 @@ public interface UserConstants {
 
     /* Default messages */
 
-
     String M_USERNAME_EMPTY = "Username cannot be empty";
     String M_USERNAME_LENGTH = "Username should have between 2 and 20 characters";
     String M_USERNAME_EXISTS = "Username already exists";
@@ -38,6 +38,8 @@ public interface UserConstants {
     String M_EMAIL_WRONG_FORMAT = "Please enter valid email";
     String M_EMAIL_EXISTS = "Email already exists";
     String M_EMAIL_NOT_EXISTS = "Email do not exists";
+    String M_CONFIRMED_EMAIL_EMPTY = "Confirmed email cannot be empty";
+    String M_CONFIRMED_EMAIL_NOT_MATCH = "Confirmed email must match with email";
     String M_PASSWORD_EMPTY = "Password cannot be empty";
     String M_PASSWORD_LENGTH = "Password should have between 5 and 20 characters";
     String M_CONFIRMED_PASSWORD_EMPTY = "Confirmed password cannot be empty";

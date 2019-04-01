@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
+import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
 import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
@@ -49,6 +50,17 @@ class UserValidator implements UserConstants {
 
         if (!dto.getPassword().equals(dto.getConfirmedPassword())) {
             result.rejectValue(F_CONFIRMED_PASSWORD, C_NOT_MATCH, M_CONFIRMED_PASSWORD_NOT_MATCH);
+        }
+    }
+
+    void checkInputData(ChangeUserEmailDTO dto, BindingResult result) {
+
+        if (!dto.getEmail().equals(dto.getConfirmedEmail())) {
+            result.rejectValue(F_CONFIRMED_EMAIL, C_NOT_MATCH, M_CONFIRMED_EMAIL_NOT_MATCH);
+        }
+
+        if (userService.isEmailExist(dto.getEmail())) {
+            result.rejectValue(F_EMAIL, C_EXISTS, M_EMAIL_EXISTS);
         }
     }
 }

@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
+import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
 import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
@@ -44,15 +45,32 @@ public class UserFacade {
         }
     }
 
+    public void checkInputData(ChangeUserEmailDTO dto, BindingResult result) {
+        if (!result.hasErrors()) {
+            validator.checkInputData(dto, result);
+        }
+    }
+
     public void generateResetPasswordToken(ForgotUserCredentialsDTO dto) {
         tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
     }
 
-    public void changePassword(ChangeUserPasswordDTO dto, String resetPasswordToken) {
-        User user = tokenService.findByConfirmationToken(resetPasswordToken).getUser();
-        user.setPassword(UserFactory.passwordEncoder().encode(dto.getPassword()));
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(UserFactory.passwordEncoder().encode(newPassword));
         userService.saveAndFlush(user);
-        tokenService.deleteToken(resetPasswordToken);
+    }
+
+    public void changeEmail(User user, String newEmail) {
+        user.setEmail(newEmail);
+        userService.saveAndFlush(user);
+    }
+
+    public User findUserByConfirmationToken(String token) {
+        return tokenService.findByConfirmationToken(token).getUser();
+    }
+
+    public void deleteToken(String token) {
+        tokenService.deleteToken(token);
     }
 
     public boolean isTokenCorrect(String token) {

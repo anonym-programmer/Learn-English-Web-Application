@@ -91,7 +91,8 @@ class BaseController {
                     .body(facade.fillMultiMapWithErrors(result).asMap());
         }
 
-        facade.changePassword(dto, resetPasswordToken);
+        facade.changePassword(facade.findUserByConfirmationToken(resetPasswordToken), dto.getPassword());
+        facade.deleteToken(resetPasswordToken);
         return ResponseEntity
                 .ok()
                 .build();
