@@ -5,7 +5,7 @@ import {QueryAuth} from '../shared/query-auth.model';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css', '../../base/register/register.component.css']
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
 

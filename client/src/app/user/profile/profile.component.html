@@ -1,26 +1,24 @@
-<mat-card class="my-card col-sm-12">
-  <mat-card-header>
-    <mat-card-title><h3>Your profile Mr. {{auth.username}}</h3></mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="content">
-    <form class="my-form">
-
-      <mat-form-field class="full-width">
-        <input matInput readonly>{{auth.username}}
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <input matInput readonly>Password is encoded.
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <input matInput readonly>{{auth.email}}
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <input matInput readonly>{{auth.roles}}
-      </mat-form-field>
-
-    </form>
-  </mat-card-content>
-</mat-card>
+<div class="container">
+    <div class="row-fluid">
+      <div>
+        <div id="experience">
+          <h2>Level: 20</h2>
+          <h2>Rank: True Englishman</h2>
+          <h5>20000 XP</h5>
+        </div>
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+               aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"></div>
+        </div>
+        <div id="details">
+          <h3>Username: {{auth.username}}</h3>
+          <h4>Password: Encoded in Database!</h4>
+          <h4>Email: {{auth.email}}</h4>
+          <h4>Roles: {{auth.roles}}</h4>
+        </div>
+      </div>
+    </div>
+  <button mat-raised-button color="primary">Change password</button>
+  <button mat-raised-button color="primary">Change email</button>
+  <br>
+</div>

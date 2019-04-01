@@ -1,0 +1,18 @@
+.container {
+  margin: 5% auto;
+  opacity: 0.85;
+  background-color: white;
+}
+
+#experience {
+  text-align: center;
+}
+
+#details {
+  margin-top: 3%;
+}
+
+button {
+  display: block;
+  margin-top: 5px;
+}
