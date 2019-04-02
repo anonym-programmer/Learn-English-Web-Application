@@ -1,4 +1,4 @@
-package pl.robert.api.core.security;
+package pl.robert.api.core;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.robert.api.app.user.domain.UserFacade;
-import pl.robert.api.app.user.domain.UserQueryFactory;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -26,9 +25,9 @@ class AuthController {
         if (auth != null) {
             return ResponseEntity
                     .ok()
-                    .body(UserQueryFactory
-                            .query(facade.findUserByUsername(auth.getName())));
+                    .body(facade.queryUserAuth(auth));
         }
+
         return ResponseEntity
                 .badRequest()
                 .build();

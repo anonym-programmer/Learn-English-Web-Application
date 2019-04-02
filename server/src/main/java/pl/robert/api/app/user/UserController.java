@@ -57,4 +57,11 @@ class UserController {
                 .ok()
                 .build();
     }
+
+    @GetMapping("/my-profile")
+    public HttpEntity<?> getUserProfile(Authentication auth) {
+        return ResponseEntity
+                .ok()
+                .body(facade.queryUserProfile(auth.getName()));
+    }
 }

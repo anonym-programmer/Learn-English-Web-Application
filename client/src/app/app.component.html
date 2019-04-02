@@ -5,7 +5,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div *ngIf="!authService.isAuthenticated()" class="navbar-nav">
-        <span><a [routerLink]="['/']" routerLinkActive="router-link-active">Home</a></span>
+        <span><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</a></span>
         <span><a [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a></span>
         <span><a [routerLink]="['/login']" routerLinkActive="router-link-active">Login</a></span>
       </div>

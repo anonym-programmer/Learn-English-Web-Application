@@ -15,12 +15,12 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.greetUser().subscribe(msg => {
-      this.msg = msg;
-    })
-  }
-
-  onLogout() {
-    this.authService.logout();
+    if (this.authService.isAuthenticated()) {
+      this.userService.greetUser().subscribe(msg => {
+        this.msg = msg;
+      })
+    } else {
+      this.msg = 'Welcome anonymous!';
+    }
   }
 }

@@ -9,14 +9,17 @@ class UserConfiguration {
 
     @Bean
     UserFacade facade(UserRepository userRepository,
+                      UserDetailsRepository detailsRepository,
                       TokenRepository tokenRepository,
                       JavaMailSender mailSender) {
 
         UserService userService = new UserService(userRepository);
-        TokenService tokenService = new TokenService(tokenRepository, userService, mailSender);
+        UserDetailsService detailsService = new UserDetailsService(detailsRepository);
+        TokenService tokenService = new TokenService(tokenRepository, userService, detailsService, mailSender);
 
         return new UserFacade(new UserValidator(userService, tokenService),
                               userService,
+                              detailsService,
                               tokenService);
     }
 }

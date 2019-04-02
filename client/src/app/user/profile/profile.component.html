@@ -2,19 +2,18 @@
     <div class="row-fluid">
       <div>
         <div id="experience">
-          <h2>Level: 20</h2>
-          <h2>Rank: True Englishman</h2>
-          <h5>20000 XP</h5>
+          <h2>Level: {{profile.level}}</h2>
+          <h2>Rank: {{profile.currentRank}}</h2>
+          <h5>{{profile.experience}} XP</h5>
         </div>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-               aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"></div>
+          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:40%"></div>
         </div>
         <div id="details">
-          <h3>Username: {{auth.username}}</h3>
+          <h3>Username: {{profile.username}}</h3>
           <h4>Password: Encoded in Database!</h4>
-          <h4>Email: {{auth.email}}</h4>
-          <h4>Roles: {{auth.roles}}</h4>
+          <h4>Email: {{profile.email}}</h4>
+          <h4>Roles: {{profile.roles}}</h4>
         </div>
       </div>
     </div>

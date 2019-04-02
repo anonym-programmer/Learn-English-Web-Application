@@ -6,3 +6,7 @@ INSERT INTO users (username, email, password, is_enabled) VALUES
 
 INSERT INTO users_roles (user_id, roles_id) VALUES (1, 1), (1, 2),
                                                    (2, 1);
+
+INSERT INTO  user_details (level, expierience, current_rank, user_id) VALUES
+                          ('13', '13556', 'CHALLENGER', 1),
+                          ('5' , '365'  , 'BRONZE', 2);

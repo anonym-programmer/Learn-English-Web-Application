@@ -10,6 +10,7 @@ public interface UserConstants {
     int COL_LENGTH_ROLE = 11;
     int COL_LENGTH_CONFIRMATION_TOKEN = 36;
     int COL_LENGTH_DATE_IN_SECONDS = 11;
+    int COL_LENGTH_RANK = 10;
 
 
     /* Fields */

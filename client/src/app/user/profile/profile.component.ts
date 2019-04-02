@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService} from '../../auth/auth.service';
-import {QueryAuth} from '../shared/query-auth.model';
+import {UserService} from '../shared/user.service';
+import {QueryProfile} from '../shared/query-profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -9,14 +9,14 @@ import {QueryAuth} from '../shared/query-auth.model';
 })
 export class ProfileComponent implements OnInit {
 
-  auth = new QueryAuth();
+  profile = new QueryProfile();
 
-  constructor(private authService: AuthService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit() {
-    this.authService.getAuth().subscribe(auth => {
-      this.auth = auth;
+    this.userService.getInfoAboutMyProfile().subscribe(profile => {
+      this.profile = profile;
     })
   }
 }

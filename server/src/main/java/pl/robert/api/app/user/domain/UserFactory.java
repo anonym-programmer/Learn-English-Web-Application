@@ -25,4 +25,14 @@ class UserFactory {
     static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+    static UserDetails createDetails(User user) {
+        return UserDetails
+                .builder()
+                .level("1")
+                .expierience("0")
+                .currentRank(String.valueOf(UserRanks.BRONZE))
+                .user(user)
+                .build();
+    }
 }

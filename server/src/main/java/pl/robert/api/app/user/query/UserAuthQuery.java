@@ -4,15 +4,13 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Builder
-@Getter @Setter
+@Getter
+@Setter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserQuery {
+public class UserAuthQuery {
 
     String username;
-    String email;
     String roles;
-    String level;
-    String currentRank;
-    String experience;
+    boolean isAuthenticated;
 }

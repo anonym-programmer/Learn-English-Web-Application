@@ -4,11 +4,14 @@ import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
 import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
 import pl.robert.api.app.user.domain.dto.CreateUserDTO;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
+import pl.robert.api.app.user.query.UserAuthQuery;
+import pl.robert.api.app.user.query.UserQuery;
 import pl.robert.api.core.security.dto.AuthUserDTO;
 
 import java.util.Optional;
@@ -19,6 +22,7 @@ public class UserFacade {
 
     UserValidator validator;
     UserService userService;
+    UserDetailsService detailsService;
     TokenService tokenService;
 
     public void add(CreateUserDTO dto) {
@@ -92,5 +96,15 @@ public class UserFacade {
 
     public User findUserByUsername(String username) {
         return userService.findByUsername(username);
+    }
+
+    public UserAuthQuery queryUserAuth(Authentication auth) {
+        return UserQueryFactory.queryUserAuth(auth);
+    }
+
+    public UserQuery queryUserProfile(String username) {
+        User user = findUserByUsername(username);
+        UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
+        return UserQueryFactory.queryUserAndUserDetails(user, userDetails);
     }
 }

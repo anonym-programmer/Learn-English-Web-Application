@@ -21,6 +21,7 @@ class TokenService {
 
     TokenRepository tokenRepository;
     UserService userService;
+    UserDetailsService detailsService;
     JavaMailSender mailSender;
 
     void generateRegisterToken(User user) {
@@ -54,6 +55,7 @@ class TokenService {
 
             user.setEnabled(true);
             userService.saveAndFlush(user);
+            detailsService.saveAndFlush(UserFactory.createDetails(user));
 
             tokenRepository.delete(token);
             log.info("Account confirmation correct!");
