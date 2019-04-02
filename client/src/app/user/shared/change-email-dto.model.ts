@@ -1,4 +1,4 @@
-export class ChangeUserEmailDTO {
+export class ChangeUserEmailDto {
   email: string;
   confirmedEmail: string;
 }

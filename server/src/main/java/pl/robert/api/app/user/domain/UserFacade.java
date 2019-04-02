@@ -6,13 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
-import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
-import pl.robert.api.app.user.domain.dto.CreateUserDTO;
-import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
+import pl.robert.api.app.user.domain.dto.ChangeUserEmailDto;
+import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
+import pl.robert.api.app.user.domain.dto.CreateUserDto;
+import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserQuery;
-import pl.robert.api.core.security.dto.AuthUserDTO;
+import pl.robert.api.app.user.domain.dto.AuthUserDto;
 
 import java.util.Optional;
 
@@ -25,37 +25,37 @@ public class UserFacade {
     UserDetailsService detailsService;
     TokenService tokenService;
 
-    public void add(CreateUserDTO dto) {
+    public void add(CreateUserDto dto) {
         User user = UserFactory.create(dto);
         userService.saveAndFlush(user);
         tokenService.generateRegisterToken(user);
     }
 
-    public void checkInputData(CreateUserDTO dto, BindingResult result) {
+    public void checkInputData(CreateUserDto dto, BindingResult result) {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
     }
 
-    public void checkInputData(ForgotUserCredentialsDTO dto, BindingResult result) {
+    public void checkInputData(ForgotUserCredentialsDto dto, BindingResult result) {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
     }
 
-    public void checkInputData(ChangeUserPasswordDTO dto, BindingResult result) {
+    public void checkInputData(ChangeUserPasswordDto dto, BindingResult result) {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
     }
 
-    public void checkInputData(ChangeUserEmailDTO dto, BindingResult result) {
+    public void checkInputData(ChangeUserEmailDto dto, BindingResult result) {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
     }
 
-    public void generateResetPasswordToken(ForgotUserCredentialsDTO dto) {
+    public void generateResetPasswordToken(ForgotUserCredentialsDto dto) {
         tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
     }
 
@@ -90,7 +90,7 @@ public class UserFacade {
         return userService.fillMultiMapWithErrors(result);
     }
 
-    public Optional<AuthUserDTO> findAuthByUsername(String username) {
+    public Optional<AuthUserDto> findAuthByUsername(String username) {
         return userService.findAuthByUsername(username);
     }
 

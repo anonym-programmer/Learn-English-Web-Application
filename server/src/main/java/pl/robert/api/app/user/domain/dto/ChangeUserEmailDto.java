@@ -13,7 +13,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter @Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ChangeUserEmailDTO implements UserConstants {
+public class ChangeUserEmailDto implements UserConstants {
 
     @NotEmpty(message = M_EMAIL_EMPTY)
     @Email(message = M_EMAIL_WRONG_FORMAT)

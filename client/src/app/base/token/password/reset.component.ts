@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../shared/base.service';
-import {CreateUserDTO} from '../../shared/create-user-dto.model';
+import {CreateUserDto} from '../../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import swal from 'sweetalert2';
@@ -13,8 +13,8 @@ import swal from 'sweetalert2';
 })
 export class ResetComponent implements OnInit {
 
-  dto = new CreateUserDTO();
-  dtoError = new CreateUserDTO();
+  dto = new CreateUserDto();
+  dtoError = new CreateUserDto();
   resetForm: FormGroup;
 
   constructor(private service: BaseService, private toastr: ToastrService, private router: Router,

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ChangeUserPasswordDTO} from '../../shared/change-password-dto.model';
+import {ChangeUserPasswordDto} from '../../shared/change-password-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {UserService} from '../../shared/user.service';
@@ -13,8 +13,8 @@ import {UserService} from '../../shared/user.service';
 })
 export class ChangePasswordComponent implements OnInit {
 
-  dto = new ChangeUserPasswordDTO();
-  dtoError = new ChangeUserPasswordDTO();
+  dto = new ChangeUserPasswordDto();
+  dtoError = new ChangeUserPasswordDto();
   changePasswordForm: FormGroup;
 
   constructor(private userService: UserService, private toastr: ToastrService) {

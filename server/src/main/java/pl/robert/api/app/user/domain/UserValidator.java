@@ -4,10 +4,10 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
-import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
-import pl.robert.api.app.user.domain.dto.CreateUserDTO;
-import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDTO;
+import pl.robert.api.app.user.domain.dto.ChangeUserEmailDto;
+import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
+import pl.robert.api.app.user.domain.dto.CreateUserDto;
+import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -16,7 +16,7 @@ class UserValidator implements UserConstants {
     UserService userService;
     TokenService tokenService;
 
-    void checkInputData(CreateUserDTO dto, BindingResult result) {
+    void checkInputData(CreateUserDto dto, BindingResult result) {
 
         if (userService.isUsernameExist(dto.getUsername())) {
             result.rejectValue(F_USERNAME, C_EXISTS, M_USERNAME_EXISTS);
@@ -31,7 +31,7 @@ class UserValidator implements UserConstants {
         }
     }
 
-    void checkInputData(ForgotUserCredentialsDTO dto, BindingResult result) {
+    void checkInputData(ForgotUserCredentialsDto dto, BindingResult result) {
 
         if (userService.isEmailExist(dto.getEmail()) && !userService.findByEmail(dto.getEmail()).isEnabled()) {
             result.rejectValue(F_EMAIL, C_NOT_ENABLED, M_ACCOUNT_NOT_ENABLED);
@@ -46,14 +46,14 @@ class UserValidator implements UserConstants {
         }
     }
 
-    void checkInputData(ChangeUserPasswordDTO dto, BindingResult result) {
+    void checkInputData(ChangeUserPasswordDto dto, BindingResult result) {
 
         if (!dto.getPassword().equals(dto.getConfirmedPassword())) {
             result.rejectValue(F_CONFIRMED_PASSWORD, C_NOT_MATCH, M_CONFIRMED_PASSWORD_NOT_MATCH);
         }
     }
 
-    void checkInputData(ChangeUserEmailDTO dto, BindingResult result) {
+    void checkInputData(ChangeUserEmailDto dto, BindingResult result) {
 
         if (!dto.getEmail().equals(dto.getConfirmedEmail())) {
             result.rejectValue(F_CONFIRMED_EMAIL, C_NOT_MATCH, M_CONFIRMED_EMAIL_NOT_MATCH);

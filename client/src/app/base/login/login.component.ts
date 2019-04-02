@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CreateUserDTO} from '../shared/create-user-dto.model';
+import {CreateUserDto} from '../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
@@ -13,7 +13,7 @@ import {CookieService} from 'ngx-cookie-service';
 })
 export class LoginComponent implements OnInit {
 
-  dto = new CreateUserDTO();
+  dto = new CreateUserDto();
   loginForm: FormGroup;
 
   constructor(private router: Router, private authService: AuthService, private toastr: ToastrService,

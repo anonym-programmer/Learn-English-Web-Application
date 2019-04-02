@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import pl.robert.api.core.security.dto.AuthUserDTO;
+import pl.robert.api.app.user.domain.dto.AuthUserDto;
 
 import java.util.Optional;
 
@@ -45,10 +45,10 @@ class UserService {
         return repository.findByEmail(email) != null;
     }
 
-    Optional<AuthUserDTO> findAuthByUsername(String username) {
+    Optional<AuthUserDto> findAuthByUsername(String username) {
         User user = repository.findByUsername(username);
         return Optional.of(
-                AuthUserDTO
+                AuthUserDto
                         .builder()
                         .username(user.getUsername())
                         .password(user.getPassword())

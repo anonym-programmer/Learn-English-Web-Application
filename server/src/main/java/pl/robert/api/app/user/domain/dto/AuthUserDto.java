@@ -1,4 +1,4 @@
-package pl.robert.api.core.security.dto;
+package pl.robert.api.app.user.domain.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,7 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class AuthUserDTO {
+public class AuthUserDto {
 
     String username;
     String password;

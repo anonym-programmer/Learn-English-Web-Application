@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
 import swal from 'sweetalert2';
-import {CreateUserDTO} from '../shared/create-user-dto.model';
+import {CreateUserDto} from '../shared/create-user-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 
@@ -12,8 +12,8 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class CredentialsComponent implements OnInit {
 
-  dto = new CreateUserDTO();
-  dtoError = new CreateUserDTO();
+  dto = new CreateUserDto();
+  dtoError = new CreateUserDto();
   credentialForm: FormGroup;
 
   constructor(private service: BaseService, private toastr: ToastrService) {

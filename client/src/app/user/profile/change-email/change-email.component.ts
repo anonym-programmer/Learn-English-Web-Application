@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ChangeUserEmailDTO} from '../../shared/change-email-dto.model';
+import {ChangeUserEmailDto} from '../../shared/change-email-dto.model';
 import {UserService} from '../../shared/user.service';
 import {ToastrService} from 'ngx-toastr';
 
@@ -13,8 +13,8 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class ChangeEmailComponent implements OnInit {
 
-  dto = new ChangeUserEmailDTO();
-  dtoError = new ChangeUserEmailDTO();
+  dto = new ChangeUserEmailDto();
+  dtoError = new ChangeUserEmailDto();
   changeEmailForm: FormGroup;
 
   constructor(private userService: UserService, private toastr: ToastrService) {

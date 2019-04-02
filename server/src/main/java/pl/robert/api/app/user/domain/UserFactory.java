@@ -3,14 +3,14 @@ package pl.robert.api.app.user.domain;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.robert.api.app.user.domain.dto.CreateUserDTO;
+import pl.robert.api.app.user.domain.dto.CreateUserDto;
 
 import java.util.Collections;
 import java.util.HashSet;
 
 class UserFactory {
 
-    static User create(CreateUserDTO dto) {
+    static User create(CreateUserDto dto) {
         return User
                 .builder()
                 .username(dto.getUsername())

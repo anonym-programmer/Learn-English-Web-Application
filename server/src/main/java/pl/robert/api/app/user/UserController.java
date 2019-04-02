@@ -9,8 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
-import pl.robert.api.app.user.domain.dto.ChangeUserEmailDTO;
-import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDTO;
+import pl.robert.api.app.user.domain.dto.ChangeUserEmailDto;
+import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
 
 import javax.validation.Valid;
 
@@ -29,7 +29,7 @@ class UserController {
     }
 
     @PostMapping("/change-password")
-    public HttpEntity<?> changePassword(@RequestBody @Valid ChangeUserPasswordDTO dto, BindingResult result, Authentication auth) {
+    public HttpEntity<?> changePassword(@RequestBody @Valid ChangeUserPasswordDto dto, BindingResult result, Authentication auth) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
@@ -44,7 +44,7 @@ class UserController {
     }
 
     @PostMapping("/change-email")
-    public HttpEntity<?> changeEmail(@RequestBody @Valid ChangeUserEmailDTO dto, BindingResult result, Authentication auth) {
+    public HttpEntity<?> changeEmail(@RequestBody @Valid ChangeUserEmailDto dto, BindingResult result, Authentication auth) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
-import {CreateUserDTO} from '../shared/create-user-dto.model';
+import {CreateUserDto} from '../shared/create-user-dto.model';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import swal from 'sweetalert2';
@@ -12,8 +12,8 @@ import swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
 
-  dto = new CreateUserDTO();
-  dtoError = new CreateUserDTO();
+  dto = new CreateUserDto();
+  dtoError = new CreateUserDto();
   registerForm: FormGroup;
 
   constructor(private service: BaseService, private toastr: ToastrService) {

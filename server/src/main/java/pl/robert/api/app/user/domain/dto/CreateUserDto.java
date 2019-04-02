@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 @Getter @Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreateUserDTO implements UserConstants {
+public class CreateUserDto implements UserConstants {
 
     @NotEmpty(message = M_USERNAME_EMPTY)
     @Size(min = COL_LENGTH_MIN_USERNAME, max = COL_LENGTH_MAX_USERNAME, message = M_USERNAME_LENGTH)
