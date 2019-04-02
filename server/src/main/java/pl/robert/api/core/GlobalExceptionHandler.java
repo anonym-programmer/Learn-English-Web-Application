@@ -18,20 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 class GlobalExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({MailSendException.class, MailAuthenticationException.class})
     public HttpEntity<?> handleException(HttpServletRequest request, final Exception e) {
-        HttpStatus httpStatus;
-
-        if (e instanceof MailSendException || e instanceof MailAuthenticationException) {
-            httpStatus = HttpStatus.UNPROCESSABLE_ENTITY;
-        } else {
-            httpStatus = HttpStatus.UNSUPPORTED_MEDIA_TYPE;
-        }
         e.printStackTrace();
-        log.warn("{} on {} URL", httpStatus, request.getRequestURL());
+        log.warn("{} on {} URL", HttpStatus.UNPROCESSABLE_ENTITY, request.getRequestURL());
 
         return ResponseEntity
-                .status(httpStatus)
+                .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .build();
     }
 }

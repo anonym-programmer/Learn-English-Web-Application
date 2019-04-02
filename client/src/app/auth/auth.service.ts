@@ -36,7 +36,7 @@ export class AuthService {
   public logout() {
     return this.http.post(this.logoutUrl, null).subscribe(
       () => {
-        this.cookieService.delete('XSRF-TOKEN');
+        this.cookieService.deleteAll();
         this.showSuccess();
         this.router.navigate(['login']);
       }

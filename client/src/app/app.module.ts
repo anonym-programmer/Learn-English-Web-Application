@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MaterialModule} from './material.module';
 import {ToastrModule} from 'ngx-toastr';
@@ -18,6 +18,8 @@ import {LoginComponent} from './base/login/login.component';
 
 import {DashboardComponent} from './user/dashboard/dashboard.component';
 import {ProfileComponent} from './user/profile/profile.component';
+import {ChangePasswordComponent} from './user/profile/change-password/change-password.component';
+import {ChangeEmailComponent} from './user/profile/change-email/change-email.component';
 
 import {AuthGuard} from './auth/auth.guard';
 
@@ -25,6 +27,7 @@ import {BaseService} from './base/shared/base.service';
 import {AuthService} from './auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user/shared/user.service';
+
 
 @NgModule({
   declarations: [
@@ -35,7 +38,9 @@ import {UserService} from './user/shared/user.service';
     ResetComponent,
     LoginComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordComponent,
+    ChangeEmailComponent
   ],
   imports: [
     BrowserModule,

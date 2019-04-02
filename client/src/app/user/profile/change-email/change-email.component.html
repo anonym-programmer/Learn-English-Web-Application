@@ -1,0 +1,36 @@
+<mat-card class="my-card col-sm-12">
+  <mat-card-header>
+    <mat-card-title><h3>Change email</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="my-form" [formGroup]="changeEmailForm" (ngSubmit)="changeEmail(changeEmailForm)" autocomplete="off">
+
+      <mat-form-field class="full-width">
+        <mat-label>New email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error class="error" *ngIf="email.invalid && (email.dirty || email.touched)">
+          Enter new email
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.email">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Confirm new email</mat-label>
+        <input matInput formControlName="confirmedEmail" required>
+        <mat-error class="error"
+                   *ngIf="confirmedEmail.invalid && (confirmedEmail.dirty || confirmedEmail.touched)">
+          Re enter new email
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.confirmedEmail">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-footer>
+        <button mat-raised-button color="primary" [disabled]="!changeEmailForm.valid">Change</button>
+      </mat-card-footer>
+
+    </form>
+    <div class="hrefs">
+      <a [routerLink]="['/profile']" routerLinkActive="router-link-active">Back to your profile</a><br>
+    </div>
+  </mat-card-content>
+</mat-card>

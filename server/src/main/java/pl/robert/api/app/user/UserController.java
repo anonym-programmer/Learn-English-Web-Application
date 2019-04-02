@@ -29,7 +29,7 @@ class UserController {
     }
 
     @PostMapping("/change-password")
-    public HttpEntity<?> changePassword(@RequestBody @Valid ChangeUserPasswordDTO dto, Authentication auth, BindingResult result) {
+    public HttpEntity<?> changePassword(@RequestBody @Valid ChangeUserPasswordDTO dto, BindingResult result, Authentication auth) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
@@ -44,7 +44,7 @@ class UserController {
     }
 
     @PostMapping("/change-email")
-    public HttpEntity<?> changeEmail(@RequestBody @Valid ChangeUserEmailDTO dto, Authentication auth, BindingResult result) {
+    public HttpEntity<?> changeEmail(@RequestBody @Valid ChangeUserEmailDTO dto, BindingResult result, Authentication auth) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity

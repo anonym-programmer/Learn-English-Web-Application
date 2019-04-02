@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/auth.service';
 import {QueryAuth} from '../shared/query-auth.model';
 
@@ -9,7 +9,7 @@ import {QueryAuth} from '../shared/query-auth.model';
 })
 export class ProfileComponent implements OnInit {
 
-  auth: QueryAuth;
+  auth = new QueryAuth();
 
   constructor(private authService: AuthService) {
   }
