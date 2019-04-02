@@ -5,4 +5,6 @@ export class QueryProfile {
   level: string;
   currentRank: string;
   experience: string;
+  leftExperienceToTheNextLevel: string;
+  currentExperienceInPercents: string;
 }

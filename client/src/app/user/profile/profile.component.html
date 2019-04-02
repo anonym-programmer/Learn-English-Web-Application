@@ -4,11 +4,11 @@
         <div id="experience">
           <h2>Level: {{profile.level}}</h2>
           <h2>Rank: {{profile.currentRank}}</h2>
-          <h5>{{profile.experience}} XP</h5>
+          <h3>Current: {{profile.experience}} XP</h3>
+          <h3>Left to the next level: {{profile.leftExperienceToTheNextLevel}} XP</h3>
         </div>
-        <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width:40%"></div>
-        </div>
+        <ngb-progressbar type="success" height="45px" [value]="profile.currentExperienceInPercents"
+                         [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
         <div id="details">
           <h3>Username: {{profile.username}}</h3>
           <h4>Password: Encoded in Database!</h4>
@@ -17,7 +17,7 @@
         </div>
       </div>
     </div>
-  <a routerLink="/profile/change-password"><button class="btn btn-success pull-right">Change password</button></a>
-  <a routerLink="/profile/change-email"><button class="btn btn-success pull-right">Change email</button></a>
+  <button mat-raised-button color="primary" routerLink="/profile/change-password">Change password</button>
+  <button mat-raised-button color="primary" routerLink="/profile/change-email">Change email</button>
   <br>
 </div>

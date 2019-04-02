@@ -24,6 +24,8 @@ class UserQueryFactory {
                 .level(details.getLevel())
                 .experience(details.getExpierience())
                 .currentRank(details.getCurrentRank())
+                .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
+                .currentExperienceInPercents(details.getCurrentExperienceInPercents())
                 .build();
     }
 }

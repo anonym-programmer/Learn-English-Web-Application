@@ -105,6 +105,7 @@ public class UserFacade {
     public UserQuery queryUserProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
+        detailsService.updateUserDetails(userDetails);
         return UserQueryFactory.queryUserAndUserDetails(user, userDetails);
     }
 }

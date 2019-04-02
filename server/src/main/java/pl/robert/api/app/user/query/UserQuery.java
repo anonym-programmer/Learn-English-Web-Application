@@ -15,4 +15,6 @@ public class UserQuery {
     String level;
     String currentRank;
     String experience;
+    String leftExperienceToTheNextLevel;
+    String currentExperienceInPercents;
 }

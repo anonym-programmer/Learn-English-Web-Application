@@ -30,4 +30,10 @@ class UserDetails implements UserConstants {
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "user_id")
     User user;
+
+    @Transient
+    String leftExperienceToTheNextLevel;
+
+    @Transient
+    String currentExperienceInPercents;
 }
