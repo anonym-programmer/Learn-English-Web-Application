@@ -11,13 +11,14 @@ import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 import {AppComponent} from './app.component';
 
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ForumComponent} from './forum/forum.component';
 import {RegisterComponent} from './base/register/register.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
 import {ConfirmComponent} from './base/token/account/confirm.component';
 import {ResetComponent} from './base/token/password/reset.component';
 import {LoginComponent} from './base/login/login.component';
 
-import {DashboardComponent} from './user/dashboard/dashboard.component';
 import {ProfileComponent} from './user/profile/profile.component';
 import {ChangePasswordComponent} from './user/profile/change-password/change-password.component';
 import {ChangeEmailComponent} from './user/profile/change-email/change-email.component';
@@ -33,15 +34,16 @@ import {UserService} from './user/shared/user.service';
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
+    ForumComponent,
     RegisterComponent,
     CredentialsComponent,
     ConfirmComponent,
     ResetComponent,
     LoginComponent,
-    DashboardComponent,
     ProfileComponent,
     ChangePasswordComponent,
-    ChangeEmailComponent,
+    ChangeEmailComponent
   ],
   imports: [
     BrowserModule,

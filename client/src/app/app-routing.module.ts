@@ -1,11 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {ForumComponent} from './forum/forum.component';
 import {RegisterComponent} from './base/register/register.component';
 import {ConfirmComponent} from './base/token/account/confirm.component';
 import {LoginComponent} from './base/login/login.component';
 import {ResetComponent} from './base/token/password/reset.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
-import {DashboardComponent} from './user/dashboard/dashboard.component';
 import {AuthGuard} from './auth/auth.guard';
 import {ProfileComponent} from './user/profile/profile.component';
 import {ChangePasswordComponent} from './user/profile/change-password/change-password.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
 
   {path: 'dashboard', component: DashboardComponent},
+  {path: 'forum', component: ForumComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'confirm-account', component: ConfirmComponent},
   {path: 'forgot-credentials', component: CredentialsComponent},
@@ -34,4 +36,5 @@ const routes: Routes = [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
