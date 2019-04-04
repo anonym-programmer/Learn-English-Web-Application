@@ -23,11 +23,6 @@ class UserController {
 
     UserFacade facade;
 
-    @GetMapping
-    public HttpEntity<?> dashboard() {
-        return ResponseEntity.status(200).body("Welcome user!");
-    }
-
     @PostMapping("/change-password")
     public HttpEntity<?> changePassword(@RequestBody @Valid ChangeUserPasswordDto dto, BindingResult result, Authentication auth) {
         facade.checkInputData(dto, result);
@@ -56,12 +51,5 @@ class UserController {
         return ResponseEntity
                 .ok()
                 .build();
-    }
-
-    @GetMapping("/my-profile")
-    public HttpEntity<?> getUserProfile(Authentication auth) {
-        return ResponseEntity
-                .ok()
-                .body(facade.queryUserProfile(auth.getName()));
     }
 }

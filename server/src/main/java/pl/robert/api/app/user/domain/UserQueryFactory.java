@@ -2,7 +2,7 @@ package pl.robert.api.app.user.domain;
 
 import org.springframework.security.core.Authentication;
 import pl.robert.api.app.user.query.UserAuthQuery;
-import pl.robert.api.app.user.query.UserQuery;
+import pl.robert.api.app.user.query.UserProfileQuery;
 
 class UserQueryFactory {
 
@@ -15,8 +15,8 @@ class UserQueryFactory {
                 .build();
     }
 
-    static UserQuery queryUserAndUserDetails(User user, UserDetails details) {
-        return UserQuery
+    static UserProfileQuery queryUserAndUserDetails(User user, UserDetails details) {
+        return UserProfileQuery
                 .builder()
                 .username(user.getUsername())
                 .email(user.getEmail())

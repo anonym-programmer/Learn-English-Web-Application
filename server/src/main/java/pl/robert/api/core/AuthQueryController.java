@@ -16,20 +16,20 @@ import pl.robert.api.app.user.domain.UserFacade;
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-class AuthController {
+class AuthQueryController {
 
     UserFacade facade;
 
     @GetMapping
     public ResponseEntity getAuth(Authentication auth) {
-        if (auth != null) {
+        if (auth == null) {
             return ResponseEntity
-                    .ok()
-                    .body(facade.queryUserAuth(auth));
+                    .badRequest()
+                    .build();
         }
 
         return ResponseEntity
-                .badRequest()
-                .build();
+                .ok()
+                .body(facade.queryUserAuth(auth));
     }
 }

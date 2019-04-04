@@ -7,7 +7,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserQuery {
+public class UserProfileQuery {
 
     String username;
     String email;

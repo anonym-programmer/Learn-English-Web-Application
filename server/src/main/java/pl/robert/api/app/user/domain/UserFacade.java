@@ -11,7 +11,7 @@ import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
 import pl.robert.api.app.user.domain.dto.CreateUserDto;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 import pl.robert.api.app.user.query.UserAuthQuery;
-import pl.robert.api.app.user.query.UserQuery;
+import pl.robert.api.app.user.query.UserProfileQuery;
 import pl.robert.api.app.user.domain.dto.AuthUserDto;
 
 import java.util.Optional;
@@ -24,12 +24,6 @@ public class UserFacade {
     UserService userService;
     UserDetailsService detailsService;
     TokenService tokenService;
-
-    public void add(CreateUserDto dto) {
-        User user = UserFactory.create(dto);
-        userService.saveAndFlush(user);
-        tokenService.generateRegisterToken(user);
-    }
 
     public void checkInputData(CreateUserDto dto, BindingResult result) {
         if (!result.hasErrors()) {
@@ -55,6 +49,12 @@ public class UserFacade {
         }
     }
 
+    public void add(CreateUserDto dto) {
+        User user = UserFactory.create(dto);
+        userService.saveAndFlush(user);
+        tokenService.generateRegisterToken(user);
+    }
+
     public void generateResetPasswordToken(ForgotUserCredentialsDto dto) {
         tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
     }
@@ -67,10 +67,6 @@ public class UserFacade {
     public void changeEmail(User user, String newEmail) {
         user.setEmail(newEmail);
         userService.saveAndFlush(user);
-    }
-
-    public User findUserByConfirmationToken(String token) {
-        return tokenService.findByConfirmationToken(token).getUser();
     }
 
     public void deleteToken(String token) {
@@ -90,19 +86,23 @@ public class UserFacade {
         return userService.fillMultiMapWithErrors(result);
     }
 
-    public Optional<AuthUserDto> findAuthByUsername(String username) {
-        return userService.findAuthByUsername(username);
+    public User findUserByConfirmationToken(String token) {
+        return tokenService.findByConfirmationToken(token).getUser();
     }
 
     public User findUserByUsername(String username) {
         return userService.findByUsername(username);
     }
 
+    public Optional<AuthUserDto> findAuthByUsername(String username) {
+        return userService.findAuthByUsername(username);
+    }
+
     public UserAuthQuery queryUserAuth(Authentication auth) {
         return UserQueryFactory.queryUserAuth(auth);
     }
 
-    public UserQuery queryUserProfile(String username) {
+    public UserProfileQuery queryUserProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
         detailsService.updateUserDetails(userDetails);

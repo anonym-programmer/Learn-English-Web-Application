@@ -8,10 +8,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 class UserConfiguration {
 
     @Bean
-    UserFacade facade(UserRepository userRepository,
-                      UserDetailsRepository detailsRepository,
-                      TokenRepository tokenRepository,
-                      JavaMailSender mailSender) {
+    UserFacade userFacade(UserRepository userRepository,
+                          UserDetailsRepository detailsRepository,
+                          TokenRepository tokenRepository,
+                          JavaMailSender mailSender) {
 
         UserService userService = new UserService(userRepository);
         UserDetailsService detailsService = new UserDetailsService(detailsRepository);

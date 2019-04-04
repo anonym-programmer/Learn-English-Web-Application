@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/admin")
 @CrossOrigin("http://localhost:4200")
-class AdminController {
+class AdminQueryController {
 
     @GetMapping
     public HttpEntity<?> dashboard() {

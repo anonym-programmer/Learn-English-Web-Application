@@ -17,14 +17,6 @@ class UserService {
 
     UserRepository repository;
 
-    Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        Multimap<String, String> errors = ArrayListMultimap.create();
-        for (FieldError error : result.getFieldErrors()) {
-            errors.put(error.getField(), error.getDefaultMessage());
-        }
-        return errors;
-    }
-
     void saveAndFlush(User user) {
         repository.saveAndFlush(user);
     }
@@ -33,16 +25,28 @@ class UserService {
         repository.delete(user);
     }
 
-    User findByEmail(String email) {
-        return repository.findByEmail(email);
-    }
-
     boolean isUsernameExist(String username) {
         return repository.findByUsername(username) != null;
     }
 
     boolean isEmailExist(String email) {
         return repository.findByEmail(email) != null;
+    }
+
+    Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
+        Multimap<String, String> errors = ArrayListMultimap.create();
+        for (FieldError error : result.getFieldErrors()) {
+            errors.put(error.getField(), error.getDefaultMessage());
+        }
+        return errors;
+    }
+
+    User findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
+    User findByUsername(String username) {
+        return repository.findByUsername(username);
     }
 
     Optional<AuthUserDto> findAuthByUsername(String username) {
@@ -55,9 +59,5 @@ class UserService {
                         .isEnabled(user.isEnabled())
                         .roles(user.getRoles())
                         .build());
-    }
-
-    User findByUsername(String username) {
-        return repository.findByUsername(username);
     }
 }
