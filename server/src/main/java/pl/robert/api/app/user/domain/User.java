@@ -17,7 +17,7 @@ import static pl.robert.api.app.user.domain.UserValidator.COL_LENGTH_ENCODED_PAS
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class User {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
