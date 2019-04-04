@@ -5,8 +5,14 @@ import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import pl.robert.api.app.post.query.PostQuery;
+
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,5 +30,21 @@ class PostService {
 
     void saveAndFlush(Post post) {
         repository.saveAndFlush(post);
+    }
+
+    Page<PostQuery> findAll(Pageable pageable) {
+        Page<Post> postsPage = repository.findAll(pageable);
+        int totalElements = (int) postsPage.getTotalElements();
+        return new PageImpl<>(postsPage
+                .stream()
+                .map(post -> new PostQuery(
+                        String.valueOf(post.getId()),
+                        post.getTitle(),
+                        post.getDescription(),
+                        String.valueOf(post.getDate()),
+                        String.valueOf(post.getUpVote()),
+                        String.valueOf(post.getDownVote()),
+                        post.getUser().getUsername()))
+                .collect(Collectors.toList()), pageable, totalElements);
     }
 }

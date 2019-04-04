@@ -73,7 +73,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(SWAGGER_API).permitAll()
-                .antMatchers("/api/base/*", "/api/auth").permitAll()
+                .antMatchers("/api/base/*",
+                                         "/api/auth",
+                                         "/api/post-query*").permitAll()
                 .antMatchers("/api/user*").hasRole("USER")
                 .antMatchers("/api/admin*").hasRole("ADMIN")
                 .antMatchers("/api/post*").authenticated()
