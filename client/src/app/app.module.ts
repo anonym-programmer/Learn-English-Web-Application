@@ -24,6 +24,7 @@ import {ChangePasswordComponent} from './user/profile/change-password/change-pas
 import {ChangeEmailComponent} from './user/profile/change-email/change-email.component';
 import {AddPostComponent} from './forum/add-post/add-post.component';
 import {ListPostComponent} from './forum/list-post/list-post.component';
+import {VoteComponent} from './forum/list-post/vote/vote.component';
 
 import {AuthGuard} from './auth/auth.guard';
 
@@ -47,7 +48,8 @@ import {ForumService} from './forum/shared/forum.service';
     ChangePasswordComponent,
     ChangeEmailComponent,
     AddPostComponent,
-    ListPostComponent
+    ListPostComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
