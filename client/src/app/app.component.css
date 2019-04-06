@@ -21,3 +21,8 @@ footer {
   width: 100%;
   color: #FFFFFF;
 }
+
+#logoutHref {
+  color: white;
+  cursor: pointer;
+}

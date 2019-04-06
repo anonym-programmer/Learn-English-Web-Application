@@ -11,6 +11,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {ProfileComponent} from './user/profile/profile.component';
 import {ChangePasswordComponent} from './user/profile/change-password/change-password.component';
 import {ChangeEmailComponent} from './user/profile/change-email/change-email.component';
+import {AddPostComponent} from './forum/add-post/add-post.component';
 
 const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
@@ -25,7 +26,9 @@ const routes: Routes = [
 
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'profile/change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {path: 'profile/change-email', component: ChangeEmailComponent, canActivate: [AuthGuard]}
+  {path: 'profile/change-email', component: ChangeEmailComponent, canActivate: [AuthGuard]},
+
+  {path: 'forum/add-post', component: AddPostComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

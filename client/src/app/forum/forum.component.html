@@ -1,3 +1,8 @@
-<p>
-  forum works!
-</p>
+<div *ngIf="!authService.isAuthenticated()">
+  <h2>U need to <a [routerLink]="['/login']" routerLinkActive="router-link-active">sign in</a> to create or comment posts.</h2>
+  <h2>Don't have account yet? Click <a [routerLink]="['/register']" routerLinkActive="router-link-active">here</a> to register.</h2>
+</div>
+
+<div *ngIf="authService.isAuthenticated()">
+  <button mat-raised-button color="primary" routerLink="/forum/add-post">Add post</button>
+</div>

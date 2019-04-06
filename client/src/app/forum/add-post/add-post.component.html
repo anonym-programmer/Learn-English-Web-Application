@@ -1,0 +1,33 @@
+<mat-card class="my-card col-sm-12">
+  <mat-card-header>
+    <mat-card-title><h3>Add post</h3></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="my-form" [formGroup]="addPostForm" (ngSubmit)="addPost(addPostForm)" autocomplete="off">
+
+      <mat-form-field class="full-width">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" maxlength="70" required>
+        <mat-error class="error" *ngIf="title.invalid && (title.dirty || title.touched)">
+          Title is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.title">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" maxlength="255" required rows="4"></textarea>
+        <mat-error class="error" *ngIf="description.invalid && (description.dirty || description.touched)">
+          Description is required
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.description">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-footer>
+        <button mat-raised-button color="primary" [disabled]="!addPostForm.valid">Add</button>
+        <button mat-raised-button color="primary" routerLink="/forum">Back to the forum</button>
+      </mat-card-footer>
+
+    </form>
+  </mat-card-content>
+</mat-card>
