@@ -1,0 +1,18 @@
+<table>
+  <tbody>
+  <tr *ngFor="let post of posts">
+    <td>{{post.id}}</td>
+    <td>{{post.title}}</td>
+    <td>{{post.description}}</td>
+    <td>{{post.date}}</td>
+    <td>{{post.upVote}}</td>
+    <td>{{post.downVote}}</td>
+    <td>{{post.username}}</td>
+  </tr>
+  </tbody>
+  <ul class="nav nav-pills">
+    <li class="nav-item" *ngFor="let p of pages; let i=index">
+      <a class="nav-link" href="#" (click)="setPage(i, $event)" [ngClass]="{'active':i==page}">{{i}}</a>
+    </li>
+  </ul>
+</table>
