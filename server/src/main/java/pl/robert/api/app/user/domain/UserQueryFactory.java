@@ -3,6 +3,7 @@ package pl.robert.api.app.user.domain;
 import org.springframework.security.core.Authentication;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
+import pl.robert.api.app.user.query.UserProfileQuery;
 
 import static pl.robert.api.app.user.domain.UserConstants.ROLE_USER;
 import static pl.robert.api.app.user.domain.UserConstants.ROLE_USER_ADMIN;
@@ -13,7 +14,7 @@ class UserQueryFactory {
         return UserAuthQuery
                 .builder()
                 .username(auth.getName())
-                .roles(auth.getAuthorities().size() == 2 ? "User, Admin" : "User")
+                .roles(auth.getAuthorities().size() == 2 ? ROLE_USER_ADMIN : ROLE_USER)
                 .isAuthenticated(auth.isAuthenticated())
                 .build();
     }
@@ -32,8 +33,8 @@ class UserQueryFactory {
                 .build();
     }
 
-    static UserOwnProfileQuery queryUserProfile(User user, UserDetails details) {
-        return UserOwnProfileQuery
+    static UserProfileQuery queryUserProfile(User user, UserDetails details) {
+        return UserProfileQuery
                 .builder()
                 .username(user.getUsername())
                 .level(details.getLevel())

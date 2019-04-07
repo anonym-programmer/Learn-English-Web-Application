@@ -13,6 +13,7 @@ import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.domain.dto.AuthUserDto;
+import pl.robert.api.app.user.query.UserProfileQuery;
 
 import java.util.Optional;
 
@@ -113,7 +114,7 @@ public class UserFacade {
         return UserQueryFactory.queryUserOwnProfile(user, userDetails);
     }
 
-    public UserOwnProfileQuery queryUserProfile(String username) {
+    public UserProfileQuery queryUserProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
         detailsService.updateUserDetails(userDetails);
