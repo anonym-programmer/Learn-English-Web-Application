@@ -40,7 +40,7 @@ class PostService {
                 .map(post -> new PostQuery(
                         String.valueOf(post.getId()),
                         post.getTitle(),
-                        post.getDescription(),
+                        post.getDescription().length() > 70 ? post.getDescription().substring(0, 67).concat("...") : post.getDescription(),
                         String.valueOf(post.getDate()),
                         String.valueOf(post.getUpVote()),
                         String.valueOf(post.getDownVote()),

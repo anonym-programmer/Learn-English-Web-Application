@@ -22,6 +22,7 @@ export class SomeoneProfileComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(param => {
       this.username = param['username'];
+      console.log(this.username);
     });
 
     this.userService.getInfoAboutSomeoneProfile(this.username).subscribe(profile => {

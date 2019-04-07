@@ -25,3 +25,21 @@ td {
 .nav-link {
   background-color: #FFFFFF;
 }
+
+.row #vote {
+  margin: 10px auto;
+}
+
+button {
+  font-size: 30px;
+}
+
+#plusBtn {
+  color: #4F8A10;
+  background-color: #DFF2BF;
+}
+
+#minusBtn {
+  color: #D8000C;
+  background-color: #FFD2D2;
+}
