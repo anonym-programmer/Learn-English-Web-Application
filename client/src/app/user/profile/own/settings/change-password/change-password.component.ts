@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {ChangeUserPasswordDto} from '../../shared/change-password-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
-import {UserService} from '../../shared/user.service';
+import {ChangeUserPasswordDto} from '../../../../shared/change-password-dto.model';
+import {UserService} from '../../../../shared/user.service';
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css',
-              '../../../base/login/login.component.css',
-              '../../../base/register/register.component.css']
+              '../../../../../base/login/login.component.css',
+              '../../../../../base/register/register.component.css'
+  ]
 })
 export class ChangePasswordComponent implements OnInit {
 

@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Username: {{profile.username}}</h1>
+  <h2>Level: {{profile.level}}</h2>
+  <h2>Rank: {{profile.currentRank}}</h2>
+  <h3>Current: {{profile.experience}} XP</h3>
+  <h3>Left to the next level: {{profile.leftExperienceToTheNextLevel}} XP</h3>
+  <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
+                   [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
+  <br>
+  <button mat-raised-button color="primary" routerLink="/my-profile/settings">Settings</button>
+</div>

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from '../shared/user.service';
-import {QueryProfile} from '../shared/query-profile.model';
+import {QueryOwnProfile} from '../../shared/query-own-profile.model';
+import {UserService} from '../../shared/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import {QueryProfile} from '../shared/query-profile.model';
 })
 export class ProfileComponent implements OnInit {
 
-  profile = new QueryProfile();
+  profile = new QueryOwnProfile();
 
   constructor(private userService: UserService) {
   }

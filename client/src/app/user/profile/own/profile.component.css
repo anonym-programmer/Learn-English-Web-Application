@@ -2,17 +2,13 @@
   margin: 5% auto;
   opacity: 0.85;
   background-color: white;
-}
-
-#experience {
   text-align: center;
-}
-
-#details {
-  margin-top: 3%;
+  height: 400px;
+  width: 70%;
 }
 
 button {
-  display: block;
-  margin-top: 5px;
+  height: 20%;
+  width: 100%;
+  font-size: xx-large;
 }

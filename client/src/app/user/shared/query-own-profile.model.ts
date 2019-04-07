@@ -1,4 +1,4 @@
-export class QueryProfile {
+export class QueryOwnProfile {
   username: string;
   email: string;
   roles: string;

@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ChangeUserEmailDto} from '../../shared/change-email-dto.model';
-import {UserService} from '../../shared/user.service';
 import {ToastrService} from 'ngx-toastr';
+import {ChangeUserEmailDto} from '../../../../shared/change-email-dto.model';
+import {UserService} from '../../../../shared/user.service';
 
 @Component({
   selector: 'app-change-email',
   templateUrl: './change-email.component.html',
   styleUrls: ['./change-email.component.css',
-              '../../../base/login/login.component.css',
-              '../../../base/register/register.component.css']
+              '../../../../../base/login/login.component.css',
+              '../../../../../base/register/register.component.css'
+  ]
 })
 export class ChangeEmailComponent implements OnInit {
 
