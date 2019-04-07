@@ -6,10 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
 
 @RestController
@@ -27,9 +24,22 @@ class UserQueryController {
     }
 
     @GetMapping("/my-profile")
-    public HttpEntity<?> getUserProfile(Authentication auth) {
+    public HttpEntity<?> getUserOwnProfile(Authentication auth) {
         return ResponseEntity
                 .ok()
-                .body(facade.queryUserProfile(auth.getName()));
+                .body(facade.queryUserOwnProfile(auth.getName()));
+    }
+
+    @GetMapping("/profile/{username}")
+    public HttpEntity<?> getUserProfile(@PathVariable String username) {
+        if (!facade.isUserExists(username)) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        return ResponseEntity
+                .ok()
+                .body(facade.queryUserProfile(username));
     }
 }

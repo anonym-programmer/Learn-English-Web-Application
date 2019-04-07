@@ -1,18 +1,17 @@
 package pl.robert.api.app.user.query;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 @Builder
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserProfileQuery {
+public class UserOwnProfileQuery {
 
     String username;
+    String email;
+    String roles;
     String level;
     String currentRank;
     String experience;

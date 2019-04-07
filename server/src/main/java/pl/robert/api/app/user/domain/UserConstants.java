@@ -13,6 +13,12 @@ public interface UserConstants {
     int COL_LENGTH_RANK = 10;
 
 
+    /* Roles */
+
+    String ROLE_USER = "User";
+    String ROLE_USER_ADMIN = "User, Admin";
+
+
     /* Fields */
 
     String F_USERNAME = "username";

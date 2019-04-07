@@ -11,7 +11,7 @@ import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
 import pl.robert.api.app.user.domain.dto.CreateUserDto;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 import pl.robert.api.app.user.query.UserAuthQuery;
-import pl.robert.api.app.user.query.UserProfileQuery;
+import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.domain.dto.AuthUserDto;
 
 import java.util.Optional;
@@ -82,6 +82,10 @@ public class UserFacade {
         return tokenService.confirmRegisterToken(confirmationToken);
     }
 
+    public boolean isUserExists(String username) {
+        return userService.isUsernameExist(username);
+    }
+
     public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
         return userService.fillMultiMapWithErrors(result);
     }
@@ -102,10 +106,17 @@ public class UserFacade {
         return UserQueryFactory.queryUserAuth(auth);
     }
 
-    public UserProfileQuery queryUserProfile(String username) {
+    public UserOwnProfileQuery queryUserOwnProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
         detailsService.updateUserDetails(userDetails);
-        return UserQueryFactory.queryUserAndUserDetails(user, userDetails);
+        return UserQueryFactory.queryUserOwnProfile(user, userDetails);
+    }
+
+    public UserOwnProfileQuery queryUserProfile(String username) {
+        User user = findUserByUsername(username);
+        UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
+        detailsService.updateUserDetails(userDetails);
+        return UserQueryFactory.queryUserProfile(user, userDetails);
     }
 }
