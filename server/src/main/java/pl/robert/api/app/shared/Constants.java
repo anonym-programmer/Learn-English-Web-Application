@@ -57,10 +57,14 @@ public interface Constants {
     int COL_LENGTH_MAX_DESCRIPTION = 255;
     int COL_LENGTH_DATE = 10;
 
+    String F_POST_ID = "postId";
+
     String M_TITLE_EMPTY = "Title cannot be empty";
     String M_TITLE_LENGTH = "Title should have between 5 and 50 characters";
     String M_DESCRIPTION_EMPTY = "Description cannot be empty";
     String M_DESCRIPTION_LENGTH = "Description should have between 10 and 255 characters";
+    String M_POST_ID_EMPTY = "Post id cannot be empty";
+    String M_POST_NOT_EXISTS = "Post id do not exists";
 
 
     /* vote */
@@ -68,11 +72,12 @@ public interface Constants {
     int COL_LENGTH_MIN_TYPE = 2;
     int COL_LENGTH_MAX_TYPE = 3;
 
-    String F_POST_ID = "postId";
+    String TYPE_YES = "YES";
+    String TYPE_NO = "NO";
+
     String F_TYPE = "type";
 
-    String M_POST_ID_EMPTY = "Post id cannot be empty";
-    String M_POST_NOT_EXISTS = "Post id do not exists";
     String M_TYPE_EMPTY = "Post type cannot be empty";
     String M_TYPE_NOT_MATCH = "Vote type do not match";
+    String M_TYPE_EXISTS = "You already voted this post";
 }

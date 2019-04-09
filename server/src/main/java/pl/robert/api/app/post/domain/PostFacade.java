@@ -9,6 +9,9 @@ import pl.robert.api.app.post.domain.dto.CreatePostDto;
 import pl.robert.api.app.post.query.PostQuery;
 import pl.robert.api.app.user.domain.UserFacade;
 
+import static pl.robert.api.app.shared.Constants.TYPE_NO;
+import static pl.robert.api.app.shared.Constants.TYPE_YES;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PostFacade {
@@ -31,6 +34,22 @@ public class PostFacade {
 
     public void updatePostVote(Post post, char voteType) {
         postService.updatePostVote(post, voteType);
+    }
+
+    public void swapTypeOfVote(String newType, Post post) {
+        if (newType.equalsIgnoreCase(TYPE_YES)) {
+            decreaseDownVote(post);
+        } else if (newType.equalsIgnoreCase(TYPE_NO)) {
+            decreaseUpVote(post);
+        }
+    }
+
+    private void decreaseDownVote(Post post) {
+        postService.decreaseDownVote(post);
+    }
+
+    private void decreaseUpVote(Post post) {
+        postService.decreaseUpVote(post);
     }
 
     public boolean isPostExists(long id) {

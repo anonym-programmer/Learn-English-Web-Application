@@ -51,6 +51,18 @@ class PostService {
         repository.saveAndFlush(post);
     }
 
+    void decreaseDownVote(Post post) {
+        int currentDownVote = post.getDownVote();
+        post.setDownVote(--currentDownVote);
+        repository.saveAndFlush(post);
+    }
+
+    void decreaseUpVote(Post post) {
+        int currentUpVote = post.getUpVote();
+        post.setUpVote(--currentUpVote);
+        repository.saveAndFlush(post);
+    }
+
     boolean isPostExists(long id) {
         return repository.findById(id) != null;
     }
