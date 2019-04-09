@@ -1,18 +1,13 @@
 package pl.robert.api.app.user.domain;
 
-import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.app.user.domain.dto.ChangeUserEmailDto;
-import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
-import pl.robert.api.app.user.domain.dto.CreateUserDto;
-import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
+import pl.robert.api.app.user.domain.dto.*;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
-import pl.robert.api.app.user.domain.dto.AuthUserDto;
 import pl.robert.api.app.user.query.UserProfileQuery;
 
 import java.util.Optional;
@@ -85,10 +80,6 @@ public class UserFacade {
 
     public boolean isUserExists(String username) {
         return userService.isUsernameExist(username);
-    }
-
-    public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        return userService.fillMultiMapWithErrors(result);
     }
 
     public User findUserByConfirmationToken(String token) {

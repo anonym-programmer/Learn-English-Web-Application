@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.robert.api.app.shared.ErrorsWrapper;
 import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
 import pl.robert.api.app.user.domain.dto.CreateUserDto;
@@ -29,7 +30,7 @@ class BaseController {
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
-                    .body(facade.fillMultiMapWithErrors(result).asMap());
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
         facade.add(dto);
@@ -72,7 +73,7 @@ class BaseController {
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
-                    .body(facade.fillMultiMapWithErrors(result).asMap());
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
         facade.generateResetPasswordToken(dto);
@@ -88,7 +89,7 @@ class BaseController {
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
-                    .body(facade.fillMultiMapWithErrors(result).asMap());
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
         facade.changePassword(facade.findUserByConfirmationToken(resetPasswordToken), dto.getPassword());

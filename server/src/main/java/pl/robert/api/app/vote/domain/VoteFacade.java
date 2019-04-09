@@ -1,6 +1,5 @@
 package pl.robert.api.app.vote.domain;
 
-import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -30,9 +29,5 @@ public class VoteFacade {
         postFacade.updatePostVote(post, dto.getType().toUpperCase().charAt(0));
         Vote vote = VoteFactory.create(dto, post, userFacade.findUserByUsername(dto.getUsername()));
         voteService.saveAndFlush(vote);
-    }
-
-    public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        return voteService.fillMultiMapWithErrors(result);
     }
 }

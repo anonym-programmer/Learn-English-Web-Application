@@ -5,15 +5,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
-import pl.robert.api.app.post.domain.PostConstants;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import static pl.robert.api.app.shared.Constants.*;
+
 @Getter @Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class CreatePostDto implements PostConstants {
+public class CreatePostDto {
 
     @NotEmpty(message = M_TITLE_EMPTY)
     @Size(min = COL_LENGTH_MIN_TITLE, max = COL_LENGTH_MAX_TITLE, message = M_TITLE_LENGTH)

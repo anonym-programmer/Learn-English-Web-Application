@@ -9,8 +9,7 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import static pl.robert.api.app.user.domain.UserConstants.M_USERNAME_EMPTY;
-import static pl.robert.api.app.vote.domain.VoteConstants.*;
+import static pl.robert.api.app.shared.Constants.*;
 
 @Getter @Setter
 @NoArgsConstructor

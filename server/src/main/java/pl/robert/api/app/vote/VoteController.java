@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.robert.api.app.shared.ErrorsWrapper;
 import pl.robert.api.app.vote.domain.VoteFacade;
 import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
 
@@ -27,7 +28,7 @@ class VoteController {
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
-                    .body(facade.fillMultiMapWithErrors(result).asMap());
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
         facade.add(dto);

@@ -5,7 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-import static pl.robert.api.app.user.domain.UserConstants.COL_LENGTH_ROLE;
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_ROLE;
 
 @Entity
 @Table(name = "roles")

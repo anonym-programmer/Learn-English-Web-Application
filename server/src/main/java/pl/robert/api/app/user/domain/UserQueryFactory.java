@@ -5,8 +5,8 @@ import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.query.UserProfileQuery;
 
-import static pl.robert.api.app.user.domain.UserConstants.ROLE_USER;
-import static pl.robert.api.app.user.domain.UserConstants.ROLE_USER_ADMIN;
+import static pl.robert.api.app.shared.Constants.ROLE_USER;
+import static pl.robert.api.app.shared.Constants.ROLE_USER_ADMIN;
 
 class UserQueryFactory {
 

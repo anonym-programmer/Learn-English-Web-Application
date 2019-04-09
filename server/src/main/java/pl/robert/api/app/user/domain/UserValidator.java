@@ -9,9 +9,11 @@ import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
 import pl.robert.api.app.user.domain.dto.CreateUserDto;
 import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 
+import static pl.robert.api.app.shared.Constants.*;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-class UserValidator implements UserConstants {
+class UserValidator {
 
     UserService userService;
     TokenService tokenService;

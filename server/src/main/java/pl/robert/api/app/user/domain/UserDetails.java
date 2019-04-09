@@ -5,6 +5,8 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_RANK;
+
 @Entity
 @Table(name = "user_details")
 @Builder
@@ -12,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class UserDetails implements UserConstants {
+class UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

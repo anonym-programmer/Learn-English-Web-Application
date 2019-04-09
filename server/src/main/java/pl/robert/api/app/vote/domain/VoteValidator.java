@@ -8,8 +8,7 @@ import pl.robert.api.app.post.domain.PostFacade;
 import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
 
-import static pl.robert.api.app.user.domain.UserConstants.*;
-import static pl.robert.api.app.vote.domain.VoteConstants.*;
+import static pl.robert.api.app.shared.Constants.*;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

@@ -1,6 +1,17 @@
-package pl.robert.api.app.user.domain;
+package pl.robert.api.app.shared;
 
-public interface UserConstants {
+public interface Constants {
+
+    /* error codes */
+
+    String C_EXISTS = "exists";
+    String C_NOT_MATCH = "notMatch";
+    String C_NOT_EXISTS = "notExists";
+    String C_NOT_ENABLED= "notEnabled";
+    String C_SENT ="sent";
+
+
+    /* user */
 
     int COL_LENGTH_MIN_USERNAME = 2;
     int COL_LENGTH_MAX_USERNAME = 20;
@@ -12,31 +23,13 @@ public interface UserConstants {
     int COL_LENGTH_DATE_IN_SECONDS = 11;
     int COL_LENGTH_RANK = 10;
 
-
-    /* Roles */
-
     String ROLE_USER = "User";
     String ROLE_USER_ADMIN = "User, Admin";
-
-
-    /* Fields */
 
     String F_USERNAME = "username";
     String F_EMAIL = "email";
     String F_CONFIRMED_PASSWORD = "confirmedPassword";
     String F_CONFIRMED_EMAIL = "confirmedEmail";
-
-
-    /* Error codes */
-
-    String C_EXISTS = "exists";
-    String C_NOT_MATCH = "notMatch";
-    String C_NOT_EXISTS = "notExists";
-    String C_NOT_ENABLED= "notEnabled";
-    String C_SENT ="sent";
-
-
-    /* Default messages */
 
     String M_USERNAME_EMPTY = "Username cannot be empty";
     String M_USERNAME_LENGTH = "Username should have between 2 and 20 characters";
@@ -54,4 +47,32 @@ public interface UserConstants {
     String M_CONFIRMED_PASSWORD_NOT_MATCH = "Confirmed password must match with password";
     String M_ACCOUNT_NOT_ENABLED = "Account is not confirmed after registration";
     String M_TOKEN_SENT = "Token has been already sent to the given email";
+
+
+    /* post */
+
+    int COL_LENGTH_MAX_TITLE = 50;
+    int COL_LENGTH_MIN_TITLE = 5;
+    int COL_LENGTH_MIN_DESCRIPTION = 10;
+    int COL_LENGTH_MAX_DESCRIPTION = 255;
+    int COL_LENGTH_DATE = 10;
+
+    String M_TITLE_EMPTY = "Title cannot be empty";
+    String M_TITLE_LENGTH = "Title should have between 5 and 50 characters";
+    String M_DESCRIPTION_EMPTY = "Description cannot be empty";
+    String M_DESCRIPTION_LENGTH = "Description should have between 10 and 255 characters";
+
+
+    /* vote */
+
+    int COL_LENGTH_MIN_TYPE = 2;
+    int COL_LENGTH_MAX_TYPE = 3;
+
+    String F_POST_ID = "postId";
+    String F_TYPE = "type";
+
+    String M_POST_ID_EMPTY = "Post id cannot be empty";
+    String M_POST_NOT_EXISTS = "Post id do not exists";
+    String M_TYPE_EMPTY = "Post type cannot be empty";
+    String M_TYPE_NOT_MATCH = "Vote type do not match";
 }

@@ -1,15 +1,11 @@
 package pl.robert.api.app.post.domain;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import pl.robert.api.app.post.query.PostQuery;
 
 import java.util.stream.Collectors;
@@ -19,14 +15,6 @@ import java.util.stream.Collectors;
 class PostService {
 
     PostRepository repository;
-
-    Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        Multimap<String, String> errors = ArrayListMultimap.create();
-        for (FieldError error : result.getFieldErrors()) {
-            errors.put(error.getField(), error.getDefaultMessage());
-        }
-        return errors;
-    }
 
     void saveAndFlush(Post post) {
         repository.saveAndFlush(post);

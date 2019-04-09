@@ -7,8 +7,8 @@ import javax.persistence.*;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-import static pl.robert.api.app.user.domain.UserConstants.COL_LENGTH_CONFIRMATION_TOKEN;
-import static pl.robert.api.app.user.domain.UserConstants.COL_LENGTH_DATE_IN_SECONDS;
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_CONFIRMATION_TOKEN;
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_DATE_IN_SECONDS;
 
 @Entity
 @Table(name = "tokens")

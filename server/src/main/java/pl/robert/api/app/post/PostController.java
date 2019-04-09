@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.post.domain.PostFacade;
 import pl.robert.api.app.post.domain.dto.CreatePostDto;
+import pl.robert.api.app.shared.ErrorsWrapper;
 
 import javax.validation.Valid;
 
@@ -27,7 +28,7 @@ class PostController {
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
-                    .body(facade.fillMultiMapWithErrors(result).asMap());
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
         facade.add(dto, auth.getName());

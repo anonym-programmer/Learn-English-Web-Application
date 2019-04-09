@@ -1,12 +1,8 @@
 package pl.robert.api.app.user.domain;
 
-import com.google.common.collect.ArrayListMultimap;
-import com.google.common.collect.Multimap;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import pl.robert.api.app.user.domain.dto.AuthUserDto;
 
 import java.util.Optional;
@@ -31,14 +27,6 @@ class UserService {
 
     boolean isEmailExist(String email) {
         return repository.findByEmail(email) != null;
-    }
-
-    Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
-        Multimap<String, String> errors = ArrayListMultimap.create();
-        for (FieldError error : result.getFieldErrors()) {
-            errors.put(error.getField(), error.getDefaultMessage());
-        }
-        return errors;
     }
 
     User findByEmail(String email) {
