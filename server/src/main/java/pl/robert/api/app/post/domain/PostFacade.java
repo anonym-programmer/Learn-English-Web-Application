@@ -38,4 +38,8 @@ public class PostFacade {
     public void updatePostVote(Post post, char voteType) {
         postService.updatePostVote(post, voteType);
     }
+
+    public boolean isPostExists(long id) {
+        return postService.isPostExists(id);
+    }
 }

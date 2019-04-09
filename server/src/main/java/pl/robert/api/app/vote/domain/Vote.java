@@ -32,5 +32,6 @@ class Vote {
     @Column(nullable = false)
     LocalDateTime date;
 
+    @Column(nullable = false)
     char type;
 }

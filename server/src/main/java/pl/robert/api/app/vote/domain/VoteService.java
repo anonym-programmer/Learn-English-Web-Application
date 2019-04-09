@@ -18,15 +18,15 @@ class VoteService {
         repository.saveAndFlush(vote);
     }
 
-    void delete(Vote vote) {
-        repository.delete(vote);
-    }
-
     Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
         Multimap<String, String> errors = ArrayListMultimap.create();
         for (FieldError error : result.getFieldErrors()) {
             errors.put(error.getField(), error.getDefaultMessage());
         }
         return errors;
+    }
+
+    boolean isTypeCorrect(String type) {
+        return type.equalsIgnoreCase("YES") || type.equalsIgnoreCase("NO");
     }
 }

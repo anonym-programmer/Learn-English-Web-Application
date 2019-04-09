@@ -15,7 +15,7 @@ class VoteConfiguration {
 
         VoteService voteService = new VoteService(voteRepository);
 
-        return new VoteFacade(new VoteValidator(voteService),
+        return new VoteFacade(new VoteValidator(voteService, postFacade, userFacade),
                               voteService,
                               postFacade,
                               userFacade);

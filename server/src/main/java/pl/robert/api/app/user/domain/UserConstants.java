@@ -41,6 +41,7 @@ public interface UserConstants {
     String M_USERNAME_EMPTY = "Username cannot be empty";
     String M_USERNAME_LENGTH = "Username should have between 2 and 20 characters";
     String M_USERNAME_EXISTS = "Username already exists";
+    String M_USERNAME_NOT_EXISTS = "Username do not exists";
     String M_EMAIL_EMPTY = "Email cannot be empty";
     String M_EMAIL_WRONG_FORMAT = "Please enter valid email";
     String M_EMAIL_EXISTS = "Email already exists";

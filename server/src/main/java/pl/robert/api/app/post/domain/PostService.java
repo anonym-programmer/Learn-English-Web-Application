@@ -62,4 +62,8 @@ class PostService {
         }
         repository.saveAndFlush(post);
     }
+
+    boolean isPostExists(long id) {
+        return repository.findById(id) != null;
+    }
 }

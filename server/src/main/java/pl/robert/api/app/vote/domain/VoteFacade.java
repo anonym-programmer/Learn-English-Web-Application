@@ -26,8 +26,8 @@ public class VoteFacade {
     }
 
     public void add(CreateVoteDto dto) {
-        Post post = postFacade.findPostById(dto.getPostId());
-        postFacade.updatePostVote(post, dto.getType());
+        Post post = postFacade.findPostById(Long.parseLong(dto.getPostId()));
+        postFacade.updatePostVote(post, dto.getType().toUpperCase().charAt(0));
         Vote vote = VoteFactory.create(dto, post, userFacade.findUserByUsername(dto.getUsername()));
         voteService.saveAndFlush(vote);
     }

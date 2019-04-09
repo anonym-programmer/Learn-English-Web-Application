@@ -14,7 +14,7 @@ class VoteFactory {
                 .post(post)
                 .user(user)
                 .date(LocalDateTime.now())
-                .type(Character.toUpperCase(dto.getType()))
+                .type(dto.getType().toUpperCase().charAt(0))
                 .build();
     }
 }
