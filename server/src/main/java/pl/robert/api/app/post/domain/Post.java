@@ -17,7 +17,7 @@ import static pl.robert.api.app.post.domain.PostConstants.COL_LENGTH_MAX_TITLE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class Post {
+public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

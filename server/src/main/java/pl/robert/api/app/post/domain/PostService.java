@@ -47,4 +47,19 @@ class PostService {
                         post.getUser().getUsername()))
                 .collect(Collectors.toList()), pageable, totalElements);
     }
+
+    Post findById(long id) {
+        return repository.findById(id);
+    }
+
+    void updatePostVote(Post post, char voteType) {
+        if (Character.toUpperCase(voteType) == 'Y') {
+            int currentUpVote = post.getUpVote();
+            post.setUpVote(++currentUpVote);
+        } else {
+            int currentDownVote = post.getDownVote();
+            post.setDownVote(++currentDownVote);
+        }
+        repository.saveAndFlush(post);
+    }
 }

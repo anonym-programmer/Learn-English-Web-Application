@@ -1,0 +1,38 @@
+package pl.robert.api.app.vote.domain;
+
+import com.google.common.collect.Multimap;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.validation.BindingResult;
+import pl.robert.api.app.post.domain.Post;
+import pl.robert.api.app.post.domain.PostFacade;
+import pl.robert.api.app.user.domain.UserFacade;
+import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
+
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class VoteFacade {
+
+    VoteValidator validator;
+    VoteService voteService;
+    PostFacade postFacade;
+    UserFacade userFacade;
+
+    public void checkInputData(CreateVoteDto dto, BindingResult result) {
+        if (!result.hasErrors()) {
+            validator.checkInputData(dto, result);
+        }
+    }
+
+    public void add(CreateVoteDto dto) {
+        Post post = postFacade.findPostById(dto.getPostId());
+        postFacade.updatePostVote(post, dto.getType());
+        Vote vote = VoteFactory.create(dto, post, userFacade.findUserByUsername(dto.getUsername()));
+        voteService.saveAndFlush(vote);
+    }
+
+    public Multimap<String, String> fillMultiMapWithErrors(BindingResult result) {
+        return voteService.fillMultiMapWithErrors(result);
+    }
+}

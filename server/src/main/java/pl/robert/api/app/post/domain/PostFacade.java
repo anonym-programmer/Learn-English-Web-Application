@@ -30,4 +30,12 @@ public class PostFacade {
     public Page<PostQuery> findAll(Pageable pageable) {
         return postService.findAll(pageable);
     }
+
+    public Post findPostById(long id) {
+        return postService.findById(id);
+    }
+
+    public void updatePostVote(Post post, char voteType) {
+        postService.updatePostVote(post, voteType);
+    }
 }

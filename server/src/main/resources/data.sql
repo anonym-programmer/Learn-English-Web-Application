@@ -46,4 +46,4 @@ VALUES ('Learning English',
        ('In, On, At', 'When to use these words? Can someone explain it?', '2019-02-22 09:12:14', 2, 5, 3),
        ('Free time', 'What do you do in your free time?', '2019-02-23 06:13:55', 1, 9, 4),
        ('Hobby', 'Whats your hobby?', '2019-02-24 15:49:11', 6, 0, 6),
-       ('Java', 'Is java hard to learn?', '2019-02-24 15:49:11', 2, 0, 7);
+       ('Java', 'Is java hard to learn?', '2019-02-24 15:49:11', 0, 0, 7);
