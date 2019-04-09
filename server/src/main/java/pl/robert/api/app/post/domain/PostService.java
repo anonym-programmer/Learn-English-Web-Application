@@ -3,11 +3,10 @@ package pl.robert.api.app.post.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 import pl.robert.api.app.post.query.PostQuery;
 
+import java.util.Comparator;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -33,6 +32,7 @@ class PostService {
                         String.valueOf(post.getUpVote()),
                         String.valueOf(post.getDownVote()),
                         post.getUser().getUsername()))
+                .sorted(Comparator.comparing(PostQuery::getId))
                 .collect(Collectors.toList()), pageable, totalElements);
     }
 

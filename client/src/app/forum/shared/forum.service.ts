@@ -8,6 +8,7 @@ export class ForumService {
 
   readonly addPostUrl = 'http://localhost:8080/api/post';
   readonly getPostsUrl = 'http://localhost:8080/api/post-query';
+  readonly votePostUrl = 'http://localhost:8080/api/vote';
 
   constructor(private http: HttpClient) {
   }
@@ -18,5 +19,9 @@ export class ForumService {
 
   getPosts(page: number) {
     return this.http.get(this.getPostsUrl + '?page=' + page);
+  }
+
+  votePost(postId: string, type: string) {
+    return this.http.post(this.votePostUrl, {postId, type}, {withCredentials: true});
   }
 }

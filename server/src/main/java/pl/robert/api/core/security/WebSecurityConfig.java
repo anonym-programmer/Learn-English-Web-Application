@@ -75,11 +75,11 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(SWAGGER_API).permitAll()
                 .antMatchers("/api/base/*",
                                          "/api/auth",
-                                         "/api/post-query*",
-                                         "/api/vote*").permitAll()
+                                         "/api/post-query*").permitAll()
                 .antMatchers("/api/user*").hasRole("USER")
                 .antMatchers("/api/admin*").hasRole("ADMIN")
-                .antMatchers("/api/post*").authenticated()
+                .antMatchers("/api/post*",
+                                         "/api/vote*").authenticated()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()

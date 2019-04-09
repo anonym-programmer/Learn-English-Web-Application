@@ -19,7 +19,6 @@ public class CreateVoteDto {
     @NotEmpty(message = M_POST_ID_EMPTY)
     String postId;
 
-    @NotEmpty(message = M_USERNAME_EMPTY)
     String username;
 
     @NotEmpty(message = M_TYPE_EMPTY)

@@ -1,11 +1,18 @@
 <div class="container-fluid">
   <div class="row no-gutters" *ngFor="let post of posts">
     <div class="col-3 vote">
-      <div id="vote" class="row">
-        <div class="col"><button id="plusBtn" mat-button>+</button></div>
+      <div *ngIf="authService.isAuthenticated()" class="row voteElements">
+        <div class="col"><button class="plusBtn" mat-button (click)="votePost(post.id, 'YES')">+</button></div>
         <div class="col"><h2>{{post.upVote}}</h2></div>
         <div class="w-100"></div>
-        <div class="col"><button id="minusBtn" mat-button>-</button></div>
+        <div class="col"><button class="minusBtn" mat-button (click)="votePost(post.id, 'NO')">-</button></div>
+        <div class="col"><h2>{{post.downVote}}</h2></div>
+      </div>
+      <div *ngIf="!authService.isAuthenticated()" class="row voteElements">
+        <div class="col"><button mat-button disabled>+</button></div>
+        <div class="col"><h2>{{post.upVote}}</h2></div>
+        <div class="w-100"></div>
+        <div class="col"><button mat-button disabled>-</button></div>
         <div class="col"><h2>{{post.downVote}}</h2></div>
       </div>
     </div>

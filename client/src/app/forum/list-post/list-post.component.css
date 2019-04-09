@@ -26,7 +26,7 @@ td {
   background-color: #FFFFFF;
 }
 
-.row #vote {
+.row .voteElements {
   margin: 10px auto;
 }
 
@@ -34,12 +34,12 @@ button {
   font-size: 30px;
 }
 
-#plusBtn {
+.plusBtn {
   color: #4F8A10;
   background-color: #DFF2BF;
 }
 
-#minusBtn {
+.minusBtn {
   color: #D8000C;
   background-color: #FFD2D2;
 }
