@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.post.domain.PostFacade;
 import pl.robert.api.app.post.query.PostQuery;
 
@@ -24,5 +23,18 @@ class PostQueryController {
     @GetMapping
     public Page<PostQuery> findAll(Pageable pageable) {
         return facade.findAll(pageable);
+    }
+
+    @GetMapping("{id}")
+    public HttpEntity<?> getPost(@PathVariable String id) {
+        if (!facade.isPostExists(Long.parseLong(id))) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        return ResponseEntity
+                .ok()
+                .body(facade.queryPost(Long.parseLong(id)));
     }
 }

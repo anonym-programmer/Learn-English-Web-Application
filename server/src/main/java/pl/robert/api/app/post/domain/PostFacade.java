@@ -55,4 +55,8 @@ public class PostFacade {
     public boolean isPostExists(long id) {
         return postService.isPostExists(id);
     }
+
+    public PostQuery queryPost(long id) {
+        return PostQueryFactory.queryPost(postService.findById(id));
+    }
 }
