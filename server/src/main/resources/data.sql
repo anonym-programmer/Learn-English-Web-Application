@@ -74,3 +74,14 @@ VALUES (1, 3, '2019-02-15 08:10:52', 'Y'),
        (5, 7, '2019-03-22 22:22:30', 'N'),
        (5, 8, '2019-03-25 02:09:04', 'N'),
        (5, 9, '2019-03-27 23:11:59', 'N');
+
+INSERT INTO comments (post_id, user_id, text, date)
+VALUES (1, 3, 'Hi! I always wanted to meet u Mr. LinuX Torvalds! Tbh I learnt english by programming, peace!',
+        '2019-02-15 08:12:44'),
+       (1, 4,
+        'Hello :) I learnt many languages like for ex. Polish, German and English by creating an internationalization
+         app. If u want to see my app, type www.facebook.com in your browser :) Have a nice day guys!',
+        '2019-02-16 08:20:12'),
+       (1, 5, 'Yeah, but which english level have u got guys?', '2019-02-16 14:46:23'),
+       (1, 3, 'Ive got a C1 level I think, but I want to have C2 as obvious :)', '2019-02-17 08:22:10'),
+       (1, 4, 'Ive got a C2+ level because I was born in UK.', '2019-02-17 08:22:10');

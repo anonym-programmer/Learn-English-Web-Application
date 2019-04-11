@@ -1,3 +1,8 @@
+.alert-warning {
+  margin-top: 10px;
+  opacity: 0.80;
+}
+
 button {
   margin: 20px 0;
   line-height: 34px;

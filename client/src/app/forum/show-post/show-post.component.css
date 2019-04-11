@@ -2,6 +2,10 @@
   margin-top: 10px;
 }
 
+.header-content {
+  border-left: 20px solid #007bff;
+}
+
 .row {
   margin-top: 5px;
   background-color: #E8E8E8;
@@ -16,4 +20,18 @@
 a {
   font-style: italic;
   text-decoration: underline;
+}
+
+.comment {
+  border-left: 20px solid #ffc107;
+  background-color: lightgrey;
+}
+
+.details {
+  background-color: #E8E8E8;
+}
+
+.alert-warning {
+  margin-top: 10px;
+  opacity: 0.80;
 }

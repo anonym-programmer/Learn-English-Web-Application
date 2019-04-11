@@ -1,23 +1,35 @@
-<div class="row" id="header">
-  <div class="col-6">
-    <h1>{{post.title}}</h1>
-  </div>
-  <div class="col-6">
-    <h1><a [routerLink]="['/forum']" routerLinkActive="router-link-active">Back to the forum</a></h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-6">
-    <h3>Up Votes: {{post.upVote}}</h3>
-    <h3>Down Votes: {{post.downVote}}</h3>
-  </div>
-  <div class="col-6">
-    <h3>Created by:&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active">{{post.username}}</a></h3>
-    <h3>Date: {{post.date}}</h3>
-  </div>
-</div>
-<div class="row">
+<div class="row header-content" id="header">
   <div class="col">
-    {{post.description}}
+    <h1><b>Title:</b> {{post.title}}</h1>
   </div>
+</div>
+<div class="row header-content">
+  <div class="col-6">
+    <h3><b>Up Votes:</b> {{post.upVote}}</h3>
+    <h3><b>Down Votes:</b> {{post.downVote}}</h3>
+  </div>
+  <div class="col-6">
+    <h3><b>Author:</b>&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active">{{post.username}}</a></h3>
+    <h3><b>Date:</b> {{post.date}}</h3>
+  </div>
+</div>
+<div class="row header-content">
+  <div class="col">
+    <h3><b>Question:</b> {{post.description}}</h3>
+  </div>
+</div>
+<br>
+<div *ngFor="let comment of comments" class="row comment">
+  <div class="col-3 details">
+    <p>Created by:&nbsp;<a [routerLink]="['/profile', comment.username]" routerLinkActive="router-link-active"><u><i>{{comment.username}}</i></u></a></p>
+    <p>Date: {{comment.date}}</p>
+  </div>
+  <div class="col-9">
+    <p>{{comment.text}}</p>
+  </div>
+</div>
+
+<div *ngIf="!authService.isAuthenticated()" class="alert alert-warning">
+  <h5>U need to <a [routerLink]="['/login']" routerLinkActive="router-link-active">sign in</a> comment posts.</h5>
+  <h5>Don't have account yet? Click <a [routerLink]="['/register']" routerLinkActive="router-link-active">here</a> to register.</h5>
 </div>

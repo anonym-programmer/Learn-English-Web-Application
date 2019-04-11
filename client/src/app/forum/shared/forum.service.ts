@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {QueryPost} from './query-post.model';
+import {QueryComment} from './query-comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ export class ForumService {
   readonly addPostUrl = 'http://localhost:8080/api/post';
   readonly getPostsUrl = 'http://localhost:8080/api/post-query';
   readonly votePostUrl = 'http://localhost:8080/api/vote';
+  readonly getCommentsUrl = 'http://localhost:8080/api/comment-query';
 
   constructor(private http: HttpClient) {
   }
@@ -29,5 +31,9 @@ export class ForumService {
 
   votePost(postId: string, type: string) {
     return this.http.post(this.votePostUrl, {postId, type}, {withCredentials: true});
+  }
+
+  getComments(postId: string): Observable<Array<QueryComment>> {
+    return this.http.get<Array<QueryComment>>(this.getCommentsUrl + `/${postId}`);
   }
 }
