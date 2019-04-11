@@ -1,0 +1,19 @@
+#header {
+  margin-top: 10px;
+}
+
+.row {
+  margin-top: 5px;
+  background-color: #E8E8E8;
+  opacity: 0.80;
+}
+
+.title {
+  margin-top: 10px;
+  height: 70px;
+}
+
+a {
+  font-style: italic;
+  text-decoration: underline;
+}

@@ -38,7 +38,7 @@ export class ListPostComponent implements OnInit {
   votePost(id: string, type: string) {
     this.forumService.votePost(id, type).subscribe(
       () => {
-        this.showSuccess();
+        this.showSuccess(type);
         this.getPosts();
       }, error => {
         this.showFailure(error.error['type']);
@@ -46,8 +46,14 @@ export class ListPostComponent implements OnInit {
     )
   }
 
-  private showSuccess() {
-    this.toastr.success('Successfully voted post!', 'Success');
+  private showSuccess(type: string) {
+    let msg;
+    if (type == 'YES') {
+      msg = 'up';
+    } else {
+      msg = 'down';
+    }
+    this.toastr.success(`Successfully ${msg} voted post!`, 'Success');
   }
 
   private showFailure(msg: string) {
