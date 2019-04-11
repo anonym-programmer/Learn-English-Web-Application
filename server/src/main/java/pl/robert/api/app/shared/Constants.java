@@ -80,4 +80,13 @@ public interface Constants {
     String M_TYPE_EMPTY = "Post type cannot be empty";
     String M_TYPE_NOT_MATCH = "Vote type do not match";
     String M_TYPE_EXISTS = "You already voted this post";
+
+
+    /* comment */
+
+    int COL_LENGTH_MIN_TEXT = 10;
+    int COL_LENGTH_MAX_TEXT = 255;
+
+    String M_TEXT_EMPTY = "Text cannot be empty";
+    String M_COMMENT_LENGTH = "Text of a comment should have between 10 and 255 characters";
 }
