@@ -25,7 +25,8 @@ class CommentService {
                 .stream()
                 .map(comment -> new CommentQuery(
                         comment.getUser().getUsername(),
-                        String.valueOf(comment.getDate()),
+                        String.valueOf(comment.getDate()).substring(0, 10),
+                        String.valueOf(comment.getDate()).substring(11, 19),
                         comment.getText()))
                 .collect(Collectors.toList()));
     }

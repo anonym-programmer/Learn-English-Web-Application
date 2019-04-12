@@ -14,5 +14,6 @@ public class CommentQuery {
 
     String username;
     String date;
+    String time;
     String text;
 }

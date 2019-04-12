@@ -1,0 +1,23 @@
+<mat-card class="my-card col-sm-12">
+  <mat-card-header>
+    <mat-card-title><h4><b>Add Comment</b></h4></mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="content">
+    <form class="my-form" [formGroup]="addCommentForm" (ngSubmit)="addComment(addCommentForm)" autocomplete="off">
+
+      <mat-form-field class="full-width">
+        <mat-label>Text</mat-label>
+        <textarea matInput formControlName="text" maxlength="255" required rows="4"></textarea>
+        <mat-error class="error" *ngIf="text.invalid && (text.dirty || text.touched)">
+          Enter some text
+        </mat-error>
+        <mat-error class="error" *ngFor="let error of dtoError.text">{{error}}</mat-error>
+      </mat-form-field>
+
+      <mat-card-footer>
+        <button mat-raised-button color="primary" [disabled]="!addCommentForm.valid">Add</button>
+      </mat-card-footer>
+
+    </form>
+  </mat-card-content>
+</mat-card>

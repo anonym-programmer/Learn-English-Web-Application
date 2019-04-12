@@ -1,9 +1,6 @@
 package pl.robert.api.app.comment.domain.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotEmpty;
@@ -13,7 +10,7 @@ import static pl.robert.api.app.shared.Constants.*;
 
 @Getter @Setter
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE) @ToString
 public class CreateCommentDto {
 
     @NotEmpty(message = M_POST_ID_EMPTY)

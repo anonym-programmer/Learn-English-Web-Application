@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {QueryPost} from './query-post.model';
 import {QueryComment} from './query-comment.model';
+import {CreateCommentDto} from './create-comment-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {QueryComment} from './query-comment.model';
 export class ForumService {
 
   readonly addPostUrl = 'http://localhost:8080/api/post';
+  readonly addCommentUrl = 'http://localhost:8080/api/comment';
   readonly getPostsUrl = 'http://localhost:8080/api/post-query';
   readonly votePostUrl = 'http://localhost:8080/api/vote';
   readonly getCommentsUrl = 'http://localhost:8080/api/comment-query';
@@ -19,6 +21,10 @@ export class ForumService {
 
   addPost(data: FormData) {
     return this.http.post(this.addPostUrl, data, {withCredentials: true});
+  }
+
+  addComment(text: string, postId: string) {
+    return this.http.post(this.addCommentUrl, {text, postId}, {withCredentials: true});
   }
 
   getPosts(page: number) {
