@@ -73,14 +73,14 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(SWAGGER_API).permitAll()
-                .antMatchers("/api/base/*",
+                .antMatchers("/api/base/**",
                                          "/api/auth",
                                          "/api/post-query/**",
                                          "/api/comment-query/**").permitAll()
-                .antMatchers("/api/user*").hasRole("USER")
-                .antMatchers("/api/admin*").hasRole("ADMIN")
-                .antMatchers("/api/post*",
-                                         "/api/vote*",
+                .antMatchers("/api/user/**").hasRole("USER")
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/post/**",
+                                         "/api/vote/**",
                                          "/api/comment/**").authenticated()
                 .anyRequest().authenticated()
             .and()

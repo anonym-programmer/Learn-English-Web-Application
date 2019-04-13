@@ -29,6 +29,8 @@ import {AddCommentComponent} from './forum/add-comment/add-comment.component';
 import {ListPostComponent} from './forum/list-post/list-post.component';
 import {ShowPostComponent} from './forum/show-post/show-post.component';
 
+import {AdminComponent} from './admin/admin.component';
+
 import {AuthGuard} from './auth/auth.guard';
 
 import {BaseService} from './base/shared/base.service';
@@ -36,6 +38,7 @@ import {AuthService} from './auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user/shared/user.service';
 import {ForumService} from './forum/shared/forum.service';
+import {AdminService} from "./admin/shared/admin.service";
 
 @NgModule({
   declarations: [
@@ -56,6 +59,7 @@ import {ForumService} from './forum/shared/forum.service';
     AddCommentComponent,
     ListPostComponent,
     ShowPostComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +79,8 @@ import {ForumService} from './forum/shared/forum.service';
     AuthService,
     CookieService,
     UserService,
-    ForumService
+    ForumService,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })

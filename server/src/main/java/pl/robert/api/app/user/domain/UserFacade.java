@@ -3,12 +3,15 @@ package pl.robert.api.app.user.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.user.domain.dto.*;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.query.UserProfileQuery;
+import pl.robert.api.app.user.query.UserQuery;
 
 import java.util.Optional;
 
@@ -110,5 +113,9 @@ public class UserFacade {
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
         detailsService.updateUserDetails(userDetails);
         return UserQueryFactory.queryUserProfile(user, userDetails);
+    }
+
+    public Page<UserQuery> findAll(Pageable pageable) {
+        return userService.findAll(pageable);
     }
 }

@@ -15,6 +15,7 @@ import {AddPostComponent} from './forum/add-post/add-post.component';
 import {SettingsComponent} from './user/profile/own/settings/settings.component';
 import {SomeoneProfileComponent} from './user/profile/someone/someone-profile.component';
 import {ShowPostComponent} from './forum/show-post/show-post.component';
+import {AdminComponent} from "./admin/admin.component";
 
 const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
@@ -34,7 +35,9 @@ const routes: Routes = [
   {path: 'my-profile/settings/change-email', component: ChangeEmailComponent, canActivate: [AuthGuard]},
 
   {path: 'forum/add-post', component: AddPostComponent, canActivate: [AuthGuard]},
-  {path: 'forum/post/:id', component: ShowPostComponent}
+  {path: 'forum/post/:id', component: ShowPostComponent},
+
+  {path: 'admin-panel', component: AdminComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

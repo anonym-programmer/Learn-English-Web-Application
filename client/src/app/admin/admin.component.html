@@ -1,0 +1,26 @@
+<table class="table">
+  <thead class="thead-dark">
+  <tr>
+    <th>Id</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Roles</th>
+    <th>Enabled</th>
+  </tr>
+  </thead>
+  <tbody *ngFor="let user of users">
+  <tr>
+    <td>{{user.id}}</td>
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.roles}}</td>
+    <td>{{user.enabled}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<ul class="nav nav-pills">
+  <li class="nav-item" *ngFor="let p of pages; let i=index">
+    <a class="nav-link" href="#" (click)="setPage(i, $event)" [ngClass]="{'active':i==page}">{{i}}</a>
+  </li>
+</ul>
