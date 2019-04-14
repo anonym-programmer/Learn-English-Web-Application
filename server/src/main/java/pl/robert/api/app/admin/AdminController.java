@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
+import pl.robert.api.app.user.domain.dto.DeleteUserDto;
 
 @RestController
 @RequestMapping("/api/admin")
@@ -19,7 +20,7 @@ class AdminController {
 
     @DeleteMapping("/user/{id}")
     public HttpEntity<?> deleteUserById(@PathVariable String id) {
-        if (!userFacade.isUserIdExists(Long.parseLong(id))) {
+        if (!userFacade.isInputDataCorrect(new DeleteUserDto(Long.parseLong(id)))) {
             return ResponseEntity
                     .badRequest()
                     .build();

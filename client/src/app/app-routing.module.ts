@@ -37,7 +37,7 @@ const routes: Routes = [
   {path: 'forum/add-post', component: AddPostComponent, canActivate: [AuthGuard]},
   {path: 'forum/post/:id', component: ShowPostComponent},
 
-  {path: 'admin-panel', component: AdminComponent, canActivate: [AuthGuard]}
+  {path: 'admin-panel', component: AdminComponent}
 ];
 
 @NgModule({

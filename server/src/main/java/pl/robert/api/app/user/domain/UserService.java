@@ -30,6 +30,11 @@ class UserService {
         repository.delete(user);
     }
 
+    boolean isntUserAnAdmin(long id) {
+        System.out.println(repository.findById(id).getRoles().size());
+        return repository.findById(id).getRoles().size() == 1;
+    }
+
     boolean isUserByIdExist(long id) {
         return repository.findById(id) != null;
     }

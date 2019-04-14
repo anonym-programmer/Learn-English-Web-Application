@@ -4,10 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
-import pl.robert.api.app.user.domain.dto.ChangeUserEmailDto;
-import pl.robert.api.app.user.domain.dto.ChangeUserPasswordDto;
-import pl.robert.api.app.user.domain.dto.CreateUserDto;
-import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
+import pl.robert.api.app.user.domain.dto.*;
 
 import static pl.robert.api.app.shared.Constants.*;
 
@@ -64,5 +61,16 @@ class UserValidator {
         if (userService.isEmailExist(dto.getEmail())) {
             result.rejectValue(F_EMAIL, C_EXISTS, M_EMAIL_EXISTS);
         }
+    }
+
+    boolean isInputDataCorrect(DeleteUserDto dto) {
+
+        if (dto.getId() != null && !String.valueOf(dto.getId()).isEmpty()) {
+
+            if (userService.isUserByIdExist(dto.getId())) {
+                return userService.isntUserAnAdmin(dto.getId());
+            }
+        }
+        return false;
     }
 }

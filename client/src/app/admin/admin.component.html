@@ -6,6 +6,7 @@
     <th>Email</th>
     <th>Roles</th>
     <th>Enabled</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody *ngFor="let user of users">
@@ -15,6 +16,8 @@
     <td>{{user.email}}</td>
     <td>{{user.roles}}</td>
     <td>{{user.enabled}}</td>
+    <td *ngIf="user.roles.length == 4"><button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button></td>
+    <td *ngIf="user.roles.length > 4"><button class="btn btn-danger btn-sm" disabled>Delete</button></td>
   </tr>
   </tbody>
 </table>

@@ -48,6 +48,10 @@ public class UserFacade {
         }
     }
 
+    public boolean isInputDataCorrect(DeleteUserDto dto) {
+        return validator.isInputDataCorrect(dto);
+    }
+
     public void add(CreateUserDto dto) {
         User user = UserFactory.create(dto);
         userService.saveAndFlush(user);
