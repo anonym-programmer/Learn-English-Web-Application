@@ -6,7 +6,7 @@ import {HttpClient} from "@angular/common/http";
 })
 export class AdminService {
 
-  readonly getUsersUrl = 'http://localhost:8080/api/admin/users';
+  readonly getUsersUrl = 'http://localhost:8080/api/admin-query/users';
 
   constructor(private http: HttpClient) {
   }

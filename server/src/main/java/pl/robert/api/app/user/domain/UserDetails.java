@@ -29,8 +29,8 @@ class UserDetails {
     @Column(name = "current_rank", length = COL_LENGTH_RANK, nullable = false)
     String currentRank;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     User user;
 
     @Transient

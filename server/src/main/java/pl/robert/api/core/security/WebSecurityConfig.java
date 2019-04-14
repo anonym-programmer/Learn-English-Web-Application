@@ -78,7 +78,8 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                                          "/api/post-query/**",
                                          "/api/comment-query/**").permitAll()
                 .antMatchers("/api/user/**").hasRole("USER")
-                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/admin-query/**",
+                                         "/api/admin/**").hasRole("ADMIN")
                 .antMatchers("/api/post/**",
                                          "/api/vote/**",
                                          "/api/comment/**").authenticated()

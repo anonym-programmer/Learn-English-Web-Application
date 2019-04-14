@@ -15,18 +15,18 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class Vote {
+public class Vote {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @ManyToOne(targetEntity = Post.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "post_id")
+    @ManyToOne
+    @JoinColumn(name = "post_id")
     Post post;
 
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     User user;
 
     @Column(nullable = false)

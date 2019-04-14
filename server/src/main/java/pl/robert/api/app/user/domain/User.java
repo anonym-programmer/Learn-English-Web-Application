@@ -2,9 +2,13 @@ package pl.robert.api.app.user.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.comment.domain.Comment;
+import pl.robert.api.app.post.domain.Post;
+import pl.robert.api.app.vote.domain.Vote;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static pl.robert.api.app.shared.Constants.COL_LENGTH_ENCODED_PASSWORD;
@@ -34,6 +38,18 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER)
     Set<Role> roles = new HashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    UserDetails userDetails;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    List<Comment> comments;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    List<Vote> votes;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    List<Post> posts;
 
     @Column(name = "is_enabled")
     boolean isEnabled;

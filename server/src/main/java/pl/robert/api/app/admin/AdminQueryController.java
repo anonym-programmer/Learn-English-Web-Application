@@ -15,7 +15,7 @@ import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.user.query.UserQuery;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("/api/admin-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

@@ -30,12 +30,20 @@ class UserService {
         repository.delete(user);
     }
 
+    boolean isUserByIdExist(long id) {
+        return repository.findById(id) != null;
+    }
+
     boolean isUsernameExist(String username) {
         return repository.findByUsername(username) != null;
     }
 
     boolean isEmailExist(String email) {
         return repository.findByEmail(email) != null;
+    }
+
+    User findById(long id) {
+        return repository.findById(id);
     }
 
     User findByEmail(String email) {
