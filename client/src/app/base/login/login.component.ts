@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {CreateUserDto} from '../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +17,8 @@ export class LoginComponent implements OnInit {
   dto = new CreateUserDto();
   loginForm: FormGroup;
 
-  constructor(private router: Router, private authService: AuthService, private toastr: ToastrService,
-              private cookieService: CookieService) {
+  constructor(private router: Router, private authService: AuthService, private cookieService: CookieService,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -35,23 +36,15 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  onSubmit() {
-    this.authService.login(this.loginForm.value).subscribe(
+  onSubmit(loginForm: FormGroup) {
+    this.authService.login(loginForm.value).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.LOGIN);
         this.router.navigate(['dashboard']);
       }, () => {
         this.cookieService.deleteAll();
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.WRONG_CREDENTIALS);
       }
     )
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully logged in!', 'Success')
-  }
-
-  private showFailure() {
-    this.toastr.error('Username or password are invalid.', 'Failure');
   }
 }

@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {QueryUser} from "./shared/query-user.model";
 import {AdminService} from "./shared/admin.service";
-import {ToastrService} from "ngx-toastr";
+import {SharedService} from "../shared/shared.service";
+import {Constants} from "../shared/constants";
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +15,7 @@ export class AdminComponent implements OnInit {
   private users: Array<QueryUser>;
   private pages: Array<number>;
 
-  constructor(private adminService: AdminService, private toastr: ToastrService) {
+  constructor(private adminService: AdminService, private sharedService: SharedService) {
   }
 
   setPage(i, event: any) {
@@ -38,20 +39,12 @@ export class AdminComponent implements OnInit {
     console.log(id);
     this.adminService.deleteUser(id).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.DELETE_USER);
         this.getUsers();
       },
       () => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
       }
     )
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully deleted current user!', 'Success');
-  }
-
-  private showFailure() {
-    this.toastr.error('Something went wrong.', 'Failure');
   }
 }

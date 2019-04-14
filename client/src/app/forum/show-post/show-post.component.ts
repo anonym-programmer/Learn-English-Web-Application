@@ -2,9 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {QueryPost} from '../shared/query-post.model';
 import {ForumService} from '../shared/forum.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import swal from 'sweetalert2';
 import {QueryComment} from '../shared/query-comment.model';
 import {AuthService} from '../../auth/auth.service';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-show-post',
@@ -18,7 +19,7 @@ export class ShowPostComponent implements OnInit {
   id: string;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private forumService: ForumService,
-              private authService: AuthService) {
+              private authService: AuthService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -34,7 +35,10 @@ export class ShowPostComponent implements OnInit {
       this.post = post;
       this.getComments();
     }, () => {
-      this.showErrorAlert();
+      this.sharedService.showErrorAlert(
+        Constants.FAILURE_TITLE,
+        Constants.POST_DOESNT_EXIST
+      );
       this.router.navigate(['forum']);
     })
   }
@@ -43,13 +47,5 @@ export class ShowPostComponent implements OnInit {
     this.forumService.getComments(this.id).subscribe(data => {
       this.comments = data;
     });
-  }
-
-  private showErrorAlert() {
-    swal(
-      'Oops...',
-      'Post doesn\'t exist.',
-      'error'
-    );
   }
 }

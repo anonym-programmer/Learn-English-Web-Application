@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {QueryPost} from './query-post.model';
 import {QueryComment} from './query-comment.model';
-import {CreateCommentDto} from './create-comment-dto.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +27,7 @@ export class ForumService {
   }
 
   getPosts(page: number) {
-    return this.http.get(this.getPostsUrl + '?page=' + page);
+    return this.http.get(this.getPostsUrl + `?page=${page}`);
   }
 
   getPost(id: string): Observable<QueryPost> {

@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
 import {ChangeUserPasswordDto} from '../../../../shared/change-password-dto.model';
 import {UserService} from '../../../../shared/user.service';
+import {SharedService} from "../../../../../shared/shared.service";
+import {Constants} from "../../../../../shared/constants";
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css',
-              '../../../../../base/login/login.component.css',
-              '../../../../../base/register/register.component.css'
+    '../../../../../base/login/login.component.css',
+    '../../../../../base/register/register.component.css'
   ]
 })
 export class ChangePasswordComponent implements OnInit {
@@ -18,7 +19,7 @@ export class ChangePasswordComponent implements OnInit {
   dtoError = new ChangeUserPasswordDto();
   changePasswordForm: FormGroup;
 
-  constructor(private userService: UserService, private toastr: ToastrService) {
+  constructor(private userService: UserService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -36,10 +37,10 @@ export class ChangePasswordComponent implements OnInit {
     return this.changePasswordForm.get('confirmedPassword');
   }
 
-  changePassword() {
-    this.userService.changePassword(this.changePasswordForm.value).subscribe(
+  changePassword(changePasswordForm: FormGroup) {
+    this.userService.changePassword(changePasswordForm.value).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.CHANGED_PASSWORD);
         let control: AbstractControl = null;
         this.changePasswordForm.reset();
         this.changePasswordForm.markAsUntouched();
@@ -49,7 +50,7 @@ export class ChangePasswordComponent implements OnInit {
         });
       },
       error => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
         this.dtoError = error.error;
 
         if (this.dtoError.password != null) {
@@ -61,13 +62,5 @@ export class ChangePasswordComponent implements OnInit {
         }
       }
     );
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully changed password!', 'Success')
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }

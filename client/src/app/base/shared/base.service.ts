@@ -21,11 +21,11 @@ export class BaseService {
   }
 
   checkToken(token: string) {
-    return this.http.get(this.checkTokenUrl + '?token=' + token);
+    return this.http.get(this.checkTokenUrl + `?token=${token}`);
   }
 
   confirmAccount(token: string) {
-    return this.http.get(this.confirmAccountUrl + '?token=' + token);
+    return this.http.get(this.confirmAccountUrl + `?token=${token}`);
   }
 
   forgotCredentials(data: FormGroup) {
@@ -33,6 +33,6 @@ export class BaseService {
   }
 
   resetPassword(token: string, data: FormGroup) {
-    return this.http.post(this.resetPasswordUrl + '?token=' + token, data);
+    return this.http.post(this.resetPasswordUrl + `?token=${token}`, data);
   }
 }

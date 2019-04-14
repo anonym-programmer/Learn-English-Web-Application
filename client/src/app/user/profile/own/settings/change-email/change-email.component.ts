@@ -1,15 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
 import {ChangeUserEmailDto} from '../../../../shared/change-email-dto.model';
 import {UserService} from '../../../../shared/user.service';
+import {SharedService} from "../../../../../shared/shared.service";
+import {Constants} from "../../../../../shared/constants";
 
 @Component({
   selector: 'app-change-email',
   templateUrl: './change-email.component.html',
   styleUrls: ['./change-email.component.css',
-              '../../../../../base/login/login.component.css',
-              '../../../../../base/register/register.component.css'
+    '../../../../../base/login/login.component.css',
+    '../../../../../base/register/register.component.css'
   ]
 })
 export class ChangeEmailComponent implements OnInit {
@@ -18,7 +19,7 @@ export class ChangeEmailComponent implements OnInit {
   dtoError = new ChangeUserEmailDto();
   changeEmailForm: FormGroup;
 
-  constructor(private userService: UserService, private toastr: ToastrService) {
+  constructor(private userService: UserService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -36,10 +37,10 @@ export class ChangeEmailComponent implements OnInit {
     return this.changeEmailForm.get('confirmedEmail');
   }
 
-  changeEmail() {
-    this.userService.changeEmail(this.changeEmailForm.value).subscribe(
+  changeEmail(changeEmailForm: FormGroup) {
+    this.userService.changeEmail(changeEmailForm.value).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.CHANGED_EMAIL);
         let control: AbstractControl = null;
         this.changeEmailForm.reset();
         this.changeEmailForm.markAsUntouched();
@@ -49,7 +50,7 @@ export class ChangeEmailComponent implements OnInit {
         });
       },
       error => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
         this.dtoError = error.error;
 
         if (this.dtoError.email != null) {
@@ -61,13 +62,5 @@ export class ChangeEmailComponent implements OnInit {
         }
       }
     );
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully changed email!', 'Success')
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }

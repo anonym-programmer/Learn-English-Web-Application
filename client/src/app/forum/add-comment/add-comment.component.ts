@@ -3,8 +3,9 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {CreateCommentDto} from '../shared/create-comment-dto.model';
 import {ActivatedRoute} from '@angular/router';
 import {ForumService} from '../shared/forum.service';
-import {ToastrService} from 'ngx-toastr';
 import {ShowPostComponent} from '../show-post/show-post.component';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-add-comment',
@@ -19,8 +20,8 @@ export class AddCommentComponent implements OnInit {
   addCommentForm: FormGroup;
   id: string;
 
-  constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService, private toastr: ToastrService,
-              private showPostComponent: ShowPostComponent) {
+  constructor(private activatedRoute: ActivatedRoute, private forumService: ForumService,
+              private sharedService: SharedService, private showPostComponent: ShowPostComponent) {
   }
 
   ngOnInit() {
@@ -39,7 +40,7 @@ export class AddCommentComponent implements OnInit {
     });
     this.forumService.addComment(this.addCommentForm.controls['text'].value, this.id).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.ADDED_COMMENT);
         let control: AbstractControl = null;
         this.addCommentForm.reset();
         this.addCommentForm.markAsUntouched();
@@ -50,7 +51,7 @@ export class AddCommentComponent implements OnInit {
         this.showPostComponent.getPost();
       },
         error => {
-          this.showFailure();
+          this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
           this.dtoError = error.error;
 
           if (this.dtoError.text != null) {
@@ -58,13 +59,5 @@ export class AddCommentComponent implements OnInit {
           }
       }
     )
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully added new post!', 'Success');
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }

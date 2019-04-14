@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../shared/base.service';
-import swal from 'sweetalert2';
+import {SharedService} from "../../../shared/shared.service";
+import {Constants} from "../../../shared/constants";
 
 @Component({
   selector: 'app-confirm',
@@ -10,7 +11,8 @@ import swal from 'sweetalert2';
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute) {
+  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -18,29 +20,19 @@ export class ConfirmComponent implements OnInit {
       const token = queryParams['token'];
       this.service.confirmAccount(token).subscribe(
         () => {
-          this.showSuccessAlert();
+          this.sharedService.showSuccessAlert(
+            Constants.TOKEN_CONFIRMATION_SUCCESS_TITLE,
+            Constants.TOKEN_CONFIRMATION_SUCCESS_MSG
+          )
         },
         () => {
-          this.showErrorAlert();
+          this.sharedService.showErrorAlert(
+            Constants.FAILURE_TITLE,
+            Constants.TOKEN_CONFIRMATION_FAILURE_MSG
+          )
         }
       );
       this.router.navigate(['/']);
     })
-  }
-
-  private showSuccessAlert() {
-    swal(
-      'Good job!',
-      'You have successfully confirmed your account!',
-      'success'
-    );
-  }
-
-  private showErrorAlert() {
-    swal(
-      'Oops...',
-      'Token doesn\'t exist.',
-      'error'
-    );
   }
 }

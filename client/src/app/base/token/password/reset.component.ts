@@ -3,8 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../shared/base.service';
 import {CreateUserDto} from '../../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
-import swal from 'sweetalert2';
+import {SharedService} from "../../../shared/shared.service";
+import {Constants} from "../../../shared/constants";
 
 @Component({
   selector: 'app-reset',
@@ -17,8 +17,8 @@ export class ResetComponent implements OnInit {
   dtoError = new CreateUserDto();
   resetForm: FormGroup;
 
-  constructor(private service: BaseService, private toastr: ToastrService, private router: Router,
-              private route: ActivatedRoute) {
+  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -28,10 +28,14 @@ export class ResetComponent implements OnInit {
     });
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
-      this.service.checkToken(token).subscribe(() => {},
+      this.service.checkToken(token).subscribe(() => {
+        },
         () => {
           this.router.navigate(['/']);
-          this.showErrorAlert();
+          this.sharedService.showErrorAlert(
+            Constants.FAILURE_TITLE,
+            Constants.TOKEN_CONFIRMATION_FAILURE_MSG
+          );
         }
       );
     })
@@ -45,16 +49,21 @@ export class ResetComponent implements OnInit {
     return this.resetForm.get('confirmedPassword');
   }
 
-  onSubmit() {
+  onSubmit(resetForm: FormGroup) {
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
-      this.service.resetPassword(token, this.resetForm.value).subscribe(
+      this.service.resetPassword(token, resetForm.value).subscribe(
         () => {
-          this.showSuccessAlert();
+          this.sharedService.showSuccessAlert(
+            Constants.TOKEN_CONFIRMATION_SUCCESS_TITLE,
+            Constants.CHANGED_PASSWORD
+          );
           this.router.navigate(['/']);
         },
         error => {
-          this.showFailureToastr();
+          this.sharedService.showFailureToastr(
+            Constants.INVALID_FIELDS
+          );
           this.dtoError = error.error;
 
           if (this.dtoError.password != null) {
@@ -67,25 +76,5 @@ export class ResetComponent implements OnInit {
         }
       );
     })
-  }
-
-  private showFailureToastr() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
-  }
-
-  private showSuccessAlert() {
-    swal(
-      'Good job!',
-      'You have successfully changed your password!',
-      'success'
-    );
-  }
-
-  private showErrorAlert() {
-    swal(
-      'Oops...',
-      'Token doesn\'t exist.',
-      'error'
-    );
   }
 }

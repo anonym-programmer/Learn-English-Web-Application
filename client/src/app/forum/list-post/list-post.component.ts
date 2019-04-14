@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ForumService} from '../shared/forum.service';
 import {QueryPost} from '../shared/query-post.model';
 import {AuthService} from '../../auth/auth.service';
-import {ToastrService} from 'ngx-toastr';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-list-post',
@@ -15,7 +16,8 @@ export class ListPostComponent implements OnInit {
   private posts: Array<QueryPost>;
   private pages: Array<number>;
 
-  constructor(private authService: AuthService, private forumService: ForumService, private toastr: ToastrService) {
+  constructor(private authService: AuthService, private forumService: ForumService,
+              private sharedService: SharedService) {
   }
 
   setPage(i, event: any) {
@@ -38,25 +40,11 @@ export class ListPostComponent implements OnInit {
   votePost(id: string, type: string) {
     this.forumService.votePost(id, type).subscribe(
       () => {
-        this.showSuccess(type);
+        this.sharedService.showSuccessToastr(Constants.VOTED_POST);
         this.getPosts();
       }, error => {
-        this.showFailure(error.error['type']);
+        this.sharedService.showFailureToastr(error.error['type']);
       }
     )
-  }
-
-  private showSuccess(type: string) {
-    let msg;
-    if (type == 'YES') {
-      msg = 'up';
-    } else {
-      msg = 'down';
-    }
-    this.toastr.success(`Successfully ${msg} voted post!`, 'Success');
-  }
-
-  private showFailure(msg: string) {
-    this.toastr.error(`${msg}.`, 'Failure');
   }
 }

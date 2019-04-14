@@ -39,6 +39,7 @@ import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user/shared/user.service';
 import {ForumService} from './forum/shared/forum.service';
 import {AdminService} from "./admin/shared/admin.service";
+import {SharedService} from "./shared/shared.service";
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {AdminService} from "./admin/shared/admin.service";
     CookieService,
     UserService,
     ForumService,
-    AdminService
+    AdminService,
+    SharedService
   ],
   bootstrap: [AppComponent]
 })

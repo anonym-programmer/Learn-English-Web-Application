@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {ToastrService} from 'ngx-toastr';
 import {CookieService} from 'ngx-cookie-service';
 import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {QueryAuth} from '../user/shared/query-auth.model';
+import {SharedService} from "../shared/shared.service";
+import {Constants} from "../shared/constants";
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {QueryAuth} from '../user/shared/query-auth.model';
 export class AuthService {
 
   constructor(private http: HttpClient, private router: Router,
-              private cookieService: CookieService, private toastr: ToastrService) { }
+              private cookieService: CookieService, private sharedService: SharedService) { }
 
   readonly loginUrl= 'http://localhost:8080/j_spring_security_check';
   readonly logoutUrl= 'http://localhost:8080/j_spring_security_logout';
@@ -37,7 +38,7 @@ export class AuthService {
     return this.http.post(this.logoutUrl, null).subscribe(
       () => {
         this.cookieService.deleteAll();
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.LOGOUT);
         this.router.navigate(['login']);
       }
     );
@@ -45,9 +46,5 @@ export class AuthService {
 
   public getAuth(): Observable<QueryAuth> {
     return this.http.get<QueryAuth>(this.authUrl, {withCredentials: true});
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully logged out!', 'Success')
   }
 }

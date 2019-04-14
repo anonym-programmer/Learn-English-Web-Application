@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
-import swal from 'sweetalert2';
 import {CreateUserDto} from '../shared/create-user-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-credentials',
@@ -16,7 +16,7 @@ export class CredentialsComponent implements OnInit {
   dtoError = new CreateUserDto();
   credentialForm: FormGroup;
 
-  constructor(private service: BaseService, private toastr: ToastrService) {
+  constructor(private service: BaseService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -29,10 +29,13 @@ export class CredentialsComponent implements OnInit {
     return this.credentialForm.get('email');
   }
 
-  onSubmit() {
-    this.service.forgotCredentials(this.credentialForm.value).subscribe(
+  onSubmit(credentialForm: FormGroup) {
+    this.service.forgotCredentials(credentialForm.value).subscribe(
       () => {
-        this.showInfo();
+        this.sharedService.showInfoAlert(
+          Constants.FORGOT_CREDENTIALS_TITLE,
+          Constants.FORGOT_CREDENTIALS_MSG
+        );
         let control: AbstractControl = null;
         this.credentialForm.reset();
         this.credentialForm.markAsUntouched();
@@ -42,7 +45,7 @@ export class CredentialsComponent implements OnInit {
         });
       },
       error => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.INVALID_FIELD);
         this.dtoError = error.error;
 
         if (this.dtoError.email != null) {
@@ -50,19 +53,5 @@ export class CredentialsComponent implements OnInit {
         }
       }
     );
-  }
-
-  private showInfo() {
-    swal(
-      'Forgot credentials',
-      'Reset token has been sent to your email.' + '<br>' +
-      'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
-      'and u will be not able to reset your password!',
-      'info'
-    );
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid field.', 'Failure');
   }
 }

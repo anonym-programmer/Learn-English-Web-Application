@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
 import {CreateUserDto} from '../shared/create-user-dto.model';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
-import {ToastrService} from 'ngx-toastr';
-import swal from 'sweetalert2';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-register',
@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   dtoError = new CreateUserDto();
   registerForm: FormGroup;
 
-  constructor(private service: BaseService, private toastr: ToastrService) {
+  constructor(private service: BaseService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -44,10 +44,13 @@ export class RegisterComponent implements OnInit {
     return this.registerForm.get('confirmedPassword');
   }
 
-  onSubmit() {
-    this.service.register(this.registerForm.value).subscribe(
+  onSubmit(registerForm: FormGroup) {
+    this.service.register(registerForm.value).subscribe(
       () => {
-        this.showInfo();
+        this.sharedService.showInfoAlert(
+          Constants.ACCOUNT_CONFIRMATION_TITLE,
+          Constants.ACCOUNT_CONFIRMATION_MSG
+        );
         let control: AbstractControl = null;
         this.registerForm.reset();
         this.registerForm.markAsUntouched();
@@ -57,7 +60,7 @@ export class RegisterComponent implements OnInit {
         });
       },
       error => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
         this.dtoError = error.error;
 
         if (this.dtoError.username != null) {
@@ -77,19 +80,5 @@ export class RegisterComponent implements OnInit {
         }
       }
     );
-  }
-
-  private showInfo() {
-    swal(
-      'Account confirmation',
-      'Confirmation token has been sent to your email.' + '<br>' +
-      'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
-      'and u will be not able to log into application!',
-      'info'
-    );
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }

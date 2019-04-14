@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ForumService} from '../shared/forum.service';
-import {ToastrService} from 'ngx-toastr';
-import {Router} from '@angular/router';
 import {CreatePostDto} from '../shared/create-post-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SharedService} from "../../shared/shared.service";
+import {Constants} from "../../shared/constants";
 
 @Component({
   selector: 'app-add-post',
@@ -16,7 +16,7 @@ export class AddPostComponent implements OnInit {
   dtoError = new CreatePostDto();
   addPostForm: FormGroup;
 
-  constructor(private forumService: ForumService, private toastr: ToastrService, private router: Router) {
+  constructor(private forumService: ForumService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -34,10 +34,10 @@ export class AddPostComponent implements OnInit {
     return this.addPostForm.get('description');
   }
 
-  addPost() {
-    this.forumService.addPost(this.addPostForm.value).subscribe(
+  addPost(addPostForm: FormGroup) {
+    this.forumService.addPost(addPostForm.value).subscribe(
       () => {
-        this.showSuccess();
+        this.sharedService.showSuccessToastr(Constants.ADDED_POST);
         let control: AbstractControl = null;
         this.addPostForm.reset();
         this.addPostForm.markAsUntouched();
@@ -47,7 +47,7 @@ export class AddPostComponent implements OnInit {
         });
       },
       error => {
-        this.showFailure();
+        this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
         this.dtoError = error.error;
 
         if (this.dtoError.title != null) {
@@ -59,13 +59,5 @@ export class AddPostComponent implements OnInit {
         }
       }
     );
-  }
-
-  private showSuccess() {
-    this.toastr.success('Successfully added new post!', 'Success');
-  }
-
-  private showFailure() {
-    this.toastr.error('Correct invalid fields.', 'Failure');
   }
 }
