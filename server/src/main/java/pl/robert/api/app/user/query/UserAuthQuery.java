@@ -11,5 +11,5 @@ public class UserAuthQuery {
 
     String username;
     String roles;
-    boolean isAuthenticated;
+    String isAuthenticated;
 }

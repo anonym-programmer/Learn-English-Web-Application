@@ -13,15 +13,20 @@ import {Constants} from "../shared/constants";
 })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router,
-              private cookieService: CookieService, private sharedService: SharedService) { }
-
-  readonly loginUrl= 'http://localhost:8080/j_spring_security_check';
-  readonly logoutUrl= 'http://localhost:8080/j_spring_security_logout';
+  readonly loginUrl = 'http://localhost:8080/j_spring_security_check';
+  readonly logoutUrl = 'http://localhost:8080/j_spring_security_logout';
   readonly authUrl = 'http://localhost:8080/api/auth';
 
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService,
+              private sharedService: SharedService) {
+  }
+
   public isAuthenticated(): boolean {
-    return this.cookieService.get('XSRF-TOKEN') != '';
+    return this.cookieService.get('XSRF-TOKEN') != '' && localStorage.getItem('isAuthenticated') == 'true';
+  }
+
+  public isRoleAdmin(): boolean {
+    return localStorage.getItem('roles').includes('Admin');
   }
 
   public login(credentials: { username: string, password: string }): Observable<boolean> {
@@ -30,14 +35,21 @@ export class AuthService {
       .set('password', credentials.password);
 
     return this.http
-      .post(this.loginUrl, body, {withCredentials: true})
+      .post(this.loginUrl, body)
       .pipe(map(() => true));
+  }
+
+  public setAuthentication(auth: QueryAuth) {
+    localStorage.setItem('username', auth.username);
+    localStorage.setItem('roles', auth.roles);
+    localStorage.setItem('isAuthenticated', auth.isAuthenticated)
   }
 
   public logout() {
     return this.http.post(this.logoutUrl, null).subscribe(
       () => {
         this.cookieService.deleteAll();
+        localStorage.clear();
         this.sharedService.showSuccessToastr(Constants.LOGOUT);
         this.router.navigate(['login']);
       }
@@ -45,6 +57,6 @@ export class AuthService {
   }
 
   public getAuth(): Observable<QueryAuth> {
-    return this.http.get<QueryAuth>(this.authUrl, {withCredentials: true});
+    return this.http.get<QueryAuth>(this.authUrl);
   }
 }

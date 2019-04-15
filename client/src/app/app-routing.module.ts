@@ -16,6 +16,7 @@ import {SettingsComponent} from './user/profile/own/settings/settings.component'
 import {SomeoneProfileComponent} from './user/profile/someone/someone-profile.component';
 import {ShowPostComponent} from './forum/show-post/show-post.component';
 import {AdminComponent} from "./admin/admin.component";
+import {RoleGuard} from "./auth/role.guard";
 
 const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
@@ -37,7 +38,7 @@ const routes: Routes = [
   {path: 'forum/add-post', component: AddPostComponent, canActivate: [AuthGuard]},
   {path: 'forum/post/:id', component: ShowPostComponent},
 
-  {path: 'admin-panel', component: AdminComponent}
+  {path: 'admin-panel', component: AdminComponent, canActivate: [AuthGuard], canActivate: [RoleGuard]}
 ];
 
 @NgModule({

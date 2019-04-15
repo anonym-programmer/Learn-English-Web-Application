@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
 import {MaterialModule} from './material.module';
 import {ToastrModule} from 'ngx-toastr';
@@ -32,6 +32,7 @@ import {ShowPostComponent} from './forum/show-post/show-post.component';
 import {AdminComponent} from './admin/admin.component';
 
 import {AuthGuard} from './auth/auth.guard';
+import {RoleGuard} from "./auth/role.guard";
 
 import {BaseService} from './base/shared/base.service';
 import {AuthService} from './auth/auth.service';
@@ -40,6 +41,7 @@ import {UserService} from './user/shared/user.service';
 import {ForumService} from './forum/shared/forum.service';
 import {AdminService} from "./admin/shared/admin.service";
 import {SharedService} from "./shared/shared.service";
+import {CustomInterceptor} from "./auth/http-interceptor";
 
 @NgModule({
   declarations: [
@@ -75,7 +77,13 @@ import {SharedService} from "./shared/shared.service";
     SweetAlert2Module.forRoot()
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CustomInterceptor ,
+      multi: true
+    },
     AuthGuard,
+    RoleGuard,
     BaseService,
     AuthService,
     CookieService,

@@ -19,11 +19,11 @@ export class ForumService {
   }
 
   addPost(data: FormData) {
-    return this.http.post(this.addPostUrl, data, {withCredentials: true});
+    return this.http.post(this.addPostUrl, data);
   }
 
   addComment(text: string, postId: string) {
-    return this.http.post(this.addCommentUrl, {text, postId}, {withCredentials: true});
+    return this.http.post(this.addCommentUrl, {text, postId});
   }
 
   getPosts(page: number) {
@@ -35,7 +35,7 @@ export class ForumService {
   }
 
   votePost(postId: string, type: string) {
-    return this.http.post(this.votePostUrl, {postId, type}, {withCredentials: true});
+    return this.http.post(this.votePostUrl, {postId, type});
   }
 
   getComments(postId: string): Observable<Array<QueryComment>> {

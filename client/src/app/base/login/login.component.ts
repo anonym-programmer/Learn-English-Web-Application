@@ -40,6 +40,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(loginForm.value).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.LOGIN);
+        this.authService.getAuth().subscribe(
+          (auth) => {
+            this.authService.setAuthentication(auth);
+          }
+        );
         this.router.navigate(['dashboard']);
       }, () => {
         this.cookieService.deleteAll();

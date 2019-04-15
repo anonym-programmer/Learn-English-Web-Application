@@ -14,7 +14,7 @@
         <span><a [routerLink]="['/dashboard']" routerLinkActive="router-link-active">Dashboard</a></span>
         <span><a [routerLink]="['/forum']" routerLinkActive="router-link-active">Forum</a></span>
         <span><a [routerLink]="['/my-profile']" routerLinkActive="router-link-active">Profile</a></span>
-        <span><a [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin Panel</a></span>
+        <span *ngIf="authService.isRoleAdmin()"><a [routerLink]="['/admin-panel']" routerLinkActive="router-link-active">Admin Panel</a></span>
         <span><a id="logoutHref" (click)="authService.logout()">Logout</a></span>
       </div>
     </div>

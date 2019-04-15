@@ -20,22 +20,22 @@ export class UserService {
   }
 
   greetUser() {
-    return this.http.get(this.greetUserUrl, {responseType: 'text', withCredentials: true});
+    return this.http.get(this.greetUserUrl, {responseType: 'text'});
   }
 
   getInfoAboutMyProfile(): Observable<QueryOwnProfile> {
-    return this.http.get<QueryOwnProfile>(this.infoAboutProfileUrl, {withCredentials: true});
+    return this.http.get<QueryOwnProfile>(this.infoAboutProfileUrl);
   }
 
   getInfoAboutSomeoneProfile(username: string): Observable<QuerySomeoneProfile> {
-    return this.http.get<QuerySomeoneProfile>(this.infoAboutSomeoneProfileUrl + `${username}`, {withCredentials: true});
+    return this.http.get<QuerySomeoneProfile>(this.infoAboutSomeoneProfileUrl + `${username}`);
   }
 
   changePassword(data: FormGroup) {
-    return this.http.post(this.changePasswordUrl, data, {withCredentials: true});
+    return this.http.post(this.changePasswordUrl, data);
   }
 
   changeEmail(data: FormGroup) {
-    return this.http.post(this.changeEmailUrl, data, {withCredentials: true});
+    return this.http.post(this.changeEmailUrl, data);
   }
 }

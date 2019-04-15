@@ -36,7 +36,6 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(id: string) {
-    console.log(id);
     this.adminService.deleteUser(id).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.DELETE_USER);

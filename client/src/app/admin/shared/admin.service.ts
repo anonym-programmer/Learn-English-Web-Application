@@ -13,10 +13,10 @@ export class AdminService {
   }
 
   getUsers(page: number) {
-    return this.http.get(this.getUsersUrl + `?page=${page}`, {withCredentials: true});
+    return this.http.get(this.getUsersUrl + `?page=${page}`);
   }
 
   deleteUser(id: string) {
-    return this.http.delete(this.deleteUserUrl + `/${id}`, {withCredentials: true});
+    return this.http.delete(this.deleteUserUrl + `/${id}`);
   }
 }

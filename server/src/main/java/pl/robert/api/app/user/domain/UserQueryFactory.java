@@ -15,7 +15,7 @@ class UserQueryFactory {
                 .builder()
                 .username(auth.getName())
                 .roles(auth.getAuthorities().size() == 2 ? ROLE_USER_ADMIN : ROLE_USER)
-                .isAuthenticated(auth.isAuthenticated())
+                .isAuthenticated(String.valueOf(auth.isAuthenticated()))
                 .build();
     }
 
