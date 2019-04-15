@@ -17,28 +17,41 @@ import {SomeoneProfileComponent} from './user/profile/someone/someone-profile.co
 import {ShowPostComponent} from './forum/show-post/show-post.component';
 import {AdminComponent} from "./admin/admin.component";
 import {RoleGuard} from "./auth/role.guard";
+import {NotAuthGuard} from "./auth/not-auth.guard";
 
 const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
 
   {path: 'dashboard', component: DashboardComponent},
   {path: 'forum', component: ForumComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'confirm-account', component: ConfirmComponent},
-  {path: 'forgot-credentials', component: CredentialsComponent},
-  {path: 'reset-password', component: ResetComponent},
-  {path: 'login', component: LoginComponent},
 
-  {path: 'profile/:username', component: SomeoneProfileComponent, canActivate: [AuthGuard]},
-  {path: 'my-profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'my-profile/settings', component: SettingsComponent, canActivate: [AuthGuard]},
-  {path: 'my-profile/settings/change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {path: 'my-profile/settings/change-email', component: ChangeEmailComponent, canActivate: [AuthGuard]},
+  {
+    path: '',
+    canActivate: [NotAuthGuard],
+    children: [
+      {path: 'register', component: RegisterComponent},
+      {path: 'confirm-account', component: ConfirmComponent},
+      {path: 'forgot-credentials', component: CredentialsComponent},
+      {path: 'reset-password', component: ResetComponent},
+      {path: 'login', component: LoginComponent},
+    ]
+  },
 
-  {path: 'forum/add-post', component: AddPostComponent, canActivate: [AuthGuard]},
+  {
+    path: '',
+    canActivate: [AuthGuard],
+    children: [
+      {path: 'profile/:username', component: SomeoneProfileComponent},
+      {path: 'my-profile', component: ProfileComponent},
+      {path: 'my-profile/settings', component: SettingsComponent},
+      {path: 'my-profile/settings/change-password', component: ChangePasswordComponent},
+      {path: 'my-profile/settings/change-email', component: ChangeEmailComponent},
+      {path: 'forum/add-post', component: AddPostComponent},
+      {path: 'admin-panel', component: AdminComponent, canActivate: [RoleGuard]},
+    ],
+  },
+
   {path: 'forum/post/:id', component: ShowPostComponent},
-
-  {path: 'admin-panel', component: AdminComponent, canActivate: [AuthGuard, RoleGuard]}
 ];
 
 @NgModule({

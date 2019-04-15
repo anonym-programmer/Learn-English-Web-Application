@@ -31,6 +31,7 @@ import {ShowPostComponent} from './forum/show-post/show-post.component';
 
 import {AdminComponent} from './admin/admin.component';
 
+import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
 import {RoleGuard} from "./auth/role.guard";
 
@@ -79,9 +80,10 @@ import {CustomInterceptor} from "./auth/http-interceptor";
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: CustomInterceptor ,
+      useClass: CustomInterceptor,
       multi: true
     },
+    NotAuthGuard,
     AuthGuard,
     RoleGuard,
     BaseService,
