@@ -10,11 +10,11 @@ import {QuerySomeoneProfile} from './query-someone-profile.model';
 })
 export class UserService {
 
-  readonly greetUserUrl = 'http://localhost:8080/api/user';
-  readonly infoAboutProfileUrl = 'http://localhost:8080/api/user/my-profile';
-  readonly infoAboutSomeoneProfileUrl = 'http://localhost:8080/api/user/profile/';
-  readonly changePasswordUrl = 'http://localhost:8080/api/user/change-password';
-  readonly changeEmailUrl = 'http://localhost:8080/api/user/change-email';
+  readonly greetUserUrl = '/api/user';
+  readonly infoAboutProfileUrl = '/api/user/my-profile';
+  readonly infoAboutSomeoneProfileUrl = '/api/user/profile/';
+  readonly changePasswordUrl = '/api/user/change-password';
+  readonly changeEmailUrl = '/api/user/change-email';
 
   constructor(private http: HttpClient) {
   }

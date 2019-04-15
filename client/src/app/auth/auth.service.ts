@@ -13,9 +13,9 @@ import {Constants} from "../shared/constants";
 })
 export class AuthService {
 
-  readonly loginUrl = 'http://localhost:8080/j_spring_security_check';
-  readonly logoutUrl = 'http://localhost:8080/j_spring_security_logout';
-  readonly authUrl = 'http://localhost:8080/api/auth';
+  readonly loginUrl = '/j_spring_security_check';
+  readonly logoutUrl = '/j_spring_security_logout';
+  readonly authUrl = '/api/auth';
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService,
               private sharedService: SharedService) {

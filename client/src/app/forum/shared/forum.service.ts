@@ -9,11 +9,11 @@ import {QueryComment} from './query-comment.model';
 })
 export class ForumService {
 
-  readonly addPostUrl = 'http://localhost:8080/api/post';
-  readonly addCommentUrl = 'http://localhost:8080/api/comment';
-  readonly getPostsUrl = 'http://localhost:8080/api/post-query';
-  readonly votePostUrl = 'http://localhost:8080/api/vote';
-  readonly getCommentsUrl = 'http://localhost:8080/api/comment-query';
+  readonly addPostUrl = '/api/post';
+  readonly addCommentUrl = '/api/comment';
+  readonly getPostsUrl = '/api/post-query';
+  readonly votePostUrl = '/api/vote';
+  readonly getCommentsUrl = '/api/comment-query';
 
   constructor(private http: HttpClient) {
   }

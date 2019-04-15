@@ -25,7 +25,6 @@ export class Constants {
   public static readonly ACCOUNT_CONFIRMATION_TITLE = 'Account confirmation';
   public static readonly TOKEN_CONFIRMATION_SUCCESS_TITLE = 'Good job!';
 
-
   public static readonly FORGOT_CREDENTIALS_MSG = 'Reset token has been sent to your email.' + '<br>' +
     'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
     'and u will be not able to reset your password!';

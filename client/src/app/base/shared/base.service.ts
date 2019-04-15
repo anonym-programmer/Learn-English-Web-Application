@@ -7,11 +7,11 @@ import {FormGroup} from '@angular/forms';
 })
 export class BaseService {
 
-  readonly registerUrl = 'http://localhost:8080/api/base/register';
-  readonly checkTokenUrl = 'http://localhost:8080/api/base/check-token';
-  readonly confirmAccountUrl = 'http://localhost:8080/api/base/confirm-account';
-  readonly forgotCredentialsUrl = 'http://localhost:8080/api/base/forgot-credentials';
-  readonly resetPasswordUrl = 'http://localhost:8080/api/base/reset-password';
+  readonly registerUrl = '/api/base/register';
+  readonly checkTokenUrl = '/api/base/check-token';
+  readonly confirmAccountUrl = '/api/base/confirm-account';
+  readonly forgotCredentialsUrl = '/api/base/forgot-credentials';
+  readonly resetPasswordUrl = '/api/base/reset-password';
 
   constructor(private http: HttpClient) {
   }
