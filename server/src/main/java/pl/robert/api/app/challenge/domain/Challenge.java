@@ -8,6 +8,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_DATE;
+
 @Entity
 @Table(name = "challenges")
 @Builder
@@ -27,6 +29,7 @@ class Challenge {
     @OneToOne
     Opponent defender;
 
+    @Column(length = COL_LENGTH_DATE, nullable = false)
     LocalDateTime date;
 
     @ElementCollection

@@ -89,4 +89,17 @@ public interface Constants {
 
     String M_TEXT_EMPTY = "Text cannot be empty";
     String M_COMMENT_LENGTH = "Text of a comment should have between 10 and 255 characters";
+
+
+    /* challenge */
+
+    int COL_LENGTH_GAINED_XP = 2;
+    int COL_LENGTH_RESULT = 4;
+
+
+    /* question */
+
+    int COL_LENGTH_QUESTION = 70;
+    int COL_LENGTH_ANSWERS = 70;
+    int COL_LENGTH_CORRECT_ANSWER = 20;
 }

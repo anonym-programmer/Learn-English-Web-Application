@@ -86,5 +86,23 @@ VALUES (1, 3, 'Hi! I always wanted to meet u Mr. LinuX Torvalds! Tbh I learnt en
        (1, 3, 'Ive got a C1 level I think, but I want to have C2 as obvious :)', '2019-02-17 08:22:10'),
        (1, 4, 'Ive got a C2+ level because I was born in UK.', '2019-02-17 08:22:10');
 
-INSERT INTO questions (id, question, answers, correct_answer)
-VALUES (1, 'Whats .... name?', 'you:your:yours:yourse', 'your');
+INSERT INTO questions (question, answers, correct_answer)
+VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your'),
+       ('He goes to his guitar lessons ...', 'by underground:on underground:with underground:in underground', 'by underground'),
+       ('We havent got ... Champagne', 'a lot:little:too:much', 'much'),
+       ('David is the boss, you need to speak to ...', 'it:him:her:them', 'him'),
+       ('She ... Supper with us last Friday', 'hadnt:no had:didnt have got:didnt have', 'didnt have');
+
+INSERT INTO oponents (number_of_correct_answers, gained_xp, result, user_id)
+VALUES ('3', '60', 'WIN', 5),
+       ('1', '15', 'LOSE', 6);
+
+INSERT INTO challenges (date, attacker_id, defender_id)
+VALUES ('2019-04-17 18:35:52', 1, 2);
+
+INSERT INTO challenges_questions (challenge_id, questions_id)
+VALUES (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5);

@@ -21,10 +21,14 @@ public class Opponent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    String score;
+    @Column(name = "number_of_correct_answers", nullable = false)
+    char numberOfCorrectAnswers;
 
-    String gained_xp;
+    @Column(name = "gained_xp", length = COL_LENGTH_GAINED_XP)
+    String gainedXP;
 
+    @Enumerated(EnumType.STRING)
+    @Column(length = COL_LENGTH_RESULT)
     Result result;
 
     @OneToOne
