@@ -85,3 +85,6 @@ VALUES (1, 3, 'Hi! I always wanted to meet u Mr. LinuX Torvalds! Tbh I learnt en
        (1, 5, 'Yeah, but which english level have u got guys?', '2019-02-16 14:46:23'),
        (1, 3, 'Ive got a C1 level I think, but I want to have C2 as obvious :)', '2019-02-17 08:22:10'),
        (1, 4, 'Ive got a C2+ level because I was born in UK.', '2019-02-17 08:22:10');
+
+INSERT INTO questions (id, question, answers, correct_answer)
+VALUES (1, 'Whats .... name?', 'you:your:yours:yourse', 'your');
