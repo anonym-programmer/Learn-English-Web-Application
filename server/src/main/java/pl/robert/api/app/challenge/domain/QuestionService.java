@@ -32,4 +32,13 @@ class QuestionService {
 
         return questions;
     }
+
+    boolean areQuestionsExist(long[] questions) {
+        for (long questionId: questions) {
+            if (repository.findById(questionId) == null) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

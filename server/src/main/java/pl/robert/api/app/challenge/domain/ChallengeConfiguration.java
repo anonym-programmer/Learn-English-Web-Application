@@ -12,8 +12,10 @@ class ChallengeConfiguration {
                                     UserFacade userFacade,
                                     QuestionRepository questionRepository) {
 
-        return new ChallengeFacade(new ChallengeValidator(userFacade),
+        QuestionService questionService = new QuestionService(questionRepository);
+
+        return new ChallengeFacade(new ChallengeValidator(userFacade, questionService),
                                    new ChallengeService(repository),
-                                   new QuestionService(questionRepository));
+                                   questionService);
     }
 }

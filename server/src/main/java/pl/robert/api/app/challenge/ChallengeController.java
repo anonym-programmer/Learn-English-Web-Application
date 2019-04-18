@@ -41,7 +41,13 @@ public class ChallengeController {
 
     @PostMapping("/make")
     public HttpEntity<?> makeChallenge(@RequestBody @Valid CreateChallengeDto dto, BindingResult result, Authentication auth) {
-        dto.setMyUsername(auth.getName());
+        dto.setAttackerUsername(auth.getName());
+        facade.checkInputData(dto, result);
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
+        }
 
         return ResponseEntity
                 .ok()

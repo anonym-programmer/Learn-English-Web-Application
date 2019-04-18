@@ -104,8 +104,10 @@ public interface Constants {
 
     String F_ATTACKER_USERNAME = "attackerUsername";
     String F_DEFENDER_USERNAME = "defenderUsername";
+    String F_QUESTION_IDS = "questionsIds";
 
     String M_DEFENDER_USERNAME_EMPTY = "Defender username can not be empty";
     String M_ATTACKER_USERNAME_NOT_EXISTS = "Attacker username do not exist";
     String M_DEFENDER_USERNAME_NOT_EXISTS = "Defender username do not exist";
+    String M_QUESTION_IDS_NOT_EXISTS = "Some of a question id do not exist";
 }
