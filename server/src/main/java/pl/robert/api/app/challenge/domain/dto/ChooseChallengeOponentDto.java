@@ -9,7 +9,7 @@ import static pl.robert.api.app.shared.Constants.M_DEFENDER_USERNAME_EMPTY;
 
 @Getter @Setter
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE) @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ChooseChallengeOponentDto {
 
     String attackerUsername;

@@ -26,7 +26,7 @@ class QuestionService {
             if (!ids.contains(randomId)) {
                 ids.add(randomId);
                 Question question = repository.findById(randomId);
-                questions.add(new QuestionQuery(question.getQuestion(), question.getAnswers().split(":", -1)));
+                questions.add(new QuestionQuery(question.getId(), question.getQuestion(), question.getAnswers().split(":", -1)));
             }
         }
 

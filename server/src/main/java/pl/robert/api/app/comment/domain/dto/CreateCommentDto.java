@@ -10,7 +10,7 @@ import static pl.robert.api.app.shared.Constants.*;
 
 @Getter @Setter
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE) @ToString
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateCommentDto {
 
     @NotEmpty(message = M_POST_ID_EMPTY)

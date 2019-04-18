@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class QuestionQuery {
 
+    Long questionId;
     String question;
     String[] answers;
 }

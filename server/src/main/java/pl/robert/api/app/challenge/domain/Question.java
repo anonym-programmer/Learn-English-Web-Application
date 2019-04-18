@@ -26,6 +26,10 @@ class Question {
     @Column(length = COL_LENGTH_ANSWERS, nullable = false)
     String answers;
 
-    @Column(name = "correct_answer", length = COL_LENGTH_CORRECT_ANSWER, nullable = false)
-    String correctAnswer;
+    @Column(name = "correct_answer_full_form", length = COL_LENGTH_CORRECT_ANSWER_FULL_FORM, nullable = false)
+    String correctAnswerFullForm;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "correct_answer_short_form", length = COL_LENGTH_CORRECT_ANSWER_SHORT_FORM, nullable = false)
+    QuestionAnswerOptions correctAnswerShortForm;
 }

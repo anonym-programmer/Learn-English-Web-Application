@@ -86,22 +86,22 @@ VALUES (1, 3, 'Hi! I always wanted to meet u Mr. LinuX Torvalds! Tbh I learnt en
        (1, 3, 'Ive got a C1 level I think, but I want to have C2 as obvious :)', '2019-02-17 08:22:10'),
        (1, 4, 'Ive got a C2+ level because I was born in UK.', '2019-02-17 08:22:10');
 
-INSERT INTO questions (question, answers, correct_answer)
-VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your'),
-       ('He goes to his guitar lessons ...', 'by underground:on underground:with underground:in underground', 'by underground'),
-       ('We havent got ... Champagne', 'a lot:little:too:much', 'much'),
-       ('David is the boss, you need to speak to ...', 'it:him:her:them', 'him'),
-       ('She ... Supper with us last Friday', 'hadnt:no had:didnt have got:didnt have', 'didnt have'),
-       ('I havent got ...', 'no brothers or sisters:brothers or sisters:any brothers or sisters:some brothers and sisters', 'any brother or sisters'),
-       ('George ... fly to Stockholm tomorrow. ', 'to going:goes to:is going to:go to', 'is going to'),
-       ('I wanted an orange car, but they only had ...', 'a one red:one red:a red one:a red', 'a red one'),
-       ('Have you ...?', 'got any friends in Barcelona:not got no friends in Barcelona:in Barcelona any friends:friends in Barcelona got', 'got any friends in Barcelona'),
-       ('There is ... of beer left from the party ', 'little:much:a lot:too', 'a lot');
+INSERT INTO questions (question, answers, correct_answer_full_form, correct_answer_short_form)
+VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your', 'b'),
+       ('He goes to his guitar lessons ...', 'by underground:on underground:with underground:in underground', 'by underground', 'a'),
+       ('We havent got ... Champagne', 'a lot:little:too:much', 'much', 'd'),
+       ('David is the boss, you need to speak to ...', 'it:him:her:them', 'him', 'b'),
+       ('She ... Supper with us last Friday', 'hadnt:no had:didnt have got:didnt have', 'didnt have', 'd'),
+       ('I havent got ...', 'no brothers or sisters:brothers or sisters:any brothers or sisters:some brothers and sisters', 'any brother or sisters', 'c'),
+       ('George ... fly to Stockholm tomorrow. ', 'to going:goes to:is going to:go to', 'is going to', 'c'),
+       ('I wanted an orange car, but they only had ...', 'a one red:one red:a red one:a red', 'a red one', 'c'),
+       ('Have you ...?', 'got any friends in Barcelona:not got no friends in Barcelona:in Barcelona any friends:friends in Barcelona got', 'got any friends in Barcelona', 'a'),
+       ('There is ... of beer left from the party ', 'little:much:a lot:too', 'a lot', 'c');
 
 INSERT INTO oponents (my_answers, number_of_correct_answers, gained_xp, result, user_id)
-VALUES ('1:1:0:1:0', '3', '60', 'WIN', 5),
-       ('0:1:0:0:0', '1', '15', 'LOSE', 6),
-       ('1:1:1:1:1', '5', NULL, 'NONE', 6),
+VALUES ('b:a:c:b:a', '3', '60', 'WIN', 5),
+       ('d:a:b:c:a', '1', '15', 'LOSE', 6),
+       ('b:d:d:c:a', '5', NULL, 'NONE', 6),
        (NULL, NULL, NULL, 'NONE', 5);
 
 INSERT INTO challenges (attacker_id, defender_id, date_of_creation, status)

@@ -98,7 +98,8 @@ public interface Constants {
     int COL_LENGTH_QUESTION = 150;
     int COL_LENGTH_ANSWERS = 150;
     int COL_LENGTH_MY_ANSWERS = 9;
-    int COL_LENGTH_CORRECT_ANSWER = 30;
+    int COL_LENGTH_CORRECT_ANSWER_FULL_FORM = 30;
+    int COL_LENGTH_CORRECT_ANSWER_SHORT_FORM = 1;
     int COL_LENGTH_CHALLENGE_STATUS = 9;
 
     String F_ATTACKER_USERNAME = "attackerUsername";
