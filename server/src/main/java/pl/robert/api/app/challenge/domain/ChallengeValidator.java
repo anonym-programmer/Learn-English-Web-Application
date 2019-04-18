@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.user.domain.UserFacade;
 
 import static pl.robert.api.app.shared.Constants.*;
@@ -15,7 +16,7 @@ import static pl.robert.api.app.shared.Constants.*;
 class ChallengeValidator {
 
     UserFacade userFacade;
-    QuestionService questionService;
+    QuestionFacade questionFacade;
 
     void checkInputData(ChooseChallengeOponentDto dto, BindingResult result) {
 
@@ -26,7 +27,7 @@ class ChallengeValidator {
 
         areUsersExists(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
 
-        if (!questionService.areQuestionsExist(dto.getQuestionsIds())) {
+        if (!questionFacade.areQuestionsExist(dto.getQuestionsIds())) {
             result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS, M_QUESTION_IDS_NOT_EXISTS);
         }
     }

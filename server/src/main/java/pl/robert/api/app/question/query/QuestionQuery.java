@@ -1,4 +1,4 @@
-package pl.robert.api.app.challenge.query;
+package pl.robert.api.app.question.query;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

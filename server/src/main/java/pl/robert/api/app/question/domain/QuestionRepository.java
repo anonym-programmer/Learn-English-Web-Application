@@ -1,4 +1,4 @@
-package pl.robert.api.app.challenge.domain;
+package pl.robert.api.app.question.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.shared.ErrorsWrapper;
 
 import javax.validation.Valid;
@@ -22,12 +23,13 @@ import javax.validation.Valid;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class ChallengeController {
 
-    ChallengeFacade facade;
+    ChallengeFacade challengeFacade;
+    QuestionFacade questionFacade;
 
     @PostMapping("/choose")
     public HttpEntity<?> chooseChallengeOpponent(@RequestBody @Valid ChooseChallengeOponentDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
-        facade.checkInputData(dto, result);
+        challengeFacade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
@@ -36,13 +38,13 @@ public class ChallengeController {
 
         return ResponseEntity
                 .ok()
-                .body(facade.getRandomQuestions());
+                .body(questionFacade.getRandomQuestions());
     }
 
     @PostMapping("/make")
     public HttpEntity<?> makeChallenge(@RequestBody @Valid CreateChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
-        facade.checkInputData(dto, result);
+        challengeFacade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()

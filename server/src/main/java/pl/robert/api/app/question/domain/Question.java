@@ -1,4 +1,4 @@
-package pl.robert.api.app.challenge.domain;
+package pl.robert.api.app.question.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -14,7 +14,7 @@ import static pl.robert.api.app.shared.Constants.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class Question {
+public class Question {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

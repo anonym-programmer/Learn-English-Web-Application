@@ -1,9 +1,9 @@
-package pl.robert.api.app.challenge.domain;
+package pl.robert.api.app.question.domain;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import pl.robert.api.app.challenge.query.QuestionQuery;
+import pl.robert.api.app.question.query.QuestionQuery;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -26,7 +26,6 @@ class CommentController {
     @PostMapping
     public HttpEntity<?> addComment(@RequestBody @Valid CreateCommentDto dto, BindingResult result, Authentication auth) {
         dto.setUsername(auth.getName());
-        System.out.println(dto);
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity

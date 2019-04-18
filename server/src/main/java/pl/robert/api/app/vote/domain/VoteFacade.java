@@ -10,7 +10,7 @@ import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
 
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class VoteFacade {
 
     VoteValidator validator;

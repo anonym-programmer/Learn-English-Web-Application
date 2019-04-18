@@ -89,10 +89,6 @@ public class UserFacade {
         return userService.isUsernameExist(username);
     }
 
-    public boolean isUserIdExists(long id) {
-        return userService.isUserByIdExist(id);
-    }
-
     public User findUserByConfirmationToken(String token) {
         return tokenService.findByConfirmationToken(token).getUser();
     }

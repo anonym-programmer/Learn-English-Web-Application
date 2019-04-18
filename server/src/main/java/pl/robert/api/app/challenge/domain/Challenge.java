@@ -2,6 +2,7 @@ package pl.robert.api.app.challenge.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.question.domain.Question;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

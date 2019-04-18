@@ -12,7 +12,7 @@ import pl.robert.api.app.user.domain.UserFacade;
 import java.util.List;
 
 @AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class CommentFacade {
 
     CommentValidator validator;

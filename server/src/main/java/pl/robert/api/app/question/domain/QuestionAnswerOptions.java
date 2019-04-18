@@ -1,4 +1,4 @@
-package pl.robert.api.app.challenge.domain;
+package pl.robert.api.app.question.domain;
 
 enum QuestionAnswerOptions {
     a, b, c, d
