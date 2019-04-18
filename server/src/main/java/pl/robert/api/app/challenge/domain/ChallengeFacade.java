@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.challenge.query.QuestionQuery;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class ChallengeFacade {
         }
     }
 
-    public List<String> getRandomQuestions() {
+    public List<QuestionQuery> getRandomQuestions() {
         return questionService.getRandomQuestions();
     }
 }

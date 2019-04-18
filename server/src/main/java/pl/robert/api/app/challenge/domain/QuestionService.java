@@ -3,6 +3,7 @@ package pl.robert.api.app.challenge.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.challenge.query.QuestionQuery;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +15,8 @@ class QuestionService {
 
     QuestionRepository repository;
 
-    List<String> getRandomQuestions() {
-        List<String> questions = new ArrayList<>();
+    List<QuestionQuery> getRandomQuestions() {
+        List<QuestionQuery> questions = new ArrayList<>();
         List<Integer> ids = new ArrayList<>(5);
         Random random = new Random();
 
@@ -24,7 +25,8 @@ class QuestionService {
             if (randomId == 0) randomId = 1;
             if (!ids.contains(randomId)) {
                 ids.add(randomId);
-                questions.add(repository.findById(randomId).getQuestion());
+                Question question = repository.findById(randomId);
+                questions.add(new QuestionQuery(question.getQuestion(), question.getAnswers().split(":", -1)));
             }
         }
 
