@@ -26,6 +26,6 @@ class Question {
     @Column(length = COL_LENGTH_ANSWERS, nullable = false)
     String answers;
 
-    @Column(length = COL_LENGTH_CORRECT_ANSWER, name = "correct_answer", nullable = false)
+    @Column(name = "correct_answer", length = COL_LENGTH_CORRECT_ANSWER, nullable = false)
     String correctAnswer;
 }

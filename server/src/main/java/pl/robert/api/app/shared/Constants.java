@@ -94,10 +94,12 @@ public interface Constants {
     /* challenge */
 
     int COL_LENGTH_GAINED_XP = 2;
-    int COL_LENGTH_RESULT = 4;
+    int COL_LENGTH_CHALLENGE_RESULT = 4;
     int COL_LENGTH_QUESTION = 150;
     int COL_LENGTH_ANSWERS = 150;
+    int COL_LENGTH_MY_ANSWERS = 9;
     int COL_LENGTH_CORRECT_ANSWER = 30;
+    int COL_LENGTH_CHALLENGE_STATUS = 9;
 
     String F_ATTACKER_USERNAME = "attackerUsername";
     String F_DEFENDER_USERNAME = "defenderUsername";

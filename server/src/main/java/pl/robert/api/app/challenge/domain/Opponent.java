@@ -21,6 +21,9 @@ public class Opponent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @Column(name = "my_answers", length = COL_LENGTH_MY_ANSWERS)
+    String myAnswers;
+
     @Column(name = "number_of_correct_answers")
     char numberOfCorrectAnswers;
 
@@ -28,8 +31,8 @@ public class Opponent {
     String gainedXP;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = COL_LENGTH_RESULT)
-    Result result;
+    @Column(nullable = false, length = COL_LENGTH_CHALLENGE_RESULT)
+    ChallengeResult result;
 
     @OneToOne
     @JoinColumn(name = "user_id")

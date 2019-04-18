@@ -98,15 +98,15 @@ VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your'),
        ('Have you ...?', 'got any friends in Barcelona:not got no friends in Barcelona:in Barcelona any friends:friends in Barcelona got', 'got any friends in Barcelona'),
        ('There is ... of beer left from the party ', 'little:much:a lot:too', 'a lot');
 
-INSERT INTO oponents (number_of_correct_answers, gained_xp, result, user_id)
-VALUES ('3', '60', 'WIN', 5),
-       ('1', '15', 'LOSE', 6),
-       ('5', NULL, 'NONE', 6),
-       (NULL, NULL, 'NONE', 5);
+INSERT INTO oponents (my_answers, number_of_correct_answers, gained_xp, result, user_id)
+VALUES ('1:1:0:1:0', '3', '60', 'WIN', 5),
+       ('0:1:0:0:0', '1', '15', 'LOSE', 6),
+       ('1:1:1:1:1', '5', NULL, 'NONE', 6),
+       (NULL, NULL, NULL, 'NONE', 5);
 
-INSERT INTO challenges (date, attacker_id, defender_id)
-VALUES ('2019-04-17 18:35:52', 1, 2),
-       ('2019-04-17 19:21:52', 3, 4);
+INSERT INTO challenges (attacker_id, defender_id, date_of_creation, status)
+VALUES (1, 2, '2019-04-17 18:35:52', 'COMPLETED'),
+       (3, 4, '2019-04-17 19:21:52', 'PENDING');
 
 INSERT INTO challenges_questions (challenge_id, questions_id)
 VALUES (1, 1),

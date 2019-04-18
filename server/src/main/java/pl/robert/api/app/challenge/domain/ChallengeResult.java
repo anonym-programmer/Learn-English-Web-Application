@@ -1,6 +1,6 @@
 package pl.robert.api.app.challenge.domain;
 
-enum Result {
+enum ChallengeResult {
     WIN,
     LOSE,
     DRAW,

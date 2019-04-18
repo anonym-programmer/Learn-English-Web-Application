@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_CHALLENGE_STATUS;
 import static pl.robert.api.app.shared.Constants.COL_LENGTH_DATE;
 
 @Entity
@@ -29,8 +30,12 @@ class Challenge {
     @OneToOne
     Opponent defender;
 
-    @Column(length = COL_LENGTH_DATE, nullable = false)
-    LocalDateTime date;
+    @Column(name = "date_of_creation", length = COL_LENGTH_DATE, nullable = false)
+    LocalDateTime dateOfCreation;
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = COL_LENGTH_CHALLENGE_STATUS, nullable = false)
+    ChallengeStatus status;
 
     @ManyToMany(fetch = FetchType.EAGER)
     List<Question> questions = new ArrayList<>(5);

@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
-import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
 import pl.robert.api.app.shared.ErrorsWrapper;
 
 import javax.validation.Valid;
@@ -24,7 +24,7 @@ public class ChallengeController {
     ChallengeFacade facade;
 
     @PostMapping
-    public HttpEntity<?> makeChallenge(@RequestBody @Valid CreateChallengeDto dto, BindingResult result, Authentication auth) {
+    public HttpEntity<?> chooseChallengeOponent(@RequestBody @Valid ChooseChallengeOponentDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
