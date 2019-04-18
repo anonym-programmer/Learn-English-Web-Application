@@ -91,18 +91,31 @@ VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your'),
        ('He goes to his guitar lessons ...', 'by underground:on underground:with underground:in underground', 'by underground'),
        ('We havent got ... Champagne', 'a lot:little:too:much', 'much'),
        ('David is the boss, you need to speak to ...', 'it:him:her:them', 'him'),
-       ('She ... Supper with us last Friday', 'hadnt:no had:didnt have got:didnt have', 'didnt have');
+       ('She ... Supper with us last Friday', 'hadnt:no had:didnt have got:didnt have', 'didnt have'),
+       ('I havent got ...', 'no brothers or sisters:brothers or sisters:any brothers or sisters:some brothers and sisters', 'any brother or sisters'),
+       ('George ... fly to Stockholm tomorrow. ', 'to going:goes to:is going to:go to', 'is going to'),
+       ('I wanted an orange car, but they only had ...', 'a one red:one red:a red one:a red', 'a red one'),
+       ('Have you ...?', 'got any friends in Barcelona:not got no friends in Barcelona:in Barcelona any friends:friends in Barcelona got', 'got any friends in Barcelona'),
+       ('There is ... of beer left from the party ', 'little:much:a lot:too', 'a lot');
 
 INSERT INTO oponents (number_of_correct_answers, gained_xp, result, user_id)
 VALUES ('3', '60', 'WIN', 5),
-       ('1', '15', 'LOSE', 6);
+       ('1', '15', 'LOSE', 6),
+       ('5', NULL, 'NONE', 6),
+       (NULL, NULL, 'NONE', 5);
 
 INSERT INTO challenges (date, attacker_id, defender_id)
-VALUES ('2019-04-17 18:35:52', 1, 2);
+VALUES ('2019-04-17 18:35:52', 1, 2),
+       ('2019-04-17 19:21:52', 3, 4);
 
 INSERT INTO challenges_questions (challenge_id, questions_id)
 VALUES (1, 1),
        (1, 2),
        (1, 3),
        (1, 4),
-       (1, 5);
+       (1, 5),
+       (2, 1),
+       (2, 3),
+       (2, 5),
+       (2, 7),
+       (2, 9);

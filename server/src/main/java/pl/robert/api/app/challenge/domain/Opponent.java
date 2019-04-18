@@ -21,7 +21,7 @@ public class Opponent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(name = "number_of_correct_answers", nullable = false)
+    @Column(name = "number_of_correct_answers")
     char numberOfCorrectAnswers;
 
     @Column(name = "gained_xp", length = COL_LENGTH_GAINED_XP)

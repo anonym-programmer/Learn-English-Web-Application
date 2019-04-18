@@ -95,11 +95,14 @@ public interface Constants {
 
     int COL_LENGTH_GAINED_XP = 2;
     int COL_LENGTH_RESULT = 4;
+    int COL_LENGTH_QUESTION = 150;
+    int COL_LENGTH_ANSWERS = 150;
+    int COL_LENGTH_CORRECT_ANSWER = 30;
 
+    String F_ATTACKER_USERNAME = "attackerUsername";
+    String F_DEFENDER_USERNAME = "defenderUsername";
 
-    /* question */
-
-    int COL_LENGTH_QUESTION = 70;
-    int COL_LENGTH_ANSWERS = 70;
-    int COL_LENGTH_CORRECT_ANSWER = 20;
+    String M_DEFENDER_USERNAME_EMPTY = "Defender username can not be empty";
+    String M_ATTACKER_USERNAME_NOT_EXISTS = "Attacker username do not exist";
+    String M_DEFENDER_USERNAME_NOT_EXISTS = "Defender username do not exist";
 }

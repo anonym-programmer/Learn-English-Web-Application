@@ -32,6 +32,6 @@ class Challenge {
     @Column(length = COL_LENGTH_DATE, nullable = false)
     LocalDateTime date;
 
-    @ElementCollection
+    @ManyToMany(fetch = FetchType.EAGER)
     List<Question> questions = new ArrayList<>(5);
 }
