@@ -10,9 +10,9 @@ import {QuerySomeoneProfile} from './query-someone-profile.model';
 })
 export class UserService {
 
-  readonly greetUserUrl = '/api/user';
-  readonly infoAboutProfileUrl = '/api/user/my-profile';
-  readonly infoAboutSomeoneProfileUrl = '/api/user/profile/';
+  readonly greetUserUrl = '/api/user-query';
+  readonly infoAboutProfileUrl = '/api/user-query/my-profile';
+  readonly infoAboutSomeoneProfileUrl = '/api/user-query/profile/';
   readonly changePasswordUrl = '/api/user/change-password';
   readonly changeEmailUrl = '/api/user/change-email';
 

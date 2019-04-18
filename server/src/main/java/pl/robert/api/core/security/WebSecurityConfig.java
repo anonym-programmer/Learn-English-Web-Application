@@ -59,37 +59,19 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
-    private static final String[] SWAGGER_API = {
-            "/v2/api-docs",
-            "/swagger-resources",
-            "/swagger-resources/**",
-            "/configuration/ui",
-            "/configuration/security",
-            "/swagger-ui.html",
-            "/webjars/**"
-    };
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers(SWAGGER_API).permitAll()
-                .antMatchers("/api/base/**",
-                                         "/api/auth",
-                                         "/api/post-query/**",
-                                         "/api/comment-query/**").permitAll()
-                .antMatchers("/api/user/**").hasRole("USER")
-                .antMatchers("/api/admin-query/**",
-                                         "/api/admin/**").hasRole("ADMIN")
-                .antMatchers("/api/post/**",
-                                         "/api/vote/**",
-                                         "/api/comment/**",
-                                         "/api/challenge/**",
-                                         "/api/challenge-query/**").authenticated()
+                .antMatchers(NOT_AUTHENTICATED_API).permitAll()
+                .antMatchers(ROLE_USER_API).hasRole("USER")
+                .antMatchers(ROLE_ADMIN_API).hasRole("ADMIN")
+                .antMatchers(AUTHENTICATED_API).authenticated()
                 .anyRequest().authenticated()
             .and()
                 .formLogin()
                 .loginProcessingUrl("/j_spring_security_check")
-                .successForwardUrl("/api/user")
+                .successForwardUrl("/api/user-query")
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .failureHandler(new CustomAuthenticationFailureHandler())
                 .permitAll()
@@ -111,4 +93,39 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
                 .sessionManagement().maximumSessions(1);
     }
+
+    private static final String[] SWAGGER_API = {
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**"
+    };
+
+    private static final String[] NOT_AUTHENTICATED_API = {
+            "/api/base/**",
+            "/api/auth/**",
+            "/api/post-query/**",
+            "/api/comment-query/**"
+    };
+
+    private static final String[] ROLE_USER_API = {
+            "/api/user/**",
+            "/api/user-query/**"
+    };
+
+    private static final String[] ROLE_ADMIN_API = {
+            "/api/admin/**",
+            "/api/admin-query/**"
+    };
+
+    private static final String[] AUTHENTICATED_API = {
+            "/api/post/**",
+            "/api/vote/**",
+            "/api/comment/**",
+            "/api/challenge/**",
+            "/api/challenge-query/**"
+    };
 }

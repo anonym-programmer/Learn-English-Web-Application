@@ -52,6 +52,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
     List<Post> posts;
 
+    @Transient
     @OneToOne(mappedBy = "user")
     Opponent opponent;
 

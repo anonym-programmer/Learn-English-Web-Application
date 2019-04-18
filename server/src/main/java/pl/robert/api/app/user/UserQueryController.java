@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/user-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
