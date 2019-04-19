@@ -16,6 +16,6 @@ class ChallengeConfiguration {
                                     OpponentFacade opponentFacade) {
 
         return new ChallengeFacade(new ChallengeValidator(userFacade, questionFacade),
-                                   new ChallengeService(repository, opponentFacade));
+                                   new ChallengeService(repository, opponentFacade, questionFacade, userFacade));
     }
 }

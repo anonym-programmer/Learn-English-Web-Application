@@ -24,4 +24,8 @@ public class QuestionFacade {
     public char[] calculateCorrectAnswers(char[] answers, long[] questionsId) {
         return service.calculateCorrectAnswers(answers, questionsId);
     }
+
+    public List<Question> getQuestionsByIds(long[] questionsIds) {
+        return service.getQuestionsByIds(questionsIds);
+    }
 }

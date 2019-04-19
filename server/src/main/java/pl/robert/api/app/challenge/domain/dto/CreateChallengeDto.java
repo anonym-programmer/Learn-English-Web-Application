@@ -2,22 +2,18 @@ package pl.robert.api.app.challenge.domain.dto;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.opponent.Opponent;
+import pl.robert.api.app.question.domain.Question;
 
-import javax.validation.constraints.NotEmpty;
-
-import static pl.robert.api.app.shared.Constants.M_DEFENDER_USERNAME_EMPTY;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
 public class CreateChallengeDto {
 
-    String attackerUsername;
-
-    @NotEmpty(message = M_DEFENDER_USERNAME_EMPTY)
-    String defenderUsername;
-
-    final long[] questionsIds = new long[5];
-
-    char[] answers = new char[4];
+    Opponent attacker;
+    Opponent defender;
+    List<Question> questions;
 }

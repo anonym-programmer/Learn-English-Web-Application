@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
-import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,13 +20,13 @@ public class ChallengeFacade {
         }
     }
 
-    public void checkInputData(CreateChallengeDto dto, BindingResult result) {
+    public void checkInputData(MakeChallengeDto dto, BindingResult result) {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
     }
 
-    public void add(CreateChallengeDto dto) {
+    public void add(MakeChallengeDto dto) {
         service.add(dto);
     }
 }

@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
-import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.user.domain.UserFacade;
 
@@ -23,7 +23,7 @@ class ChallengeValidator {
         areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
     }
 
-    void checkInputData(CreateChallengeDto dto, BindingResult result) {
+    void checkInputData(MakeChallengeDto dto, BindingResult result) {
 
         areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
 

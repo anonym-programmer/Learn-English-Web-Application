@@ -1,6 +1,5 @@
 package pl.robert.api.app.question.domain;
 
-import com.google.common.primitives.Ints;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -56,5 +55,13 @@ class QuestionService {
         }
 
         return myAnswers;
+    }
+
+    List<Question> getQuestionsByIds(long[] questionsIds) {
+        List<Question> questions = new ArrayList<>();
+        for (long questionId : questionsIds) {
+            questions.add(repository.findById(questionId));
+        }
+        return questions;
     }
 }
