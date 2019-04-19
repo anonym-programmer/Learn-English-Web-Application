@@ -14,6 +14,6 @@ class ChallengeService {
     OpponentFacade opponentFacade;
 
     public void add(CreateChallengeDto dto) {
-
+        opponentFacade.addOpponents(dto);
     }
 }

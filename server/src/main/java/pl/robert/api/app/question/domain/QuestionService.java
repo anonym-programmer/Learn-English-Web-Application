@@ -1,5 +1,6 @@
 package pl.robert.api.app.question.domain;
 
+import com.google.common.primitives.Ints;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -37,5 +38,23 @@ class QuestionService {
             }
         }
         return true;
+    }
+
+    char[] calculateCorrectAnswers(char[] answers, long[] questionsId) {
+        char[] correctAnswers = new char[5];
+        for (int i=0; i<5; i++) {
+            correctAnswers[i] = repository.findById(questionsId[i]).getCorrectAnswerShortForm().toString().charAt(0);
+        }
+
+        char[] myAnswers = new char[5];
+        for (int i=0; i<5; i++) {
+            if (correctAnswers[i] == answers[i]) {
+                myAnswers[i] = '1';
+            } else {
+                myAnswers[i] = '0';
+            }
+        }
+
+        return myAnswers;
     }
 }

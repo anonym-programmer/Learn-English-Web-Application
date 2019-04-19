@@ -20,4 +20,8 @@ public class QuestionFacade {
     public boolean areQuestionsExist(long[] questionsId) {
         return service.areQuestionsExist(questionsId);
     }
+
+    public char[] calculateCorrectAnswers(char[] answers, long[] questionsId) {
+        return service.calculateCorrectAnswers(answers, questionsId);
+    }
 }

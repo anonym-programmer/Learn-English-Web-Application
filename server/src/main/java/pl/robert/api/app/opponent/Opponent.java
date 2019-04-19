@@ -24,7 +24,7 @@ public class Opponent {
     @Column(name = "my_answers", length = COL_LENGTH_MY_ANSWERS)
     String myAnswers;
 
-    @Column(name = "answers_status")
+    @Column(name = "answers_status", length = COL_LENGTH_MY_ANSWERS)
     String answersStatus;
 
     @Column(name = "gained_xp", length = COL_LENGTH_GAINED_XP)
