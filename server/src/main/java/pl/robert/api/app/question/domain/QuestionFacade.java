@@ -17,7 +17,7 @@ public class QuestionFacade {
         return service.getRandomQuestions();
     }
 
-    public boolean areQuestionsExist(long[] questions) {
-        return service.areQuestionsExist(questions);
+    public boolean areQuestionsExist(long[] questionsId) {
+        return service.areQuestionsExist(questionsId);
     }
 }

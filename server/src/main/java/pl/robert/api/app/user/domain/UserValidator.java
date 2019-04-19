@@ -17,7 +17,7 @@ class UserValidator {
 
     void checkInputData(CreateUserDto dto, BindingResult result) {
 
-        if (userService.isUsernameExist(dto.getUsername())) {
+        if (userService.isUsernameNotExist(dto.getUsername())) {
             result.rejectValue(F_USERNAME, C_EXISTS, M_USERNAME_EXISTS);
         }
 

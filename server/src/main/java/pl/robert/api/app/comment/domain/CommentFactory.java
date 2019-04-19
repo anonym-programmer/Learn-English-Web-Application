@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 class CommentFactory {
 
     static Comment create(CreateCommentDto dto, Post post, User user) {
-        return Comment
-                .builder()
+        return Comment.builder()
                 .post(post)
                 .user(user)
                 .text(dto.getText())

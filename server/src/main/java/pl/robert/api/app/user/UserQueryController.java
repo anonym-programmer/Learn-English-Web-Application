@@ -32,7 +32,7 @@ class UserQueryController {
 
     @GetMapping("/profile/{username}")
     public HttpEntity<?> getUserProfile(@PathVariable String username) {
-        if (!facade.isUserExists(username)) {
+        if (facade.isUsernameNotExists(username)) {
             return ResponseEntity
                     .badRequest()
                     .build();

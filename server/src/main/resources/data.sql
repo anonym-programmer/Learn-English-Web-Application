@@ -27,15 +27,15 @@ VALUES (1, 1),
        (9, 1);
 
 INSERT INTO user_details (level, expierience, current_rank, user_id)
-VALUES ('13', '13555', 'CHALLENGER', 1),
-       ('2', '80', 'BRONZE', 2),
-       ('3', '190', 'SILVER', 3),
-       ('5', '365', 'GOLD', 4),
-       ('11', '6795', 'MASTER', 5),
-       ('12', '7295', 'MASTER', 6),
-       ('9', '2400', 'DIAMOND', 7),
-       ('7', '850', 'PLATINUM', 8),
-       ('6', '700', 'GOLD', 9);
+VALUES ('13', '13555', 'Challenger', 1),
+       ('2', '80', 'Bronze', 2),
+       ('3', '190', 'Silver', 3),
+       ('5', '365', 'Gold', 4),
+       ('11', '6795', 'Master', 5),
+       ('12', '7295', 'Master', 6),
+       ('9', '2400', 'Diamond', 7),
+       ('7', '850', 'Platinum', 8),
+       ('6', '700', 'Gold', 9);
 
 INSERT INTO posts (title, description, date, up_vote, down_vote, user_id)
 VALUES ('Learning English',

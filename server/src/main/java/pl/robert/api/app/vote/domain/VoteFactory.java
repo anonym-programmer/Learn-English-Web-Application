@@ -9,8 +9,7 @@ import java.time.LocalDateTime;
 class VoteFactory {
 
     static Vote create(CreateVoteDto dto, Post post, User user) {
-        return Vote
-                .builder()
+        return Vote.builder()
                 .post(post)
                 .user(user)
                 .date(LocalDateTime.now())

@@ -5,8 +5,7 @@ import pl.robert.api.app.post.query.PostQuery;
 class PostQueryFactory {
 
     static PostQuery queryPost(Post post) {
-        return PostQuery
-                .builder()
+        return PostQuery.builder()
                 .id(String.valueOf(post.getId()))
                 .title(post.getTitle())
                 .description(post.getDescription())

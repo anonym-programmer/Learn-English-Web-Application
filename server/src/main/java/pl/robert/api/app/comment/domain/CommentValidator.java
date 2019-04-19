@@ -24,7 +24,7 @@ class CommentValidator {
             result.rejectValue(F_POST_ID, C_NOT_EXISTS, M_POST_NOT_EXISTS);
         }
 
-        if (!userFacade.isUserExists(dto.getUsername())) {
+        if (userFacade.isUsernameNotExists(dto.getUsername())) {
             result.rejectValue(F_USERNAME, C_NOT_EXISTS, M_USERNAME_NOT_EXISTS);
         }
     }

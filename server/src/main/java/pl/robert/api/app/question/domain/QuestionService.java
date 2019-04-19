@@ -5,9 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.question.query.QuestionQuery;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -16,25 +15,23 @@ class QuestionService {
     QuestionRepository repository;
 
     List<QuestionQuery> getRandomQuestions() {
-        List<QuestionQuery> questions = new ArrayList<>();
-        List<Integer> ids = new ArrayList<>(5);
-        Random random = new Random();
+        List<Question> questionList = repository
+                .findAll()
+                .subList(0, (int) repository.count());
+        Collections.shuffle(questionList);
 
-        while (questions.size() != 5) {
-            int randomId = random.nextInt((int) repository.count() + 1);
-            if (randomId == 0) randomId = 1;
-            if (!ids.contains(randomId)) {
-                ids.add(randomId);
-                Question question = repository.findById(randomId);
-                questions.add(new QuestionQuery(question.getId(), question.getQuestion(), question.getAnswers().split(":", -1)));
-            }
-        }
-
-        return questions;
+        return List.copyOf(questionList
+                .stream()
+                .map(question -> new QuestionQuery(
+                        question.getId(),
+                        question.getQuestion(),
+                        question.getAnswers().split(":", -1)))
+                .collect(Collectors.toList())
+                .subList(0, 5));
     }
 
-    boolean areQuestionsExist(long[] questions) {
-        for (long questionId: questions) {
+    boolean areQuestionsExist(long[] questionsId) {
+        for (long questionId : questionsId) {
             if (repository.findById(questionId) == null) {
                 return false;
             }

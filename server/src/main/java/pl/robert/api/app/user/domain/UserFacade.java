@@ -85,8 +85,8 @@ public class UserFacade {
         return tokenService.confirmRegisterToken(confirmationToken);
     }
 
-    public boolean isUserExists(String username) {
-        return userService.isUsernameExist(username);
+    public boolean isUsernameNotExists(String username) {
+        return userService.isUsernameNotExist(username);
     }
 
     public User findUserByConfirmationToken(String token) {

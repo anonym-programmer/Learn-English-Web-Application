@@ -8,15 +8,16 @@ import pl.robert.api.app.user.domain.dto.CreateUserDto;
 import java.util.Collections;
 import java.util.HashSet;
 
+import static pl.robert.api.app.shared.Constants.ROLE_USER;
+
 class UserFactory {
 
     static User create(CreateUserDto dto) {
-        return User
-                .builder()
+        return User.builder()
                 .username(dto.getUsername())
                 .email(dto.getEmail())
                 .password(passwordEncoder().encode(dto.getPassword()))
-                .roles(new HashSet<>(Collections.singleton(new Role(1L, "ROLE_USER"))))
+                .roles(new HashSet<>(Collections.singleton(new Role(1L, ROLE_USER))))
                 .isEnabled(false)
                 .build();
     }
@@ -27,11 +28,10 @@ class UserFactory {
     }
 
     static UserDetails createDetails(User user) {
-        return UserDetails
-                .builder()
+        return UserDetails.builder()
                 .level("1")
                 .expierience("0")
-                .currentRank(String.valueOf(UserRanks.BRONZE))
+                .currentRank(UserRanks.BRONZE.getRank())
                 .user(user)
                 .build();
     }

@@ -20,26 +20,30 @@ class ChallengeValidator {
 
     void checkInputData(ChooseChallengeOponentDto dto, BindingResult result) {
 
-        areUsersExists(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
+        areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
     }
 
     void checkInputData(CreateChallengeDto dto, BindingResult result) {
 
-        areUsersExists(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
+        areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
 
         if (!questionFacade.areQuestionsExist(dto.getQuestionsIds())) {
             result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS, M_QUESTION_IDS_NOT_EXISTS);
         }
     }
 
-    private void areUsersExists(String attackerUsername, String defenderUsername, BindingResult result) {
+    private void areUsersCorrect(String attackerUsername, String defenderUsername, BindingResult result) {
 
-        if (!userFacade.isUserExists(attackerUsername)) {
+        if (userFacade.isUsernameNotExists(attackerUsername)) {
             result.rejectValue(F_ATTACKER_USERNAME, C_NOT_EXISTS, M_ATTACKER_USERNAME_NOT_EXISTS);
         }
 
-        if (!userFacade.isUserExists(defenderUsername)) {
+        if (userFacade.isUsernameNotExists(defenderUsername)) {
             result.rejectValue(F_DEFENDER_USERNAME, C_NOT_EXISTS, M_DEFENDER_USERNAME_NOT_EXISTS);
+        }
+
+        if (attackerUsername.equals(defenderUsername)) {
+            result.rejectValue(F_DEFENDER_USERNAME, C_MATCH, M_ATTACKER_EQUALS_DEFENDER_USERNAME);
         }
     }
 }

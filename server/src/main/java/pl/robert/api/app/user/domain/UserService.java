@@ -13,8 +13,7 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static pl.robert.api.app.shared.Constants.ROLE_USER;
-import static pl.robert.api.app.shared.Constants.ROLE_USER_ADMIN;
+import static pl.robert.api.app.shared.Constants.*;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -31,7 +30,6 @@ class UserService {
     }
 
     boolean isntUserAnAdmin(long id) {
-        System.out.println(repository.findById(id).getRoles().size());
         return repository.findById(id).getRoles().size() == 1;
     }
 
@@ -39,8 +37,8 @@ class UserService {
         return repository.findById(id) != null;
     }
 
-    boolean isUsernameExist(String username) {
-        return repository.findByUsername(username) != null;
+    boolean isUsernameNotExist(String username) {
+        return repository.findByUsername(username) == null;
     }
 
     boolean isEmailExist(String email) {
@@ -61,14 +59,12 @@ class UserService {
 
     Optional<AuthUserDto> findAuthByUsername(String username) {
         User user = repository.findByUsername(username);
-        return Optional.of(
-                AuthUserDto
-                        .builder()
-                        .username(user.getUsername())
-                        .password(user.getPassword())
-                        .isEnabled(user.isEnabled())
-                        .roles(user.getRoles())
-                        .build());
+        return Optional.of(AuthUserDto.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .isEnabled(user.isEnabled())
+                .roles(user.getRoles())
+                .build());
     }
 
     Page<UserQuery> findAll(Pageable pageable) {
@@ -80,7 +76,7 @@ class UserService {
                         String.valueOf(user.getId()),
                         user.getUsername(),
                         user.getEmail(),
-                        user.getRoles().size() == 1 ? ROLE_USER : ROLE_USER_ADMIN,
+                        user.getRoles().size() == 1 ? USER : USER_ADMIN,
                         user.isEnabled()))
                 .sorted(Comparator.comparing(UserQuery::getId))
                 .collect(Collectors.toList()), pageable, totalElements);

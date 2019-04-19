@@ -5,26 +5,23 @@ import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.query.UserProfileQuery;
 
-import static pl.robert.api.app.shared.Constants.ROLE_USER;
-import static pl.robert.api.app.shared.Constants.ROLE_USER_ADMIN;
+import static pl.robert.api.app.shared.Constants.*;
 
 class UserQueryFactory {
 
     static UserAuthQuery queryUserAuth(Authentication auth) {
-        return UserAuthQuery
-                .builder()
+        return UserAuthQuery.builder()
                 .username(auth.getName())
-                .roles(auth.getAuthorities().size() == 2 ? ROLE_USER_ADMIN : ROLE_USER)
+                .roles(auth.getAuthorities().size() == 1 ? USER : USER_ADMIN)
                 .isAuthenticated(String.valueOf(auth.isAuthenticated()))
                 .build();
     }
 
     static UserOwnProfileQuery queryUserOwnProfile(User user, UserDetails details) {
-        return UserOwnProfileQuery
-                .builder()
+        return UserOwnProfileQuery.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
-                .roles(user.getRoles().size() == 2 ? ROLE_USER_ADMIN : ROLE_USER)
+                .roles(user.getRoles().size() == 1 ? USER : USER_ADMIN)
                 .level(details.getLevel())
                 .experience(details.getExpierience())
                 .currentRank(details.getCurrentRank())
@@ -34,8 +31,7 @@ class UserQueryFactory {
     }
 
     static UserProfileQuery queryUserProfile(User user, UserDetails details) {
-        return UserProfileQuery
-                .builder()
+        return UserProfileQuery.builder()
                 .username(user.getUsername())
                 .level(details.getLevel())
                 .experience(details.getExpierience())

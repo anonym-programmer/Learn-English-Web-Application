@@ -5,6 +5,7 @@ public interface Constants {
     /* error codes */
 
     String C_EXISTS = "exists";
+    String C_MATCH = "match";
     String C_NOT_MATCH = "notMatch";
     String C_NOT_EXISTS = "notExists";
     String C_NOT_ENABLED= "notEnabled";
@@ -23,8 +24,9 @@ public interface Constants {
     int COL_LENGTH_DATE_IN_SECONDS = 11;
     int COL_LENGTH_RANK = 10;
 
-    String ROLE_USER = "User";
-    String ROLE_USER_ADMIN = "User, Admin";
+    String ROLE_USER = "ROLE_USER";
+    String USER = "User";
+    String USER_ADMIN = "User, Admin";
 
     String F_USERNAME = "username";
     String F_EMAIL = "email";
@@ -109,5 +111,6 @@ public interface Constants {
     String M_DEFENDER_USERNAME_EMPTY = "Defender username can not be empty";
     String M_ATTACKER_USERNAME_NOT_EXISTS = "Attacker username do not exist";
     String M_DEFENDER_USERNAME_NOT_EXISTS = "Defender username do not exist";
+    String M_ATTACKER_EQUALS_DEFENDER_USERNAME = "You cannot challenge yourself";
     String M_QUESTION_IDS_NOT_EXISTS = "Some of a question id do not exist";
 }

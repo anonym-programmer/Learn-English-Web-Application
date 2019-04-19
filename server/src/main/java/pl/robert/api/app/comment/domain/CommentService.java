@@ -20,8 +20,7 @@ class CommentService {
     }
 
     List<CommentQuery> findAllByPost(Post post) {
-        List<Comment> comments = repository.findAllByPost(post);
-        return List.copyOf(comments
+        return List.copyOf(repository.findAllByPost(post)
                 .stream()
                 .map(comment -> new CommentQuery(
                         comment.getUser().getUsername(),

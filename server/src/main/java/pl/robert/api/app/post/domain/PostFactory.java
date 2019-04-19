@@ -8,8 +8,7 @@ import java.time.LocalDateTime;
 class PostFactory {
 
     static Post create(CreatePostDto dto, User user) {
-        return Post
-                .builder()
+        return Post.builder()
                 .title(dto.getTitle())
                 .description(dto.getDescription())
                 .date(LocalDateTime.now())
