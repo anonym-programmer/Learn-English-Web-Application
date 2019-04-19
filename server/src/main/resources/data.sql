@@ -98,10 +98,10 @@ VALUES ('Whats ... name?', 'you:your:yours:yourse', 'your', 'b'),
        ('Have you ...?', 'got any friends in Barcelona:not got no friends in Barcelona:in Barcelona any friends:friends in Barcelona got', 'got any friends in Barcelona', 'a'),
        ('There is ... of beer left from the party ', 'little:much:a lot:too', 'a lot', 'c');
 
-INSERT INTO oponents (my_answers, number_of_correct_answers, gained_xp, result, user_id)
-VALUES ('b:a:c:b:a', '3', '60', 'WIN', 5),
-       ('d:a:b:c:a', '1', '15', 'LOSE', 6),
-       ('b:d:d:c:a', '5', NULL, 'NONE', 6),
+INSERT INTO oponents (my_answers, answers_status, gained_xp, result, user_id)
+VALUES ('b:a:c:b:a', '1:1:0:1:0', '60', 'WIN', 5),
+       ('d:a:b:c:a', '0:1:0:0:0', '15', 'LOSE', 6),
+       ('b:d:d:c:a', '1:1:1:1:1', NULL, 'NONE', 6),
        (NULL, NULL, NULL, 'NONE', 5);
 
 INSERT INTO challenges (attacker_id, defender_id, date_of_creation, status)

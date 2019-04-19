@@ -51,6 +51,7 @@ public class ChallengeController {
                     .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
+        challengeFacade.add(dto);
         return ResponseEntity
                 .ok()
                 .build();

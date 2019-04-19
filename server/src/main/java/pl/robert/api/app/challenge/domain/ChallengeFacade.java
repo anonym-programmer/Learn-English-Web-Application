@@ -12,6 +12,7 @@ import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
 public class ChallengeFacade {
 
     ChallengeValidator validator;
+    ChallengeService service;
 
     public void checkInputData(ChooseChallengeOponentDto dto, BindingResult result) {
         if (!result.hasErrors()) {
@@ -23,5 +24,9 @@ public class ChallengeFacade {
         if (!result.hasErrors()) {
             validator.checkInputData(dto, result);
         }
+    }
+
+    public void add(CreateChallengeDto dto) {
+        service.add(dto);
     }
 }

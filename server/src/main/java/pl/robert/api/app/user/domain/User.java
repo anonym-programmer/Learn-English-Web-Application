@@ -2,7 +2,7 @@ package pl.robert.api.app.user.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import pl.robert.api.app.challenge.domain.Opponent;
+import pl.robert.api.app.opponent.Opponent;
 import pl.robert.api.app.comment.domain.Comment;
 import pl.robert.api.app.post.domain.Post;
 import pl.robert.api.app.vote.domain.Vote;
