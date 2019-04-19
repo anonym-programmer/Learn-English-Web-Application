@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
+import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.shared.ErrorsWrapper;
@@ -52,6 +53,20 @@ public class ChallengeController {
         }
 
         challengeFacade.add(dto);
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
+    @DeleteMapping("{id}")
+    public HttpEntity<?> declineChallenge(@PathVariable String id, Authentication auth) {
+        if (!challengeFacade.isInputDataCorrect(new DeleteChallengeDto(Long.parseLong(id), auth.getName()))) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        challengeFacade.delete(Long.parseLong(id));
         return ResponseEntity
                 .ok()
                 .build();

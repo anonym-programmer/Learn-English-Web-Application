@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
+import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 
 @AllArgsConstructor
@@ -28,5 +29,13 @@ public class ChallengeFacade {
 
     public void add(MakeChallengeDto dto) {
         service.add(dto);
+    }
+
+    public boolean isInputDataCorrect(DeleteChallengeDto dto) {
+        return validator.isInputDataCorrect(dto);
+    }
+
+    public void delete(long id) {
+        service.delete(id);
     }
 }

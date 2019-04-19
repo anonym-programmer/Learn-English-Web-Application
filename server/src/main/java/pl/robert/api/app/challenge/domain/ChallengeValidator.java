@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.ChooseChallengeOponentDto;
+import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.user.domain.UserFacade;
@@ -15,6 +16,7 @@ import static pl.robert.api.app.shared.Constants.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class ChallengeValidator {
 
+    ChallengeService service;
     UserFacade userFacade;
     QuestionFacade questionFacade;
 
@@ -45,5 +47,21 @@ class ChallengeValidator {
         if (attackerUsername.equals(defenderUsername)) {
             result.rejectValue(F_DEFENDER_USERNAME, C_MATCH, M_ATTACKER_EQUALS_DEFENDER_USERNAME);
         }
+    }
+
+    boolean isInputDataCorrect(DeleteChallengeDto dto) {
+        if (isChallengeIdCorrect(dto.getChallengeId()) && isDefenderUsernameCorrect(dto.getDefenderUsername())) {
+
+            return !(userFacade.isUsernameNotExists(dto.getDefenderUsername()) || service.isChallengeNotExists(dto.getChallengeId()));
+        }
+        return false;
+    }
+
+    private boolean isChallengeIdCorrect(Long id) {
+        return id != null && !String.valueOf(id).isEmpty();
+    }
+
+    private boolean isDefenderUsernameCorrect(String username) {
+        return username != null && !username.isEmpty();
     }
 }

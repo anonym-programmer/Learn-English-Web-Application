@@ -26,10 +26,10 @@ class Challenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     Opponent attacker;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     Opponent defender;
 
     @Column(name = "date_of_creation", length = COL_LENGTH_DATE, nullable = false)

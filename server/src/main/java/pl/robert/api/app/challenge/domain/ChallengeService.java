@@ -19,7 +19,7 @@ class ChallengeService {
     QuestionFacade questionFacade;
     UserFacade userFacade;
 
-    public void add(MakeChallengeDto dto) {
+    void add(MakeChallengeDto dto) {
         repository.saveAndFlush(ChallengeFactory.create(
                 new CreateChallengeDto(
                         opponentFacade.addAndReturnOpponent(
@@ -45,5 +45,13 @@ class ChallengeService {
 
     private String calculateCorrectAnswers(char[] answers, long[] questionsId) {
         return transformAnswers(questionFacade.calculateCorrectAnswers(answers, questionsId));
+    }
+
+    void delete(long id) {
+        repository.delete(repository.findById(id));
+    }
+
+    boolean isChallengeNotExists(long id) {
+        return repository.findById(id) == null;
     }
 }
