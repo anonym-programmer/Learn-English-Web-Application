@@ -18,6 +18,7 @@ import {ShowPostComponent} from './forum/show-post/show-post.component';
 import {AdminComponent} from "./admin/admin.component";
 import {RoleGuard} from "./auth/role.guard";
 import {NotAuthGuard} from "./auth/not-auth.guard";
+import {ChallengeComponent} from "./challenge/challenge.component";
 
 const routes: Routes = [
   {path: '*', redirectTo: '/dashboard'},
@@ -48,6 +49,7 @@ const routes: Routes = [
       {path: 'my-profile/settings/change-email', component: ChangeEmailComponent},
       {path: 'forum/add-post', component: AddPostComponent},
       {path: 'admin-panel', component: AdminComponent, canActivate: [RoleGuard]},
+      {path: 'challenge', component: ChallengeComponent}
     ],
   },
 

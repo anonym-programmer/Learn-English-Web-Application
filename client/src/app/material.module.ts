@@ -6,7 +6,8 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatButtonModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatGridListModule
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
@@ -19,6 +20,7 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatGridListModule,
     FormsModule
   ],
   exports: [
@@ -28,6 +30,7 @@ import {FormsModule} from '@angular/forms';
     MatInputModule,
     MatButtonModule,
     MatCheckboxModule,
+    MatGridListModule,
     FormsModule
   ]
 })

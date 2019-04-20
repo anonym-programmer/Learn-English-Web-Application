@@ -31,6 +31,11 @@ import {ShowPostComponent} from './forum/show-post/show-post.component';
 
 import {AdminComponent} from './admin/admin.component';
 
+import {ChallengeComponent} from './challenge/challenge.component';
+import {MakeChallengeComponent} from './challenge/make-challenge/make-challenge.component';
+import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
+import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
+
 import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
 import {RoleGuard} from "./auth/role.guard";
@@ -64,6 +69,10 @@ import {CustomInterceptor} from "./auth/http-interceptor";
     ListPostComponent,
     ShowPostComponent,
     AdminComponent,
+    ChallengeComponent,
+    MakeChallengeComponent,
+    ListPendingChallengesComponent,
+    ListCompletedChallengesComponent
   ],
   imports: [
     BrowserModule,

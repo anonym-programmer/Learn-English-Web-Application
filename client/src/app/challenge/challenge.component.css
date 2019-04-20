@@ -1,0 +1,13 @@
+.mat-grid-list {
+  margin-top: 2%;
+}
+
+.mat-grid-tile-header {
+  background-color: #2e6da4 !important;
+  opacity: 0.85;
+}
+
+.mat-grid-tile {
+  background-color: #E8E8E8;
+  opacity: 0.85;
+}
