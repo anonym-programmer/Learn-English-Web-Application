@@ -35,6 +35,7 @@ import {ChallengeComponent} from './challenge/challenge.component';
 import {MakeChallengeComponent} from './challenge/make-challenge/make-challenge.component';
 import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
 import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
+import {SubmitChallengeComponent} from './challenge/make-challenge/submit-challenge/submit-challenge.component';
 
 import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
@@ -48,6 +49,7 @@ import {ForumService} from './forum/shared/forum.service';
 import {AdminService} from "./admin/shared/admin.service";
 import {SharedService} from "./shared/shared.service";
 import {CustomInterceptor} from "./auth/http-interceptor";
+import {ChallengeService} from "./challenge/shared/challenge.service";
 
 @NgModule({
   declarations: [
@@ -72,7 +74,12 @@ import {CustomInterceptor} from "./auth/http-interceptor";
     ChallengeComponent,
     MakeChallengeComponent,
     ListPendingChallengesComponent,
-    ListCompletedChallengesComponent
+    ListCompletedChallengesComponent,
+    SubmitChallengeComponent
+  ],
+  entryComponents: [
+    MakeChallengeComponent,
+    SubmitChallengeComponent
   ],
   imports: [
     BrowserModule,
@@ -101,7 +108,8 @@ import {CustomInterceptor} from "./auth/http-interceptor";
     UserService,
     ForumService,
     AdminService,
-    SharedService
+    SharedService,
+    ChallengeService
   ],
   bootstrap: [AppComponent]
 })
