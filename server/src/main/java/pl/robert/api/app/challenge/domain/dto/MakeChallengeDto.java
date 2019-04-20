@@ -16,8 +16,4 @@ public class MakeChallengeDto {
 
     @NotEmpty(message = M_DEFENDER_USERNAME_EMPTY)
     String defenderUsername;
-
-    final long[] questionsIds = new long[5];
-
-    char[] answers = new char[4];
 }

@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
-import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
@@ -19,7 +19,7 @@ class ChallengeService {
     QuestionFacade questionFacade;
     UserFacade userFacade;
 
-    void add(MakeChallengeDto dto) {
+    void add(SubmitChallengeDto dto) {
         repository.saveAndFlush(ChallengeFactory.create(
                 new CreateChallengeDto(
                         opponentFacade.addAndReturnOpponent(
