@@ -5,9 +5,6 @@
       <mat-form-field>
         <mat-label>Rival</mat-label>
         <input matInput formControlName="defenderUsername" required>
-        <mat-error class="error" *ngIf="defenderUsername.invalid && (defenderUsername.dirty || defenderUsername.touched)">
-          Rival username is required
-        </mat-error>
         <mat-error class="error" *ngFor="let error of dtoError.defenderUsername">{{error}}</mat-error>
       </mat-form-field>
   </div>
@@ -16,4 +13,3 @@
     <button mat-button>Ok</button>
   </div>
 </form>
-

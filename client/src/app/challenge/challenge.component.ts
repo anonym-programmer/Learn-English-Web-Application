@@ -18,8 +18,8 @@ export class ChallengeComponent implements OnInit {
 
   makeChallenge() {
     this.dialog.open(MakeChallengeComponent, {
-      width: '12%',
-      height: '28%'
+      width: '250px',
+      height: '300px'
     });
   }
 }

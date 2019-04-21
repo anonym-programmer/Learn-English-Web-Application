@@ -1,3 +1,59 @@
-<p>
-  submit-challenge works!
-</p>
+<h1 mat-dialog-title>Answer the following questions</h1>
+<form [formGroup]="submitChallengeForm" (ngSubmit)="onSubmit(submitChallengeForm)" autocomplete="off">
+  <div>
+    <mat-label>1. {{questions[0].question}}</mat-label>
+    <mat-radio-group formControlName="answer1">
+      <mat-radio-button *ngFor="let answer1 of questions[0].answers; let j = index"
+                        [value]="questions[0].questionId + ':' + options[j]">
+        {{options[j]}}) {{answer1}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
+  </div>
+
+  <div>
+    <mat-label>2. {{questions[1].question}}</mat-label>
+    <mat-radio-group formControlName="answer2">
+      <mat-radio-button *ngFor="let answer2 of questions[1].answers; let j = index"
+                        [value]="questions[1].questionId + ':' + options[j]">
+        {{options[j]}}) {{answer2}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
+  </div>
+
+  <div>
+    <mat-label>3. {{questions[2].question}}</mat-label>
+    <mat-radio-group formControlName="answer3">
+      <mat-radio-button *ngFor="let answer3 of questions[2].answers; let j = index"
+                        [value]="questions[2].questionId + ':' + options[j]">
+        {{options[j]}}) {{answer3}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
+  </div>
+
+  <div>
+    <mat-label>4. {{questions[3].question}}</mat-label>
+    <mat-radio-group formControlName="answer4">
+      <mat-radio-button *ngFor="let answer4 of questions[3].answers; let j = index"
+                        [value]="questions[3].questionId + ':' + options[j]">
+        {{options[j]}}) {{answer4}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
+  </div>
+
+  <div>
+    <mat-label>5. {{questions[4].question}}</mat-label>
+    <mat-radio-group formControlName="answer5">
+      <mat-radio-button *ngFor="let answer5 of questions[4].answers; let j = index"
+                        [value]="questions[4].questionId + ':' + options[j]">
+        {{options[j]}}) {{answer5}}
+      </mat-radio-button>
+    </mat-radio-group>
+    <br>
+  </div>
+
+  <button mat-raised-button color="primary">Submit</button>
+</form>

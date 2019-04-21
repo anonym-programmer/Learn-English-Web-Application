@@ -14,7 +14,6 @@ import {SubmitChallengeComponent} from "./submit-challenge/submit-challenge.comp
 })
 export class MakeChallengeComponent implements OnInit {
 
-  dto = new MakeChallengeDto();
   dtoError = new MakeChallengeDto();
   makeChallengeForm: FormGroup;
 
@@ -24,12 +23,8 @@ export class MakeChallengeComponent implements OnInit {
 
   ngOnInit() {
     this.makeChallengeForm = new FormGroup({
-      'defenderUsername': new FormControl(this.dto.defenderUsername, [Validators.required])
+      'defenderUsername': new FormControl('', [Validators.required])
     });
-  }
-
-  get defenderUsername() {
-    return this.makeChallengeForm.get('defenderUsername');
   }
 
   onSubmit(makeChallengeForm: FormGroup) {
@@ -37,9 +32,9 @@ export class MakeChallengeComponent implements OnInit {
       (res) => {
         this.onNoClick();
         this.dialog.open(SubmitChallengeComponent, {
-          width: '50%',
-          height: '80%',
-          data: res
+          width: '40%',
+          height: '85%',
+          data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value)
         })
       },
       error => {
@@ -53,7 +48,7 @@ export class MakeChallengeComponent implements OnInit {
     );
   }
 
-  onNoClick(): void {
+  onNoClick() {
     this.dialogRef.close();
   }
 }
