@@ -6,11 +6,11 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import pl.robert.api.app.question.domain.Question;
 import pl.robert.api.app.user.domain.dto.AuthUserDto;
 import pl.robert.api.app.user.query.UserQuery;
 
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static pl.robert.api.app.shared.Constants.*;
@@ -80,5 +80,15 @@ class UserService {
                         user.isEnabled()))
                 .sorted(Comparator.comparing(UserQuery::getId))
                 .collect(Collectors.toList()), pageable, totalElements);
+    }
+
+    String queryRandomUser(String attackerUsername) {
+        String defenderUsername;
+        do {
+            defenderUsername = repository.findById(
+                    1L + (long) (Math.random() * (repository.count()))
+            ).getUsername();
+        } while (attackerUsername.equals(defenderUsername));
+        return defenderUsername;
     }
 }

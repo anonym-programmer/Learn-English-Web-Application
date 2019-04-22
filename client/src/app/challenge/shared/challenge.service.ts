@@ -11,6 +11,7 @@ export class ChallengeService {
 
   readonly makeUrl = '/api/challenge/make';
   readonly submitUrl = '/api/challenge/submit';
+  readonly getRandomRivalUrl = '/api/user-query/random-rival';
 
   constructor(private http: HttpClient) {
   }
@@ -21,5 +22,9 @@ export class ChallengeService {
 
   submit(data: SubmitChallengeDto) {
     return this.http.post(this.submitUrl, data);
+  }
+
+  getRandomRival(): Observable<string> {
+    return this.http.get<string>(this.getRandomRivalUrl);
   }
 }

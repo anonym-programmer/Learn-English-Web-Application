@@ -4,6 +4,7 @@ import org.springframework.security.core.Authentication;
 import pl.robert.api.app.user.query.UserAuthQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.query.UserProfileQuery;
+import pl.robert.api.app.user.query.UserRandomQuery;
 
 import static pl.robert.api.app.shared.Constants.*;
 
@@ -38,6 +39,12 @@ class UserQueryFactory {
                 .currentRank(details.getCurrentRank())
                 .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
                 .currentExperienceInPercents(details.getCurrentExperienceInPercents())
+                .build();
+    }
+
+    static UserRandomQuery queryRandomUser(String defenderUsername) {
+        return UserRandomQuery.builder()
+                .defenderUsername(defenderUsername)
                 .build();
     }
 }

@@ -27,6 +27,16 @@ export class MakeChallengeComponent implements OnInit {
     });
   }
 
+  getRandomRival() {
+    this.service.getRandomRival().subscribe(
+      (res) => {
+        console.log(res['defenderUsername']);
+      }, () => {
+        this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
+      }
+    )
+  }
+
   onSubmit(makeChallengeForm: FormGroup) {
     this.service.make(makeChallengeForm.value).subscribe(
       (res) => {

@@ -42,4 +42,11 @@ class UserQueryController {
                 .ok()
                 .body(facade.queryUserProfile(username));
     }
+
+    @GetMapping("/random-rival")
+    public HttpEntity<?> getRandomRival(Authentication auth) {
+        return ResponseEntity
+                .ok()
+                .body(facade.queryRandomUser(auth.getName()));
+    }
 }
