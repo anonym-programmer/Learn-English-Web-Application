@@ -27,4 +27,11 @@ public class ChallengeQueryController {
                 .ok()
                 .body(facade.queryAttackerPendingChallenges(auth.getName()));
     }
+
+    @GetMapping("defender-pending")
+    public HttpEntity<?> findDefenderPendingChallenges(Authentication auth) {
+        return ResponseEntity
+                .ok()
+                .body(facade.queryDefenderPendingChallenges(auth.getName()));
+    }
 }

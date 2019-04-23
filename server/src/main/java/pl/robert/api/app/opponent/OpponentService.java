@@ -20,4 +20,8 @@ class OpponentService {
     List<Long> findIdsOfAttackerPendingChallenges(long attackerId) {
         return repository.findIdsOfAttackerPendingChallenges(attackerId);
     }
+
+    List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
+        return repository.findIdsOfDefenderPendingChallenges(defenderId);
+    }
 }

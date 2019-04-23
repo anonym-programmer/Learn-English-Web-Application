@@ -45,4 +45,8 @@ public class ChallengeFacade {
     public List<ChallengePendingQuery> queryAttackerPendingChallenges(String username) {
         return service.queryAttackerPendingChallenges(username);
     }
+
+    public List<ChallengePendingQuery> queryDefenderPendingChallenges(String username) {
+        return service.queryDefenderPendingChallenges(username);
+    }
 }

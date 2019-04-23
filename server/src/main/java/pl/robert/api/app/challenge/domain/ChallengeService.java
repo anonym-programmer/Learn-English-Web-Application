@@ -71,4 +71,17 @@ class ChallengeService {
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
                 .collect(Collectors.toList()));
     }
+
+    List<ChallengePendingQuery> queryDefenderPendingChallenges(String username) {
+        return List.copyOf(opponentFacade.findIdsOfDefenderPendingChallenges(userFacade.findUserByUsername(username).getId())
+                .stream()
+                .map(repository::findByDefenderId)
+                .collect(Collectors.toList())
+                .stream()
+                .map(challenge -> new ChallengePendingQuery(
+                        challenge.getAttacker().getUser().getUsername(),
+                        String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
+                        String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
+                .collect(Collectors.toList()));
+    }
 }

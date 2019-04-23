@@ -20,4 +20,8 @@ public class OpponentFacade {
     public List<Long> findIdsOfAttackerPendingChallenges(long attackerId) {
         return service.findIdsOfAttackerPendingChallenges(attackerId);
     }
+
+    public List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
+        return service.findIdsOfDefenderPendingChallenges(defenderId);
+    }
 }
