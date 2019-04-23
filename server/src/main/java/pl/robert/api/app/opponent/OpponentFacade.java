@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 
+import java.util.List;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class OpponentFacade {
@@ -13,5 +15,9 @@ public class OpponentFacade {
 
     public Opponent addAndReturnOpponent(CreateOpponentDto dto) {
         return service.addOpponent(dto);
+    }
+
+    public List<Long> findIdsOfAttackerPendingChallenges(long attackerId) {
+        return service.findIdsOfAttackerPendingChallenges(attackerId);
     }
 }

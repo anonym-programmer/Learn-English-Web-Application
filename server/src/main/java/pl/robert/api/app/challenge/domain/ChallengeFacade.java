@@ -7,6 +7,9 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
+import pl.robert.api.app.challenge.query.ChallengePendingQuery;
+
+import java.util.List;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -37,5 +40,9 @@ public class ChallengeFacade {
 
     public void delete(long id) {
         service.delete(id);
+    }
+
+    public List<ChallengePendingQuery> queryAttackerPendingChallenges(String username) {
+        return service.queryAttackerPendingChallenges(username);
     }
 }

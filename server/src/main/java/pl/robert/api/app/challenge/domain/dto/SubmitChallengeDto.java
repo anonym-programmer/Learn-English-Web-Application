@@ -19,5 +19,5 @@ public class SubmitChallengeDto {
 
     final long[] questionsIds = new long[5];
 
-    char[] answers = new char[4];
+    char[] answers = new char[5];
 }
