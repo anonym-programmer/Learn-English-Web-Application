@@ -8,10 +8,7 @@ import {Constants} from "../../../shared/constants";
 @Component({
   selector: 'app-someone-profile',
   templateUrl: './someone-profile.component.html',
-  styleUrls: [
-    './someone-profile.component.css',
-    '../own/profile.component.css'
-  ]
+  styleUrls: ['./someone-profile.component.css']
 })
 export class SomeoneProfileComponent implements OnInit {
 

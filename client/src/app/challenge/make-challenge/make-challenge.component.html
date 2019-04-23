@@ -1,7 +1,6 @@
-<h1 mat-dialog-title>Make a Challenge</h1>
-<form [formGroup]="makeChallengeForm" (ngSubmit)="onSubmit(makeChallengeForm)" autocomplete="off">
+<h1 mat-dialog-title>Choose rival</h1>
+<form [formGroup]="makeChallengeForm" autocomplete="off">
   <div mat-dialog-content>
-    <p>Choose rival</p>
       <mat-form-field>
         <mat-label>Rival</mat-label>
         <input matInput formControlName="defenderUsername" required>
@@ -9,8 +8,10 @@
       </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="getRandomRival()">Find random rival</button>
-    <button mat-raised-button (click)="onNoClick()">Back</button>
-    <button mat-raised-button>Ok</button>
+    <button class="btn" mat-raised-button color="primary" (click)="getRandomRival()">Find random rival</button>
+    <div class="btns">
+      <button mat-raised-button (click)="onSubmit(makeChallengeForm)">Ok</button>
+      <button mat-raised-button (click)="onNoClick()">Back</button>
+    </div>
   </div>
 </form>

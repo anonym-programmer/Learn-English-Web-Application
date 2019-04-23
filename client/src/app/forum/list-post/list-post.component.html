@@ -19,10 +19,9 @@
     <div class="col-9 post">
       <h2><a [routerLink]="['/forum/post', post.id]" routerLinkActive="router-link-active">{{post.title}}</a></h2>
       <h6>{{post.description}}</h6>
-      <p>
-         Author:&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active"><u><i>{{post.username}}</i></u></a>
-         Date:&nbsp;{{post.date}}
-      </p>
+       Author:&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active"><u><i>{{post.username}}</i></u></a><br>
+       Date:&nbsp;{{post.date}}
+       Time: {{post.time}}
     </div>
   </div>
 </div>

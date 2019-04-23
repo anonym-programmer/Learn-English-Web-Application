@@ -1,12 +1,16 @@
-<button class="btn btn-primary ribbon" (click)="makeChallenge()">Make a Challenge</button>
+<button class="btn btn-primary ribbon" (click)="makeChallenge()">Challenge other person</button>
 
-<mat-grid-list cols="2" rowHeight="40rem" [gutterSize]="'10px'">
+<mat-grid-list cols="3" rowHeight="40rem" [gutterSize]="'10px'">
   <mat-grid-tile>
-    <mat-grid-tile-header>Pending Challenges</mat-grid-tile-header>
+    <mat-grid-tile-header>Pending</mat-grid-tile-header>
+
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-grid-tile-header>Submited</mat-grid-tile-header>
       <app-list-pending-challenges></app-list-pending-challenges>
   </mat-grid-tile>
   <mat-grid-tile>
-    <mat-grid-tile-header>Completed Challenges</mat-grid-tile-header>
+    <mat-grid-tile-header>Completed</mat-grid-tile-header>
     <app-list-completed-challenges></app-list-completed-challenges>
   </mat-grid-tile>
 </mat-grid-list>

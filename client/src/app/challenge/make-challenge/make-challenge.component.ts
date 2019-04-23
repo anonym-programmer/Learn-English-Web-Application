@@ -30,7 +30,7 @@ export class MakeChallengeComponent implements OnInit {
   getRandomRival() {
     this.service.getRandomRival().subscribe(
       (res) => {
-        console.log(res['defenderUsername']);
+        this.makeChallengeForm.setValue({defenderUsername: res['defenderUsername']});
       }, () => {
         this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
       }

@@ -28,7 +28,8 @@ class PostService {
                         String.valueOf(post.getId()),
                         post.getTitle(),
                         post.getDescription().length() > 70 ? post.getDescription().substring(0, 67).concat("...") : post.getDescription(),
-                        String.valueOf(post.getDate()),
+                        String.valueOf(post.getDate()).substring(0, 10),
+                        String.valueOf(post.getDate()).substring(11, 19),
                         String.valueOf(post.getUpVote()),
                         String.valueOf(post.getDownVote()),
                         post.getUser().getUsername()))

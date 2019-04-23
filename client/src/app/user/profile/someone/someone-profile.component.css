@@ -1,3 +1,5 @@
 .container {
+  opacity: 0.85;
   height: 290px !important;
+  background-color: #E8E8E8;
 }

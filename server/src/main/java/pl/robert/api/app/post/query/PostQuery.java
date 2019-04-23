@@ -16,6 +16,7 @@ public class PostQuery {
     String title;
     String description;
     String date;
+    String time;
     String upVote;
     String downVote;
     String username;
