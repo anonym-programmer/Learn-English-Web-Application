@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {MatDialog} from "@angular/material";
 import {MakeChallengeComponent} from "./make-challenge/make-challenge.component";
 
@@ -8,12 +8,9 @@ import {MakeChallengeComponent} from "./make-challenge/make-challenge.component"
   styleUrls: ['./challenge.component.css',
     '../forum/forum.component.css']
 })
-export class ChallengeComponent implements OnInit {
+export class ChallengeComponent {
 
   constructor(public dialog: MatDialog) {
-  }
-
-  ngOnInit() {
   }
 
   makeChallenge() {

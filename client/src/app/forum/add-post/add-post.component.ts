@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ForumService} from '../shared/forum.service';
 import {CreatePostDto} from '../shared/create-post-dto.model';
-import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {SharedService} from "../../shared/shared.service";
 import {Constants} from "../../shared/constants";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 
 @Component({
   selector: 'app-add-post',
@@ -12,39 +13,25 @@ import {Constants} from "../../shared/constants";
 })
 export class AddPostComponent implements OnInit {
 
-  dto = new CreatePostDto();
   dtoError = new CreatePostDto();
   addPostForm: FormGroup;
 
-  constructor(private forumService: ForumService, private sharedService: SharedService) {
+  constructor(public dialogRef: MatDialogRef<AddPostComponent>, @Inject(MAT_DIALOG_DATA) public dto: CreatePostDto,
+              private forumService: ForumService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
     this.addPostForm = new FormGroup({
-      'title': new FormControl(this.dto.title, [Validators.required]),
-      'description': new FormControl(this.dto.description, [Validators.required])
+      'title': new FormControl('', [Validators.required]),
+      'description': new FormControl('', [Validators.required])
     });
-  }
-
-  get title() {
-    return this.addPostForm.get('title');
-  }
-
-  get description() {
-    return this.addPostForm.get('description');
   }
 
   addPost(addPostForm: FormGroup) {
     this.forumService.addPost(addPostForm.value).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.ADDED_POST);
-        let control: AbstractControl = null;
-        this.addPostForm.reset();
-        this.addPostForm.markAsUntouched();
-        Object.keys(this.addPostForm.controls).forEach((name) => {
-          control = this.addPostForm.controls[name];
-          control.setErrors(null);
-        });
+        this.onNoClick();
       },
       error => {
         this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
@@ -59,5 +46,9 @@ export class AddPostComponent implements OnInit {
         }
       }
     );
+  }
+
+  onNoClick() {
+    this.dialogRef.close();
   }
 }

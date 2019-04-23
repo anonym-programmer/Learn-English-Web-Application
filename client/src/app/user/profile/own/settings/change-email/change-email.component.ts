@@ -8,10 +8,7 @@ import {Constants} from "../../../../../shared/constants";
 @Component({
   selector: 'app-change-email',
   templateUrl: './change-email.component.html',
-  styleUrls: ['./change-email.component.css',
-    '../../../../../base/login/login.component.css',
-    '../../../../../base/register/register.component.css'
-  ]
+  styleUrls: ['./change-email.component.css']
 })
 export class ChangeEmailComponent implements OnInit {
 

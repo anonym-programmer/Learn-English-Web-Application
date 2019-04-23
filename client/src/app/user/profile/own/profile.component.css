@@ -1,14 +1,4 @@
-.container {
-  margin: 5% auto;
+.row {
   opacity: 0.85;
   background-color: white;
-  text-align: center;
-  height: 400px;
-  width: 70%;
-}
-
-button {
-  height: 20%;
-  width: 100%;
-  font-size: xx-large;
 }

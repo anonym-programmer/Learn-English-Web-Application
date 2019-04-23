@@ -19,3 +19,8 @@ a {
   color: white;
   cursor: pointer;
 }
+
+.container-fluid {
+  margin-top: 1%;
+  width: 90%;
+}

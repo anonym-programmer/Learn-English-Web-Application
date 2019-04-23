@@ -34,16 +34,16 @@ export class AddCommentComponent implements OnInit {
     return this.addCommentForm.get('text');
   }
 
-  addComment() {
+  addComment(addCommentForm: FormGroup) {
     this.activatedRoute.params.subscribe(param => {
       this.id = param['id'];
     });
-    this.forumService.addComment(this.addCommentForm.controls['text'].value, this.id).subscribe(
+    this.forumService.addComment(addCommentForm.controls['text'].value, this.id).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.ADDED_COMMENT);
         let control: AbstractControl = null;
-        this.addCommentForm.reset();
-        this.addCommentForm.markAsUntouched();
+        addCommentForm.reset();
+        addCommentForm.markAsUntouched();
         Object.keys(this.addCommentForm.controls).forEach((name) => {
           control = this.addCommentForm.controls[name];
           control.setErrors(null);

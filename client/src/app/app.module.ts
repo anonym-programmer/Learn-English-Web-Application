@@ -21,7 +21,6 @@ import {LoginComponent} from './base/login/login.component';
 
 import {ProfileComponent} from './user/profile/own/profile.component';
 import {SomeoneProfileComponent} from './user/profile/someone/someone-profile.component';
-import {SettingsComponent} from './user/profile/own/settings/settings.component';
 import {ChangePasswordComponent} from './user/profile/own/settings/change-password/change-password.component';
 import {ChangeEmailComponent} from './user/profile/own/settings/change-email/change-email.component';
 import {AddPostComponent} from './forum/add-post/add-post.component';
@@ -63,7 +62,6 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     LoginComponent,
     ProfileComponent,
     SomeoneProfileComponent,
-    SettingsComponent,
     ChangePasswordComponent,
     ChangeEmailComponent,
     AddPostComponent,
@@ -79,7 +77,8 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
   ],
   entryComponents: [
     MakeChallengeComponent,
-    SubmitChallengeComponent
+    SubmitChallengeComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,

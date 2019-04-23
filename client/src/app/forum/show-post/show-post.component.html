@@ -37,6 +37,4 @@
   <h5>Don't have account yet? Click <a [routerLink]="['/register']" routerLinkActive="router-link-active">here</a> to register.</h5>
 </div>
 
-<div *ngIf="authService.isAuthenticated()">
-  <app-add-comment></app-add-comment>
-</div>
+<app-add-comment *ngIf="authService.isAuthenticated()"></app-add-comment>

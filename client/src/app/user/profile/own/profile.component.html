@@ -1,11 +1,20 @@
-<div class="container">
-  <h1>Username: {{profile.username}}</h1>
-  <h2>Level: {{profile.level}}</h2>
-  <h2>Rank: {{profile.currentRank}}</h2>
-  <h3>Current: {{profile.experience}} XP</h3>
-  <h3>Left to the next level: {{profile.leftExperienceToTheNextLevel}} XP</h3>
-  <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
-                   [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
-  <br>
-  <button mat-raised-button color="primary" routerLink="/my-profile/settings">Settings</button>
+<div class="row">
+  <div class="col">
+    <h2>Username: {{profile.username}}</h2>
+    <h2>Email: {{profile.email}}</h2>
+    <h2>Roles: {{profile.roles}}</h2>
+    <h2>Level: {{profile.level}}</h2>
+    <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
+                     [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
+    <br>
+    <h2>Rank: {{profile.currentRank}}</h2>
+    <h3>Current: {{profile.experience}} XP</h3>
+    <h3>Left to the next level: {{profile.leftExperienceToTheNextLevel}} XP</h3>
+  </div>
+  <div class="col">
+    <app-change-email></app-change-email>
+  </div>
+  <div class="col">
+    <app-change-password></app-change-password>
+  </div>
 </div>

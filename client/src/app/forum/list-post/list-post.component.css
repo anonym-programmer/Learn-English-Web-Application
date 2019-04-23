@@ -1,7 +1,7 @@
 .vote {
   opacity: 0.85;
   height: 120px;
-  margin-top: 10px;
+  margin-top: 1%;
   background-color: #E8E8E8;
 }
 
@@ -10,7 +10,7 @@
   height: 120px;
   display: block;
   opacity: 0.85;
-  margin-top: 10px;
+  margin-top: 1%;
   background-color: #E8E8E8;
 }
 
@@ -42,4 +42,8 @@ button {
 .minusBtn {
   color: #D8000C;
   background-color: #FFD2D2;
+}
+
+.nav {
+  margin-bottom: 2%;
 }
