@@ -18,16 +18,16 @@ import pl.robert.api.app.shared.ErrorsWrapper;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/challenge")
+@RequestMapping("api/challenge")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ChallengeController {
+class ChallengeController {
 
     ChallengeFacade challengeFacade;
     QuestionFacade questionFacade;
 
-    @PostMapping("/make")
+    @PostMapping("make")
     public HttpEntity<?> makeChallenge(@RequestBody @Valid MakeChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
         challengeFacade.checkInputData(dto, result);
@@ -37,12 +37,10 @@ public class ChallengeController {
                     .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
-        return ResponseEntity
-                .ok()
-                .body(questionFacade.getRandomQuestions());
+        return ResponseEntity.ok(questionFacade.getRandomQuestions());
     }
 
-    @PostMapping("/submit")
+    @PostMapping("submit")
     public HttpEntity<?> submitChallenge(@RequestBody @Valid SubmitChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
         challengeFacade.checkInputData(dto, result);

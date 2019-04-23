@@ -15,7 +15,7 @@ import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.user.query.UserQuery;
 
 @RestController
-@RequestMapping("/api/admin-query")
+@RequestMapping("api/admin-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -25,10 +25,10 @@ class AdminQueryController {
 
     @GetMapping
     public HttpEntity<?> dashboard() {
-        return ResponseEntity.status(200).body("Welcome admin!");
+        return ResponseEntity.ok("Welcome admin!");
     }
 
-    @GetMapping("/users")
+    @GetMapping("users")
     public Page<UserQuery> findAllUsers(Pageable pageable) {
         return userFacade.findAll(pageable);
     }

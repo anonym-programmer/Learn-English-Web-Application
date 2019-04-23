@@ -15,7 +15,7 @@ import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/vote")
+@RequestMapping("api/vote")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

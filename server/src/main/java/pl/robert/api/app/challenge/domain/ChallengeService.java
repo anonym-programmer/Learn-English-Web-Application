@@ -47,7 +47,7 @@ class ChallengeService {
         return new String(answers).replaceAll(".(?!$)", "$0:");
     }
 
-    private String calculateCorrectAnswers(char[] answers, long[] questionsId) {
+    private String calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
         return transformAnswers(questionFacade.calculateCorrectAnswers(answers, questionsId));
     }
 
@@ -55,8 +55,8 @@ class ChallengeService {
         repository.delete(repository.findById(id));
     }
 
-    boolean isChallengeNotExists(long id) {
-        return repository.findById(id) == null;
+    boolean isChallengeNotExists(Long id) {
+        return repository.findById(id).isEmpty();
     }
 
     List<ChallengePendingQuery> queryAttackerPendingChallenges(String username) {

@@ -10,7 +10,7 @@ import pl.robert.api.app.user.domain.UserFacade;
 import pl.robert.api.app.user.domain.dto.DeleteUserDto;
 
 @RestController
-@RequestMapping("/api/admin")
+@RequestMapping("api/admin")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -18,7 +18,7 @@ class AdminController {
 
     UserFacade userFacade;
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping("user/{id}")
     public HttpEntity<?> deleteUserById(@PathVariable String id) {
         if (!userFacade.isInputDataCorrect(new DeleteUserDto(Long.parseLong(id)))) {
             return ResponseEntity

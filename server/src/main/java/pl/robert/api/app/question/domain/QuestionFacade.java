@@ -17,15 +17,15 @@ public class QuestionFacade {
         return service.getRandomQuestions();
     }
 
-    public boolean areQuestionsExist(long[] questionsId) {
+    public boolean areQuestionsExist(List<Long> questionsId) {
         return service.areQuestionsExist(questionsId);
     }
 
-    public char[] calculateCorrectAnswers(char[] answers, long[] questionsId) {
+    public char[] calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
         return service.calculateCorrectAnswers(answers, questionsId);
     }
 
-    public List<Question> getQuestionsByIds(long[] questionsIds) {
+    public List<Question> getQuestionsByIds(List<Long> questionsIds) {
         return service.getQuestionsByIds(questionsIds);
     }
 }

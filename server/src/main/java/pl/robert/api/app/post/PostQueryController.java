@@ -12,7 +12,7 @@ import pl.robert.api.app.post.domain.PostFacade;
 import pl.robert.api.app.post.query.PostQuery;
 
 @RestController
-@RequestMapping("/api/post-query")
+@RequestMapping("api/post-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -33,8 +33,6 @@ class PostQueryController {
                     .build();
         }
 
-        return ResponseEntity
-                .ok()
-                .body(facade.queryPost(Long.parseLong(id)));
+        return ResponseEntity.ok(facade.queryPost(Long.parseLong(id)));
     }
 }

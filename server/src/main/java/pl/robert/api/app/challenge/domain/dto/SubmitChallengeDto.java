@@ -5,6 +5,9 @@ import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.NotEmpty;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static pl.robert.api.app.shared.Constants.M_DEFENDER_USERNAME_EMPTY;
 
 @Getter @Setter
@@ -17,7 +20,7 @@ public class SubmitChallengeDto {
     @NotEmpty(message = M_DEFENDER_USERNAME_EMPTY)
     String defenderUsername;
 
-    final long[] questionsIds = new long[5];
+    final List<Long> questionsIds = new ArrayList<>();
 
     char[] answers = new char[5];
 }

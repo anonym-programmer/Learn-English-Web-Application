@@ -30,19 +30,16 @@ class QuestionService {
                 .subList(0, 5));
     }
 
-    boolean areQuestionsExist(long[] questionsId) {
-        for (long questionId : questionsId) {
-            if (repository.findById(questionId) == null) {
-                return false;
-            }
-        }
-        return true;
+    boolean areQuestionsExist(List<Long> questionsId) {
+        return questionsId
+                .stream()
+                .noneMatch(questionId -> repository.findById(questionId).isEmpty());
     }
 
-    char[] calculateCorrectAnswers(char[] answers, long[] questionsId) {
+    char[] calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
         char[] correctAnswers = new char[5];
         for (int i=0; i<5; i++) {
-            correctAnswers[i] = repository.findById(questionsId[i]).getCorrectAnswerShortForm().toString().charAt(0);
+            correctAnswers[i] = repository.findById(questionsId.get(i)).get().getCorrectAnswerShortForm().toString().charAt(0);
         }
 
         char[] myAnswers = new char[5];
@@ -57,7 +54,7 @@ class QuestionService {
         return myAnswers;
     }
 
-    List<Question> getQuestionsByIds(long[] questionsIds) {
+    List<Question> getQuestionsByIds(List<Long> questionsIds) {
         List<Question> questions = new ArrayList<>();
         for (long questionId : questionsIds) {
             questions.add(repository.findById(questionId));

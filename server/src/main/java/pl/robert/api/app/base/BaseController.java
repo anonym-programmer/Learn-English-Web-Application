@@ -16,7 +16,7 @@ import pl.robert.api.app.user.domain.dto.ForgotUserCredentialsDto;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/base")
+@RequestMapping("api/base")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -24,7 +24,7 @@ class BaseController {
 
     UserFacade facade;
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public HttpEntity<?> register(@RequestBody @Valid CreateUserDto dto, BindingResult result) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
@@ -39,7 +39,7 @@ class BaseController {
                 .build();
     }
 
-    @GetMapping("/check-token")
+    @GetMapping("check-token")
     public HttpEntity<?> checkToken(@RequestParam("token") String token) {
         boolean isCorrect = facade.isTokenCorrect(token);
         if (!isCorrect) {
@@ -53,7 +53,7 @@ class BaseController {
                 .build();
     }
 
-    @GetMapping("/confirm-account")
+    @GetMapping("confirm-account")
     public HttpEntity<?> confirmAccount(@RequestParam("token") String confirmationToken) {
         boolean isCorrect = facade.confirmRegisterToken(confirmationToken);
         if (!isCorrect) {
@@ -67,7 +67,7 @@ class BaseController {
                 .build();
     }
 
-    @PostMapping("/forgot-credentials")
+    @PostMapping("forgot-credentials")
     public HttpEntity<?> receiveCredentials(@RequestBody @Valid ForgotUserCredentialsDto dto, BindingResult result) {
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {
@@ -82,7 +82,7 @@ class BaseController {
                 .build();
     }
 
-    @RequestMapping(value = "/reset-password", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "reset-password", method = {RequestMethod.GET, RequestMethod.POST})
     public HttpEntity<?> resetPassword(@RequestParam("token") String resetPasswordToken,
                                        @RequestBody @Valid ChangeUserPasswordDto dto, BindingResult result) {
         facade.checkInputData(dto, result);

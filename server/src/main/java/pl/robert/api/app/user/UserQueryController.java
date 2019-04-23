@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
 
 @RestController
-@RequestMapping("/api/user-query")
+@RequestMapping("api/user-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,17 +20,15 @@ class UserQueryController {
 
     @GetMapping
     public HttpEntity<?> dashboard() {
-        return ResponseEntity.status(200).body("Welcome user!");
+        return ResponseEntity.ok("Welcome user!");
     }
 
-    @GetMapping("/my-profile")
+    @GetMapping("my-profile")
     public HttpEntity<?> getUserOwnProfile(Authentication auth) {
-        return ResponseEntity
-                .ok()
-                .body(facade.queryUserOwnProfile(auth.getName()));
+        return ResponseEntity.ok(facade.queryUserOwnProfile(auth.getName()));
     }
 
-    @GetMapping("/profile/{username}")
+    @GetMapping("profile/{username}")
     public HttpEntity<?> getUserProfile(@PathVariable String username) {
         if (facade.isUsernameNotExists(username)) {
             return ResponseEntity
@@ -38,15 +36,11 @@ class UserQueryController {
                     .build();
         }
 
-        return ResponseEntity
-                .ok()
-                .body(facade.queryUserProfile(username));
+        return ResponseEntity.ok(facade.queryUserProfile(username));
     }
 
-    @GetMapping("/random-rival")
+    @GetMapping("random-rival")
     public HttpEntity<?> getRandomRival(Authentication auth) {
-        return ResponseEntity
-                .ok()
-                .body(facade.queryRandomUser(auth.getName()));
+        return ResponseEntity.ok(facade.queryRandomUser(auth.getName()));
     }
 }

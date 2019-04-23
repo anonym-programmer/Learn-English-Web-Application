@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.comment.domain.CommentFacade;
 
 @RestController
-@RequestMapping("/api/comment-query")
+@RequestMapping("api/comment-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -25,8 +25,6 @@ class CommentQueryController {
                     .build();
         }
 
-        return ResponseEntity
-                .ok()
-                .body(facade.queryCommentsByPost(Long.parseLong(id)));
+        return ResponseEntity.ok(facade.queryCommentsByPost(Long.parseLong(id)));
     }
 }

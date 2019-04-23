@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.robert.api.app.user.domain.UserFacade;
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("api/auth")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -28,8 +28,6 @@ class AuthQueryController {
                     .build();
         }
 
-        return ResponseEntity
-                .ok()
-                .body(facade.queryUserAuth(auth));
+        return ResponseEntity.ok(facade.queryUserAuth(auth));
     }
 }

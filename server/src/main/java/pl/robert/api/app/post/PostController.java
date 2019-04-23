@@ -15,7 +15,7 @@ import pl.robert.api.app.shared.ErrorsWrapper;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/api/post")
+@RequestMapping("api/post")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

@@ -17,21 +17,17 @@ import pl.robert.api.app.challenge.domain.ChallengeFacade;
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-public class ChallengeQueryController {
+class ChallengeQueryController {
 
     ChallengeFacade facade;
 
     @GetMapping("attacker-pending")
     public HttpEntity<?> findAttackerPendingChallenges(Authentication auth) {
-        return ResponseEntity
-                .ok()
-                .body(facade.queryAttackerPendingChallenges(auth.getName()));
+        return ResponseEntity.ok(facade.queryAttackerPendingChallenges(auth.getName()));
     }
 
     @GetMapping("defender-pending")
     public HttpEntity<?> findDefenderPendingChallenges(Authentication auth) {
-        return ResponseEntity
-                .ok()
-                .body(facade.queryDefenderPendingChallenges(auth.getName()));
+        return ResponseEntity.ok(facade.queryDefenderPendingChallenges(auth.getName()));
     }
 }

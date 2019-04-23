@@ -33,8 +33,8 @@ class UserService {
         return repository.findById(id).getRoles().size() == 1;
     }
 
-    boolean isUserByIdExist(long id) {
-        return repository.findById(id) != null;
+    boolean isUserByIdExist(Long id) {
+        return repository.findById(id).isPresent();
     }
 
     boolean isUsernameNotExist(String username) {
