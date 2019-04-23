@@ -32,9 +32,10 @@ import {AdminComponent} from './admin/admin.component';
 
 import {ChallengeComponent} from './challenge/challenge.component';
 import {MakeChallengeComponent} from './challenge/make-challenge/make-challenge.component';
-import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
-import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
 import {SubmitChallengeComponent} from './challenge/make-challenge/submit-challenge/submit-challenge.component';
+import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
+import {ListSubmitedChallengesComponent} from './challenge/list-submited-challenges/list-submited-challenges.component';
+import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
 
 import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
@@ -71,14 +72,15 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     AdminComponent,
     ChallengeComponent,
     MakeChallengeComponent,
+    SubmitChallengeComponent,
     ListPendingChallengesComponent,
-    ListCompletedChallengesComponent,
-    SubmitChallengeComponent
+    ListSubmitedChallengesComponent,
+    ListCompletedChallengesComponent
   ],
   entryComponents: [
+    AddPostComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
-    AddPostComponent
   ],
   imports: [
     BrowserModule,

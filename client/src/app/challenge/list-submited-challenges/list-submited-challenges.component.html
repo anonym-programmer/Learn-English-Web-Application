@@ -1,0 +1,26 @@
+<h1>Submited</h1>
+<hr/>
+<div *ngIf="submitedChallenges.length != 0">
+  <table class="table">
+    <thead class="table-primary">
+    <tr>
+      <th>#</th>
+      <th>Opponent name</th>
+      <th>Date</th>
+      <th>Time</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let submitedChallenge of submitedChallenges; let i = index">
+    <tr>
+      <td>{{i+1}}</td>
+      <td>{{submitedChallenge.opponentName}}</td>
+      <td>{{submitedChallenge.date}}</td>
+      <td>{{submitedChallenge.time}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="submitedChallenges.length == 0">
+  <p>No submited challenges!</p>
+</div>
+

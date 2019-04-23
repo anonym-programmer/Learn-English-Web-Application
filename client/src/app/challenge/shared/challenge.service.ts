@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {FormGroup} from "@angular/forms";
 import {SubmitChallengeDto} from "./submit-challenge-dto.model";
 import {Observable} from "rxjs";
+import {SubmitedChallengeQuery} from "./submited-challenge-query.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class ChallengeService {
   readonly makeUrl = '/api/challenge/make';
   readonly submitUrl = '/api/challenge/submit';
   readonly getRandomRivalUrl = '/api/user-query/random-rival';
+  readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';
 
   constructor(private http: HttpClient) {
   }
@@ -26,5 +28,9 @@ export class ChallengeService {
 
   getRandomRival(): Observable<string> {
     return this.http.get<string>(this.getRandomRivalUrl);
+  }
+
+  getSubmitedChallenges(): Observable<Array<SubmitedChallengeQuery>> {
+    return this.http.get(this.getSubmitedChallengesUrl);
   }
 }

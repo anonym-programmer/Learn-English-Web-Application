@@ -57,7 +57,7 @@ export class SubmitChallengeComponent implements OnInit {
       }, () => {
         this.sharedService.showFailureToastr('Something went wrong');
       }
-    )
+    );
   }
 
   close() {
