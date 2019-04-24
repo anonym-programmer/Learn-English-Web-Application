@@ -20,7 +20,7 @@ import static pl.robert.api.app.shared.Constants.COL_LENGTH_DATE;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-class Challenge {
+public class Challenge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

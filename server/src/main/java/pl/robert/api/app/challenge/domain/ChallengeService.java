@@ -9,7 +9,9 @@ import pl.robert.api.app.challenge.query.ChallengePendingQuery;
 import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
+import pl.robert.api.app.question.domain.Question;
 import pl.robert.api.app.question.domain.QuestionFacade;
+import pl.robert.api.app.question.query.QuestionQuery;
 import pl.robert.api.app.user.domain.UserFacade;
 
 import java.util.List;
@@ -85,6 +87,10 @@ class ChallengeService {
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
                 .collect(Collectors.toList()));
+    }
+
+    List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
+        return questionFacade.queryQuestionsOfDefenderChallengeId(repository.findById(Long.parseLong(challengeId)));
     }
 }
 

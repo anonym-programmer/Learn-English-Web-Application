@@ -3,9 +3,13 @@ package pl.robert.api.app.question.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.challenge.domain.Challenge;
 import pl.robert.api.app.question.query.QuestionQuery;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -30,6 +34,22 @@ class QuestionService {
                 .subList(0, 5));
     }
 
+    List<QuestionQuery> queryQuestionsOfDefenderChallengeId(Challenge challenge) {
+        return challenge.getQuestions()
+                .stream()
+                .map(question -> new QuestionQuery(
+                        question.getId(),
+                        question.getQuestion(),
+                        question.getAnswers().split(":", -1)))
+                .filter(distinctByKey(QuestionQuery::getQuestionId))
+                .collect(Collectors.toList());
+    }
+
+    private <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
+    }
+
     boolean areQuestionsExist(List<Long> questionsId) {
         return questionsId
                 .stream()
@@ -38,12 +58,12 @@ class QuestionService {
 
     char[] calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
         char[] correctAnswers = new char[5];
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             correctAnswers[i] = repository.findById(questionsId.get(i)).get().getCorrectAnswerShortForm().toString().charAt(0);
         }
 
         char[] myAnswers = new char[5];
-        for (int i=0; i<5; i++) {
+        for (int i = 0; i < 5; i++) {
             if (correctAnswers[i] == answers[i]) {
                 myAnswers[i] = '1';
             } else {

@@ -6,10 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
 
 @RestController
@@ -29,5 +26,10 @@ class ChallengeQueryController {
     @GetMapping("defender-pending")
     public HttpEntity<?> findDefenderPendingChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryDefenderPendingChallenges(auth.getName()));
+    }
+
+    @GetMapping("{challengeId}")
+    public HttpEntity<?> findQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
+        return ResponseEntity.ok(facade.queryQuestionsOfDefenderChallengeId(challengeId));
     }
 }

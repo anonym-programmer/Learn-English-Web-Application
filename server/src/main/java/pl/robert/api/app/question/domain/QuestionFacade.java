@@ -3,6 +3,7 @@ package pl.robert.api.app.question.domain;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.challenge.domain.Challenge;
 import pl.robert.api.app.question.query.QuestionQuery;
 
 import java.util.List;
@@ -27,5 +28,9 @@ public class QuestionFacade {
 
     public List<Question> getQuestionsByIds(List<Long> questionsIds) {
         return service.getQuestionsByIds(questionsIds);
+    }
+
+    public List<QuestionQuery> queryQuestionsOfDefenderChallengeId(Challenge challenge) {
+        return service.queryQuestionsOfDefenderChallengeId(challenge);
     }
 }
