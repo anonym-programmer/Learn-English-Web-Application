@@ -18,7 +18,7 @@
       <td>{{pendingChallenge.date}}</td>
       <td>{{pendingChallenge.time}}</td>
       <td>
-        <button class="btn btn-success btn-sm">Accept</button>&nbsp;
+        <button class="btn btn-success btn-sm" (click)="accept(pendingChallenge.id)">Accept</button>&nbsp;
         <button class="btn btn-danger btn-sm" (click)="decline(pendingChallenge.id)">Decline</button>
       </td>
     </tr>

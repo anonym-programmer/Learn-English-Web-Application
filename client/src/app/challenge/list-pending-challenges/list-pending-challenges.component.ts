@@ -3,6 +3,8 @@ import {ChallengeService} from "../shared/challenge.service";
 import {PendingChallengeQuery} from "../shared/pending-challenge-query.model";
 import {SharedService} from "../../shared/shared.service";
 import {Constants} from "../../shared/constants";
+import {MatDialog} from "@angular/material";
+import {SubmitPendingChallengeComponent} from "./submit-pending-challenge/submit-pending-challenge.component";
 
 @Component({
   selector: 'app-list-pending-challenges',
@@ -13,7 +15,8 @@ export class ListPendingChallengesComponent implements OnInit {
 
   pendingChallenges = new Array<PendingChallengeQuery>();
 
-  constructor(private challengeService: ChallengeService, private sharedService: SharedService) {
+  constructor(private challengeService: ChallengeService, private sharedService: SharedService,
+              public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -26,8 +29,18 @@ export class ListPendingChallengesComponent implements OnInit {
     })
   }
 
-  decline(id: string) {
-    this.challengeService.declinePendingChallenge(id).subscribe(() => {
+  accept(challengeId: string) {
+    this.challengeService.getPendingChallengeById(challengeId).subscribe((data) => {
+      this.dialog.open(SubmitPendingChallengeComponent, {
+        width: '40%',
+        height: '85%',
+        data: data
+      })
+    })
+  }
+
+  decline(challengeId: string) {
+    this.challengeService.declinePendingChallenge(challengeId).subscribe(() => {
       this.sharedService.showSuccessToastr(Constants.DECLINED_CHALLENGE);
       this.getPendingChallenges();
     }, () => {

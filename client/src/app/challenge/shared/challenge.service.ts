@@ -5,7 +5,6 @@ import {SubmitChallengeDto} from "./submit-challenge-dto.model";
 import {Observable} from "rxjs";
 import {SubmitedChallengeQuery} from "./submited-challenge-query.model";
 import {PendingChallengeQuery} from "./pending-challenge-query.model";
-import {QueryPost} from "../../forum/shared/query-post.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +17,7 @@ export class ChallengeService {
   readonly getPendingChallengesUrl = '/api/challenge-query/defender-pending';
   readonly declinePendingChallengeUrl = '/api/challenge/';
   readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';
+  readonly getPendingChallengeByIdUrl = '/api/challenge-query';
 
   constructor(private http: HttpClient) {
   }
@@ -38,11 +38,15 @@ export class ChallengeService {
     return this.http.get<Array<PendingChallengeQuery>>(this.getPendingChallengesUrl);
   }
 
-  declinePendingChallenge(id: string) {
-    return this.http.delete(this.declinePendingChallengeUrl + `/${id}`);
+  declinePendingChallenge(challengeId: string) {
+    return this.http.delete(this.declinePendingChallengeUrl + `/${challengeId}`);
   }
 
   getSubmitedChallenges(): Observable<Array<SubmitedChallengeQuery>> {
     return this.http.get<Array<SubmitedChallengeQuery>>(this.getSubmitedChallengesUrl);
+  }
+
+  getPendingChallengeById(challengeId: string): Observable<any> {
+    return this.http.get(this.getPendingChallengeByIdUrl + `/${challengeId}`);
   }
 }

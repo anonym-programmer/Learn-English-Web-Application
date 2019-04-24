@@ -33,6 +33,7 @@ import {AdminComponent} from './admin/admin.component';
 import {ChallengeComponent} from './challenge/challenge.component';
 import {MakeChallengeComponent} from './challenge/make-challenge/make-challenge.component';
 import {SubmitChallengeComponent} from './challenge/make-challenge/submit-challenge/submit-challenge.component';
+import {SubmitPendingChallengeComponent} from './challenge/list-pending-challenges/submit-pending-challenge/submit-pending-challenge.component';
 import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
 import {ListSubmitedChallengesComponent} from './challenge/list-submited-challenges/list-submited-challenges.component';
 import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
@@ -73,6 +74,7 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     ChallengeComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
+    SubmitPendingChallengeComponent,
     ListPendingChallengesComponent,
     ListSubmitedChallengesComponent,
     ListCompletedChallengesComponent
@@ -81,6 +83,7 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     AddPostComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
+    SubmitPendingChallengeComponent
   ],
   imports: [
     BrowserModule,
