@@ -10,9 +10,8 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ChallengePendingQuery {
+public class ChallengeSubmitedQuery {
 
-    String id;
     String opponentName;
     String date;
     String time;

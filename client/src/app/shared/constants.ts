@@ -31,4 +31,6 @@ export class Constants {
   public static readonly ACCOUNT_CONFIRMATION_MSG = 'Confirmation token has been sent to your email.' + '<br>' +
     'U\'ve got 15 minutes from now, after that token will expire' + '<br>' +
     'and u will be not able to log into application!';
+
+  public static readonly DECLINED_CHALLENGE = 'Declined challenge!';
 }

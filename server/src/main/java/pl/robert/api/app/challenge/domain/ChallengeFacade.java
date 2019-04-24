@@ -8,6 +8,7 @@ import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
+import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
 
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class ChallengeFacade {
         service.delete(id);
     }
 
-    public List<ChallengePendingQuery> queryAttackerPendingChallenges(String username) {
+    public List<ChallengeSubmitedQuery> queryAttackerPendingChallenges(String username) {
         return service.queryAttackerPendingChallenges(username);
     }
 

@@ -1,2 +1,30 @@
 <h1>Pending</h1>
 <hr/>
+<div *ngIf="pendingChallenges.length != 0">
+  <table class="table">
+    <thead class="table-primary">
+    <tr>
+      <th>#</th>
+      <th>Opponent name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th id="action">Action</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let pendingChallenge of pendingChallenges; let i = index">
+    <tr>
+      <td>{{i + 1}}</td>
+      <td>{{pendingChallenge.opponentName}}</td>
+      <td>{{pendingChallenge.date}}</td>
+      <td>{{pendingChallenge.time}}</td>
+      <td>
+        <button class="btn btn-success btn-sm">Accept</button>&nbsp;
+        <button class="btn btn-danger btn-sm" (click)="decline(pendingChallenge.id)">Decline</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="pendingChallenges.length == 0">
+  <p>No pending challenges!</p>
+</div>

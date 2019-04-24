@@ -4,6 +4,8 @@ import {FormGroup} from "@angular/forms";
 import {SubmitChallengeDto} from "./submit-challenge-dto.model";
 import {Observable} from "rxjs";
 import {SubmitedChallengeQuery} from "./submited-challenge-query.model";
+import {PendingChallengeQuery} from "./pending-challenge-query.model";
+import {QueryPost} from "../../forum/shared/query-post.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,8 @@ export class ChallengeService {
   readonly makeUrl = '/api/challenge/make';
   readonly submitUrl = '/api/challenge/submit';
   readonly getRandomRivalUrl = '/api/user-query/random-rival';
+  readonly getPendingChallengesUrl = '/api/challenge-query/defender-pending';
+  readonly declinePendingChallengeUrl = '/api/challenge/';
   readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';
 
   constructor(private http: HttpClient) {
@@ -30,7 +34,15 @@ export class ChallengeService {
     return this.http.get<string>(this.getRandomRivalUrl);
   }
 
+  getPendingChallenges(): Observable<Array<PendingChallengeQuery>> {
+    return this.http.get<Array<PendingChallengeQuery>>(this.getPendingChallengesUrl);
+  }
+
+  declinePendingChallenge(id: string) {
+    return this.http.delete(this.declinePendingChallengeUrl + `/${id}`);
+  }
+
   getSubmitedChallenges(): Observable<Array<SubmitedChallengeQuery>> {
-    return this.http.get(this.getSubmitedChallengesUrl);
+    return this.http.get<Array<SubmitedChallengeQuery>>(this.getSubmitedChallengesUrl);
   }
 }

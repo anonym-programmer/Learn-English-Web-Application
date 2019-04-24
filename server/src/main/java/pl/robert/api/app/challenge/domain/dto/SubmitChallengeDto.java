@@ -20,7 +20,7 @@ public class SubmitChallengeDto {
     @NotEmpty(message = M_DEFENDER_USERNAME_EMPTY)
     String defenderUsername;
 
-    final List<Long> questionsIds = new ArrayList<>();
+    final List<Long> questionsIds = new ArrayList<>(5);
 
     char[] answers = new char[5];
 }

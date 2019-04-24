@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
 
 @RestController
-@RequestMapping("/api/challenge-query")
+@RequestMapping("api/challenge-query")
 @CrossOrigin("http://localhost:4200")
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)

@@ -6,6 +6,7 @@ import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
+import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
@@ -59,13 +60,13 @@ class ChallengeService {
         return repository.findById(id).isEmpty();
     }
 
-    List<ChallengePendingQuery> queryAttackerPendingChallenges(String username) {
+    List<ChallengeSubmitedQuery> queryAttackerPendingChallenges(String username) {
         return List.copyOf(opponentFacade.findIdsOfAttackerPendingChallenges(userFacade.findUserByUsername(username).getId())
                 .stream()
                 .map(repository::findByAttackerId)
                 .collect(Collectors.toList())
                 .stream()
-                .map(challenge -> new ChallengePendingQuery(
+                .map(challenge -> new ChallengeSubmitedQuery(
                         challenge.getDefender().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
@@ -79,9 +80,36 @@ class ChallengeService {
                 .collect(Collectors.toList())
                 .stream()
                 .map(challenge -> new ChallengePendingQuery(
+                        String.valueOf(challenge.getId()),
                         challenge.getAttacker().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
                 .collect(Collectors.toList()));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
