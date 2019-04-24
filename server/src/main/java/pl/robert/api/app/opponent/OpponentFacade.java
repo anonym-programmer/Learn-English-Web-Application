@@ -24,4 +24,8 @@ public class OpponentFacade {
     public List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
         return service.findIdsOfDefenderPendingChallenges(defenderId);
     }
+
+    public void saveOpponent(Opponent opponent) {
+        service.saveOpponent(opponent);
+    }
 }

@@ -12,6 +12,7 @@ import pl.robert.api.app.challenge.domain.ChallengeFacade;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.shared.ErrorsWrapper;
 
@@ -65,6 +66,16 @@ class ChallengeController {
         }
 
         challengeFacade.delete(Long.parseLong(id));
+        return ResponseEntity
+                .ok()
+                .build();
+    }
+
+    @PostMapping("submit-pending")
+    public HttpEntity<?> submitPendingChallenge(@RequestBody SubmitPendingChallengeDto dto, Authentication auth) {
+        dto.setDefenderUsername(auth.getName());
+        challengeFacade.submitPendingChallenge(dto);
+
         return ResponseEntity
                 .ok()
                 .build();

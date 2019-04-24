@@ -3,8 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {QuestionQuery} from "../../shared/question-query.model";
 import {ChallengeService} from "../../shared/challenge.service";
 import {SharedService} from "../../../shared/shared.service";
-import {SubmitChallengeDto} from "../../shared/submit-challenge-dto.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SubmitPendingChallengeDto} from "../../shared/submit-pending-challenge-dto.model";
 
 @Component({
   selector: 'app-submit-pending-challenge',
@@ -13,7 +13,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class SubmitPendingChallengeComponent implements OnInit {
 
-  dto = new SubmitChallengeDto();
+  dto = new SubmitPendingChallengeDto();
   submitPendingChallengeForm: FormGroup;
 
   options: string[] = ['a', 'b', 'c', 'd'];
@@ -37,18 +37,27 @@ export class SubmitPendingChallengeComponent implements OnInit {
       'answer4': new FormControl(this.answer4, [Validators.required]),
       'answer5': new FormControl(this.answer5, [Validators.required]),
     });
+
+    this.dto.challengeId = this.questions[5];
   }
 
   onSubmit(submitPendingChallengeForm: FormGroup) {
     this.dto.questionsIds = [];
     this.dto.answers = [];
 
-    for (let i=0; i<5; i++) {
-      this.dto.questionsIds[i] = +submitPendingChallengeForm.controls[`answer${i+1}`].value.split(":", 1);
-      this.dto.answers[i] = submitPendingChallengeForm.controls[`answer${i+1}`].value.split(":", 2)[1];
+    for (let i = 0; i < 5; i++) {
+      this.dto.questionsIds[i] = +submitPendingChallengeForm.controls[`answer${i + 1}`].value.split(":", 1);
+      this.dto.answers[i] = submitPendingChallengeForm.controls[`answer${i + 1}`].value.split(":", 2)[1];
     }
 
-    
+    this.service.submitPendingChallenge(this.dto).subscribe(
+      () => {
+        this.close();
+        this.sharedService.showSuccessToastr('Successfully completed challenge');
+      }, () => {
+        this.sharedService.showFailureToastr('Something went wrong');
+      }
+    );
   }
 
   close() {

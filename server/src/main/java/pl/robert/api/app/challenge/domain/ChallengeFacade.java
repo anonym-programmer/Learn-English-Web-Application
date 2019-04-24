@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
 import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
 import pl.robert.api.app.question.query.QuestionQuery;
@@ -34,6 +35,10 @@ public class ChallengeFacade {
 
     public void add(SubmitChallengeDto dto) {
         service.add(dto);
+    }
+
+    public void submitPendingChallenge(SubmitPendingChallengeDto dto) {
+        service.submitPendingChallenge(dto);
     }
 
     public boolean isInputDataCorrect(DeleteChallengeDto dto) {

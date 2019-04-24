@@ -34,7 +34,7 @@ export class ListPendingChallengesComponent implements OnInit {
       this.dialog.open(SubmitPendingChallengeComponent, {
         width: '40%',
         height: '85%',
-        data: data
+        data: data.concat(challengeId)
       })
     })
   }

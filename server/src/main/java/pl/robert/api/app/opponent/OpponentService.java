@@ -24,4 +24,8 @@ class OpponentService {
     List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
         return repository.findIdsOfDefenderPendingChallenges(defenderId);
     }
+
+    void saveOpponent(Opponent opponent) {
+        repository.save(opponent);
+    }
 }

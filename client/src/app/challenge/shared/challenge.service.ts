@@ -5,6 +5,7 @@ import {SubmitChallengeDto} from "./submit-challenge-dto.model";
 import {Observable} from "rxjs";
 import {SubmitedChallengeQuery} from "./submited-challenge-query.model";
 import {PendingChallengeQuery} from "./pending-challenge-query.model";
+import {SubmitPendingChallengeDto} from "./submit-pending-challenge-dto.model";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class ChallengeService {
 
   readonly makeUrl = '/api/challenge/make';
   readonly submitUrl = '/api/challenge/submit';
+  readonly submitPendingChallengeUrl = '/api/challenge/submit-pending';
   readonly getRandomRivalUrl = '/api/user-query/random-rival';
   readonly getPendingChallengesUrl = '/api/challenge-query/defender-pending';
   readonly declinePendingChallengeUrl = '/api/challenge/';
@@ -28,6 +30,10 @@ export class ChallengeService {
 
   submit(data: SubmitChallengeDto) {
     return this.http.post(this.submitUrl, data);
+  }
+
+  submitPendingChallenge(data: SubmitPendingChallengeDto) {
+    return this.http.post(this.submitPendingChallengeUrl, data);
   }
 
   getRandomRival(): Observable<string> {
