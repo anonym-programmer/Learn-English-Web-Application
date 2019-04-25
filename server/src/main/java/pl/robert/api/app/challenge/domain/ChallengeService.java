@@ -9,7 +9,6 @@ import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
 import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
 import pl.robert.api.app.opponent.OpponentFacade;
-import pl.robert.api.app.opponent.OpponentResult;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.question.query.QuestionQuery;
@@ -49,28 +48,11 @@ class ChallengeService {
 
     void submitPendingChallenge(SubmitPendingChallengeDto dto) {
         Challenge challenge = repository.findById(Long.parseLong(dto.getChallengeId()));
+
         challenge.getDefender().setMyAnswers(transformAnswers(dto.getAnswers()));
         challenge.getDefender().setAnswersStatus(calculateCorrectAnswers(dto.getAnswers(), dto.getQuestionsIds()));
 
-        int attackerCorrectAnswers = countCorrectAnswers(challenge.getAttacker().getAnswersStatus());
-        int defenderCorrectAnswers = countCorrectAnswers(challenge.getDefender().getAnswersStatus());
-
-        if (attackerCorrectAnswers > defenderCorrectAnswers) {
-            challenge.getAttacker().setResult(OpponentResult.WIN);
-            challenge.getDefender().setResult(OpponentResult.LOSE);
-        } else if (attackerCorrectAnswers < defenderCorrectAnswers) {
-            challenge.getAttacker().setResult(OpponentResult.LOSE);
-            challenge.getDefender().setResult(OpponentResult.WIN);
-        } else {
-            challenge.getAttacker().setResult(OpponentResult.DRAW);
-            challenge.getDefender().setResult(OpponentResult.DRAW);
-        }
-
-        challenge.getAttacker().setGainedXP(String.valueOf(attackerCorrectAnswers * 15));
-        challenge.getDefender().setGainedXP(String.valueOf(defenderCorrectAnswers * 15));
-
-        opponentFacade.saveOpponent(challenge.getAttacker());
-        opponentFacade.saveOpponent(challenge.getDefender());
+        opponentFacade.updateAndSaveOpponentsAfterChallenge(challenge.getAttacker(), challenge.getDefender());
 
         challenge.setStatus(ChallengeStatus.COMPLETED);
         repository.save(challenge);
@@ -82,10 +64,6 @@ class ChallengeService {
 
     private String calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
         return transformAnswers(questionFacade.calculateCorrectAnswers(answers, questionsId));
-    }
-
-    private int countCorrectAnswers(String answerStatus) {
-        return answerStatus.length() - answerStatus.replace("1", "").length();
     }
 
     void delete(long id) {
@@ -127,29 +105,3 @@ class ChallengeService {
         return questionFacade.queryQuestionsOfDefenderChallengeId(repository.findById(Long.parseLong(challengeId)));
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

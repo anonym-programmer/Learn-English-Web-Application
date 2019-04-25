@@ -5,6 +5,7 @@ import {SubmitChallengeDto} from "../../shared/submit-challenge-dto.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ChallengeService} from "../../shared/challenge.service";
 import {SharedService} from "../../../shared/shared.service";
+import {Constants} from "../../../shared/constants";
 
 @Component({
   selector: 'app-submit-challenge',
@@ -18,24 +19,19 @@ export class SubmitChallengeComponent implements OnInit {
 
   options: string[] = ['a', 'b', 'c', 'd'];
 
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  answer4: string;
-  answer5: string;
-
   constructor(public dialogRef: MatDialogRef<SubmitChallengeComponent>,
               @Inject(MAT_DIALOG_DATA) public questions: Array<QuestionQuery>,
               private service: ChallengeService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
+    this.dto.answers = [];
     this.submitChallengeForm = new FormGroup({
-      'answer1': new FormControl(this.answer1, [Validators.required]),
-      'answer2': new FormControl(this.answer2, [Validators.required]),
-      'answer3': new FormControl(this.answer3, [Validators.required]),
-      'answer4': new FormControl(this.answer4, [Validators.required]),
-      'answer5': new FormControl(this.answer5, [Validators.required]),
+      'answer1': new FormControl(this.dto.answers[0], [Validators.required]),
+      'answer2': new FormControl(this.dto.answers[1], [Validators.required]),
+      'answer3': new FormControl(this.dto.answers[2], [Validators.required]),
+      'answer4': new FormControl(this.dto.answers[3], [Validators.required]),
+      'answer5': new FormControl(this.dto.answers[4], [Validators.required]),
     });
 
     this.dto.defenderUsername = this.questions[5];
@@ -43,19 +39,18 @@ export class SubmitChallengeComponent implements OnInit {
 
   onSubmit(submitChallengeForm: FormGroup) {
     this.dto.questionsIds = [];
-    this.dto.answers = [];
 
-    for (let i=0; i<5; i++) {
-      this.dto.questionsIds[i] = +submitChallengeForm.controls[`answer${i+1}`].value.split(":", 1);
-      this.dto.answers[i] = submitChallengeForm.controls[`answer${i+1}`].value.split(":", 2)[1];
+    for (let i = 0; i < 5; i++) {
+      this.dto.questionsIds[i] = +submitChallengeForm.controls[`answer${i + 1}`].value.split(":", 1);
+      this.dto.answers[i] = submitChallengeForm.controls[`answer${i + 1}`].value.split(":", 2)[1];
     }
 
     this.service.submit(this.dto).subscribe(
       () => {
         this.close();
-        this.sharedService.showSuccessToastr('Successfully challenged person');
+        this.sharedService.showSuccessToastr(Constants.CHALLENGED_PERSON);
       }, () => {
-        this.sharedService.showFailureToastr('Something went wrong');
+        this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
       }
     );
   }

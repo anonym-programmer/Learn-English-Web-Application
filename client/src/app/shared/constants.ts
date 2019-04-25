@@ -33,4 +33,6 @@ export class Constants {
     'and u will be not able to log into application!';
 
   public static readonly DECLINED_CHALLENGE = 'Declined challenge!';
+  public static readonly CHALLENGED_PERSON = 'Successfully challenged person!';
+  public static readonly COMPLETED_CHALLENGE = 'Successfully completed challenge!';
 }

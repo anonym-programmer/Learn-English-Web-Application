@@ -5,6 +5,7 @@ import {ChallengeService} from "../../shared/challenge.service";
 import {SharedService} from "../../../shared/shared.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SubmitPendingChallengeDto} from "../../shared/submit-pending-challenge-dto.model";
+import {Constants} from "../../../shared/constants";
 
 @Component({
   selector: 'app-submit-pending-challenge',
@@ -18,24 +19,19 @@ export class SubmitPendingChallengeComponent implements OnInit {
 
   options: string[] = ['a', 'b', 'c', 'd'];
 
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  answer4: string;
-  answer5: string;
-
   constructor(public dialogRef: MatDialogRef<SubmitPendingChallengeComponent>,
               @Inject(MAT_DIALOG_DATA) public questions: Array<QuestionQuery>,
               private service: ChallengeService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
+    this.dto.answers = [];
     this.submitPendingChallengeForm = new FormGroup({
-      'answer1': new FormControl(this.answer1, [Validators.required]),
-      'answer2': new FormControl(this.answer2, [Validators.required]),
-      'answer3': new FormControl(this.answer3, [Validators.required]),
-      'answer4': new FormControl(this.answer4, [Validators.required]),
-      'answer5': new FormControl(this.answer5, [Validators.required]),
+      'answer1': new FormControl(this.dto.answers[0], [Validators.required]),
+      'answer2': new FormControl(this.dto.answers[1], [Validators.required]),
+      'answer3': new FormControl(this.dto.answers[2], [Validators.required]),
+      'answer4': new FormControl(this.dto.answers[3], [Validators.required]),
+      'answer5': new FormControl(this.dto.answers[4], [Validators.required]),
     });
 
     this.dto.challengeId = this.questions[5];
@@ -43,7 +39,6 @@ export class SubmitPendingChallengeComponent implements OnInit {
 
   onSubmit(submitPendingChallengeForm: FormGroup) {
     this.dto.questionsIds = [];
-    this.dto.answers = [];
 
     for (let i = 0; i < 5; i++) {
       this.dto.questionsIds[i] = +submitPendingChallengeForm.controls[`answer${i + 1}`].value.split(":", 1);
@@ -53,9 +48,9 @@ export class SubmitPendingChallengeComponent implements OnInit {
     this.service.submitPendingChallenge(this.dto).subscribe(
       () => {
         this.close();
-        this.sharedService.showSuccessToastr('Successfully completed challenge');
+        this.sharedService.showSuccessToastr(Constants.COMPLETED_CHALLENGE);
       }, () => {
-        this.sharedService.showFailureToastr('Something went wrong');
+        this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
       }
     );
   }

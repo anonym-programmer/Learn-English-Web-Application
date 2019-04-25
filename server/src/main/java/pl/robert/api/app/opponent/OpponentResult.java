@@ -1,6 +1,6 @@
 package pl.robert.api.app.opponent;
 
-public enum OpponentResult {
+enum OpponentResult {
     WIN,
     LOSE,
     DRAW,
