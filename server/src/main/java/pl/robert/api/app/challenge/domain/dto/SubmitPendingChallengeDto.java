@@ -21,5 +21,5 @@ public class SubmitPendingChallengeDto {
 
     final List<Long> questionsIds = new ArrayList<>(5);
 
-    char[] answers = new char[5];
+    List<Character> answers = new ArrayList<>(5);
 }

@@ -59,11 +59,14 @@ class ChallengeService {
         repository.save(challenge);
     }
 
-    private String transformAnswers(char[] answers) {
-        return new String(answers).replaceAll(".(?!$)", "$0:");
+    private String transformAnswers(List<Character> answers) {
+        return answers.toString()
+                .substring(1, 3 * answers.size() - 1)
+                .replaceAll(", ", "")
+                .replaceAll(".(?!$)", "$0:");
     }
 
-    private String calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
+    private String calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
         return transformAnswers(questionFacade.calculateCorrectAnswers(answers, questionsId));
     }
 

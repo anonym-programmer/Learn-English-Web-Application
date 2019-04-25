@@ -56,29 +56,32 @@ class QuestionService {
                 .noneMatch(questionId -> repository.findById(questionId).isEmpty());
     }
 
-    char[] calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
-        char[] correctAnswers = new char[5];
-        for (int i = 0; i < 5; i++) {
-            correctAnswers[i] = repository.findById(questionsId.get(i)).get().getCorrectAnswerShortForm().toString().charAt(0);
-        }
+    List<Character> calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
+        List<Character> correctAnswers = questionsId
+                .stream()
+                .map(repository::findById)
+                .collect(Collectors.toList())
+                .stream()
+                .filter(Optional::isPresent)
+                .map(correctAnswer -> correctAnswer.get().getCorrectAnswerShortForm().toString().charAt(0))
+                .collect(Collectors.toList());
 
-        char[] myAnswers = new char[5];
+        List<Character> myAnswers = new ArrayList<>(5);
         for (int i = 0; i < 5; i++) {
-            if (correctAnswers[i] == answers[i]) {
-                myAnswers[i] = '1';
-            } else {
-                myAnswers[i] = '0';
-            }
+            if (correctAnswers.get(i) == answers.get(i)) myAnswers.add('1');
+            else myAnswers.add('0');
         }
 
         return myAnswers;
     }
 
     List<Question> getQuestionsByIds(List<Long> questionsIds) {
-        List<Question> questions = new ArrayList<>();
-        for (long questionId : questionsIds) {
-            questions.add(repository.findById(questionId));
-        }
-        return questions;
+        return List.copyOf(questionsIds
+                .stream()
+                .map(repository::findById)
+                .collect(Collectors.toList())
+                .stream()
+                .map(Optional::get)
+                .collect(Collectors.toList()));
     }
 }

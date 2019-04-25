@@ -22,7 +22,7 @@ public class QuestionFacade {
         return service.areQuestionsExist(questionsId);
     }
 
-    public char[] calculateCorrectAnswers(char[] answers, List<Long> questionsId) {
+    public List<Character> calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
         return service.calculateCorrectAnswers(answers, questionsId);
     }
 
