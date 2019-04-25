@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CompletedChallengeQuery} from "../shared/completed-challenge-query.model";
+import {ChallengeService} from "../shared/challenge.service";
 
 @Component({
   selector: 'app-list-completed-challenges',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListCompletedChallengesComponent implements OnInit {
 
-  constructor() { }
+  completedChallenges = new Array<CompletedChallengeQuery>();
 
-  ngOnInit() {
+  constructor(private challengeService: ChallengeService) {
   }
 
+  ngOnInit() {
+    this.getCompletedChallenges();
+  }
+
+  getCompletedChallenges() {
+    this.challengeService.getCompletedChallenges().subscribe(data => {
+      this.completedChallenges = data;
+    });
+  }
 }

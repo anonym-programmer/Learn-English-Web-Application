@@ -1,2 +1,29 @@
 <h1>Completed</h1>
 <hr/>
+<div *ngIf="completedChallenges.length != 0">
+  <table class="table">
+    <thead class="table-primary">
+    <tr>
+      <th>#</th>
+      <th>Opponent name</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Result</th>
+      <th>Details</th>
+    </tr>
+    </thead>
+    <tbody *ngFor="let completedChallenge of completedChallenges; let i = index">
+    <tr>
+      <td>{{i + 1}}</td>
+      <td>{{completedChallenge.opponentName}}</td>
+      <td>{{completedChallenge.date}}</td>
+      <td>{{completedChallenge.time}}</td>
+      <td>{{completedChallenge.result}}</td>
+      <td><button class="btn btn-info btn-s">View</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="completedChallenges.length == 0">
+  <p>No completed challenges!</p>
+</div>

@@ -8,6 +8,7 @@ import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
 import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
+import pl.robert.api.app.challenge.query.CompletedChallengeQuery;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
@@ -103,5 +104,24 @@ class ChallengeService {
 
     List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
         return questionFacade.queryQuestionsOfDefenderChallengeId(repository.findById(Long.parseLong(challengeId)));
+    }
+
+    List<CompletedChallengeQuery> queryCompletedChallenges(String username) {
+        return List.copyOf(opponentFacade.findIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId())
+                .stream()
+                .map(repository::findByDefenderOrAttackerId)
+                .collect(Collectors.toList())
+                .stream()
+                .map(challenge -> new CompletedChallengeQuery(
+                        String.valueOf(challenge.getId()),
+                        challenge.getDefender().getUser().getUsername().equals(username) ?
+                                challenge.getAttacker().getUser().getUsername() :
+                                challenge.getDefender().getUser().getUsername(),
+                        String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
+                        String.valueOf(challenge.getDateOfCreation()).substring(11, 19),
+                        challenge.getDefender().getUser().getUsername().equals(username) ?
+                                String.valueOf(challenge.getDefender().getResult()) :
+                                String.valueOf(challenge.getAttacker().getResult())))
+                .collect(Collectors.toList()));
     }
 }

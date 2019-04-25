@@ -25,6 +25,10 @@ public class OpponentFacade {
         return service.findIdsOfDefenderPendingChallenges(defenderId);
     }
 
+    public List<Long> findIdsOfUserCompletedChallenges(long userId) {
+        return service.findIdsOfUserCompletedChallenges(userId);
+    }
+
     public void updateAndSaveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {
         service.updateAndSaveOpponentsAfterChallenge(attacker, defender);
     }

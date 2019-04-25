@@ -28,8 +28,13 @@ class ChallengeQueryController {
         return ResponseEntity.ok(facade.queryDefenderPendingChallenges(auth.getName()));
     }
 
-    @GetMapping("{challengeId}")
+    @GetMapping("defender-pending/{challengeId}")
     public HttpEntity<?> findQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
         return ResponseEntity.ok(facade.queryQuestionsOfDefenderChallengeId(challengeId));
+    }
+
+    @GetMapping("completed")
+    public HttpEntity<?> findCompletedChallenges(Authentication auth) {
+        return ResponseEntity.ok(facade.queryCompletedChallenges(auth.getName()));
     }
 }

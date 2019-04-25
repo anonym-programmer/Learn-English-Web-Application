@@ -1,3 +1,11 @@
 h1 {
   font-weight: bold;
 }
+
+table {
+  opacity: 0.85;
+}
+
+tbody {
+  background-color: #FFFFFF;
+}

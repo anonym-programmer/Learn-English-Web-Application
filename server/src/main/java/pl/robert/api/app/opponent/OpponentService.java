@@ -25,6 +25,10 @@ class OpponentService {
         return repository.findIdsOfDefenderPendingChallenges(defenderId);
     }
 
+    List<Long> findIdsOfUserCompletedChallenges(long userId) {
+        return repository.findIdsOfUserCompletedChallenges(userId);
+    }
+
     void updateAndSaveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {
         int attackerCorrectAnswers = countCorrectAnswers(attacker.getAnswersStatus());
         int defenderCorrectAnswers = countCorrectAnswers(defender.getAnswersStatus());
