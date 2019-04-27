@@ -1,0 +1,39 @@
+.my-info {
+  text-align: center;
+  font-weight: bold;
+}
+
+#result {
+  color: indigo;
+}
+
+#username, #score, #answers {
+  text-align: right;
+}
+
+#username, #opponentUsername {
+  color: #034f84;
+}
+
+.fa-check-circle, #gainedXP-text {
+  color: #5cb85c;
+}
+
+.fa-times-circle {
+  color: #D8000C;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 -15px 0;
+}
+
+#gainedXP {
+  margin-top: 40px;
+}
+
+button {
+  margin: 20px auto;
+  display: block;
+}

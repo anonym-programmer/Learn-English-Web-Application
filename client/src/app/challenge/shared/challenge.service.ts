@@ -22,6 +22,7 @@ export class ChallengeService {
   readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';
   readonly getPendingChallengeByIdUrl = '/api/challenge-query/defender-pending';
   readonly getCompletedChallengesUrl = '/api/challenge-query/completed';
+  readonly getCompleteChallengeDetailsByIdUrl = '/api/challenge-query/completed';
 
   constructor(private http: HttpClient) {
   }
@@ -60,5 +61,9 @@ export class ChallengeService {
 
   getCompletedChallenges(): Observable<Array<CompletedChallengeQuery>> {
     return this.http.get<Array<CompletedChallengeQuery>>(this.getCompletedChallengesUrl);
+  }
+
+  getCompletedChallengeDetailsById(challengeId: string) {
+    return this.http.get(this.getCompleteChallengeDetailsByIdUrl + `/${challengeId}`);
   }
 }

@@ -1,11 +1,14 @@
 package pl.robert.api.app.opponent;
 
+import com.google.common.primitives.Chars;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -62,5 +65,9 @@ class OpponentService {
             case "DRAW": return "YOU DREW";
         }
         return null;
+    }
+
+    List<Character> transformAnswersStatus(String answersStatus) {
+        return Chars.asList(answersStatus.replaceAll("[^10]", "").toCharArray());
     }
 }

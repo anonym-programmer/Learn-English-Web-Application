@@ -145,9 +145,9 @@ class ChallengeService {
                     .username(attacker.getUser().getUsername())
                     .opponentUsername(defender.getUser().getUsername())
                     .gainedXP(attacker.getGainedXP())
-                    .answersStatus(attacker.getAnswersStatus())
+                    .answersStatus(opponentFacade.transformAnswersStatus(attacker.getAnswersStatus()))
+                    .opponentAnswersStatus(opponentFacade.transformAnswersStatus(defender.getAnswersStatus()))
                     .build();
-
         }
 
         return CompletedChallengeDetailsQuery.builder()
@@ -158,7 +158,8 @@ class ChallengeService {
                 .username(defender.getUser().getUsername())
                 .opponentUsername(attacker.getUser().getUsername())
                 .gainedXP(defender.getGainedXP())
-                .answersStatus(defender.getAnswersStatus())
+                .answersStatus(opponentFacade.transformAnswersStatus(defender.getAnswersStatus()))
+                .opponentAnswersStatus(opponentFacade.transformAnswersStatus(attacker.getAnswersStatus()))
                 .build();
     }
 

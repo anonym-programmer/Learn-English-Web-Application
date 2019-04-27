@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
+;
+import java.util.List;
 
 @Getter
 @Builder
@@ -19,5 +21,6 @@ public class CompletedChallengeDetailsQuery {
     String username;
     String opponentUsername;
     String gainedXP;
-    String answersStatus;
+    List<Character> answersStatus;
+    List<Character> opponentAnswersStatus;
 }

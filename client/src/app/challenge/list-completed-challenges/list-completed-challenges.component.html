@@ -19,7 +19,7 @@
       <td>{{completedChallenge.date}}</td>
       <td>{{completedChallenge.time}}</td>
       <td>{{completedChallenge.result}}</td>
-      <td><button class="btn btn-info btn-s">View</button></td>
+      <td><button class="btn btn-info btn-sm" (click)="viewDetails(completedChallenge.id)">View</button></td>
     </tr>
     </tbody>
   </table>

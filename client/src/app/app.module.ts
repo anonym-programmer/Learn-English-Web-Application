@@ -37,6 +37,7 @@ import {SubmitPendingChallengeComponent} from './challenge/list-pending-challeng
 import {ListPendingChallengesComponent} from './challenge/list-pending-challenges/list-pending-challenges.component';
 import {ListSubmitedChallengesComponent} from './challenge/list-submited-challenges/list-submited-challenges.component';
 import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
+import {ShowCompletedChallengeDetailsComponent} from './challenge/list-completed-challenges/show-completed-challenge-details/show-completed-challenge-details.component';
 
 import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
@@ -77,13 +78,15 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     SubmitPendingChallengeComponent,
     ListPendingChallengesComponent,
     ListSubmitedChallengesComponent,
-    ListCompletedChallengesComponent
+    ListCompletedChallengesComponent,
+    ShowCompletedChallengeDetailsComponent
   ],
   entryComponents: [
     AddPostComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
-    SubmitPendingChallengeComponent
+    SubmitPendingChallengeComponent,
+    ShowCompletedChallengeDetailsComponent
   ],
   imports: [
     BrowserModule,

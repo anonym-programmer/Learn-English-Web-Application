@@ -40,4 +40,8 @@ public class OpponentFacade {
     public int countCorrectAnswers(String answerStatus) {
         return service.countCorrectAnswers(answerStatus);
     }
+
+    public List<Character> transformAnswersStatus(String answersStatus) {
+        return service.transformAnswersStatus(answersStatus);
+    }
 }
