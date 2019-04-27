@@ -51,7 +51,16 @@ class OpponentService {
         repository.save(defender);
     }
 
-    private int countCorrectAnswers(String answerStatus) {
+    int countCorrectAnswers(String answerStatus) {
         return answerStatus.length() - answerStatus.replace("1", "").length();
+    }
+
+    String transformResult(String result) {
+        switch (result) {
+            case "WIN": return "YOU WON";
+            case "LOSE": return "YOU LOST";
+            case "DRAW": return "YOU DREW";
+        }
+        return null;
     }
 }

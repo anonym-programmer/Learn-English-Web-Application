@@ -32,4 +32,12 @@ public class OpponentFacade {
     public void updateAndSaveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {
         service.updateAndSaveOpponentsAfterChallenge(attacker, defender);
     }
+
+    public String transformResult(String result) {
+        return service.transformResult(result);
+    }
+
+    public int countCorrectAnswers(String answerStatus) {
+        return service.countCorrectAnswers(answerStatus);
+    }
 }

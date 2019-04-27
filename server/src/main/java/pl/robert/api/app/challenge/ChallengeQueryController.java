@@ -37,4 +37,9 @@ class ChallengeQueryController {
     public HttpEntity<?> findCompletedChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallenges(auth.getName()));
     }
+
+    @GetMapping("completed/{challengeId}")
+    public HttpEntity<?> findCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
+        return ResponseEntity.ok(facade.queryCompletedChallengeDetailsByChallengeId(challengeId, auth.getName()));
+    }
 }

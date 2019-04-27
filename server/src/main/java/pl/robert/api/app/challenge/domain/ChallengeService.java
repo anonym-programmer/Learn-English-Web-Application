@@ -8,7 +8,9 @@ import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.challenge.query.ChallengePendingQuery;
 import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
+import pl.robert.api.app.challenge.query.CompletedChallengeDetailsQuery;
 import pl.robert.api.app.challenge.query.CompletedChallengeQuery;
+import pl.robert.api.app.opponent.Opponent;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
@@ -126,5 +128,41 @@ class ChallengeService {
                                 String.valueOf(challenge.getDefender().getResult()) :
                                 String.valueOf(challenge.getAttacker().getResult())))
                 .collect(Collectors.toList()));
+    }
+
+    CompletedChallengeDetailsQuery queryCompletedChallengeDetailsByChallengeId(String challengeId, String username) {
+        Challenge challenge = repository.findById(Long.parseLong(challengeId));
+
+        Opponent attacker = challenge.getAttacker();
+        Opponent defender = challenge.getDefender();
+
+        if (isUsernameEqualsAttackerUsername(username, challenge.getAttacker().getUser().getUsername())) {
+            return CompletedChallengeDetailsQuery.builder()
+                    .id(challengeId)
+                    .result(opponentFacade.transformResult(String.valueOf(attacker.getResult())))
+                    .score(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(attacker.getAnswersStatus()))))
+                    .opponentScore(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(defender.getAnswersStatus()))))
+                    .username(attacker.getUser().getUsername())
+                    .opponentUsername(defender.getUser().getUsername())
+                    .gainedXP(attacker.getGainedXP())
+                    .answersStatus(attacker.getAnswersStatus())
+                    .build();
+
+        }
+
+        return CompletedChallengeDetailsQuery.builder()
+                .id(challengeId)
+                .result(opponentFacade.transformResult(String.valueOf(defender.getResult())))
+                .score(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(defender.getAnswersStatus()))))
+                .opponentScore(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(attacker.getAnswersStatus()))))
+                .username(defender.getUser().getUsername())
+                .opponentUsername(attacker.getUser().getUsername())
+                .gainedXP(defender.getGainedXP())
+                .answersStatus(defender.getAnswersStatus())
+                .build();
+    }
+
+    private boolean isUsernameEqualsAttackerUsername(String username, String attackerUsername) {
+        return username.equals(attackerUsername);
     }
 }
