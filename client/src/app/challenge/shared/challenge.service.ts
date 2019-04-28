@@ -1,12 +1,12 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {FormGroup} from "@angular/forms";
-import {SubmitChallengeDto} from "./submit-challenge-dto.model";
-import {Observable} from "rxjs";
-import {SubmitedChallengeQuery} from "./submited-challenge-query.model";
-import {PendingChallengeQuery} from "./pending-challenge-query.model";
-import {SubmitPendingChallengeDto} from "./submit-pending-challenge-dto.model";
-import {CompletedChallengeQuery} from "./completed-challenge-query.model";
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {FormGroup} from '@angular/forms';
+import {SubmitChallengeDto} from './submit-challenge-dto.model';
+import {Observable} from 'rxjs';
+import {SubmitedChallengeQuery} from './submited-challenge-query.model';
+import {PendingChallengeQuery} from './pending-challenge-query.model';
+import {SubmitPendingChallengeDto} from './submit-pending-challenge-dto.model';
+import {CompletedChallengeQuery} from './completed-challenge-query.model';
 
 @Injectable({
   providedIn: 'root'

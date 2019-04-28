@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {QuestionQuery} from "../../shared/question-query.model";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {SubmitChallengeDto} from "../../shared/submit-challenge-dto.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ChallengeService} from "../../shared/challenge.service";
-import {SharedService} from "../../../shared/shared.service";
-import {Constants} from "../../../shared/constants";
+import {QuestionQuery} from '../../shared/question-query.model';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {SubmitChallengeDto} from '../../shared/submit-challenge-dto.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ChallengeService} from '../../shared/challenge.service';
+import {SharedService} from '../../../shared/shared.service';
+import {Constants} from '../../../shared/constants';
 
 @Component({
   selector: 'app-submit-challenge',
@@ -21,7 +21,7 @@ export class SubmitChallengeComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<SubmitChallengeComponent>,
               @Inject(MAT_DIALOG_DATA) public questions: Array<QuestionQuery>,
-              private service: ChallengeService, private sharedService: SharedService) {
+              private challengeService: ChallengeService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -45,7 +45,7 @@ export class SubmitChallengeComponent implements OnInit {
       this.dto.answers[i] = submitChallengeForm.controls[`answer${i + 1}`].value.split(":", 2)[1];
     }
 
-    this.service.submit(this.dto).subscribe(
+    this.challengeService.submit(this.dto).subscribe(
       () => {
         this.close();
         this.sharedService.showSuccessToastr(Constants.CHALLENGED_PERSON);

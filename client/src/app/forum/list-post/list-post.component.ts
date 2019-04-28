@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ForumService} from '../shared/forum.service';
 import {QueryPost} from '../shared/query-post.model';
 import {AuthService} from '../../auth/auth.service';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-list-post',
@@ -34,7 +34,7 @@ export class ListPostComponent implements OnInit {
     this.forumService.getPosts(this.page).subscribe(data => {
       this.posts = data['content'];
       this.pages = new Array(data['totalPages']);
-    })
+    });
   }
 
   votePost(id: string, type: string) {
@@ -45,6 +45,6 @@ export class ListPostComponent implements OnInit {
       }, error => {
         this.sharedService.showFailureToastr(error.error['type']);
       }
-    )
+    );
   }
 }

@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {QueryUser} from "./shared/query-user.model";
-import {AdminService} from "./shared/admin.service";
-import {SharedService} from "../shared/shared.service";
-import {Constants} from "../shared/constants";
+import {QueryUser} from './shared/query-user.model';
+import {AdminService} from './shared/admin.service';
+import {SharedService} from '../shared/shared.service';
+import {Constants} from '../shared/constants';
 
 @Component({
   selector: 'app-admin',
@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit {
     this.adminService.getUsers(this.page).subscribe(data => {
       this.users = data['content'];
       this.pages = new Array(data['totalPages']);
-    })
+    });
   }
 
   deleteUser(id: string) {

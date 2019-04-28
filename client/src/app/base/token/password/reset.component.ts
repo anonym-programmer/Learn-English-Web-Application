@@ -3,8 +3,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../shared/base.service';
 import {CreateUserDto} from '../../shared/create-user-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SharedService} from "../../../shared/shared.service";
-import {Constants} from "../../../shared/constants";
+import {SharedService} from '../../../shared/shared.service';
+import {Constants} from '../../../shared/constants';
 
 @Component({
   selector: 'app-reset',
@@ -17,7 +17,7 @@ export class ResetComponent implements OnInit {
   dtoError = new CreateUserDto();
   resetForm: FormGroup;
 
-  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute,
+  constructor(private router: Router, private route: ActivatedRoute, private service: BaseService,
               private sharedService: SharedService) {
   }
 
@@ -29,8 +29,7 @@ export class ResetComponent implements OnInit {
     this.route.queryParams.subscribe(queryParams => {
       const token = queryParams['token'];
       this.service.checkToken(token).subscribe(() => {
-        },
-        () => {
+        }, () => {
           this.router.navigate(['/']);
           this.sharedService.showErrorAlert(
             Constants.FAILURE_TITLE,
@@ -38,7 +37,7 @@ export class ResetComponent implements OnInit {
           );
         }
       );
-    })
+    });
   }
 
   get password() {
@@ -59,8 +58,7 @@ export class ResetComponent implements OnInit {
             Constants.CHANGED_PASSWORD
           );
           this.router.navigate(['/']);
-        },
-        error => {
+        }, error => {
           this.sharedService.showFailureToastr(
             Constants.INVALID_FIELDS
           );
@@ -75,6 +73,6 @@ export class ResetComponent implements OnInit {
           }
         }
       );
-    })
+    });
   }
 }

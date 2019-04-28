@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
 import {CreateUserDto} from '../shared/create-user-dto.model';
 import {FormGroup, FormControl, Validators, AbstractControl} from '@angular/forms';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-register',

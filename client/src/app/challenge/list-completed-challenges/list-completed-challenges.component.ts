@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {CompletedChallengeQuery} from "../shared/completed-challenge-query.model";
-import {ChallengeService} from "../shared/challenge.service";
-import {MatDialog} from "@angular/material";
-import {ShowCompletedChallengeDetailsComponent} from "./show-completed-challenge-details/show-completed-challenge-details.component";
+import {CompletedChallengeQuery} from '../shared/completed-challenge-query.model';
+import {ChallengeService} from '../shared/challenge.service';
+import {MatDialog} from '@angular/material';
+import {ShowCompletedChallengeDetailsComponent} from './show-completed-challenge-details/show-completed-challenge-details.component';
 
 @Component({
   selector: 'app-list-completed-challenges',
@@ -32,7 +32,7 @@ export class ListCompletedChallengesComponent implements OnInit {
         width: '25%',
         height: '55%',
         data: data
-      })
-    })
+      });
+    });
   }
 }

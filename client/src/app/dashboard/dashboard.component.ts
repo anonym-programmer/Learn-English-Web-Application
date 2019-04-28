@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
     if (this.authService.isAuthenticated()) {
       this.userService.greetUser().subscribe(msg => {
         this.msg = msg;
-      })
+      });
     } else {
       this.msg = 'Welcome anonymous!';
     }

@@ -2,9 +2,9 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {ForumService} from '../shared/forum.service';
 import {CreatePostDto} from '../shared/create-post-dto.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {SharedService} from "../../shared/shared.service";
+import {SharedService} from '../../shared/shared.service';
 import {Constants} from "../../shared/constants";
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-add-post',

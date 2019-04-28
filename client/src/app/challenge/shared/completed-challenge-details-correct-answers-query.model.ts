@@ -1,4 +1,4 @@
-import {AnsweredQuestionQuery} from "./answered-question-query.model";
+import {AnsweredQuestionQuery} from './answered-question-query.model';
 
 export class CompletedChallengeDetailsCorrectAnswersQuery {
   questions: AnsweredQuestionQuery[];

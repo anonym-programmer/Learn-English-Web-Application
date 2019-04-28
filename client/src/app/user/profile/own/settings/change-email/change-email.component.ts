@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeUserEmailDto} from '../../../../shared/change-email-dto.model';
 import {UserService} from '../../../../shared/user.service';
-import {SharedService} from "../../../../../shared/shared.service";
-import {Constants} from "../../../../../shared/constants";
+import {SharedService} from '../../../../../shared/shared.service';
+import {Constants} from '../../../../../shared/constants';
 
 @Component({
   selector: 'app-change-email',
@@ -41,7 +41,7 @@ export class ChangeEmailComponent implements OnInit {
         let control: AbstractControl = null;
         this.changeEmailForm.reset();
         this.changeEmailForm.markAsUntouched();
-        Object.keys(this.changeEmailForm.controls).forEach((name) => {
+        Object.keys(this.changeEmailForm.controls).forEach(name => {
           control = this.changeEmailForm.controls[name];
           control.setErrors(null);
         });

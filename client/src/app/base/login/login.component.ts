@@ -4,8 +4,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-login',

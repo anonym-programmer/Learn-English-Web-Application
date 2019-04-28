@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {UserService} from '../../shared/user.service';
 import {QuerySomeoneProfile} from '../../shared/query-someone-profile.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SharedService} from "../../../shared/shared.service";
-import {Constants} from "../../../shared/constants";
+import {SharedService} from '../../../shared/shared.service';
+import {Constants} from '../../../shared/constants';
 
 @Component({
   selector: 'app-someone-profile',

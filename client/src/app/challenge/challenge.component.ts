@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {MatDialog} from "@angular/material";
-import {MakeChallengeComponent} from "./make-challenge/make-challenge.component";
+import {MatDialog} from '@angular/material';
+import {MakeChallengeComponent} from './make-challenge/make-challenge.component';
 
 @Component({
   selector: 'app-challenge',

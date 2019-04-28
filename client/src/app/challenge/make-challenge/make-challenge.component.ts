@@ -1,11 +1,11 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from "@angular/material";
-import {MakeChallengeDto} from "../shared/make-challenge-dto.model";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ChallengeService} from "../shared/challenge.service";
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
-import {SubmitChallengeComponent} from "./submit-challenge/submit-challenge.component";
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
+import {MakeChallengeDto} from '../shared/make-challenge-dto.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ChallengeService} from '../shared/challenge.service';
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
+import {SubmitChallengeComponent} from './submit-challenge/submit-challenge.component';
 
 @Component({
   selector: 'app-make-challenge',
@@ -17,8 +17,10 @@ export class MakeChallengeComponent implements OnInit {
   dtoError = new MakeChallengeDto();
   makeChallengeForm: FormGroup;
 
-  constructor(public dialogRef: MatDialogRef<MakeChallengeComponent>, @Inject(MAT_DIALOG_DATA) public dto: MakeChallengeDto,
-              public dialog: MatDialog, private service: ChallengeService, private sharedService: SharedService) {
+  constructor(public dialogRef: MatDialogRef<MakeChallengeComponent>,
+              @Inject(MAT_DIALOG_DATA) public dto: MakeChallengeDto,
+              public dialog: MatDialog, private challengeService: ChallengeService,
+              private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -28,8 +30,8 @@ export class MakeChallengeComponent implements OnInit {
   }
 
   getRandomRival() {
-    this.service.getRandomRival().subscribe(
-      (res) => {
+    this.challengeService.getRandomRival().subscribe(
+      res => {
         this.makeChallengeForm.setValue({defenderUsername: res['defenderUsername']});
       }, () => {
         this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
@@ -38,14 +40,14 @@ export class MakeChallengeComponent implements OnInit {
   }
 
   onSubmit(makeChallengeForm: FormGroup) {
-    this.service.make(makeChallengeForm.value).subscribe(
-      (res) => {
+    this.challengeService.make(makeChallengeForm.value).subscribe(
+      res => {
         this.onNoClick();
         this.dialog.open(SubmitChallengeComponent, {
           width: '40%',
           height: '85%',
           data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value)
-        })
+        });
       },
       error => {
         this.sharedService.showFailureToastr(Constants.INVALID_FIELD);

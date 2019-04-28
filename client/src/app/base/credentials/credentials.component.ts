@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BaseService} from '../shared/base.service';
 import {CreateUserDto} from '../shared/create-user-dto.model';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-credentials',
@@ -16,7 +16,7 @@ export class CredentialsComponent implements OnInit {
   dtoError = new CreateUserDto();
   credentialForm: FormGroup;
 
-  constructor(private service: BaseService, private sharedService: SharedService) {
+  constructor(private baseService: BaseService, private sharedService: SharedService) {
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class CredentialsComponent implements OnInit {
   }
 
   onSubmit(credentialForm: FormGroup) {
-    this.service.forgotCredentials(credentialForm.value).subscribe(
+    this.baseService.forgotCredentials(credentialForm.value).subscribe(
       () => {
         this.sharedService.showInfoAlert(
           Constants.FORGOT_CREDENTIALS_TITLE,

@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChangeUserPasswordDto} from '../../../../shared/change-password-dto.model';
 import {UserService} from '../../../../shared/user.service';
-import {SharedService} from "../../../../../shared/shared.service";
-import {Constants} from "../../../../../shared/constants";
+import {SharedService} from '../../../../../shared/shared.service';
+import {Constants} from '../../../../../shared/constants';
 
 @Component({
   selector: 'app-change-password',
@@ -41,7 +41,7 @@ export class ChangePasswordComponent implements OnInit {
         let control: AbstractControl = null;
         this.changePasswordForm.reset();
         this.changePasswordForm.markAsUntouched();
-        Object.keys(this.changePasswordForm.controls).forEach((name) => {
+        Object.keys(this.changePasswordForm.controls).forEach(name => {
           control = this.changePasswordForm.controls[name];
           control.setErrors(null);
         });

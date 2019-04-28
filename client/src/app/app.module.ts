@@ -40,19 +40,19 @@ import {ListCompletedChallengesComponent} from './challenge/list-completed-chall
 import {ShowCompletedChallengeDetailsComponent} from './challenge/list-completed-challenges/show-completed-challenge-details/show-completed-challenge-details.component';
 import {ShowCorrectAnswersChallengeDetailsComponent} from './challenge/list-completed-challenges/show-completed-challenge-details/show-correct-answers-challenge/show-correct-answers-challenge-details.component';
 
-import {NotAuthGuard} from "./auth/not-auth.guard";
+import {NotAuthGuard} from './auth/not-auth.guard';
 import {AuthGuard} from './auth/auth.guard';
-import {RoleGuard} from "./auth/role.guard";
+import {RoleGuard} from './auth/role.guard';
 
 import {BaseService} from './base/shared/base.service';
 import {AuthService} from './auth/auth.service';
 import {CookieService} from 'ngx-cookie-service';
 import {UserService} from './user/shared/user.service';
 import {ForumService} from './forum/shared/forum.service';
-import {AdminService} from "./admin/shared/admin.service";
-import {SharedService} from "./shared/shared.service";
-import {CustomInterceptor} from "./auth/http-interceptor";
-import {ChallengeService} from "./challenge/shared/challenge.service";
+import {AdminService} from './admin/shared/admin.service';
+import {SharedService} from './shared/shared.service';
+import {CustomInterceptor} from './auth/http-interceptor';
+import {ChallengeService} from './challenge/shared/challenge.service';
 
 @NgModule({
   declarations: [

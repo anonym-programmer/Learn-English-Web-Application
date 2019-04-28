@@ -5,8 +5,8 @@ import {Observable} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {QueryAuth} from '../user/shared/query-auth.model';
-import {SharedService} from "../shared/shared.service";
-import {Constants} from "../shared/constants";
+import {SharedService} from '../shared/shared.service';
+import {Constants} from '../shared/constants';
 
 @Injectable({
   providedIn: 'root'

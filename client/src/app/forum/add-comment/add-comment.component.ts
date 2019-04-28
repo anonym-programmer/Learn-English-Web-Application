@@ -4,8 +4,8 @@ import {CreateCommentDto} from '../shared/create-comment-dto.model';
 import {ActivatedRoute} from '@angular/router';
 import {ForumService} from '../shared/forum.service';
 import {ShowPostComponent} from '../show-post/show-post.component';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-add-comment',
@@ -44,7 +44,7 @@ export class AddCommentComponent implements OnInit {
         let control: AbstractControl = null;
         addCommentForm.reset();
         addCommentForm.markAsUntouched();
-        Object.keys(this.addCommentForm.controls).forEach((name) => {
+        Object.keys(this.addCommentForm.controls).forEach(name => {
           control = this.addCommentForm.controls[name];
           control.setErrors(null);
         });
@@ -57,7 +57,7 @@ export class AddCommentComponent implements OnInit {
           if (this.dtoError.text != null) {
             this.addCommentForm.controls['text'].reset();
           }
-      }
-    )
+        }
+    );
   }
 }

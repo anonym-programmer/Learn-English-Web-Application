@@ -4,8 +4,8 @@ import {ForumService} from '../shared/forum.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {QueryComment} from '../shared/query-comment.model';
 import {AuthService} from '../../auth/auth.service';
-import {SharedService} from "../../shared/shared.service";
-import {Constants} from "../../shared/constants";
+import {SharedService} from '../../shared/shared.service';
+import {Constants} from '../../shared/constants';
 
 @Component({
   selector: 'app-show-post',
@@ -40,7 +40,7 @@ export class ShowPostComponent implements OnInit {
         Constants.POST_DOESNT_EXIST
       );
       this.router.navigate(['forum']);
-    })
+    });
   }
 
   getComments() {

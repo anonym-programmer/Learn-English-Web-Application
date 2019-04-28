@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {BaseService} from '../../shared/base.service';
-import {SharedService} from "../../../shared/shared.service";
-import {Constants} from "../../../shared/constants";
+import {SharedService} from '../../../shared/shared.service';
+import {Constants} from '../../../shared/constants';
 
 @Component({
   selector: 'app-confirm',
@@ -11,7 +11,7 @@ import {Constants} from "../../../shared/constants";
 })
 export class ConfirmComponent implements OnInit {
 
-  constructor(private service: BaseService, private router: Router, private route: ActivatedRoute,
+  constructor(private router: Router, private route: ActivatedRoute, private service: BaseService,
               private sharedService: SharedService) {
   }
 
@@ -23,16 +23,16 @@ export class ConfirmComponent implements OnInit {
           this.sharedService.showSuccessAlert(
             Constants.TOKEN_CONFIRMATION_SUCCESS_TITLE,
             Constants.TOKEN_CONFIRMATION_SUCCESS_MSG
-          )
+          );
         },
         () => {
           this.sharedService.showErrorAlert(
             Constants.FAILURE_TITLE,
             Constants.TOKEN_CONFIRMATION_FAILURE_MSG
-          )
+          );
         }
       );
       this.router.navigate(['/']);
-    })
+    });
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {SubmitedChallengeQuery} from "../shared/submited-challenge-query.model";
-import {ChallengeService} from "../shared/challenge.service";
+import {SubmitedChallengeQuery} from '../shared/submited-challenge-query.model';
+import {ChallengeService} from '../shared/challenge.service';
 
 @Component({
   selector: 'app-list-submited-challenges',
@@ -21,6 +21,6 @@ export class ListSubmitedChallengesComponent implements OnInit {
   getSubmitedChallenges() {
     this.challengeService.getSubmitedChallenges().subscribe(data => {
       this.submitedChallenges = data;
-    })
+    });
   }
 }
