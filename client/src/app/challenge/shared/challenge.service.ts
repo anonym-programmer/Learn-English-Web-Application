@@ -23,6 +23,7 @@ export class ChallengeService {
   readonly getPendingChallengeByIdUrl = '/api/challenge-query/defender-pending';
   readonly getCompletedChallengesUrl = '/api/challenge-query/completed';
   readonly getCompleteChallengeDetailsByIdUrl = '/api/challenge-query/completed';
+  readonly getCompletedChallengeDetailsCorrectAnswersByIdUrl = '/api/challenge-query/completed/correct-answers';
 
   constructor(private http: HttpClient) {
   }
@@ -65,5 +66,9 @@ export class ChallengeService {
 
   getCompletedChallengeDetailsById(challengeId: string) {
     return this.http.get(this.getCompleteChallengeDetailsByIdUrl + `/${challengeId}`);
+  }
+
+  getCompletedChallengeDetailsCorrectAnswersById(challengeId: string) {
+    return this.http.get(this.getCompletedChallengeDetailsCorrectAnswersByIdUrl + `/${challengeId}`);
   }
 }

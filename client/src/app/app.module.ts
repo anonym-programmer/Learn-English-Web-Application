@@ -38,6 +38,7 @@ import {ListPendingChallengesComponent} from './challenge/list-pending-challenge
 import {ListSubmitedChallengesComponent} from './challenge/list-submited-challenges/list-submited-challenges.component';
 import {ListCompletedChallengesComponent} from './challenge/list-completed-challenges/list-completed-challenges.component';
 import {ShowCompletedChallengeDetailsComponent} from './challenge/list-completed-challenges/show-completed-challenge-details/show-completed-challenge-details.component';
+import {ShowCorrectAnswersChallengeDetailsComponent} from './challenge/list-completed-challenges/show-completed-challenge-details/show-correct-answers-challenge/show-correct-answers-challenge-details.component';
 
 import {NotAuthGuard} from "./auth/not-auth.guard";
 import {AuthGuard} from './auth/auth.guard';
@@ -79,14 +80,16 @@ import {ChallengeService} from "./challenge/shared/challenge.service";
     ListPendingChallengesComponent,
     ListSubmitedChallengesComponent,
     ListCompletedChallengesComponent,
-    ShowCompletedChallengeDetailsComponent
+    ShowCompletedChallengeDetailsComponent,
+    ShowCorrectAnswersChallengeDetailsComponent
   ],
   entryComponents: [
     AddPostComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
     SubmitPendingChallengeComponent,
-    ShowCompletedChallengeDetailsComponent
+    ShowCompletedChallengeDetailsComponent,
+    ShowCorrectAnswersChallengeDetailsComponent
   ],
   imports: [
     BrowserModule,

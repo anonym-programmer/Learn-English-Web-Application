@@ -30,7 +30,7 @@ export class ListCompletedChallengesComponent implements OnInit {
     this.challengeService.getCompletedChallengeDetailsById(id).subscribe(data => {
       this.dialog.open(ShowCompletedChallengeDetailsComponent, {
         width: '25%',
-        height: '60%',
+        height: '55%',
         data: data
       })
     })

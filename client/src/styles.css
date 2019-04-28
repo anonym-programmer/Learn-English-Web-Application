@@ -1,6 +1,6 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import '~ngx-toastr/toastr.css';
-@import url('https://fonts.googleapis.com/css?family=IM+Fell+English');
+@import url('https://fonts.googleapis.com/css?family=Days+One');
 
 html {
   position: relative;
@@ -11,6 +11,5 @@ body {
   background-image: url('assets/img/background.jpg');
   height: 40em; background-size: cover; width: auto;
   background-position: 50% 50%;
-  font-weight: bold;
-  font-family: 'IM Fell English', serif;
+  font-family: 'Days One', sans-serif;
 }

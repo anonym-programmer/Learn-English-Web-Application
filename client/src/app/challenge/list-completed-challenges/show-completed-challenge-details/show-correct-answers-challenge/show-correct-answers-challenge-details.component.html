@@ -1,0 +1,22 @@
+<h1>Correct answers</h1>
+<div *ngFor="let question of answers.questions; let i = index">
+  <h5>{{i + 1}}.&nbsp;{{question.question}}
+    <span *ngIf="answers.areCorrect[i] == '1'"><i class="far fa-check-circle"></i></span>
+    <span *ngIf="answers.areCorrect[i] == '0'"><i class="far fa-times-circle"></i></span>
+  </h5>
+  <div *ngIf="answers.areCorrect[i] == '1'">
+    <div *ngFor="let answer of answers.questions[i].answers; let j = index">
+      {{options[j]}}) {{answer}}
+      <span *ngIf="options[j] == answers.questions[i].correctAnswer" class="correctAnswer">Correct answer</span>
+    </div>
+  </div>
+  <div *ngIf="answers.areCorrect[i] == '0'">
+    <div *ngFor="let answer of answers.questions[i].answers; let j = index">
+      {{options[j]}}) {{answer}}
+      <span *ngIf="options[j] == answers.questions[i].correctAnswer" class="correctAnswer">Correct answer</span>
+      <span *ngIf="options[j] == answers.myAnswers[i]" class="wrongAnswer">Your answer</span>
+    </div>
+  </div>
+  <br>
+</div>
+<button mat-raised-button color="primary" (click)="close()">Close</button>

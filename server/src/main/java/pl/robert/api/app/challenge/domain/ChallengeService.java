@@ -202,6 +202,7 @@ class ChallengeService {
     }
 
     private <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-        return t -> ConcurrentHashMap.newKeySet().add(keyExtractor.apply(t));
+        Set<Object> seen = ConcurrentHashMap.newKeySet();
+        return t -> seen.add(keyExtractor.apply(t));
     }
 }

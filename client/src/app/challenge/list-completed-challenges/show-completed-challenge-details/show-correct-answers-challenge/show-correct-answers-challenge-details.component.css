@@ -1,0 +1,7 @@
+.correctAnswer, .fa-check-circle {
+  color: #5cb85c;
+}
+
+.wrongAnswer, .fa-times-circle {
+  color: #D8000C;
+}
