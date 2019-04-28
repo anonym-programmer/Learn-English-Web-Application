@@ -6,18 +6,19 @@ import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.challenge.domain.dto.CreateChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
-import pl.robert.api.app.challenge.query.ChallengePendingQuery;
-import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
-import pl.robert.api.app.challenge.query.CompletedChallengeDetailsQuery;
-import pl.robert.api.app.challenge.query.CompletedChallengeQuery;
+import pl.robert.api.app.challenge.query.*;
 import pl.robert.api.app.opponent.Opponent;
 import pl.robert.api.app.opponent.OpponentFacade;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 import pl.robert.api.app.question.domain.QuestionFacade;
+import pl.robert.api.app.question.query.AnsweredQuestionQuery;
 import pl.robert.api.app.question.query.QuestionQuery;
 import pl.robert.api.app.user.domain.UserFacade;
 
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -165,5 +166,42 @@ class ChallengeService {
 
     private boolean isUsernameEqualsAttackerUsername(String username, String attackerUsername) {
         return username.equals(attackerUsername);
+    }
+
+    AnsweredChallengeQuery queryCompletedChallengeDetailsCorrectAnswersByChallengeId(String challengeId, String username) {
+        Challenge challenge = repository.findById(Long.parseLong(challengeId));
+
+        if (isUsernameEqualsAttackerUsername(username, challenge.getAttacker().getUser().getUsername())) {
+
+            return AnsweredChallengeQuery.builder()
+                    .questions(challenge.getQuestions()
+                            .stream()
+                            .map(question -> new AnsweredQuestionQuery(
+                                    question.getQuestion(),
+                                    Arrays.asList(question.getAnswers().split(":", -1)),
+                                    String.valueOf(question.getCorrectAnswerShortForm()).charAt(0)))
+                            .filter(distinctByKey(AnsweredQuestionQuery::getQuestion))
+                            .collect(Collectors.toList()))
+                    .areCorrect(opponentFacade.transformAnswersStatus(challenge.getAttacker().getAnswersStatus()))
+                    .myAnswers(Arrays.asList(challenge.getAttacker().getMyAnswers().split(":", -1)))
+                    .build();
+        }
+
+        return AnsweredChallengeQuery.builder()
+                .questions(challenge.getQuestions()
+                        .stream()
+                        .map(question -> new AnsweredQuestionQuery(
+                                question.getQuestion(),
+                                Arrays.asList(question.getAnswers().split(":", -1)),
+                                String.valueOf(question.getCorrectAnswerShortForm()).charAt(0)))
+                        .filter(distinctByKey(AnsweredQuestionQuery::getQuestion))
+                        .collect(Collectors.toList()))
+                .areCorrect(opponentFacade.transformAnswersStatus(challenge.getDefender().getAnswersStatus()))
+                .myAnswers(Arrays.asList(challenge.getDefender().getMyAnswers().split(":", -1)))
+                .build();
+    }
+
+    private <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
+        return t -> ConcurrentHashMap.newKeySet().add(keyExtractor.apply(t));
     }
 }

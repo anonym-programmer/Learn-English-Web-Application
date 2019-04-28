@@ -42,4 +42,9 @@ class ChallengeQueryController {
     public HttpEntity<?> findCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallengeDetailsByChallengeId(challengeId, auth.getName()));
     }
+
+    @GetMapping("completed/correct-answers/{challengeId}")
+    public HttpEntity<?> findCompletedChallengeDetailsCorrectAnswersByChallengeId(@PathVariable String challengeId, Authentication auth) {
+        return ResponseEntity.ok(facade.queryCompletedChallengeDetailsCorrectAnswersByChallengeId(challengeId, auth.getName()));
+    }
 }

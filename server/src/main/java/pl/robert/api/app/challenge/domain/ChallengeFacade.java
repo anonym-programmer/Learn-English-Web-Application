@@ -8,10 +8,7 @@ import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
-import pl.robert.api.app.challenge.query.ChallengePendingQuery;
-import pl.robert.api.app.challenge.query.ChallengeSubmitedQuery;
-import pl.robert.api.app.challenge.query.CompletedChallengeDetailsQuery;
-import pl.robert.api.app.challenge.query.CompletedChallengeQuery;
+import pl.robert.api.app.challenge.query.*;
 import pl.robert.api.app.question.query.QuestionQuery;
 
 import java.util.List;
@@ -69,5 +66,9 @@ public class ChallengeFacade {
 
     public CompletedChallengeDetailsQuery queryCompletedChallengeDetailsByChallengeId(String challengeId, String username) {
         return service.queryCompletedChallengeDetailsByChallengeId(challengeId, username);
+    }
+
+    public AnsweredChallengeQuery queryCompletedChallengeDetailsCorrectAnswersByChallengeId(String challengeId, String username) {
+        return service.queryCompletedChallengeDetailsCorrectAnswersByChallengeId(challengeId, username);
     }
 }
