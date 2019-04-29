@@ -7,8 +7,9 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
-import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.user.domain.UserFacade;
+
+import java.util.List;
 
 import static pl.robert.api.app.shared.Constants.*;
 
@@ -18,7 +19,6 @@ class ChallengeValidator {
 
     ChallengeService service;
     UserFacade userFacade;
-    QuestionFacade questionFacade;
 
     void checkInputData(MakeChallengeDto dto, BindingResult result) {
 
@@ -29,8 +29,8 @@ class ChallengeValidator {
 
         areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
 
-        if (!questionFacade.areQuestionsExist(dto.getQuestionsIds())) {
-            result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS, M_QUESTION_IDS_NOT_EXISTS);
+        if (areListsOfQuestionIdsAndAnswersContainsNullValues(dto.getQuestionsIds(), dto.getAnswers())) {
+            result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS);
         }
     }
 
@@ -63,5 +63,9 @@ class ChallengeValidator {
 
     private boolean isDefenderUsernameCorrect(String username) {
         return username != null && !username.isEmpty();
+    }
+
+    private boolean areListsOfQuestionIdsAndAnswersContainsNullValues(List<Long> questionsIds, List<Character> answers) {
+        return questionsIds.contains(null) || answers.contains(null);
     }
 }

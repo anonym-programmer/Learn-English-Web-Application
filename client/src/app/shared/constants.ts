@@ -35,4 +35,5 @@ export class Constants {
   public static readonly DECLINED_CHALLENGE = 'Declined challenge!';
   public static readonly CHALLENGED_PERSON = 'Successfully challenged person!';
   public static readonly COMPLETED_CHALLENGE = 'Successfully completed challenge!';
+  public static readonly ANSWERS_EMPTY = "Please answer to all questions :)";
 }

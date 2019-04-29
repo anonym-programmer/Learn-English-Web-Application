@@ -47,7 +47,8 @@ export class MakeChallengeComponent implements OnInit {
           this.dialog.open(SubmitChallengeComponent, {
             width: '40%',
             height: '85%',
-            data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value)
+            data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value),
+            disableClose: true
           });
         });
       },

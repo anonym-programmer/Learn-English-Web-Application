@@ -27,11 +27,11 @@ export class SubmitChallengeComponent implements OnInit {
   ngOnInit() {
     this.dto.answers = [];
     this.submitChallengeForm = new FormGroup({
-      'answer1': new FormControl(this.dto.answers[0], [Validators.required]),
-      'answer2': new FormControl(this.dto.answers[1], [Validators.required]),
-      'answer3': new FormControl(this.dto.answers[2], [Validators.required]),
-      'answer4': new FormControl(this.dto.answers[3], [Validators.required]),
-      'answer5': new FormControl(this.dto.answers[4], [Validators.required]),
+      'answer1': new FormControl(this.dto.answers[0]),
+      'answer2': new FormControl(this.dto.answers[1]),
+      'answer3': new FormControl(this.dto.answers[2]),
+      'answer4': new FormControl(this.dto.answers[3]),
+      'answer5': new FormControl(this.dto.answers[4]),
     });
 
     this.dto.defenderUsername = this.questions[5];
@@ -41,6 +41,9 @@ export class SubmitChallengeComponent implements OnInit {
     this.dto.questionsIds = [];
 
     for (let i = 0; i < 5; i++) {
+      if (submitChallengeForm.controls[`answer${i + 1}`].value == null) {
+        submitChallengeForm.controls[`answer${i + 1}`].setValue('*');
+      }
       this.dto.questionsIds[i] = +submitChallengeForm.controls[`answer${i + 1}`].value.split(":", 1);
       this.dto.answers[i] = submitChallengeForm.controls[`answer${i + 1}`].value.split(":", 2)[1];
     }
@@ -50,7 +53,7 @@ export class SubmitChallengeComponent implements OnInit {
         this.close();
         this.sharedService.showSuccessToastr(Constants.CHALLENGED_PERSON);
       }, () => {
-        this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
+        this.sharedService.showFailureToastr(Constants.ANSWERS_EMPTY);
       }
     );
   }

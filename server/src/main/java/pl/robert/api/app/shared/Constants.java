@@ -112,7 +112,6 @@ public interface Constants {
     String M_ATTACKER_USERNAME_NOT_EXISTS = "Attacker username do not exist";
     String M_DEFENDER_USERNAME_NOT_EXISTS = "Defender username do not exist";
     String M_ATTACKER_EQUALS_DEFENDER_USERNAME = "You cannot challenge yourself";
-    String M_QUESTION_IDS_NOT_EXISTS = "Some of a question id do not exist";
     String M_CHALLENGE_ID_EMPTY = "Challenge id can not be empty";
 
     String F_CHALLENGE_RESULT_WIN = "WIN";
