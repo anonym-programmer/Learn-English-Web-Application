@@ -20,8 +20,7 @@ public class PostFacade {
     UserFacade userFacade;
 
     public void add(CreatePostDto dto, String username) {
-        Post post = PostFactory.create(dto, userFacade.findUserByUsername(username));
-        postService.saveAndFlush(post);
+        postService.saveAndFlush(PostFactory.create(dto, userFacade.findUserByUsername(username)));
     }
 
     public Page<PostQuery> findAll(Pageable pageable) {
@@ -37,11 +36,8 @@ public class PostFacade {
     }
 
     public void swapTypeOfVote(String newType, Post post) {
-        if (newType.equalsIgnoreCase(TYPE_YES)) {
-            decreaseDownVote(post);
-        } else if (newType.equalsIgnoreCase(TYPE_NO)) {
-            decreaseUpVote(post);
-        }
+        if (newType.equalsIgnoreCase(TYPE_YES)) decreaseDownVote(post);
+        else if (newType.equalsIgnoreCase(TYPE_NO)) decreaseUpVote(post);
     }
 
     private void decreaseDownVote(Post post) {

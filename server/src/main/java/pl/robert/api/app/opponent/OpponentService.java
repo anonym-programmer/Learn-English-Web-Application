@@ -8,6 +8,8 @@ import pl.robert.api.app.opponent.dto.CreateOpponentDto;
 
 import java.util.List;
 
+import static pl.robert.api.app.shared.Constants.*;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class OpponentService {
@@ -18,15 +20,15 @@ class OpponentService {
         return repository.save(OpponentFactory.create(dto));
     }
 
-    List<Long> findIdsOfAttackerPendingChallenges(long attackerId) {
+    List<Long> queryIdsOfAttackerPendingChallenges(long attackerId) {
         return repository.findIdsOfAttackerPendingChallenges(attackerId);
     }
 
-    List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
+    List<Long> queryIdsOfDefenderPendingChallenges(long defenderId) {
         return repository.findIdsOfDefenderPendingChallenges(defenderId);
     }
 
-    List<Long> findIdsOfUserCompletedChallenges(long userId) {
+    List<Long> queryIdsOfUserCompletedChallenges(long userId) {
         return repository.findIdsOfUserCompletedChallenges(userId);
     }
 
@@ -58,11 +60,11 @@ class OpponentService {
 
     String transformResult(String result) {
         switch (result) {
-            case "WIN": return "YOU WON";
-            case "LOSE": return "YOU LOST";
-            case "DRAW": return "YOU DREW";
+            case F_CHALLENGE_RESULT_WIN: return M_CHALLENGE_RESULT_WIN;
+            case F_CHALLENGE_RESULT_LOSE: return M_CHALLENGE_RESULT_LOSE;
+            case F_CHALLENGE_RESULT_DRAW: return M_CHALLENGE_RESULT_DRAW;
         }
-        return null;
+        return M_CHALLENGE_RESULT_NONE;
     }
 
     List<Character> transformAnswersStatus(String answersStatus) {

@@ -16,17 +16,17 @@ import pl.robert.api.app.user.domain.dto.DeleteUserDto;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class AdminController {
 
-    UserFacade userFacade;
+    UserFacade facade;
 
     @DeleteMapping("user/{id}")
     public HttpEntity<?> deleteUserById(@PathVariable String id) {
-        if (!userFacade.isInputDataCorrect(new DeleteUserDto(Long.parseLong(id)))) {
+        if (!facade.isInputDataCorrect(new DeleteUserDto(Long.parseLong(id)))) {
             return ResponseEntity
                     .badRequest()
                     .build();
         }
 
-        userFacade.deleteUserById(Long.parseLong(id));
+        facade.deleteUserById(Long.parseLong(id));
         return ResponseEntity
                 .ok()
                 .build();

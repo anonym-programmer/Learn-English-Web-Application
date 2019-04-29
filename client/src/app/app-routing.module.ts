@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {ForumComponent} from './forum/forum.component';
 import {RegisterComponent} from './base/register/register.component';
 import {ConfirmComponent} from './base/token/account/confirm.component';
@@ -17,9 +16,8 @@ import {NotAuthGuard} from './auth/not-auth.guard';
 import {ChallengeComponent} from './challenge/challenge.component';
 
 const routes: Routes = [
-  {path: '*', redirectTo: '/dashboard'},
+  {path: '*', redirectTo: '/'},
 
-  {path: 'dashboard', component: DashboardComponent},
   {path: 'forum', component: ForumComponent},
 
   {

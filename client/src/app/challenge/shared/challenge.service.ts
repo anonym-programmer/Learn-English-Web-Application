@@ -14,9 +14,10 @@ import {CompletedChallengeQuery} from './completed-challenge-query.model';
 export class ChallengeService {
 
   readonly makeUrl = '/api/challenge/make';
+  readonly getRandomQuestionsUrl = '/api/question-query/random-questions';
   readonly submitUrl = '/api/challenge/submit';
   readonly submitPendingChallengeUrl = '/api/challenge/submit-pending';
-  readonly getRandomRivalUrl = '/api/user-query/random-rival';
+  readonly getRandomRivalUrl = '/api/user-query/random-user';
   readonly getPendingChallengesUrl = '/api/challenge-query/defender-pending';
   readonly declinePendingChallengeUrl = '/api/challenge/';
   readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';
@@ -28,8 +29,12 @@ export class ChallengeService {
   constructor(private http: HttpClient) {
   }
 
-  make(data: FormGroup): Observable<any> {
+  make(data: FormGroup) {
     return this.http.post(this.makeUrl, data);
+  }
+
+  getRandomQuestions(): Observable<any> {
+    return this.http.get(this.getRandomQuestionsUrl);
   }
 
   submit(data: SubmitChallengeDto) {

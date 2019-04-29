@@ -11,7 +11,6 @@ import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 import {AppComponent} from './app.component';
 
-import {DashboardComponent} from './dashboard/dashboard.component';
 import {ForumComponent} from './forum/forum.component';
 import {RegisterComponent} from './base/register/register.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
@@ -57,7 +56,6 @@ import {ChallengeService} from './challenge/shared/challenge.service';
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
     ForumComponent,
     RegisterComponent,
     CredentialsComponent,

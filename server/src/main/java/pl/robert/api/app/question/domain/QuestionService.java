@@ -18,7 +18,7 @@ class QuestionService {
 
     QuestionRepository repository;
 
-    List<QuestionQuery> getRandomQuestions() {
+    List<QuestionQuery> queryRandomQuestions() {
         List<Question> questionList = repository
                 .findAll()
                 .subList(0, (int) repository.count());
@@ -75,7 +75,7 @@ class QuestionService {
         return myAnswers;
     }
 
-    List<Question> getQuestionsByIds(List<Long> questionsIds) {
+    List<Question> queryQuestionsByIds(List<Long> questionsIds) {
         return List.copyOf(questionsIds
                 .stream()
                 .map(repository::findById)

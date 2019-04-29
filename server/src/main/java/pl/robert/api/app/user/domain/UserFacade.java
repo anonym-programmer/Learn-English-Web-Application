@@ -22,27 +22,19 @@ public class UserFacade {
     TokenService tokenService;
 
     public void checkInputData(CreateUserDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void checkInputData(ForgotUserCredentialsDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void checkInputData(ChangeUserPasswordDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void checkInputData(ChangeUserEmailDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public boolean isInputDataCorrect(DeleteUserDto dto) {
@@ -98,7 +90,7 @@ public class UserFacade {
         return userService.findAuthByUsername(username);
     }
 
-    public UserAuthQuery queryUserAuth(Authentication auth) {
+    public AuthUserQuery queryUserAuth(Authentication auth) {
         return UserQueryFactory.queryUserAuth(auth);
     }
 
@@ -124,7 +116,7 @@ public class UserFacade {
         userService.delete(userService.findById(id));
     }
 
-    public UserRandomQuery queryRandomUser(String attackerUsername) {
+    public RandomUserQuery queryRandomUser(String attackerUsername) {
         return UserQueryFactory.queryRandomUser(userService.queryRandomUser(attackerUsername));
     }
 }

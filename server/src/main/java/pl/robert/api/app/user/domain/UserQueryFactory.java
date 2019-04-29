@@ -1,17 +1,17 @@
 package pl.robert.api.app.user.domain;
 
 import org.springframework.security.core.Authentication;
-import pl.robert.api.app.user.query.UserAuthQuery;
+import pl.robert.api.app.user.query.AuthUserQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 import pl.robert.api.app.user.query.UserProfileQuery;
-import pl.robert.api.app.user.query.UserRandomQuery;
+import pl.robert.api.app.user.query.RandomUserQuery;
 
 import static pl.robert.api.app.shared.Constants.*;
 
 class UserQueryFactory {
 
-    static UserAuthQuery queryUserAuth(Authentication auth) {
-        return UserAuthQuery.builder()
+    static AuthUserQuery queryUserAuth(Authentication auth) {
+        return AuthUserQuery.builder()
                 .username(auth.getName())
                 .roles(auth.getAuthorities().size() == 1 ? USER : USER_ADMIN)
                 .isAuthenticated(String.valueOf(auth.isAuthenticated()))
@@ -42,8 +42,8 @@ class UserQueryFactory {
                 .build();
     }
 
-    static UserRandomQuery queryRandomUser(String defenderUsername) {
-        return UserRandomQuery.builder()
+    static RandomUserQuery queryRandomUser(String defenderUsername) {
+        return RandomUserQuery.builder()
                 .defenderUsername(defenderUsername)
                 .build();
     }

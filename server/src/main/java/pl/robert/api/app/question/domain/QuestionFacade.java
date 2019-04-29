@@ -14,8 +14,8 @@ public class QuestionFacade {
 
     QuestionService service;
 
-    public List<QuestionQuery> getRandomQuestions() {
-        return service.getRandomQuestions();
+    public List<QuestionQuery> queryRandomQuestions() {
+        return service.queryRandomQuestions();
     }
 
     public boolean areQuestionsExist(List<Long> questionsId) {
@@ -26,8 +26,8 @@ public class QuestionFacade {
         return service.calculateCorrectAnswers(answers, questionsId);
     }
 
-    public List<Question> getQuestionsByIds(List<Long> questionsIds) {
-        return service.getQuestionsByIds(questionsIds);
+    public List<Question> queryQuestionsByIds(List<Long> questionsIds) {
+        return service.queryQuestionsByIds(questionsIds);
     }
 
     public List<QuestionQuery> queryQuestionsOfDefenderChallengeId(Challenge challenge) {

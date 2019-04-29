@@ -5,14 +5,14 @@ VALUES (1, 'ROLE_USER'),
 INSERT INTO users (username, email, password, is_enabled)
 VALUES ('a', 'a@a.com', '$2a$10$Y2xKL3PjHd257clTHpcJl.tg4qtFyDH1/Q8UESXboV9tMnXGRjShm', true),
        ('b', 'b@b.com', '$2a$10$QMlzlGyhELD1bhRQrJQ/3Oc.A6K5axHGiqXSp7ZkmoRRmhIdbhgCy', true),
-       ('Bill Gates', 'microsoft@outlook.com', '$2a$10$kcKvLya3fvMwKbBycgStF.yf8PIiSwXMCxc8WyRD5vYI/cb3jYcy2', true),
-       ('Mark Zuckerberg', 'mark.zuckerberg@facemail.com',
+       ('BillGates', 'microsoft@outlook.com', '$2a$10$kcKvLya3fvMwKbBycgStF.yf8PIiSwXMCxc8WyRD5vYI/cb3jYcy2', true),
+       ('MarkZuckerberg', 'mark.zuckerberg@facemail.com',
         '$2a$10$8gSiB2zsTed0rNr01IhhkumJEEJYHd0Jluzar1hoDzY0czxd4E4kK', true),
-       ('Linus Torvalds', 'penguin@linux.com', '$2a$10$e6BSDr2.qNmlUjPiPxKtXOy6VXLNicBjJOmFfVCSe3x8Ce.69SPO6', true),
-       ('George Hotz', 'comma@mail.com', '$2a$10$c74z6i5BEpZd7zxDt3Oh4ubXr6dvk6zS6TR3FGW09twI0o7nEkqve', true),
-       ('James Gosling', 'james.java@mail.com', '$2a$10$X/G9UC9p2xDy0o8epoePCOzs/PGreS35kbrdUo51UjZgBcmiozikm', true),
+       ('LinusTorvalds', 'penguin@linux.com', '$2a$10$e6BSDr2.qNmlUjPiPxKtXOy6VXLNicBjJOmFfVCSe3x8Ce.69SPO6', true),
+       ('GeorgeHotz', 'comma@mail.com', '$2a$10$c74z6i5BEpZd7zxDt3Oh4ubXr6dvk6zS6TR3FGW09twI0o7nEkqve', true),
+       ('JamesGosling', 'james.java@mail.com', '$2a$10$X/G9UC9p2xDy0o8epoePCOzs/PGreS35kbrdUo51UjZgBcmiozikm', true),
        ('Rob', 'rob@gmail.com', '$2a$10$aIeVCFtezvuV9sIScXRB5OYSSrHbDZJGJpHlL6dDBUKQ1FNeqcYs2', true),
-       ('Steve Jobs', 'iLoveApple@icloud.com', '$2a$10$kFFzJ/OTpPpiXEGeCJehsO6.g1CHVayzVyVLVfS3wJvhXUMJ/0lES', true);
+       ('SteveJobs', 'iLoveApple@icloud.com', '$2a$10$kFFzJ/OTpPpiXEGeCJehsO6.g1CHVayzVyVLVfS3wJvhXUMJ/0lES', true);
 
 INSERT INTO users_roles (user_id, roles_id)
 VALUES (1, 1),

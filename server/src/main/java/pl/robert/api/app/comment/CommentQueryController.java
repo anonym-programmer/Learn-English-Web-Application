@@ -18,7 +18,7 @@ class CommentQueryController {
     CommentFacade facade;
 
     @GetMapping("{id}")
-    public HttpEntity<?> findAllByPost(@PathVariable String id) {
+    public HttpEntity<?> queryAllCommentsByPost(@PathVariable String id) {
         if (!facade.isPostExists(Long.parseLong(id))) {
             return ResponseEntity
                     .badRequest()

@@ -19,15 +19,12 @@ public class VoteFacade {
     UserFacade userFacade;
 
     public void checkInputData(CreateVoteDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void add(CreateVoteDto dto) {
         Post post = postFacade.findPostById(Long.parseLong(dto.getPostId()));
         postFacade.updatePostVote(post, dto.getType().toUpperCase().charAt(0));
-        Vote vote = VoteFactory.create(dto, post, userFacade.findUserByUsername(dto.getUsername()));
-        voteService.saveAndFlush(vote);
+        voteService.saveAndFlush(VoteFactory.create(dto, post, userFacade.findUserByUsername(dto.getUsername())));
     }
 }

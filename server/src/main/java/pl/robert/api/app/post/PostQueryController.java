@@ -26,7 +26,7 @@ class PostQueryController {
     }
 
     @GetMapping("{id}")
-    public HttpEntity<?> getPost(@PathVariable String id) {
+    public HttpEntity<?> queryPost(@PathVariable String id) {
         if (!facade.isPostExists(Long.parseLong(id))) {
             return ResponseEntity
                     .badRequest()

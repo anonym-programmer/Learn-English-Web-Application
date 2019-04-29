@@ -30,7 +30,7 @@ class ChallengeService {
     QuestionFacade questionFacade;
     UserFacade userFacade;
 
-    void add(SubmitChallengeDto dto) {
+    void submitChallenge(SubmitChallengeDto dto) {
         repository.saveAndFlush(ChallengeFactory.create(
                 new CreateChallengeDto(
                         opponentFacade.addAndReturnOpponent(
@@ -45,7 +45,7 @@ class ChallengeService {
                                         userFacade.findUserByUsername(dto.getDefenderUsername())
                                 )
                         ),
-                        questionFacade.getQuestionsByIds(dto.getQuestionsIds())
+                        questionFacade.queryQuestionsByIds(dto.getQuestionsIds())
                 )
         ));
     }
@@ -81,26 +81,26 @@ class ChallengeService {
         return repository.findById(id).isEmpty();
     }
 
-    List<ChallengeSubmitedQuery> queryAttackerPendingChallenges(String username) {
-        return List.copyOf(opponentFacade.findIdsOfAttackerPendingChallenges(userFacade.findUserByUsername(username).getId())
+    List<SubmitedChallengeQuery> queryAttackerPendingChallenges(String username) {
+        return List.copyOf(opponentFacade.queryIdsOfAttackerPendingChallenges(userFacade.findUserByUsername(username).getId())
                 .stream()
                 .map(repository::findByAttackerId)
                 .collect(Collectors.toList())
                 .stream()
-                .map(challenge -> new ChallengeSubmitedQuery(
+                .map(challenge -> new SubmitedChallengeQuery(
                         challenge.getDefender().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
                 .collect(Collectors.toList()));
     }
 
-    List<ChallengePendingQuery> queryDefenderPendingChallenges(String username) {
-        return List.copyOf(opponentFacade.findIdsOfDefenderPendingChallenges(userFacade.findUserByUsername(username).getId())
+    List<PendingChallengeQuery> queryDefenderPendingChallenges(String username) {
+        return List.copyOf(opponentFacade.queryIdsOfDefenderPendingChallenges(userFacade.findUserByUsername(username).getId())
                 .stream()
                 .map(repository::findByDefenderId)
                 .collect(Collectors.toList())
                 .stream()
-                .map(challenge -> new ChallengePendingQuery(
+                .map(challenge -> new PendingChallengeQuery(
                         String.valueOf(challenge.getId()),
                         challenge.getAttacker().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
@@ -113,7 +113,7 @@ class ChallengeService {
     }
 
     List<CompletedChallengeQuery> queryCompletedChallenges(String username) {
-        return List.copyOf(opponentFacade.findIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId())
+        return List.copyOf(opponentFacade.queryIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId())
                 .stream()
                 .map(repository::findByDefenderOrAttackerId)
                 .collect(Collectors.toList())

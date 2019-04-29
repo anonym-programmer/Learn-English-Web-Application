@@ -21,18 +21,15 @@ public class CommentFacade {
     UserFacade userFacade;
 
     public void checkInputData(CreateCommentDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void add(CreateCommentDto dto) {
-        Comment comment = CommentFactory.create(
+        commentService.saveAndFlush(CommentFactory.create(
                 dto,
                 postFacade.findPostById(Long.parseLong(dto.getPostId())),
                 userFacade.findUserByUsername(dto.getUsername())
-        );
-        commentService.saveAndFlush(comment);
+        ));
     }
 
     public boolean isPostExists(long id) {
@@ -40,6 +37,6 @@ public class CommentFacade {
     }
 
     public List<CommentQuery> queryCommentsByPost(long postId) {
-        return commentService.findAllByPost(postFacade.findPostById(postId));
+        return commentService.queryCommentsByPost(postFacade.findPostById(postId));
     }
 }

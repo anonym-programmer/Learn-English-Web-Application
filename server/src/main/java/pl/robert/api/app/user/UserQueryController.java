@@ -18,18 +18,13 @@ class UserQueryController {
 
     UserFacade facade;
 
-    @GetMapping
-    public HttpEntity<?> dashboard() {
-        return ResponseEntity.ok("Welcome user!");
-    }
-
     @GetMapping("my-profile")
-    public HttpEntity<?> getUserOwnProfile(Authentication auth) {
+    public HttpEntity<?> queryUserOwnProfile(Authentication auth) {
         return ResponseEntity.ok(facade.queryUserOwnProfile(auth.getName()));
     }
 
     @GetMapping("profile/{username}")
-    public HttpEntity<?> getUserProfile(@PathVariable String username) {
+    public HttpEntity<?> queryUserProfile(@PathVariable String username) {
         if (facade.isUsernameNotExists(username)) {
             return ResponseEntity
                     .badRequest()
@@ -39,8 +34,8 @@ class UserQueryController {
         return ResponseEntity.ok(facade.queryUserProfile(username));
     }
 
-    @GetMapping("random-rival")
-    public HttpEntity<?> getRandomRival(Authentication auth) {
+    @GetMapping("random-user")
+    public HttpEntity<?> queryRandomUser(Authentication auth) {
         return ResponseEntity.ok(facade.queryRandomUser(auth.getName()));
     }
 }

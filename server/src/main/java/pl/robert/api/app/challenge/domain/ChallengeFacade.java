@@ -21,19 +21,15 @@ public class ChallengeFacade {
     ChallengeService service;
 
     public void checkInputData(MakeChallengeDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
     public void checkInputData(SubmitChallengeDto dto, BindingResult result) {
-        if (!result.hasErrors()) {
-            validator.checkInputData(dto, result);
-        }
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
-    public void add(SubmitChallengeDto dto) {
-        service.add(dto);
+    public void submitChallenge(SubmitChallengeDto dto) {
+        service.submitChallenge(dto);
     }
 
     public void submitPendingChallenge(SubmitPendingChallengeDto dto) {
@@ -48,11 +44,11 @@ public class ChallengeFacade {
         service.delete(id);
     }
 
-    public List<ChallengeSubmitedQuery> queryAttackerPendingChallenges(String username) {
+    public List<SubmitedChallengeQuery> queryAttackerPendingChallenges(String username) {
         return service.queryAttackerPendingChallenges(username);
     }
 
-    public List<ChallengePendingQuery> queryDefenderPendingChallenges(String username) {
+    public List<PendingChallengeQuery> queryDefenderPendingChallenges(String username) {
         return service.queryDefenderPendingChallenges(username);
     }
 

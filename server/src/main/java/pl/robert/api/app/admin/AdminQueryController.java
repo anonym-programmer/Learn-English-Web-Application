@@ -21,15 +21,10 @@ import pl.robert.api.app.user.query.UserQuery;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class AdminQueryController {
 
-    UserFacade userFacade;
-
-    @GetMapping
-    public HttpEntity<?> dashboard() {
-        return ResponseEntity.ok("Welcome admin!");
-    }
+    UserFacade facade;
 
     @GetMapping("users")
     public Page<UserQuery> findAllUsers(Pageable pageable) {
-        return userFacade.findAll(pageable);
+        return facade.findAll(pageable);
     }
 }

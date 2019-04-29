@@ -19,32 +19,32 @@ class ChallengeQueryController {
     ChallengeFacade facade;
 
     @GetMapping("attacker-pending")
-    public HttpEntity<?> findAttackerPendingChallenges(Authentication auth) {
+    public HttpEntity<?> queryAttackerPendingChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryAttackerPendingChallenges(auth.getName()));
     }
 
     @GetMapping("defender-pending")
-    public HttpEntity<?> findDefenderPendingChallenges(Authentication auth) {
+    public HttpEntity<?> queryDefenderPendingChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryDefenderPendingChallenges(auth.getName()));
     }
 
     @GetMapping("defender-pending/{challengeId}")
-    public HttpEntity<?> findQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
+    public HttpEntity<?> queryQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
         return ResponseEntity.ok(facade.queryQuestionsOfDefenderChallengeId(challengeId));
     }
 
     @GetMapping("completed")
-    public HttpEntity<?> findCompletedChallenges(Authentication auth) {
+    public HttpEntity<?> queryCompletedChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallenges(auth.getName()));
     }
 
     @GetMapping("completed/{challengeId}")
-    public HttpEntity<?> findCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
+    public HttpEntity<?> queryCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallengeDetailsByChallengeId(challengeId, auth.getName()));
     }
 
     @GetMapping("completed/correct-answers/{challengeId}")
-    public HttpEntity<?> findCompletedChallengeDetailsCorrectAnswersByChallengeId(@PathVariable String challengeId, Authentication auth) {
+    public HttpEntity<?> queryCompletedChallengeDetailsCorrectAnswersByChallengeId(@PathVariable String challengeId, Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallengeDetailsCorrectAnswersByChallengeId(challengeId, auth.getName()));
     }
 }

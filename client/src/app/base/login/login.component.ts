@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
             this.authService.setAuthentication(auth);
           }
         );
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['']);
       }, () => {
         this.cookieService.deleteAll();
         this.sharedService.showFailureToastr(Constants.WRONG_CREDENTIALS);

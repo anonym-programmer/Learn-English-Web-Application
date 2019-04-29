@@ -1,4 +1,4 @@
-package pl.robert.api.app.challenge.query;
+package pl.robert.api.app.user.query;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -6,13 +6,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@Getter
 @Builder
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ChallengeSubmitedQuery {
+public class RandomUserQuery {
 
-    String opponentName;
-    String date;
-    String time;
+    String defenderUsername;
 }

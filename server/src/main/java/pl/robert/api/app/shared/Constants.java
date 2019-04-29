@@ -114,4 +114,13 @@ public interface Constants {
     String M_ATTACKER_EQUALS_DEFENDER_USERNAME = "You cannot challenge yourself";
     String M_QUESTION_IDS_NOT_EXISTS = "Some of a question id do not exist";
     String M_CHALLENGE_ID_EMPTY = "Challenge id can not be empty";
+
+    String F_CHALLENGE_RESULT_WIN = "WIN";
+    String F_CHALLENGE_RESULT_LOSE = "LOSE";
+    String F_CHALLENGE_RESULT_DRAW = "DRAW";
+
+    String M_CHALLENGE_RESULT_WIN = "YOU WON";
+    String M_CHALLENGE_RESULT_LOSE = "YOU LOST";
+    String M_CHALLENGE_RESULT_DRAW = "YOU DREW";
+    String M_CHALLENGE_RESULT_NONE = "NONE";
 }

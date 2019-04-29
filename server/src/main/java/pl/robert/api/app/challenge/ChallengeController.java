@@ -13,7 +13,6 @@ import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
-import pl.robert.api.app.question.domain.QuestionFacade;
 import pl.robert.api.app.shared.ErrorsWrapper;
 
 import javax.validation.Valid;
@@ -25,33 +24,34 @@ import javax.validation.Valid;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class ChallengeController {
 
-    ChallengeFacade challengeFacade;
-    QuestionFacade questionFacade;
+    ChallengeFacade facade;
 
     @PostMapping("make")
     public HttpEntity<?> makeChallenge(@RequestBody @Valid MakeChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
-        challengeFacade.checkInputData(dto, result);
+        facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
                     .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
-        return ResponseEntity.ok(questionFacade.getRandomQuestions());
+        return ResponseEntity
+                .ok()
+                .build();
     }
 
     @PostMapping("submit")
     public HttpEntity<?> submitChallenge(@RequestBody @Valid SubmitChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setAttackerUsername(auth.getName());
-        challengeFacade.checkInputData(dto, result);
+        facade.checkInputData(dto, result);
         if (result.hasErrors()) {
             return ResponseEntity
                     .badRequest()
                     .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
         }
 
-        challengeFacade.add(dto);
+        facade.submitChallenge(dto);
         return ResponseEntity
                 .ok()
                 .build();
@@ -59,13 +59,13 @@ class ChallengeController {
 
     @DeleteMapping("{id}")
     public HttpEntity<?> declineChallenge(@PathVariable String id, Authentication auth) {
-        if (!challengeFacade.isInputDataCorrect(new DeleteChallengeDto(Long.parseLong(id), auth.getName()))) {
+        if (!facade.isInputDataCorrect(new DeleteChallengeDto(Long.parseLong(id), auth.getName()))) {
             return ResponseEntity
                     .badRequest()
                     .build();
         }
 
-        challengeFacade.delete(Long.parseLong(id));
+        facade.delete(Long.parseLong(id));
         return ResponseEntity
                 .ok()
                 .build();
@@ -74,7 +74,7 @@ class ChallengeController {
     @PostMapping("submit-pending")
     public HttpEntity<?> submitPendingChallenge(@RequestBody SubmitPendingChallengeDto dto, Authentication auth) {
         dto.setDefenderUsername(auth.getName());
-        challengeFacade.submitPendingChallenge(dto);
+        facade.submitPendingChallenge(dto);
 
         return ResponseEntity
                 .ok()

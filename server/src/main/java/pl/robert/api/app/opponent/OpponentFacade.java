@@ -17,16 +17,16 @@ public class OpponentFacade {
         return service.addOpponent(dto);
     }
 
-    public List<Long> findIdsOfAttackerPendingChallenges(long attackerId) {
-        return service.findIdsOfAttackerPendingChallenges(attackerId);
+    public List<Long> queryIdsOfAttackerPendingChallenges(long attackerId) {
+        return service.queryIdsOfAttackerPendingChallenges(attackerId);
     }
 
-    public List<Long> findIdsOfDefenderPendingChallenges(long defenderId) {
-        return service.findIdsOfDefenderPendingChallenges(defenderId);
+    public List<Long> queryIdsOfDefenderPendingChallenges(long defenderId) {
+        return service.queryIdsOfDefenderPendingChallenges(defenderId);
     }
 
-    public List<Long> findIdsOfUserCompletedChallenges(long userId) {
-        return service.findIdsOfUserCompletedChallenges(userId);
+    public List<Long> queryIdsOfUserCompletedChallenges(long userId) {
+        return service.queryIdsOfUserCompletedChallenges(userId);
     }
 
     public void updateAndSaveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {

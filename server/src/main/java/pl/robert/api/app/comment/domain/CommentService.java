@@ -19,7 +19,7 @@ class CommentService {
         repository.saveAndFlush(comment);
     }
 
-    List<CommentQuery> findAllByPost(Post post) {
+    List<CommentQuery> queryCommentsByPost(Post post) {
         return List.copyOf(repository.findAllByPost(post)
                 .stream()
                 .map(comment -> new CommentQuery(

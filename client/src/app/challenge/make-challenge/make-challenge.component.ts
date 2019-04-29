@@ -41,12 +41,14 @@ export class MakeChallengeComponent implements OnInit {
 
   onSubmit(makeChallengeForm: FormGroup) {
     this.challengeService.make(makeChallengeForm.value).subscribe(
-      res => {
-        this.onNoClick();
-        this.dialog.open(SubmitChallengeComponent, {
-          width: '40%',
-          height: '85%',
-          data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value)
+      () => {
+        this.challengeService.getRandomQuestions().subscribe(res => {
+          this.onNoClick();
+          this.dialog.open(SubmitChallengeComponent, {
+            width: '40%',
+            height: '85%',
+            data: res.concat(this.makeChallengeForm.controls['defenderUsername'].value)
+          });
         });
       },
       error => {
