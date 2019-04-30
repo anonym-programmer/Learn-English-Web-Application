@@ -9,7 +9,8 @@ import {
   MatCheckboxModule,
   MatGridListModule,
   MatDialogModule,
-  MatRadioModule
+  MatRadioModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import {FormsModule} from '@angular/forms';
@@ -25,6 +26,7 @@ import {FormsModule} from '@angular/forms';
     MatGridListModule,
     MatDialogModule,
     MatRadioModule,
+    MatTooltipModule,
     FormsModule
   ],
   exports: [
@@ -37,6 +39,7 @@ import {FormsModule} from '@angular/forms';
     MatGridListModule,
     MatDialogModule,
     MatRadioModule,
+    MatTooltipModule,
     FormsModule
   ]
 })

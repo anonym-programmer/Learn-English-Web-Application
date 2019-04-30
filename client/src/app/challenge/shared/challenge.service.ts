@@ -25,6 +25,7 @@ export class ChallengeService {
   readonly getCompletedChallengesUrl = '/api/challenge-query/completed';
   readonly getCompleteChallengeDetailsByIdUrl = '/api/challenge-query/completed';
   readonly getCompletedChallengeDetailsCorrectAnswersByIdUrl = '/api/challenge-query/completed/correct-answers';
+  readonly getRivalProfileUrl = '/api/user-query/challenge-profile';
 
   constructor(private http: HttpClient) {
   }
@@ -75,5 +76,9 @@ export class ChallengeService {
 
   getCompletedChallengeDetailsCorrectAnswersById(challengeId: string) {
     return this.http.get(this.getCompletedChallengeDetailsCorrectAnswersByIdUrl + `/${challengeId}`);
+  }
+
+  getRivalProfile(username: string) {
+    return this.http.get(this.getRivalProfileUrl + `/${username}`);
   }
 }

@@ -5,7 +5,7 @@
     <thead class="table-primary">
     <tr>
       <th>#</th>
-      <th>Opponent name</th>
+      <th>Rival name</th>
       <th>Date</th>
       <th>Time</th>
       <th id="action">Action</th>
@@ -14,7 +14,7 @@
     <tbody *ngFor="let pendingChallenge of pendingChallenges; let i = index">
     <tr>
       <td>{{i + 1}}</td>
-      <td>{{pendingChallenge.opponentName}}</td>
+      <td><a matTooltip="Info about the rival" (click)="showRivalProfile(pendingChallenge.opponentName)"><u><i>{{pendingChallenge.opponentName}}</i></u></a></td>
       <td>{{pendingChallenge.date}}</td>
       <td>{{pendingChallenge.time}}</td>
       <td>

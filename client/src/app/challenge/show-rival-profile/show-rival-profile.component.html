@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <h1>{{profile.username}}</h1>
+    <h6>Level: {{profile.level}}</h6>
+    <hr/>
+    <h3 id="wins">WINS: {{profile.numberOfWins}}</h3>
+    <h3 id="loses">LOSES: {{profile.numberOfLoses}}</h3>
+    <h3 id="draws">DRAWS: {{profile.numberOfDraws}}</h3>
+  </div>
+  <div class="col btns">
+    <button mat-raised-button (click)="onNoClick()"
+            [routerLink]="['/profile', profile.username]" routerLinkActive="router-link-active">Show more informations</button>
+    <button mat-raised-button (click)="onNoClick()">Back</button>
+  </div>
+</div>

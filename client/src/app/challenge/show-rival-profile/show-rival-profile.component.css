@@ -1,0 +1,28 @@
+* {
+  text-align: center;
+  font-weight: bold;
+}
+
+h1 {
+  color: indigo;
+}
+
+#wins {
+  color: #5cb85c;
+}
+
+#loses {
+  color: #D8000C;
+}
+
+#draws {
+  color: #034f84;
+}
+
+.btns {
+  margin-top: 3%;
+}
+
+button {
+  margin-top: 1%;
+}

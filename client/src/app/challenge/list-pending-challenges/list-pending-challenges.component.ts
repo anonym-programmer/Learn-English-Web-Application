@@ -5,6 +5,7 @@ import {SharedService} from '../../shared/shared.service';
 import {Constants} from '../../shared/constants';
 import {MatDialog} from '@angular/material';
 import {SubmitPendingChallengeComponent} from './submit-pending-challenge/submit-pending-challenge.component';
+import {ShowRivalProfileComponent} from "../show-rival-profile/show-rival-profile.component";
 
 @Component({
   selector: 'app-list-pending-challenges',
@@ -46,6 +47,16 @@ export class ListPendingChallengesComponent implements OnInit {
       this.getPendingChallenges();
     }, () => {
       this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);
+    });
+  }
+
+  showRivalProfile(username: string) {
+    this.challengeService.getRivalProfile(username).subscribe(data => {
+      this.dialog.open(ShowRivalProfileComponent, {
+        width: '20%',
+        height: '38%',
+        data: data
+      });
     });
   }
 }

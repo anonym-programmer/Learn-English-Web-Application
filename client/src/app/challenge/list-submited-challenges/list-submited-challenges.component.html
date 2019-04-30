@@ -5,7 +5,7 @@
     <thead class="table-primary">
     <tr>
       <th>#</th>
-      <th>Opponent name</th>
+      <th>Rival name</th>
       <th>Date</th>
       <th>Time</th>
     </tr>
@@ -13,7 +13,7 @@
     <tbody *ngFor="let submitedChallenge of submitedChallenges; let i = index">
     <tr>
       <td>{{i+1}}</td>
-      <td>{{submitedChallenge.opponentName}}</td>
+      <td><a matTooltip="Info about the rival" (click)="showRivalProfile(submitedChallenge.opponentName)"><u><i>{{submitedChallenge.opponentName}}</i></u></a></td>
       <td>{{submitedChallenge.date}}</td>
       <td>{{submitedChallenge.time}}</td>
     </tr>
