@@ -23,6 +23,7 @@ public interface Constants {
     int COL_LENGTH_CONFIRMATION_TOKEN = 36;
     int COL_LENGTH_DATE_IN_SECONDS = 11;
     int COL_LENGTH_RANK = 10;
+    int COL_LENGTH_CHALLENGE_SCORE = 5;
 
     String ROLE_USER = "ROLE_USER";
     String USER = "User";

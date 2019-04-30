@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import pl.robert.api.app.opponent.dto.CreateOpponentDto;
+import pl.robert.api.app.user.domain.UserFacade;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import static pl.robert.api.app.shared.Constants.*;
 class OpponentService {
 
     OpponentRepository repository;
+    UserFacade userFacade;
 
     Opponent addOpponent(CreateOpponentDto dto) {
         return repository.save(OpponentFactory.create(dto));
@@ -39,12 +41,18 @@ class OpponentService {
         if (attackerCorrectAnswers > defenderCorrectAnswers) {
             attacker.setResult(OpponentResult.WIN);
             defender.setResult(OpponentResult.LOSE);
+            userFacade.updateUserWins(attacker.getUser().getUsername());
+            userFacade.updateUserLoses(defender.getUser().getUsername());
         } else if (attackerCorrectAnswers < defenderCorrectAnswers) {
             attacker.setResult(OpponentResult.LOSE);
             defender.setResult(OpponentResult.WIN);
+            userFacade.updateUserWins(defender.getUser().getUsername());
+            userFacade.updateUserLoses(attacker.getUser().getUsername());
         } else {
             attacker.setResult(OpponentResult.DRAW);
             defender.setResult(OpponentResult.DRAW);
+            userFacade.updateUserDraws(attacker.getUser().getUsername());
+            userFacade.updateUserDraws(defender.getUser().getUsername());
         }
 
         attacker.setGainedXP(String.valueOf(attackerCorrectAnswers * 15));

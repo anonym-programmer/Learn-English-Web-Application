@@ -1,10 +1,7 @@
 package pl.robert.api.app.user.domain;
 
 import org.springframework.security.core.Authentication;
-import pl.robert.api.app.user.query.AuthUserQuery;
-import pl.robert.api.app.user.query.UserOwnProfileQuery;
-import pl.robert.api.app.user.query.UserProfileQuery;
-import pl.robert.api.app.user.query.RandomUserQuery;
+import pl.robert.api.app.user.query.*;
 
 import static pl.robert.api.app.shared.Constants.*;
 
@@ -28,6 +25,16 @@ class UserQueryFactory {
                 .currentRank(details.getCurrentRank())
                 .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
                 .currentExperienceInPercents(details.getCurrentExperienceInPercents())
+                .build();
+    }
+
+    static UserChallengeProfileQuery queryUserChallengeProfile(String username, UserDetails details) {
+        return UserChallengeProfileQuery.builder()
+                .username(username)
+                .level(details.getLevel())
+                .numberOfWins(details.getNumberOfWins())
+                .numberOfLoses(details.getNumberOfLoses())
+                .numberOfDraws(details.getNumberOfDraws())
                 .build();
     }
 

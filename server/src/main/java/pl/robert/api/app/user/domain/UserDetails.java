@@ -5,6 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_CHALLENGE_SCORE;
 import static pl.robert.api.app.shared.Constants.COL_LENGTH_RANK;
 
 @Entity
@@ -28,6 +29,15 @@ class UserDetails {
 
     @Column(name = "current_rank", length = COL_LENGTH_RANK, nullable = false)
     String currentRank;
+
+    @Column(name = "number_of_wins", length = COL_LENGTH_CHALLENGE_SCORE, nullable = false)
+    String numberOfWins;
+
+    @Column(name = "number_of_loses", length = COL_LENGTH_CHALLENGE_SCORE, nullable = false)
+    String numberOfLoses;
+
+    @Column(name = "number_of_draws", length = COL_LENGTH_CHALLENGE_SCORE, nullable = false)
+    String numberOfDraws;
 
     @OneToOne
     @JoinColumn(name = "user_id")

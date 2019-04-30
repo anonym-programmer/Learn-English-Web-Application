@@ -33,6 +33,9 @@ class UserFactory {
                 .expierience("0")
                 .currentRank(UserRanks.BRONZE.getRank())
                 .user(user)
+                .numberOfWins("0")
+                .numberOfLoses("0")
+                .numberOfDraws("0")
                 .build();
     }
 }

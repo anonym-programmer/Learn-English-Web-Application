@@ -100,4 +100,22 @@ class UserDetailsService {
     UserDetails findUserDetailsById(long id) {
         return repository.findUserDetailsById(id);
     }
+
+    void updateUserWins(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfWins());
+        details.setNumberOfWins(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
+
+    void updateUserLoses(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfLoses());
+        details.setNumberOfLoses(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
+
+    void updateUserDraws(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfDraws());
+        details.setNumberOfDraws(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
 }

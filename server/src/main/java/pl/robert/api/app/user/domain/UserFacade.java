@@ -101,6 +101,22 @@ public class UserFacade {
         return UserQueryFactory.queryUserOwnProfile(user, userDetails);
     }
 
+    public void updateUserWins(String username) {
+        detailsService.updateUserWins(findUserByUsername(username).getUserDetails());
+    }
+
+    public void updateUserLoses(String username) {
+        detailsService.updateUserLoses(findUserByUsername(username).getUserDetails());
+    }
+
+    public void updateUserDraws(String username) {
+        detailsService.updateUserDraws(findUserByUsername(username).getUserDetails());
+    }
+
+    public UserChallengeProfileQuery queryUserChallengeProfile(String username) {
+        return UserQueryFactory.queryUserChallengeProfile(username, userService.findByUsername(username).getUserDetails());
+    }
+
     public UserProfileQuery queryUserProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
