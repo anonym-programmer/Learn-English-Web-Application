@@ -72,10 +72,16 @@ class ChallengeController {
     }
 
     @PostMapping("submit-pending")
-    public HttpEntity<?> submitPendingChallenge(@RequestBody SubmitPendingChallengeDto dto, Authentication auth) {
+    public HttpEntity<?> submitPendingChallenge(@RequestBody @Valid SubmitPendingChallengeDto dto, BindingResult result, Authentication auth) {
         dto.setDefenderUsername(auth.getName());
-        facade.submitPendingChallenge(dto);
+        facade.checkInputData(dto, result);
+        if (result.hasErrors()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(ErrorsWrapper.fillMultiMapWithErrors(result).asMap());
+        }
 
+        facade.submitPendingChallenge(dto);
         return ResponseEntity
                 .ok()
                 .build();

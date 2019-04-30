@@ -28,6 +28,10 @@ public class ChallengeFacade {
         if (!result.hasErrors()) validator.checkInputData(dto, result);
     }
 
+    public void checkInputData(SubmitPendingChallengeDto dto, BindingResult result) {
+        if (!result.hasErrors()) validator.checkInputData(dto, result);
+    }
+
     public void submitChallenge(SubmitChallengeDto dto) {
         service.submitChallenge(dto);
     }

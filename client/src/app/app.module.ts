@@ -11,6 +11,8 @@ import {SweetAlert2Module} from '@toverux/ngx-sweetalert2';
 
 import {AppComponent} from './app.component';
 
+import {HomeComponent} from './home/home.component';
+
 import {ForumComponent} from './forum/forum.component';
 import {RegisterComponent} from './base/register/register.component';
 import {CredentialsComponent} from './base/credentials/credentials.component';
@@ -56,6 +58,7 @@ import {ChallengeService} from './challenge/shared/challenge.service';
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     ForumComponent,
     RegisterComponent,
     CredentialsComponent,
@@ -79,7 +82,7 @@ import {ChallengeService} from './challenge/shared/challenge.service';
     ListSubmitedChallengesComponent,
     ListCompletedChallengesComponent,
     ShowCompletedChallengeDetailsComponent,
-    ShowCorrectAnswersChallengeDetailsComponent
+    ShowCorrectAnswersChallengeDetailsComponent,
   ],
   entryComponents: [
     AddPostComponent,

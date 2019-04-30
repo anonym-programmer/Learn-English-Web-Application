@@ -1,3 +1,7 @@
 .mat-radio-button, .mat-form-field {
   display: block;
 }
+
+h5 {
+  font-weight: bold;
+}

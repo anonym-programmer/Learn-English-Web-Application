@@ -34,14 +34,15 @@ export class ListPendingChallengesComponent implements OnInit {
       this.dialog.open(SubmitPendingChallengeComponent, {
         width: '40%',
         height: '85%',
-        data: data.concat(challengeId)
+        data: data.concat(challengeId),
+        disableClose: true
       });
     });
   }
 
   decline(challengeId: string) {
     this.challengeService.declinePendingChallenge(challengeId).subscribe(() => {
-      this.sharedService.showSuccessToastr(Constants.DECLINED_CHALLENGE);
+      this.sharedService.showInfoToastr(Constants.DECLINED_CHALLENGE);
       this.getPendingChallenges();
     }, () => {
       this.sharedService.showFailureToastr(Constants.SOMETHING_WRONG);

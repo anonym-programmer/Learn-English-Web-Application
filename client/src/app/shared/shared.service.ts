@@ -18,6 +18,10 @@ export class SharedService {
     this.toastr.error(msg, 'Failure');
   }
 
+  public showInfoToastr(msg: string) {
+    this.toastr.info(msg);
+  }
+
   public showInfoAlert(title: string, msg: string) {
     swal(
       `${title}`,

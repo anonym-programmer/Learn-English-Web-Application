@@ -5,3 +5,7 @@
 .wrongAnswer, .fa-times-circle {
   color: #D8000C;
 }
+
+h5 {
+  font-weight: bold;
+}

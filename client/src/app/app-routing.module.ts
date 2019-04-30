@@ -14,9 +14,12 @@ import {AdminComponent} from './admin/admin.component';
 import {RoleGuard} from './auth/role.guard';
 import {NotAuthGuard} from './auth/not-auth.guard';
 import {ChallengeComponent} from './challenge/challenge.component';
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {path: '*', redirectTo: '/'},
+
+  {path: '', component: HomeComponent},
 
   {path: 'forum', component: ForumComponent},
 

@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import pl.robert.api.app.challenge.domain.dto.MakeChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.DeleteChallengeDto;
 import pl.robert.api.app.challenge.domain.dto.SubmitChallengeDto;
+import pl.robert.api.app.challenge.domain.dto.SubmitPendingChallengeDto;
 import pl.robert.api.app.user.domain.UserFacade;
 
 import java.util.List;
@@ -28,6 +29,13 @@ class ChallengeValidator {
     void checkInputData(SubmitChallengeDto dto, BindingResult result) {
 
         areUsersCorrect(dto.getAttackerUsername(), dto.getDefenderUsername(), result);
+
+        if (areListsOfQuestionIdsAndAnswersContainsNullValues(dto.getQuestionsIds(), dto.getAnswers())) {
+            result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS);
+        }
+    }
+
+    void checkInputData(SubmitPendingChallengeDto dto, BindingResult result) {
 
         if (areListsOfQuestionIdsAndAnswersContainsNullValues(dto.getQuestionsIds(), dto.getAnswers())) {
             result.rejectValue(F_QUESTION_IDS, C_NOT_EXISTS);
