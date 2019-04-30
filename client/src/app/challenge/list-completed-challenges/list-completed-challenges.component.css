@@ -13,3 +13,7 @@ tbody {
 a {
   cursor: pointer;
 }
+
+tr {
+  text-align: center;
+}

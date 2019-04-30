@@ -30,8 +30,8 @@ export class ListCompletedChallengesComponent implements OnInit {
   viewDetails(id: string) {
     this.challengeService.getCompletedChallengeDetailsById(id).subscribe(data => {
       this.dialog.open(ShowCompletedChallengeDetailsComponent, {
-        width: '25%',
-        height: '55%',
+        width: '35%',
+        height: '60%',
         data: data
       });
     });

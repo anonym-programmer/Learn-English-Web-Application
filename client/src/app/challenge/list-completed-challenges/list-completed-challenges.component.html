@@ -5,21 +5,26 @@
     <thead class="table-primary">
     <tr>
       <th>#</th>
-      <th>Rival name</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Result</th>
-      <th>Details</th>
+      <th><i class="far fa-user"></i></th>
+      <th><i class="far fa-calendar-alt"></i></th>
+      <th><i class="far fa-clock"></i></th>
+      <th><i class="fas fa-trophy"></i></th>
+      <th><i class="fas fa-search"></i></th>
     </tr>
     </thead>
     <tbody *ngFor="let completedChallenge of completedChallenges; let i = index">
-    <tr>
+    <tr
+      [ngStyle]="{'background-color' : completedChallenge.result == 'WIN' ? '#98FB98' : completedChallenge.result == 'LOSE' ? '#F08080' : '#FFF8DC'}">
       <td>{{i + 1}}</td>
-      <td><a matTooltip="Info about the rival" (click)="showRivalProfile(completedChallenge.opponentName)"><u><i>{{completedChallenge.opponentName}}</i></u></a></td>
+      <td><a matTooltip="Info about the rival"
+             (click)="showRivalProfile(completedChallenge.opponentName)"><u><i>{{completedChallenge.opponentName}}</i></u></a>
+      </td>
       <td>{{completedChallenge.date}}</td>
       <td>{{completedChallenge.time}}</td>
       <td>{{completedChallenge.result}}</td>
-      <td><button class="btn btn-info btn-sm" (click)="viewDetails(completedChallenge.id)">View</button></td>
+      <td>
+        <button class="btn btn-info btn-sm" (click)="viewDetails(completedChallenge.id)">View</button>
+      </td>
     </tr>
     </tbody>
   </table>

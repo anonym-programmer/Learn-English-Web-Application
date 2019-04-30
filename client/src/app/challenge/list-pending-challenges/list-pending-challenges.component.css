@@ -10,10 +10,10 @@ tbody {
   background-color: #FFFFFF;
 }
 
-#action {
-  text-align: center;
-}
-
 a {
   cursor: pointer;
+}
+
+tr {
+  text-align: center;
 }
