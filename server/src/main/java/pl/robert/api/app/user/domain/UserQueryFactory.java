@@ -38,6 +38,16 @@ class UserQueryFactory {
                 .build();
     }
 
+    static UserForumProfileQuery queryUserForumProfile(String username, UserDetails details) {
+        return UserForumProfileQuery.builder()
+                .username(username)
+                .level(details.getLevel())
+                .numberOfPosts(details.getNumberOfPosts())
+                .numberOfComments(details.getNumberOfComments())
+                .numberOfVotes(details.getNumberOfVotes())
+                .build();
+    }
+
     static UserProfileQuery queryUserProfile(User user, UserDetails details) {
         return UserProfileQuery.builder()
                 .username(user.getUsername())

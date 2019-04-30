@@ -118,4 +118,22 @@ class UserDetailsService {
         details.setNumberOfDraws(String.valueOf(++increment));
         repository.saveAndFlush(details);
     }
+
+    void updateUserPosts(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfPosts());
+        details.setNumberOfPosts(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
+
+    void updateUserComments(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfComments());
+        details.setNumberOfComments(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
+
+    void updateUserVotes(UserDetails details) {
+        int increment = Integer.parseInt(details.getNumberOfVotes());
+        details.setNumberOfVotes(String.valueOf(++increment));
+        repository.saveAndFlush(details);
+    }
 }

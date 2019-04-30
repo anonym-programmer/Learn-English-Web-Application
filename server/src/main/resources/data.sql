@@ -26,16 +26,18 @@ VALUES (1, 1),
        (8, 1),
        (9, 1);
 
-INSERT INTO user_details (level, expierience, current_rank, number_of_wins, number_of_loses, number_of_draws, user_id)
-VALUES ('13', '13555', 'Challenger', '0', '0', '0', 1),
-       ('2' , '80'   , 'Bronze'    , '0', '0', '0', 2),
-       ('3' , '190'  , 'Silver'    , '0', '0', '0', 3),
-       ('5' , '365'  , 'Gold'      , '0', '1', '0', 4),
-       ('11', '6795' , 'Master'    , '3', '1', '1', 5),
-       ('12', '7295' , 'Master'    , '0', '1', '1', 6),
-       ('9' , '2400' , 'Diamond'   , '0', '1', '0', 7),
-       ('7' , '850'  , 'Platinum'  , '0', '0', '0', 8),
-       ('6' , '700'  , 'Gold'      , '1', '0', '0', 9);
+INSERT INTO user_details (user_id, level, expierience, current_rank,
+                          number_of_wins, number_of_loses, number_of_draws,
+                          number_of_posts, number_of_comments, number_of_votes)
+VALUES (1, '13', '13555', 'Challenger', '0', '0', '0', '0', '0', '0'),
+       (2, '2' , '80'   , 'Bronze'    , '0', '0', '0', '0', '0', '0'),
+       (3, '3' , '190'  , 'Silver'    , '0', '0', '0', '1', '2', '4'),
+       (4, '5' , '365'  , 'Gold'      , '0', '1', '0', '2', '2', '4'),
+       (5, '11', '6795' , 'Master'    , '3', '1', '1', '1', '1', '4'),
+       (6, '12', '7295' , 'Master'    , '0', '1', '1', '0', '0', '4'),
+       (7, '9' , '2400' , 'Diamond'   , '0', '1', '0', '0', '0', '3'),
+       (8, '7' , '850'  , 'Platinum'  , '0', '0', '0', '0', '0', '4'),
+       (9, '6' , '700'  , 'Gold'      , '1', '0', '0', '1', '0', '4');
 
 INSERT INTO posts (title, description, date, up_vote, down_vote, user_id)
 VALUES ('Learning English',

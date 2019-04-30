@@ -5,8 +5,7 @@ import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
 
-import static pl.robert.api.app.shared.Constants.COL_LENGTH_CHALLENGE_SCORE;
-import static pl.robert.api.app.shared.Constants.COL_LENGTH_RANK;
+import static pl.robert.api.app.shared.Constants.*;
 
 @Entity
 @Table(name = "user_details")
@@ -38,6 +37,15 @@ class UserDetails {
 
     @Column(name = "number_of_draws", length = COL_LENGTH_CHALLENGE_SCORE, nullable = false)
     String numberOfDraws;
+
+    @Column(name = "number_of_posts", length = COL_LENGTH_FORUM_DETAILS, nullable = false)
+    String numberOfPosts;
+
+    @Column(name = "number_of_comments", length = COL_LENGTH_FORUM_DETAILS, nullable = false)
+    String numberOfComments;
+
+    @Column(name = "number_of_votes", length = COL_LENGTH_FORUM_DETAILS, nullable = false)
+    String numberOfVotes;
 
     @OneToOne
     @JoinColumn(name = "user_id")

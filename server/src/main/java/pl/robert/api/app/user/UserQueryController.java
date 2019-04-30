@@ -34,6 +34,17 @@ class UserQueryController {
         return ResponseEntity.ok(facade.queryUserChallengeProfile(username));
     }
 
+    @GetMapping("forum-profile/{username}")
+    public HttpEntity<?> queryUserForumProfile(@PathVariable String username) {
+        if (facade.isUsernameNotExists(username)) {
+            return ResponseEntity
+                    .badRequest()
+                    .build();
+        }
+
+        return ResponseEntity.ok(facade.queryUserForumProfile(username));
+    }
+
     @GetMapping("profile/{username}")
     public HttpEntity<?> queryUserProfile(@PathVariable String username) {
         if (facade.isUsernameNotExists(username)) {

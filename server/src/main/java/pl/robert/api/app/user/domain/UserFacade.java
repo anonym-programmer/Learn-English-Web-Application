@@ -117,6 +117,22 @@ public class UserFacade {
         return UserQueryFactory.queryUserChallengeProfile(username, userService.findByUsername(username).getUserDetails());
     }
 
+    public void updateUserPosts(String username) {
+        detailsService.updateUserPosts(findUserByUsername(username).getUserDetails());
+    }
+
+    public void updateUserComments(String username) {
+        detailsService.updateUserComments(findUserByUsername(username).getUserDetails());
+    }
+
+    public void updateUserVotes(String username) {
+        detailsService.updateUserVotes(findUserByUsername(username).getUserDetails());
+    }
+
+    public UserForumProfileQuery queryUserForumProfile(String username) {
+        return UserQueryFactory.queryUserForumProfile(username, userService.findByUsername(username).getUserDetails());
+    }
+
     public UserProfileQuery queryUserProfile(String username) {
         User user = findUserByUsername(username);
         UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
