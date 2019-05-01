@@ -5,21 +5,27 @@
     <thead class="table-primary">
     <tr>
       <th>#</th>
-      <th><i class="far fa-user"></i></th>
-      <th><i class="far fa-calendar-alt"></i></th>
-      <th><i class="far fa-clock"></i></th>
-      <th><i class="fa fa-wrench"></i></th>
+      <th><i class="far fa-user" matTooltip="Rival"></i></th>
+      <th><i class="far fa-calendar-alt" matTooltip="Date"></i></th>
+      <th><i class="far fa-clock" matTooltip="Time"></i></th>
+      <th><i class="fa fa-wrench" matTooltip="Action"></i></th>
     </tr>
     </thead>
     <tbody *ngFor="let pendingChallenge of pendingChallenges; let i = index">
     <tr>
       <td>{{i + 1}}</td>
-      <td><a matTooltip="Info about the rival" (click)="showRivalProfile(pendingChallenge.opponentName)"><u><i>{{pendingChallenge.opponentName}}</i></u></a></td>
+      <td><a matTooltip="Info about the rival"
+             (click)="showRivalProfile(pendingChallenge.opponentName)"><u><i>{{pendingChallenge.opponentName}}</i></u></a>
+      </td>
       <td>{{pendingChallenge.date}}</td>
       <td>{{pendingChallenge.time}}</td>
       <td>
-        <button class="btn btn-success btn-sm" (click)="accept(pendingChallenge.id)">Accept</button>&nbsp;
-        <button class="btn btn-danger btn-sm" (click)="decline(pendingChallenge.id)">Decline</button>
+        <button class="btn btn-success btn-sm" (click)="accept(pendingChallenge.id)"
+                matTooltip="Accept current challenge">Accept
+        </button>&nbsp;
+        <button class="btn btn-danger btn-sm" (click)="decline(pendingChallenge.id)"
+                matTooltip="Decline current challenge">Decline
+        </button>
       </td>
     </tr>
     </tbody>

@@ -31,7 +31,7 @@ export class SomeoneProfileComponent implements OnInit {
         Constants.FAILURE_TITLE,
         Constants.USER_DOESNT_EXIST
       );
-      this.router.navigate(['forum']);
+      this.router.navigate(['']);
     });
   }
 }

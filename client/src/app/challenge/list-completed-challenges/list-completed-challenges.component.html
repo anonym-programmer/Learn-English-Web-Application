@@ -5,11 +5,11 @@
     <thead class="table-primary">
     <tr>
       <th>#</th>
-      <th><i class="far fa-user"></i></th>
-      <th><i class="far fa-calendar-alt"></i></th>
-      <th><i class="far fa-clock"></i></th>
-      <th><i class="fas fa-trophy"></i></th>
-      <th><i class="fas fa-search"></i></th>
+      <th><i class="far fa-user" matTooltip="Rival"></i></th>
+      <th><i class="far fa-calendar-alt" matTooltip="Date"></i></th>
+      <th><i class="far fa-clock" matTooltip="Time"></i></th>
+      <th><i class="fas fa-trophy" matTooltip="Result"></i></th>
+      <th><i class="fas fa-search" matTooltip="Details"></i></th>
     </tr>
     </thead>
     <tbody *ngFor="let completedChallenge of completedChallenges; let i = index">
@@ -23,7 +23,9 @@
       <td>{{completedChallenge.time}}</td>
       <td>{{completedChallenge.result}}</td>
       <td>
-        <button class="btn btn-info btn-sm" (click)="viewDetails(completedChallenge.id)">View</button>
+        <button class="btn btn-info btn-sm" (click)="viewDetails(completedChallenge.id)"
+                matTooltip="View details about challenge">View
+        </button>
       </td>
     </tr>
     </tbody>

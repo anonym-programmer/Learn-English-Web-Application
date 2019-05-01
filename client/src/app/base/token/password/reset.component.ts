@@ -30,7 +30,7 @@ export class ResetComponent implements OnInit {
       const token = queryParams['token'];
       this.service.checkToken(token).subscribe(() => {
         }, () => {
-          this.router.navigate(['/']);
+          this.router.navigate(['']);
           this.sharedService.showErrorAlert(
             Constants.FAILURE_TITLE,
             Constants.TOKEN_CONFIRMATION_FAILURE_MSG
@@ -57,7 +57,7 @@ export class ResetComponent implements OnInit {
             Constants.TOKEN_CONFIRMATION_SUCCESS_TITLE,
             Constants.CHANGED_PASSWORD
           );
-          this.router.navigate(['/']);
+          this.router.navigate(['']);
         }, error => {
           this.sharedService.showFailureToastr(
             Constants.INVALID_FIELDS

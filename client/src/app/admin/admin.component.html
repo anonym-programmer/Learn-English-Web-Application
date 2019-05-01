@@ -1,29 +1,35 @@
 <table class="table">
   <thead class="thead-dark">
   <tr>
-    <th>Id</th>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Roles</th>
-    <th>Enabled</th>
-    <th>Delete</th>
+    <th>#</th>
+    <th><i class="fas fa-signature" matTooltip="Username"></i></th>
+    <th><i class="fas fa-at" matTooltip="Email"></i></th>
+    <th><i class="fas fa-user-tag" matTooltip="Roles"></i></th>
+    <th><i class="fas fa-toggle-on" matTooltip="Enabled"></i></th>
+    <th><i class="fas fa-user-minus" matTooltip="Delete"></i></th>
   </tr>
   </thead>
-  <tbody *ngFor="let user of users">
+  <tbody *ngFor="let user of users; let i = index">
   <tr>
-    <td>{{user.id}}</td>
+    <td>{{i + 1}}</td>
     <td>{{user.username}}</td>
     <td>{{user.email}}</td>
     <td>{{user.roles}}</td>
-    <td>{{user.enabled}}</td>
-    <td *ngIf="user.roles.length == 4"><button class="btn btn-danger btn-sm" (click)="deleteUser(user.id)">Delete</button></td>
-    <td *ngIf="user.roles.length > 4"><button class="btn btn-danger btn-sm" disabled>Delete</button></td>
+    <td *ngIf="user.enabled == true"><i class="far fa-check-square" matTooltip="User is enabled"></i></td>
+    <td *ngIf="user.enabled == false"><i class="far fa-square" matTooltip="User is not enabled"></i></td>
+    <td *ngIf="user.roles.length == 4">
+      <button class="btn btn-danger btn-sm" matTooltip="Delete current user" (click)="deleteUser(user.id)"><i
+        class="far fa-trash-alt"></i></button>
+    </td>
+    <td *ngIf="user.roles.length > 4">
+      <button class="btn btn-danger btn-sm" disabled><i class="far fa-trash-alt"></i></button>
+    </td>
   </tr>
   </tbody>
 </table>
 
 <ul class="nav nav-pills">
-  <li class="nav-item" *ngFor="let p of pages; let i=index">
-    <a class="nav-link" href="#" (click)="setPage(i, $event)" [ngClass]="{'active':i==page}">{{i}}</a>
+  <li class="nav-item" *ngFor="let p of pages; let i = index">
+    <a class="nav-link" href="#" (click)="setPage(i, $event)" [ngClass]="{'active':i==page}">{{i + 1}}</a>
   </li>
 </ul>

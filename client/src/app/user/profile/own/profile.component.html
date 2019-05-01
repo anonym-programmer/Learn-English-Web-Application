@@ -11,17 +11,6 @@
       <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
                        [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
     </div>
-    <div class="col">
-      <h1>Change credentials</h1>
-      <div class="row">
-        <div class="col">
-          <app-change-email></app-change-email>
-        </div>
-        <div class="col">
-          <app-change-password></app-change-password>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="row statistics">
     <div class="col-6">
@@ -41,6 +30,19 @@
       <h3 id="posts">Posts: {{profile.numberOfPosts}}</h3>
       <h3 id="comments">Comments: {{profile.numberOfComments}}</h3>
       <h3 id="votes">Votes: {{profile.numberOfVotes}}</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <h1>Change credentials</h1>
+      <div class="row" id="changeCredentials">
+        <div class="col">
+          <app-change-email></app-change-email>
+        </div>
+        <div class="col">
+          <app-change-password></app-change-password>
+        </div>
+      </div>
     </div>
   </div>
 </div>

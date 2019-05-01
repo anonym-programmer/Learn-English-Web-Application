@@ -32,7 +32,7 @@ export class ConfirmComponent implements OnInit {
           );
         }
       );
-      this.router.navigate(['/']);
+      this.router.navigate(['']);
     });
   }
 }

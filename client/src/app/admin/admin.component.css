@@ -5,3 +5,7 @@ table {
 tbody {
   background-color: #FFFFFF;
 }
+
+tr {
+  text-align: center;
+}

@@ -16,7 +16,7 @@ spring:
   data:
     web:
       pageable:
-        max-page-size: 5
+        max-page-size: 10
 
   mail:
     host: smtp.gmail.com
