@@ -18,4 +18,10 @@ public class UserProfileQuery {
     String experience;
     String leftExperienceToTheNextLevel;
     String currentExperienceInPercents;
+    String numberOfWins;
+    String numberOfLoses;
+    String numberOfDraws;
+    String numberOfPosts;
+    String numberOfComments;
+    String numberOfVotes;
 }

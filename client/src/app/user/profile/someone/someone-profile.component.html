@@ -1,9 +1,33 @@
-<div class="container">
-  <h1>Username: {{profile.username}}</h1>
-  <h2>Level: {{profile.level}}</h2>
-  <h2>Rank: {{profile.currentRank}}</h2>
-  <h3>Current: {{profile.experience}} XP</h3>
-  <h3>Left to the next level: {{profile.leftExperienceToTheNextLevel}} XP</h3>
-  <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
-                   [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h1>{{profile.username}}</h1>
+      <h4><b>Level:</b> {{profile.level}}</h4>
+      <h4><b>Rank:</b> {{profile.currentRank}}</h4>
+      <h4><b>Current:</b> {{profile.experience}} XP</h4>
+      <h4><b>Left to the next level:</b> {{profile.leftExperienceToTheNextLevel}} XP</h4>
+      <ngb-progressbar type="info" height="45px" [value]="profile.currentExperienceInPercents"
+                       [showValue]="true" [striped]="true" [animated]="true"></ngb-progressbar>
+    </div>
+  </div>
+  <div class="row statistics">
+    <div class="col-6">
+      <h2><b>Challenges</b></h2>
+    </div>
+    <div class="col-6">
+      <h2><b>Forum</b></h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <h3 id="wins">Wins: {{profile.numberOfWins}}</h3>
+      <h3 id="loses">Loses: {{profile.numberOfLoses}}</h3>
+      <h3 id="draws">Draws: {{profile.numberOfDraws}}</h3>
+    </div>
+    <div class="col-6">
+      <h3 id="posts">Posts: {{profile.numberOfPosts}}</h3>
+      <h3 id="comments">Comments: {{profile.numberOfComments}}</h3>
+      <h3 id="votes">Votes: {{profile.numberOfVotes}}</h3>
+    </div>
+  </div>
 </div>

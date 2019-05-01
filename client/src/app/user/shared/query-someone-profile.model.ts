@@ -5,4 +5,10 @@ export class QuerySomeoneProfile {
   experience: string;
   leftExperienceToTheNextLevel: string;
   currentExperienceInPercents: string;
+  numberOfWins: string;
+  numberOfLoses: string;
+  numberOfDraws: string;
+  numberOfPosts: string;
+  numberOfComments: string;
+  numberOfVotes: string;
 }

@@ -4,6 +4,7 @@ import {ChangeUserPasswordDto} from '../../../../shared/change-password-dto.mode
 import {UserService} from '../../../../shared/user.service';
 import {SharedService} from '../../../../../shared/shared.service';
 import {Constants} from '../../../../../shared/constants';
+import {ProfileComponent} from "../../profile.component";
 
 @Component({
   selector: 'app-change-password',
@@ -16,7 +17,7 @@ export class ChangePasswordComponent implements OnInit {
   dtoError = new ChangeUserPasswordDto();
   changePasswordForm: FormGroup;
 
-  constructor(private userService: UserService, private sharedService: SharedService) {
+  constructor(private userService: UserService, private sharedService: SharedService, private profile: ProfileComponent) {
   }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class ChangePasswordComponent implements OnInit {
           control = this.changePasswordForm.controls[name];
           control.setErrors(null);
         });
+        this.profile.ngOnInit();
       },
       error => {
         this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);

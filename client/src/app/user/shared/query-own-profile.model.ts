@@ -7,4 +7,10 @@ export class QueryOwnProfile {
   experience: string;
   leftExperienceToTheNextLevel: string;
   currentExperienceInPercents: string;
+  numberOfWins: string;
+  numberOfLoses: string;
+  numberOfDraws: string;
+  numberOfPosts: string;
+  numberOfComments: string;
+  numberOfVotes: string;
 }

@@ -25,6 +25,12 @@ class UserQueryFactory {
                 .currentRank(details.getCurrentRank())
                 .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
                 .currentExperienceInPercents(details.getCurrentExperienceInPercents())
+                .numberOfWins(details.getNumberOfWins())
+                .numberOfLoses(details.getNumberOfLoses())
+                .numberOfDraws(details.getNumberOfDraws())
+                .numberOfPosts(details.getNumberOfPosts())
+                .numberOfComments(details.getNumberOfComments())
+                .numberOfVotes(details.getNumberOfVotes())
                 .build();
     }
 
@@ -56,6 +62,12 @@ class UserQueryFactory {
                 .currentRank(details.getCurrentRank())
                 .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
                 .currentExperienceInPercents(details.getCurrentExperienceInPercents())
+                .numberOfWins(details.getNumberOfWins())
+                .numberOfLoses(details.getNumberOfLoses())
+                .numberOfDraws(details.getNumberOfDraws())
+                .numberOfPosts(details.getNumberOfPosts())
+                .numberOfComments(details.getNumberOfComments())
+                .numberOfVotes(details.getNumberOfVotes())
                 .build();
     }
 

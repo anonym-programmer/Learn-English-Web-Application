@@ -1,5 +1,40 @@
-.container {
+.container-fluid {
+  margin-top: 10%;
   opacity: 0.85;
-  height: 290px !important;
+  width: 90%;
   background-color: #E8E8E8;
+  text-align: center;
+}
+
+h1 {
+  color: indigo;
+  font-weight: bold;
+}
+
+.statistics {
+  margin-top: 1%;
+}
+
+#wins {
+  color: #5cb85c;
+}
+
+#loses {
+  color: #D8000C;
+}
+
+#draws {
+  color: #034f84;
+}
+
+#posts {
+  color: #007bff;
+}
+
+#comments {
+  color: #ffc107;
+}
+
+#votes {
+  color: #ff7b25;
 }

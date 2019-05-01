@@ -4,6 +4,7 @@ import {ChangeUserEmailDto} from '../../../../shared/change-email-dto.model';
 import {UserService} from '../../../../shared/user.service';
 import {SharedService} from '../../../../../shared/shared.service';
 import {Constants} from '../../../../../shared/constants';
+import {ProfileComponent} from "../../profile.component";
 
 @Component({
   selector: 'app-change-email',
@@ -16,7 +17,7 @@ export class ChangeEmailComponent implements OnInit {
   dtoError = new ChangeUserEmailDto();
   changeEmailForm: FormGroup;
 
-  constructor(private userService: UserService, private sharedService: SharedService) {
+  constructor(private userService: UserService, private sharedService: SharedService, private profile: ProfileComponent) {
   }
 
   ngOnInit() {
@@ -45,6 +46,7 @@ export class ChangeEmailComponent implements OnInit {
           control = this.changeEmailForm.controls[name];
           control.setErrors(null);
         });
+        this.profile.ngOnInit();
       },
       error => {
         this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);
