@@ -6,6 +6,8 @@ import {QueryComment} from '../shared/query-comment.model';
 import {AuthService} from '../../auth/auth.service';
 import {SharedService} from '../../shared/shared.service';
 import {Constants} from '../../shared/constants';
+import {ShowForumUserProfileComponent} from "../show-forum-user-profile/show-forum-user-profile.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: 'app-show-post',
@@ -19,7 +21,7 @@ export class ShowPostComponent implements OnInit {
   id: string;
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private forumService: ForumService,
-              private authService: AuthService, private sharedService: SharedService) {
+              private authService: AuthService, private sharedService: SharedService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -46,6 +48,16 @@ export class ShowPostComponent implements OnInit {
   getComments() {
     this.forumService.getComments(this.id).subscribe(data => {
       this.comments = data;
+    });
+  }
+
+  showForumUserProfile(username: string) {
+    this.forumService.getUserForumProfile(username).subscribe(data => {
+      this.dialog.open(ShowForumUserProfileComponent, {
+        width: '20%',
+        height: '38%',
+        data: data
+      });
     });
   }
 }

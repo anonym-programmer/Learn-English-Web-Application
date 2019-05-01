@@ -1,5 +1,5 @@
 .my-card {
-  height: 340px !important;
+  height: 60% !important;
 }
 
 button {
@@ -7,7 +7,9 @@ button {
 }
 
 .hrefs {
-  height: 50px;
-  width: 400px;
   margin: 25px 0 0 2px;
+}
+
+a {
+  display: block;
 }

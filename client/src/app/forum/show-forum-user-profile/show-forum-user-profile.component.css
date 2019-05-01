@@ -1,0 +1,28 @@
+* {
+  text-align: center;
+  font-weight: bold;
+}
+
+h1 {
+  color: indigo;
+}
+
+#posts {
+  color: #007bff;
+}
+
+#comments {
+  color: #ffc107;
+}
+
+#votes {
+  color: #ff7b25;
+}
+
+.btns {
+  margin-top: 3%;
+}
+
+button {
+  margin-top: 1%;
+}

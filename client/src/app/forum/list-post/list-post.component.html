@@ -2,26 +2,34 @@
   <div class="row" *ngFor="let post of posts">
     <div class="col-3 vote">
       <div *ngIf="authService.isAuthenticated()" class="row voteElements">
-        <div class="col"><button class="plusBtn" mat-button (click)="votePost(post.id, 'YES')">+</button></div>
+        <div class="col">
+          <button class="plusBtn" mat-button (click)="votePost(post.id, 'YES')">+</button>
+        </div>
         <div class="col"><h2>{{post.upVote}}</h2></div>
         <div class="w-100"></div>
-        <div class="col"><button class="minusBtn" mat-button (click)="votePost(post.id, 'NO')">-</button></div>
+        <div class="col">
+          <button class="minusBtn" mat-button (click)="votePost(post.id, 'NO')">-</button>
+        </div>
         <div class="col"><h2>{{post.downVote}}</h2></div>
       </div>
       <div *ngIf="!authService.isAuthenticated()" class="row voteElements">
-        <div class="col"><button mat-button disabled>+</button></div>
+        <div class="col">
+          <button mat-button disabled>+</button>
+        </div>
         <div class="col"><h2>{{post.upVote}}</h2></div>
         <div class="w-100"></div>
-        <div class="col"><button mat-button disabled>-</button></div>
+        <div class="col">
+          <button mat-button disabled>-</button>
+        </div>
         <div class="col"><h2>{{post.downVote}}</h2></div>
       </div>
     </div>
     <div class="col-9 post">
       <h2><a [routerLink]="['/forum/post', post.id]" routerLinkActive="router-link-active">{{post.title}}</a></h2>
       <h6>{{post.description}}</h6>
-       Author:&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active"><u><i>{{post.username}}</i></u></a><br>
-       Date:&nbsp;{{post.date}}
-       Time: {{post.time}}
+      <b>Created by:</b>&nbsp;<a matTooltip="Info about the post owner"
+                                 (click)="showForumUserProfile(post.username)"><u><i>{{post.username}}</i></u></a>
+      &nbsp;<b>Date:</b>&nbsp;{{post.date}}&nbsp;<b>Time:</b>&nbsp;{{post.time}}
     </div>
   </div>
 </div>

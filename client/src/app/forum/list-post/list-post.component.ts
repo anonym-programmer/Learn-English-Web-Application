@@ -4,6 +4,8 @@ import {QueryPost} from '../shared/query-post.model';
 import {AuthService} from '../../auth/auth.service';
 import {SharedService} from '../../shared/shared.service';
 import {Constants} from '../../shared/constants';
+import {MatDialog} from "@angular/material";
+import {ShowForumUserProfileComponent} from "../show-forum-user-profile/show-forum-user-profile.component";
 
 @Component({
   selector: 'app-list-post',
@@ -16,7 +18,7 @@ export class ListPostComponent implements OnInit {
   private posts: Array<QueryPost>;
   private pages: Array<number>;
 
-  constructor(private authService: AuthService, private forumService: ForumService,
+  constructor(private authService: AuthService, private forumService: ForumService, private dialog: MatDialog,
               private sharedService: SharedService) {
   }
 
@@ -46,5 +48,15 @@ export class ListPostComponent implements OnInit {
         this.sharedService.showFailureToastr(error.error['type']);
       }
     );
+  }
+
+  showForumUserProfile(username: string) {
+    this.forumService.getUserForumProfile(username).subscribe(data => {
+      this.dialog.open(ShowForumUserProfileComponent, {
+        width: '20%',
+        height: '38%',
+        data: data
+      });
+    });
   }
 }

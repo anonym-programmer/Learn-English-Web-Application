@@ -1,5 +1,5 @@
-<div class="row header-content" id="header">
-  <div class="col">
+<div class="row header-content">
+  <div class="col-12">
     <h1><b>Title:</b> {{post.title}}</h1>
   </div>
 </div>
@@ -9,7 +9,8 @@
     <h3><b>Down Votes:</b> {{post.downVote}}</h3>
   </div>
   <div class="col-6">
-    <h3><b>Author:</b>&nbsp;<a [routerLink]="['/profile', post.username]" routerLinkActive="router-link-active">{{post.username}}</a></h3>
+    <h3><b>Author:</b>&nbsp;<a matTooltip="Info about the post owner"
+                               (click)="showForumUserProfile(post.username)"><u><i>{{post.username}}</i></u></a></h3>
     <h3><b>Date:</b> {{post.date}} <b>Time:</b> {{post.time}}</h3>
   </div>
 </div>
@@ -21,11 +22,9 @@
 <br>
 <div *ngFor="let comment of comments" class="row comment">
   <div class="col-3 details">
-    Created by:&nbsp;<a [routerLink]="['/profile', comment.username]" routerLinkActive="router-link-active"><u><i>{{comment.username}}</i></u></a>
-    <br>
-    Date: {{comment.date}}
-    <br>
-    Time: {{comment.time}}
+    <b>Created by:</b>&nbsp;<a matTooltip="Info about the comment owner"
+                               (click)="showForumUserProfile(comment.username)"><u><i>{{comment.username}}</i></u></a>
+    <br><b>Date:</b>&nbsp;{{comment.date}}&nbsp;<b>Time:</b>&nbsp;{{comment.time}}
   </div>
   <div class="col-9">
     <p>{{comment.text}}</p>

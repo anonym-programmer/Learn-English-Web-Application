@@ -14,6 +14,9 @@ export class ForumComponent {
   }
 
   addPost() {
-    this.dialog.open(AddPostComponent);
+    this.dialog.open(AddPostComponent, {
+      width: '40%',
+      height: '50%'
+    });
   }
 }

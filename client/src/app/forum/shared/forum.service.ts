@@ -14,6 +14,7 @@ export class ForumService {
   readonly getPostsUrl = '/api/post-query';
   readonly votePostUrl = '/api/vote';
   readonly getCommentsUrl = '/api/comment-query';
+  readonly getUserForumProfileUrl = '/api/user-query/forum-profile';
 
   constructor(private http: HttpClient) {
   }
@@ -40,5 +41,9 @@ export class ForumService {
 
   getComments(postId: string): Observable<Array<QueryComment>> {
     return this.http.get<Array<QueryComment>>(this.getCommentsUrl + `/${postId}`);
+  }
+
+  getUserForumProfile(username: string) {
+    return this.http.get(this.getUserForumProfileUrl + `/${username}`);
   }
 }

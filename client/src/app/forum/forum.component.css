@@ -11,7 +11,7 @@ button {
   user-select: none;
   outline: none !important;
   width: 100%;
-  font-size: 40px;
+  font-size: 250%;
 }
 
 button:active {

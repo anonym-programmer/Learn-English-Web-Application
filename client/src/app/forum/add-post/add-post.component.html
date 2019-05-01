@@ -1,22 +1,22 @@
-<h1 mat-dialog-title>Add post</h1>
-<form class="my-form" [formGroup]="addPostForm" (ngSubmit)="addPost(addPostForm)" autocomplete="off">
+<h1>Add post</h1>
+<form class="my-form" [formGroup]="addPostForm" autocomplete="off">
 
   <div mat-dialog-content>
     <mat-form-field class="full-width">
       <mat-label>Title</mat-label>
-      <input matInput formControlName="title" maxlength="50" required>
+      <input matInput formControlName="title" maxlength="50">
       <mat-error class="error" *ngFor="let error of dtoError.title">{{error}}</mat-error>
     </mat-form-field>
 
     <mat-form-field class="full-width">
       <mat-label>Description</mat-label>
-      <textarea matInput formControlName="description" maxlength="255" required rows="4"></textarea>
+      <textarea matInput formControlName="description" maxlength="255" rows="4"></textarea>
       <mat-error class="error" *ngFor="let error of dtoError.description">{{error}}</mat-error>
     </mat-form-field>
   </div>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary" [disabled]="!addPostForm.valid">Add</button>
+    <button mat-raised-button color="primary" (click)="addPost(addPostForm)">Add</button>
     <button mat-raised-button (click)="onNoClick()">Back</button>
   </div>
 

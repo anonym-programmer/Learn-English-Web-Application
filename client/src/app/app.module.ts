@@ -28,6 +28,7 @@ import {AddPostComponent} from './forum/add-post/add-post.component';
 import {AddCommentComponent} from './forum/add-comment/add-comment.component';
 import {ListPostComponent} from './forum/list-post/list-post.component';
 import {ShowPostComponent} from './forum/show-post/show-post.component';
+import {ShowForumUserProfileComponent} from './forum/show-forum-user-profile/show-forum-user-profile.component';
 
 import {AdminComponent} from './admin/admin.component';
 
@@ -74,6 +75,7 @@ import {ChallengeService} from './challenge/shared/challenge.service';
     AddCommentComponent,
     ListPostComponent,
     ShowPostComponent,
+    ShowForumUserProfileComponent,
     AdminComponent,
     ChallengeComponent,
     MakeChallengeComponent,
@@ -88,6 +90,7 @@ import {ChallengeService} from './challenge/shared/challenge.service';
   ],
   entryComponents: [
     AddPostComponent,
+    ShowForumUserProfileComponent,
     MakeChallengeComponent,
     SubmitChallengeComponent,
     SubmitPendingChallengeComponent,
