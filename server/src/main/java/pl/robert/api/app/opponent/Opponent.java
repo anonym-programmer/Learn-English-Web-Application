@@ -2,9 +2,12 @@ package pl.robert.api.app.opponent;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import pl.robert.api.app.challenge.domain.Challenge;
 import pl.robert.api.app.user.domain.User;
 
 import javax.persistence.*;
+
+import java.util.List;
 
 import static pl.robert.api.app.shared.Constants.*;
 
@@ -37,4 +40,10 @@ public class Opponent {
     @OneToOne
     @JoinColumn(name = "user_id")
     User user;
+
+    @OneToMany(mappedBy = "attacker", cascade = CascadeType.REMOVE)
+    List<Challenge> attackerChallenges;
+
+    @OneToMany(mappedBy = "defender", cascade = CascadeType.REMOVE)
+    List<Challenge> defenderChallenges;
 }

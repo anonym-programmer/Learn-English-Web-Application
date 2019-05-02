@@ -36,6 +36,9 @@ class UserFactory {
                 .numberOfWins("0")
                 .numberOfLoses("0")
                 .numberOfDraws("0")
+                .numberOfPosts("0")
+                .numberOfComments("0")
+                .numberOfVotes("0")
                 .build();
     }
 }

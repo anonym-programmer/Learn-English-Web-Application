@@ -41,10 +41,10 @@ public class Post {
     @Column(nullable = false)
     int downVote;
 
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     List<Vote> votes;
 
-    @OneToMany(mappedBy = "post", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     List<Comment> comments;
 
     @ManyToOne

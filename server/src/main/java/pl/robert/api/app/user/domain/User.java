@@ -37,25 +37,27 @@ public class User {
     @Column(length = COL_LENGTH_ENCODED_PASSWORD, nullable = false)
     String password;
 
+    @Column(name = "is_enabled")
+    boolean isEnabled;
+
     @ManyToMany(fetch = FetchType.EAGER)
     Set<Role> roles = new HashSet<>();
 
-    @OneToOne(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    Token confirmationToken;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     UserDetails userDetails;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Comment> comments;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Vote> votes;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.REMOVE})
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Post> posts;
 
-    @Transient
-    @OneToOne(mappedBy = "user")
-    Opponent opponent;
-
-    @Column(name = "is_enabled")
-    boolean isEnabled;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    List<Opponent> opponents;
 }
