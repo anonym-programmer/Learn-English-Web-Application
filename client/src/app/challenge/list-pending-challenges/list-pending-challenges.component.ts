@@ -22,6 +22,10 @@ export class ListPendingChallengesComponent implements OnInit {
 
   ngOnInit() {
     this.getPendingChallenges();
+
+    this.challengeService.challengeTypeChange_Observable.subscribe(() => {
+      this.getPendingChallenges();
+    });
   }
 
   getPendingChallenges() {

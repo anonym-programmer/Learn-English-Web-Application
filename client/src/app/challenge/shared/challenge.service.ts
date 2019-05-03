@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormGroup} from '@angular/forms';
 import {SubmitChallengeDto} from './submit-challenge-dto.model';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {SubmitedChallengeQuery} from './submited-challenge-query.model';
 import {PendingChallengeQuery} from './pending-challenge-query.model';
 import {SubmitPendingChallengeDto} from './submit-pending-challenge-dto.model';
@@ -27,7 +27,13 @@ export class ChallengeService {
   readonly getCompletedChallengeDetailsCorrectAnswersByIdUrl = '/api/challenge-query/completed/correct-answers';
   readonly getRivalProfileUrl = '/api/user-query/challenge-profile';
 
+  public challengeTypeChange_Observable = new Subject();
+
   constructor(private http: HttpClient) {
+  }
+
+  notifyChallengeTypeChange() {
+    this.challengeTypeChange_Observable.next();
   }
 
   make(data: FormGroup) {

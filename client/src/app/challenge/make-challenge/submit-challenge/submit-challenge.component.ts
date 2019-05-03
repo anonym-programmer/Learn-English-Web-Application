@@ -2,7 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {QuestionQuery} from '../../shared/question-query.model';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {SubmitChallengeDto} from '../../shared/submit-challenge-dto.model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {ChallengeService} from '../../shared/challenge.service';
 import {SharedService} from '../../../shared/shared.service';
 import {Constants} from '../../../shared/constants';
@@ -50,8 +50,9 @@ export class SubmitChallengeComponent implements OnInit {
 
     this.challengeService.submit(this.dto).subscribe(
       () => {
-        this.close();
         this.sharedService.showSuccessToastr(Constants.CHALLENGED_PERSON);
+        this.close();
+        this.challengeService.notifyChallengeTypeChange();
       }, () => {
         this.sharedService.showFailureToastr(Constants.ANSWERS_EMPTY);
       }

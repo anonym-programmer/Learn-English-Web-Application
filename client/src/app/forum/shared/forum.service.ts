@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {QueryPost} from './query-post.model';
 import {QueryComment} from './query-comment.model';
 
@@ -16,7 +16,13 @@ export class ForumService {
   readonly getCommentsUrl = '/api/comment-query';
   readonly getUserForumProfileUrl = '/api/user-query/forum-profile';
 
+  public postAdded_Observable = new Subject();
+
   constructor(private http: HttpClient) {
+  }
+
+  notifyPostAddition() {
+    this.postAdded_Observable.next();
   }
 
   addPost(data: FormData) {

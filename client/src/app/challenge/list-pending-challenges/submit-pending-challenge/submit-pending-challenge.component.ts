@@ -50,8 +50,10 @@ export class SubmitPendingChallengeComponent implements OnInit {
 
     this.challengeService.submitPendingChallenge(this.dto).subscribe(
       () => {
-        this.close();
         this.sharedService.showSuccessToastr(Constants.COMPLETED_CHALLENGE);
+        this.close();
+        this.challengeService.notifyChallengeTypeChange();
+        this.challengeService.notifyChallengeTypeChange();
       }, () => {
         this.sharedService.showFailureToastr(Constants.ANSWERS_EMPTY);
       }

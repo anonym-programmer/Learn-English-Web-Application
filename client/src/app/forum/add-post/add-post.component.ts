@@ -33,6 +33,7 @@ export class AddPostComponent implements OnInit {
         this.sharedService.showSuccessToastr(Constants.ADDED_POST);
         this.sharedService.showInfoToastr(Constants.ADDED_POST_EXPERIENCE);
         this.onNoClick();
+        this.forumService.notifyPostAddition();
       },
       error => {
         this.sharedService.showFailureToastr(Constants.INVALID_FIELDS);

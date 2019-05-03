@@ -19,6 +19,10 @@ export class ListCompletedChallengesComponent implements OnInit {
 
   ngOnInit() {
     this.getCompletedChallenges();
+
+    this.challengeService.challengeTypeChange_Observable.subscribe(() => {
+      this.getCompletedChallenges();
+    });
   }
 
   getCompletedChallenges() {

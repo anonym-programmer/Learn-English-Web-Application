@@ -18,6 +18,10 @@ export class ListSubmitedChallengesComponent implements OnInit {
 
   ngOnInit() {
     this.getSubmitedChallenges();
+
+    this.challengeService.challengeTypeChange_Observable.subscribe(() => {
+      this.getSubmitedChallenges();
+    });
   }
 
   getSubmitedChallenges() {

@@ -30,6 +30,10 @@ export class ListPostComponent implements OnInit {
 
   ngOnInit() {
     this.getPosts();
+
+    this.forumService.postAdded_Observable.subscribe(() => {
+      this.getPosts();
+    });
   }
 
   getPosts() {
