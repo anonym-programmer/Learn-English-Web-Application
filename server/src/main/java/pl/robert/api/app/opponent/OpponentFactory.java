@@ -8,7 +8,9 @@ class OpponentFactory {
         return Opponent.builder()
                 .myAnswers(dto.getMyAnswers())
                 .answersStatus(dto.getAnswerStatus())
-                .gainedXP(null)
+                .gainedExperienceForCorrectAnswers(null)
+                .bonusExperienceForResult(null)
+                .totalGainedExperience(null)
                 .result(OpponentResult.NONE)
                 .user(dto.getUser())
                 .build();

@@ -41,6 +41,7 @@ export class AddCommentComponent implements OnInit {
     this.forumService.addComment(addCommentForm.controls['text'].value, this.id).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.ADDED_COMMENT);
+        this.sharedService.showInfoToastr(Constants.ADDED_COMMENT_EXPERIENCE);
         let control: AbstractControl = null;
         addCommentForm.reset();
         addCommentForm.markAsUntouched();

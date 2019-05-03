@@ -97,7 +97,8 @@ public interface Constants {
 
     /* challenge */
 
-    int COL_LENGTH_GAINED_XP = 2;
+    int COL_LENGTH_GAINED_EXPERIENCE = 2;
+    int COL_LENGTH_TOTAL_GAINED_EXPERIENCE = 3;
     int COL_LENGTH_CHALLENGE_RESULT = 4;
     int COL_LENGTH_QUESTION = 150;
     int COL_LENGTH_ANSWERS = 150;

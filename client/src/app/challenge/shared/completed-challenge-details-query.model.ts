@@ -5,7 +5,9 @@ export class CompletedChallengeDetailsQuery {
   opponentScore: string;
   username: string;
   opponentUsername: string;
-  gainedXP: string;
+  gainedExperienceForCorrectAnswers: string;
+  bonusExperienceForResult: string;
+  totalGainedExperience: string;
   answersStatus: string[];
   opponentAnswersStatus: string[];
 }

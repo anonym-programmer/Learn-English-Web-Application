@@ -101,6 +101,11 @@ class UserDetailsService {
         return repository.findUserDetailsById(id);
     }
 
+    void addExperience(UserDetails details, int experience) {
+        details.setExpierience(String.valueOf(experience + Integer.parseInt(details.getExpierience())));
+        repository.saveAndFlush(details);
+    }
+
     void updateUserWins(UserDetails details) {
         int increment = Integer.parseInt(details.getNumberOfWins());
         details.setNumberOfWins(String.valueOf(++increment));

@@ -20,7 +20,9 @@ public class CompletedChallengeDetailsQuery {
     String opponentScore;
     String username;
     String opponentUsername;
-    String gainedXP;
+    String gainedExperienceForCorrectAnswers;
+    String bonusExperienceForResult;
+    String totalGainedExperience;
     List<Character> answersStatus;
     List<Character> opponentAnswersStatus;
 }

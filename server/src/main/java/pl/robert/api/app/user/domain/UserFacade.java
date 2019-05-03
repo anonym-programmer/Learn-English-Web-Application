@@ -101,6 +101,10 @@ public class UserFacade {
         return UserQueryFactory.queryUserOwnProfile(user, userDetails);
     }
 
+    public void addExperience(String username, int experience) {
+        detailsService.addExperience(findUserByUsername(username).getUserDetails(), experience);
+    }
+
     public void updateUserWins(String username) {
         detailsService.updateUserWins(findUserByUsername(username).getUserDetails());
     }

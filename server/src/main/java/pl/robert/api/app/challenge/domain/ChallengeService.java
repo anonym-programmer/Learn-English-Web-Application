@@ -145,7 +145,9 @@ class ChallengeService {
                     .opponentScore(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(defender.getAnswersStatus()))))
                     .username(attacker.getUser().getUsername())
                     .opponentUsername(defender.getUser().getUsername())
-                    .gainedXP(attacker.getGainedXP())
+                    .gainedExperienceForCorrectAnswers(attacker.getGainedExperienceForCorrectAnswers())
+                    .bonusExperienceForResult(attacker.getBonusExperienceForResult())
+                    .totalGainedExperience(attacker.getTotalGainedExperience())
                     .answersStatus(opponentFacade.transformAnswersStatus(attacker.getAnswersStatus()))
                     .opponentAnswersStatus(opponentFacade.transformAnswersStatus(defender.getAnswersStatus()))
                     .build();
@@ -158,7 +160,9 @@ class ChallengeService {
                 .opponentScore(String.valueOf(opponentFacade.countCorrectAnswers(String.valueOf(attacker.getAnswersStatus()))))
                 .username(defender.getUser().getUsername())
                 .opponentUsername(attacker.getUser().getUsername())
-                .gainedXP(defender.getGainedXP())
+                .gainedExperienceForCorrectAnswers(defender.getGainedExperienceForCorrectAnswers())
+                .bonusExperienceForResult(defender.getBonusExperienceForResult())
+                .totalGainedExperience(defender.getTotalGainedExperience())
                 .answersStatus(opponentFacade.transformAnswersStatus(defender.getAnswersStatus()))
                 .opponentAnswersStatus(opponentFacade.transformAnswersStatus(attacker.getAnswersStatus()))
                 .build();

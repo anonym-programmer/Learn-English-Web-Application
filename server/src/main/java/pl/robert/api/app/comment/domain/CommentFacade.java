@@ -26,6 +26,7 @@ public class CommentFacade {
 
     public void add(CreateCommentDto dto) {
         userFacade.updateUserComments(dto.getUsername());
+        userFacade.addExperience(dto.getUsername(), 20);
         commentService.saveAndFlush(CommentFactory.create(
                 dto,
                 postFacade.findPostById(Long.parseLong(dto.getPostId())),

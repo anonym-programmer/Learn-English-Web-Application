@@ -12,32 +12,35 @@ VALUES ('a', 'a@a.com', '$2a$10$Y2xKL3PjHd257clTHpcJl.tg4qtFyDH1/Q8UESXboV9tMnXG
        ('GeorgeHotz', 'comma@mail.com', '$2a$10$c74z6i5BEpZd7zxDt3Oh4ubXr6dvk6zS6TR3FGW09twI0o7nEkqve', true),
        ('JamesGosling', 'james.java@mail.com', '$2a$10$X/G9UC9p2xDy0o8epoePCOzs/PGreS35kbrdUo51UjZgBcmiozikm', true),
        ('Rob', 'rob@gmail.com', '$2a$10$aIeVCFtezvuV9sIScXRB5OYSSrHbDZJGJpHlL6dDBUKQ1FNeqcYs2', true),
-       ('SteveJobs', 'iLoveApple@icloud.com', '$2a$10$kFFzJ/OTpPpiXEGeCJehsO6.g1CHVayzVyVLVfS3wJvhXUMJ/0lES', true);
+       ('SteveJobs', 'iLoveApple@icloud.com', '$2a$10$kFFzJ/OTpPpiXEGeCJehsO6.g1CHVayzVyVLVfS3wJvhXUMJ/0lES', true),
+       ('Fresh', 'freshAccount@gmail.com', '$2a$10$lc13ubg0RbdjRnn/6fiCoOHFfSnBs4deqfUjByxCqCk9D9r7CzsM6', true);
 
 INSERT INTO users_roles (user_id, roles_id)
-VALUES (1, 1),
-       (1, 2),
-       (2, 1),
-       (3, 1),
-       (4, 1),
-       (5, 1),
-       (6, 1),
-       (7, 1),
-       (8, 1),
-       (9, 1);
+VALUES (1,  1),
+       (1,  2),
+       (2,  1),
+       (3,  1),
+       (4,  1),
+       (5,  1),
+       (6,  1),
+       (7,  1),
+       (8,  1),
+       (9,  1),
+       (10, 1);
 
 INSERT INTO user_details (user_id, level, expierience, current_rank,
                           number_of_wins, number_of_loses, number_of_draws,
                           number_of_posts, number_of_comments, number_of_votes)
-VALUES (1, '13', '13555', 'Challenger', '0', '0', '0', '0', '0', '0'),
-       (2, '2' , '80'   , 'Bronze'    , '0', '0', '0', '0', '0', '0'),
-       (3, '3' , '190'  , 'Silver'    , '0', '0', '0', '1', '2', '4'),
-       (4, '5' , '365'  , 'Gold'      , '0', '1', '0', '2', '2', '4'),
-       (5, '11', '6795' , 'Master'    , '3', '1', '1', '1', '1', '4'),
-       (6, '12', '7295' , 'Master'    , '0', '1', '1', '0', '0', '4'),
-       (7, '9' , '2400' , 'Diamond'   , '0', '1', '0', '0', '0', '3'),
-       (8, '7' , '850'  , 'Platinum'  , '0', '0', '0', '0', '0', '4'),
-       (9, '6' , '700'  , 'Gold'      , '1', '0', '0', '1', '0', '4');
+VALUES (1,  '13', '13555', 'Challenger', '0', '0', '0', '0', '0', '0'),
+       (2,  '2' , '80'   , 'Bronze'    , '0', '0', '0', '0', '0', '0'),
+       (3,  '3' , '190'  , 'Silver'    , '0', '0', '0', '1', '2', '4'),
+       (4,  '5' , '365'  , 'Gold'      , '0', '1', '0', '2', '2', '4'),
+       (5,  '11', '6795' , 'Master'    , '3', '1', '1', '1', '1', '4'),
+       (6,  '12', '7295' , 'Master'    , '0', '1', '1', '0', '0', '4'),
+       (7,  '9' , '2400' , 'Diamond'   , '0', '1', '0', '0', '0', '3'),
+       (8,  '7' , '850'  , 'Platinum'  , '0', '0', '0', '0', '0', '4'),
+       (9,  '6' , '700'  , 'Gold'      , '1', '0', '0', '1', '0', '4'),
+       (10, '1' , '0'    , 'Bronze'    , '0', '0', '0', '0', '0', '0');
 
 INSERT INTO posts (title, description, date, up_vote, down_vote, user_id)
 VALUES ('Learning English',
@@ -193,27 +196,27 @@ VALUES (1 ,  'Whats ... name?', 'you:your:yours:yourse', 'your', 'b'),
        (102, 'I prefer to buy CD’s ... download music from my computer.', 'in contrast to:as opposed to:rather than:in comparison to', 'rather than', 'c'),
        (103, 'The number of turtles on the island ... by 70% over the last decade.', 'has declined:has been declining:has been declined:is declining', 'has declined', 'a');
 
-INSERT INTO oponents (my_answers, answers_status, gained_xp, result, user_id)
-VALUES ('b:a:c:b:a', '1:1:0:1:0', '60', 'WIN' , 5),
-       ('d:a:b:c:a', '0:1:0:0:0', '15', 'LOSE', 6),
-       ('a:a:a:a:a', '1:1:1:1:1', '75', 'DRAW', 5),
-       ('a:a:a:a:a', '1:1:1:1:1', '75', 'DRAW', 6),
-       ('a:b:d:a:c', '1:0:1:1:1', '60', 'LOSE', 4),
-       ('a:c:d:a:c', '1:1:1:1:1', '75', 'WIN' , 5),
-       ('c:d:a:b:b', '1:0:0:1:0', '30', 'LOSE', 5),
-       ('c:c:c:b:a', '1:1:1:1:0', '60', 'WIN' , 9),
-       ('b:a:b:c:a', '1:1:0:1:0', '45', 'WIN' , 5),
-       ('b:d:b:c:d', '1:0:0:1:0', '30', 'LOSE', 7),
-       ('b:d:d:c:a', '1:1:1:1:1', NULL, 'NONE', 6),
-       (NULL, NULL, NULL, 'NONE', 5),
-       ('d:a:b:c:d', '1:0:0:0:1', NULL, 'NONE', 3),
-       (NULL, NULL, NULL, 'NONE', 5),
-       ('b:d:d:a:b', '1:1:1:0:1', NULL, 'NONE', 5),
-       (NULL, NULL, NULL, 'NONE', 8),
-       ('a:b:d:c:c', '1:0:0:0:0', NULL, 'NONE', 5),
-       (NULL, NULL, NULL, 'NONE', 9),
-       ('c:c:a:b:c', '1:1:0:0:1', NULL, 'NONE', 5),
-       (NULL, NULL, NULL, 'NONE', 4);
+INSERT INTO oponents (my_answers, answers_status, gained_experience_for_correct_answers, bonus_experience_for_result, total_gained_experience, result, user_id)
+VALUES ('b:a:c:b:a', '1:1:0:1:0', '60', '60', '120', 'WIN' , 5),
+       ('d:a:b:c:a', '0:1:0:0:0', '15', '1' , '16' , 'LOSE', 6),
+       ('a:a:a:a:a', '1:1:1:1:1', '75', '10', '85' , 'DRAW', 5),
+       ('a:a:a:a:a', '1:1:1:1:1', '75', '10', '85' , 'DRAW', 6),
+       ('a:b:d:a:c', '1:0:1:1:1', '60', '1' , '61' , 'LOSE', 4),
+       ('a:c:d:a:c', '1:1:1:1:1', '75', '75', '150', 'WIN' , 5),
+       ('c:d:a:b:b', '1:0:0:1:0', '30', '1' , '31' , 'LOSE', 5),
+       ('c:c:c:b:a', '1:1:1:1:0', '60', '60', '120', 'WIN' , 9),
+       ('b:a:b:c:a', '1:1:0:1:0', '45', '45', '90' , 'WIN' , 5),
+       ('b:d:b:c:d', '1:0:0:1:0', '30', '1' , '31' , 'LOSE', 7),
+       ('b:d:d:c:a', '1:1:1:1:1', NULL, NULL, NULL, 'NONE' , 6),
+       (NULL, NULL, NULL, NULL, NULL, 'NONE', 5),
+       ('d:a:b:c:d', '1:0:0:0:1', NULL, NULL, NULL, 'NONE' , 3),
+       (NULL, NULL, NULL, NULL, NULL, 'NONE', 5),
+       ('b:d:d:a:b', '1:1:1:0:1', NULL, NULL, NULL, 'NONE' , 5),
+       (NULL, NULL, NULL, NULL, NULL, 'NONE', 8),
+       ('a:b:d:c:c', '1:0:0:0:0', NULL, NULL, NULL, 'NONE' , 5),
+       (NULL, NULL, NULL, NULL, NULL, 'NONE', 9),
+       ('c:c:a:b:c', '1:1:0:0:1', NULL, NULL, NULL, 'NONE' , 5),
+       (NULL, NULL, NULL, NULL, NULL, 'NONE', 4);
 
 INSERT INTO challenges (attacker_id, defender_id, date_of_creation, status)
 VALUES (1,  2,  '2019-04-17 18:35:52', 'COMPLETED'),

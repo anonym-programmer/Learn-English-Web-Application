@@ -30,8 +30,14 @@ public class Opponent {
     @Column(name = "answers_status", length = COL_LENGTH_MY_ANSWERS)
     String answersStatus;
 
-    @Column(name = "gained_xp", length = COL_LENGTH_GAINED_XP)
-    String gainedXP;
+    @Column(name = "gained_experience_for_correct_answers", length = COL_LENGTH_GAINED_EXPERIENCE)
+    String gainedExperienceForCorrectAnswers;
+
+    @Column(name = "bonus_experience_for_result", length = COL_LENGTH_GAINED_EXPERIENCE)
+    String bonusExperienceForResult;
+
+    @Column(name = "total_gained_experience", length = COL_LENGTH_TOTAL_GAINED_EXPERIENCE)
+    String totalGainedExperience;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = COL_LENGTH_CHALLENGE_RESULT)

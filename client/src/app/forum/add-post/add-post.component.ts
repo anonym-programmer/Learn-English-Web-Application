@@ -31,6 +31,7 @@ export class AddPostComponent implements OnInit {
     this.forumService.addPost(addPostForm.value).subscribe(
       () => {
         this.sharedService.showSuccessToastr(Constants.ADDED_POST);
+        this.sharedService.showInfoToastr(Constants.ADDED_POST_EXPERIENCE);
         this.onNoClick();
       },
       error => {

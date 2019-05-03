@@ -36,4 +36,7 @@ export class Constants {
   public static readonly CHALLENGED_PERSON = 'Successfully challenged person!';
   public static readonly COMPLETED_CHALLENGE = 'Successfully completed challenge!';
   public static readonly ANSWERS_EMPTY = "Please answer to all questions";
+
+  public static readonly ADDED_POST_EXPERIENCE = '+40 experience';
+  public static readonly ADDED_COMMENT_EXPERIENCE = '+20 experience';
 }

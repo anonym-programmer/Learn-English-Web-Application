@@ -41,25 +41,42 @@ class OpponentService {
         if (attackerCorrectAnswers > defenderCorrectAnswers) {
             attacker.setResult(OpponentResult.WIN);
             defender.setResult(OpponentResult.LOSE);
-            userFacade.updateUserWins(attacker.getUser().getUsername());
-            userFacade.updateUserLoses(defender.getUser().getUsername());
         } else if (attackerCorrectAnswers < defenderCorrectAnswers) {
             attacker.setResult(OpponentResult.LOSE);
             defender.setResult(OpponentResult.WIN);
-            userFacade.updateUserWins(defender.getUser().getUsername());
-            userFacade.updateUserLoses(attacker.getUser().getUsername());
         } else {
             attacker.setResult(OpponentResult.DRAW);
             defender.setResult(OpponentResult.DRAW);
-            userFacade.updateUserDraws(attacker.getUser().getUsername());
-            userFacade.updateUserDraws(defender.getUser().getUsername());
         }
 
-        attacker.setGainedXP(String.valueOf(attackerCorrectAnswers * 15));
-        defender.setGainedXP(String.valueOf(defenderCorrectAnswers * 15));
+        calculateStatistics(attacker, attacker.getResult(), attackerCorrectAnswers);
+        calculateStatistics(defender, defender.getResult(), defenderCorrectAnswers);
+    }
 
-        repository.save(attacker);
-        repository.save(defender);
+    private void calculateStatistics(Opponent opponent, OpponentResult result, int numOfCorrectAnswers) {
+        switch (result) {
+            case WIN:
+                opponent.setBonusExperienceForResult(String.valueOf(numOfCorrectAnswers * 15));
+                userFacade.updateUserWins(opponent.getUser().getUsername());
+                break;
+            case LOSE:
+                opponent.setBonusExperienceForResult(String.valueOf(1));
+                userFacade.updateUserLoses(opponent.getUser().getUsername());
+                break;
+            case DRAW:
+                opponent.setBonusExperienceForResult(String.valueOf(10));
+                userFacade.updateUserDraws(opponent.getUser().getUsername());
+                break;
+        }
+        opponent.setGainedExperienceForCorrectAnswers(String.valueOf(numOfCorrectAnswers * 15));
+        opponent.setTotalGainedExperience(
+                String.valueOf(
+                        Integer.parseInt(opponent.getGainedExperienceForCorrectAnswers()) +
+                        Integer.parseInt(opponent.getBonusExperienceForResult())
+                )
+        );
+        userFacade.addExperience(opponent.getUser().getUsername(), Integer.parseInt(opponent.getTotalGainedExperience()));
+        repository.save(opponent);
     }
 
     int countCorrectAnswers(String answerStatus) {
@@ -68,9 +85,12 @@ class OpponentService {
 
     String transformResult(String result) {
         switch (result) {
-            case F_CHALLENGE_RESULT_WIN: return M_CHALLENGE_RESULT_WIN;
-            case F_CHALLENGE_RESULT_LOSE: return M_CHALLENGE_RESULT_LOSE;
-            case F_CHALLENGE_RESULT_DRAW: return M_CHALLENGE_RESULT_DRAW;
+            case F_CHALLENGE_RESULT_WIN:
+                return M_CHALLENGE_RESULT_WIN;
+            case F_CHALLENGE_RESULT_LOSE:
+                return M_CHALLENGE_RESULT_LOSE;
+            case F_CHALLENGE_RESULT_DRAW:
+                return M_CHALLENGE_RESULT_DRAW;
         }
         return M_CHALLENGE_RESULT_NONE;
     }
