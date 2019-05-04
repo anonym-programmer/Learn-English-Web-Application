@@ -26,18 +26,18 @@ public class Challenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    Opponent attacker;
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    Opponent defender;
-
     @Column(name = "date_of_creation", length = COL_LENGTH_DATE, nullable = false)
     LocalDateTime dateOfCreation;
 
     @Enumerated(EnumType.STRING)
     @Column(length = COL_LENGTH_CHALLENGE_STATUS, nullable = false)
     ChallengeStatus status;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    Opponent attacker;
+
+    @OneToOne(cascade = CascadeType.REMOVE)
+    Opponent defender;
 
     @ManyToMany(fetch = FetchType.EAGER)
     List<Question> questions = new ArrayList<>(5);

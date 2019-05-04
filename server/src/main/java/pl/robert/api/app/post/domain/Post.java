@@ -35,19 +35,19 @@ public class Post {
     @Column(length = COL_LENGTH_DATE, nullable = false)
     LocalDateTime date;
 
-    @Column(nullable = false)
+    @Column(name = "up_vote", nullable = false)
     int upVote;
 
-    @Column(nullable = false)
+    @Column(name = "down_vote", nullable = false)
     int downVote;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     List<Vote> votes;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     List<Comment> comments;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
 }

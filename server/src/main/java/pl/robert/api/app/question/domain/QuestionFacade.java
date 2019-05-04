@@ -18,10 +18,6 @@ public class QuestionFacade {
         return service.queryRandomQuestions();
     }
 
-    public boolean areQuestionsExist(List<Long> questionsId) {
-        return service.areQuestionsExist(questionsId);
-    }
-
     public List<Character> calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
         return service.calculateCorrectAnswers(answers, questionsId);
     }

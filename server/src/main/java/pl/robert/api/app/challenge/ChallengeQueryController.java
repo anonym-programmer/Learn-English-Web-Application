@@ -8,6 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.challenge.domain.ChallengeFacade;
+import pl.robert.api.app.challenge.query.*;
+import pl.robert.api.app.question.query.QuestionQuery;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/challenge-query")
@@ -19,32 +23,32 @@ class ChallengeQueryController {
     ChallengeFacade facade;
 
     @GetMapping("attacker-pending")
-    public HttpEntity<?> queryAttackerPendingChallenges(Authentication auth) {
+    public HttpEntity<List<SubmitedChallengeQuery>> queryAttackerPendingChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryAttackerPendingChallenges(auth.getName()));
     }
 
     @GetMapping("defender-pending")
-    public HttpEntity<?> queryDefenderPendingChallenges(Authentication auth) {
+    public HttpEntity<List<PendingChallengeQuery>> queryDefenderPendingChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryDefenderPendingChallenges(auth.getName()));
     }
 
     @GetMapping("defender-pending/{challengeId}")
-    public HttpEntity<?> queryQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
+    public HttpEntity<List<QuestionQuery>> queryQuestionsOfDefenderChallengeId(@PathVariable String challengeId) {
         return ResponseEntity.ok(facade.queryQuestionsOfDefenderChallengeId(challengeId));
     }
 
     @GetMapping("completed")
-    public HttpEntity<?> queryCompletedChallenges(Authentication auth) {
+    public HttpEntity<List<CompletedChallengeQuery>> queryCompletedChallenges(Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallenges(auth.getName()));
     }
 
     @GetMapping("completed/{challengeId}")
-    public HttpEntity<?> queryCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
+    public HttpEntity<CompletedChallengeDetailsQuery> queryCompletedChallengeDetailsByChallengeId(@PathVariable String challengeId, Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallengeDetailsByChallengeId(challengeId, auth.getName()));
     }
 
     @GetMapping("completed/correct-answers/{challengeId}")
-    public HttpEntity<?> queryCompletedChallengeDetailsCorrectAnswersByChallengeId(@PathVariable String challengeId, Authentication auth) {
+    public HttpEntity<AnsweredChallengeQuery> queryCompletedChallengeDetailsCorrectAnswersByChallengeId(@PathVariable String challengeId, Authentication auth) {
         return ResponseEntity.ok(facade.queryCompletedChallengeDetailsCorrectAnswersByChallengeId(challengeId, auth.getName()));
     }
 }

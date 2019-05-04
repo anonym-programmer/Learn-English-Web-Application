@@ -53,14 +53,12 @@ class PostService {
     }
 
     void decreaseDownVote(Post post) {
-        int currentDownVote = post.getDownVote();
-        post.setDownVote(--currentDownVote);
+        post.setDownVote(post.getDownVote() - 1);
         repository.saveAndFlush(post);
     }
 
     void decreaseUpVote(Post post) {
-        int currentUpVote = post.getUpVote();
-        post.setUpVote(--currentUpVote);
+        post.setUpVote(post.getUpVote() - 1);
         repository.saveAndFlush(post);
     }
 

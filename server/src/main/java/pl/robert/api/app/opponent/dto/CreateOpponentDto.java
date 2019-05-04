@@ -6,8 +6,8 @@ import pl.robert.api.app.user.domain.User;
 
 @Getter @Setter
 @NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateOpponentDto {
 
     String myAnswers;

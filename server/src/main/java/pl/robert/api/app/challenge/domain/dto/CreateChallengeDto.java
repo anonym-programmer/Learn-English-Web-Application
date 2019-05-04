@@ -7,10 +7,9 @@ import pl.robert.api.app.question.domain.Question;
 
 import java.util.List;
 
-@Getter @Setter
-@NoArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@Getter
 @AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateChallengeDto {
 
     Opponent attacker;

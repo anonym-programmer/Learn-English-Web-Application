@@ -21,8 +21,8 @@ class PostQueryController {
     PostFacade facade;
 
     @GetMapping
-    public Page<PostQuery> findAll(Pageable pageable) {
-        return facade.findAll(pageable);
+    public HttpEntity<Page<PostQuery>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(facade.findAll(pageable));
     }
 
     @GetMapping("{id}")

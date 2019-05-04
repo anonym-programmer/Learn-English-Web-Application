@@ -50,12 +50,6 @@ class QuestionService {
         return t -> seen.add(keyExtractor.apply(t));
     }
 
-    boolean areQuestionsExist(List<Long> questionsId) {
-        return questionsId
-                .stream()
-                .noneMatch(questionId -> repository.findById(questionId).isEmpty());
-    }
-
     List<Character> calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
         List<Character> correctAnswers = questionsId
                 .stream()

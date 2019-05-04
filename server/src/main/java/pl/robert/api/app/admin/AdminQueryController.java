@@ -24,7 +24,7 @@ class AdminQueryController {
     UserFacade facade;
 
     @GetMapping("users")
-    public Page<UserQuery> findAllUsers(Pageable pageable) {
-        return facade.findAll(pageable);
+    public HttpEntity<Page<UserQuery>> findAllUsers(Pageable pageable) {
+        return ResponseEntity.ok(facade.findAll(pageable));
     }
 }

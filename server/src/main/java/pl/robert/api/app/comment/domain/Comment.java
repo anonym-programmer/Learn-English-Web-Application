@@ -21,6 +21,12 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
+    @Column(nullable = false)
+    String text;
+
+    @Column(nullable = false)
+    LocalDateTime date;
+
     @ManyToOne
     @JoinColumn(name = "post_id")
     Post post;
@@ -28,10 +34,4 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
-
-    @Column(nullable = false)
-    String text;
-
-    @Column(nullable = false)
-    LocalDateTime date;
 }

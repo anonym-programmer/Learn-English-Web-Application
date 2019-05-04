@@ -107,38 +107,32 @@ class UserDetailsService {
     }
 
     void updateUserWins(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfWins());
-        details.setNumberOfWins(String.valueOf(++increment));
+        details.setNumberOfWins(String.valueOf(Integer.parseInt(details.getNumberOfWins()) + 1));
         repository.saveAndFlush(details);
     }
 
     void updateUserLoses(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfLoses());
-        details.setNumberOfLoses(String.valueOf(++increment));
+        details.setNumberOfLoses(String.valueOf(Integer.parseInt(details.getNumberOfLoses()) + 1));
         repository.saveAndFlush(details);
     }
 
     void updateUserDraws(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfDraws());
-        details.setNumberOfDraws(String.valueOf(++increment));
+        details.setNumberOfDraws(String.valueOf(Integer.parseInt(details.getNumberOfDraws()) + 1));
         repository.saveAndFlush(details);
     }
 
     void updateUserPosts(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfPosts());
-        details.setNumberOfPosts(String.valueOf(++increment));
+        details.setNumberOfPosts(String.valueOf(Integer.parseInt(details.getNumberOfPosts()) + 1));
         repository.saveAndFlush(details);
     }
 
     void updateUserComments(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfComments());
-        details.setNumberOfComments(String.valueOf(++increment));
+        details.setNumberOfComments(String.valueOf(Integer.parseInt(details.getNumberOfComments()) + 1));
         repository.saveAndFlush(details);
     }
 
     void updateUserVotes(UserDetails details) {
-        int increment = Integer.parseInt(details.getNumberOfVotes());
-        details.setNumberOfVotes(String.valueOf(++increment));
+        details.setNumberOfVotes(String.valueOf(Integer.parseInt(details.getNumberOfVotes()) + 1));
         repository.saveAndFlush(details);
     }
 }
