@@ -16,7 +16,7 @@ import java.util.List;
 public class CommentFacade {
 
     CommentValidator validator;
-    CommentService commentService;
+    CommentService service;
     PostFacade postFacade;
     UserFacade userFacade;
 
@@ -27,7 +27,7 @@ public class CommentFacade {
     public void add(CreateCommentDto dto) {
         userFacade.updateUserComments(dto.getUsername());
         userFacade.addExperience(dto.getUsername(), 20);
-        commentService.saveAndFlush(CommentFactory.create(
+        service.saveAndFlush(CommentFactory.create(
                 dto,
                 postFacade.findPostById(Long.parseLong(dto.getPostId())),
                 userFacade.findUserByUsername(dto.getUsername())
@@ -35,6 +35,6 @@ public class CommentFacade {
     }
 
     public List<CommentQuery> queryCommentsByPost(long postId) {
-        return commentService.queryCommentsByPost(postFacade.findPostById(postId));
+        return service.queryCommentsByPost(postFacade.findPostById(postId));
     }
 }

@@ -18,7 +18,7 @@ import static pl.robert.api.app.shared.Constants.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class VoteValidator {
 
-    VoteService voteService;
+    VoteService service;
     PostFacade postFacade;
     UserFacade userFacade;
 
@@ -32,7 +32,7 @@ class VoteValidator {
             result.rejectValue(F_USERNAME, C_NOT_EXISTS, M_USERNAME_NOT_EXISTS);
         }
 
-        if (!voteService.isTypeCorrect(dto.getType())) {
+        if (!service.isTypeCorrect(dto.getType())) {
             result.rejectValue(F_TYPE, C_NOT_MATCH, M_TYPE_NOT_MATCH);
         }
 
@@ -41,16 +41,16 @@ class VoteValidator {
             Post post = postFacade.findPostById(Long.parseLong(dto.getPostId()));
             User user = userFacade.findUserByUsername(dto.getUsername());
 
-            if (voteService.hasUserAlreadyVoted(post, user)) {
+            if (service.hasUserAlreadyVoted(post, user)) {
 
                 log.info("User already voted");
 
-                if (voteService.isOldTypeMatchNewType(post, user, dto.getType())) {
+                if (service.isOldTypeMatchNewType(post, user, dto.getType())) {
                     result.rejectValue(F_TYPE, C_EXISTS, M_TYPE_EXISTS);
                     log.warn("User cannot add the same type of vote");
                 } else {
                     postFacade.swapTypeOfVote(dto.getType(), post);
-                    voteService.delete(voteService.findByPostAndUser(post, user));
+                    service.delete(service.findByPostAndUser(post, user));
                     log.info("User swap old-vote to the new-vote, and the old-vote has been deleted");
                 }
             }

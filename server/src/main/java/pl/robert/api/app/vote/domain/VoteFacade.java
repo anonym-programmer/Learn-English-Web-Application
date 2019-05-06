@@ -14,7 +14,7 @@ import pl.robert.api.app.vote.domain.dto.CreateVoteDto;
 public class VoteFacade {
 
     VoteValidator validator;
-    VoteService voteService;
+    VoteService service;
     PostFacade postFacade;
     UserFacade userFacade;
 
@@ -26,7 +26,7 @@ public class VoteFacade {
         Post post = postFacade.findPostById(Long.parseLong(dto.getPostId()));
         postFacade.updatePostVote(post, dto.getType().toUpperCase().charAt(0));
         userFacade.updateUserVotes(dto.getUsername());
-        voteService.saveAndFlush(VoteFactory.create(
+        service.saveAndFlush(VoteFactory.create(
                 dto,
                 post,
                 userFacade.findUserByUsername(dto.getUsername()))

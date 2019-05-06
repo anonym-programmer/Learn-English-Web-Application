@@ -23,40 +23,48 @@ class CommentFacadeTest {
     @Autowired
     private lateinit var repository: CommentRepository
 
-    @ParameterizedTest
-    @MethodSource("incorrectDtoObjects")
-    fun `Should validate dto objects with errors`(dto: CreateCommentDto) {
-        val result = createBindingResult(dto)
-        facade.checkInputData(dto, result)
-        Assertions.assertTrue(result.hasErrors())
-    }
-
-    @ParameterizedTest
-    @MethodSource("correctDtoObjects")
+    @ParameterizedTest(name = "Correct objects in given array")
+    @MethodSource("correct")
     fun `Should validate dto objects without errors`(dto: CreateCommentDto) {
         val result = createBindingResult(dto)
         facade.checkInputData(dto, result)
         Assertions.assertFalse(result.hasErrors())
     }
 
-    private fun createBindingResult(obj: Any): BindingResult {
-        return DataBinder(obj).bindingResult
+    @ParameterizedTest(name = "Incorrect objects in given array")
+    @MethodSource("incorrect")
+    fun `Should validate dto objects with errors`(dto: CreateCommentDto) {
+        val result = createBindingResult(dto)
+        facade.checkInputData(dto, result)
+        Assertions.assertTrue(result.hasErrors())
     }
 
     companion object {
         @JvmStatic
-        fun correctDtoObjects() = listOf(
-                Arguments.of(CreateCommentDto("1", "LinusTorvalds", "This is a simple comment")),
-                Arguments.of(CreateCommentDto("5", "MarkZuckerberg", "This is a simple comment")),
-                Arguments.of(CreateCommentDto("3", "JamesGosling", "This is a simple comment"))
+        fun correct() = listOf(
+                Arguments {
+                    arrayOf(
+                            CreateCommentDto("1", "LinusTorvalds", "This is a simple comment"),
+                            CreateCommentDto("3", "MarkZuckerberg", "This is a simple comment"),
+                            CreateCommentDto("5", "JamesGosling", "This is a simple comment")
+                    )
+                }
         )
 
         @JvmStatic
-        fun incorrectDtoObjects() = listOf(
-                Arguments.of(CreateCommentDto("1001", "LinusTorvalds", "This is a simple comment")),
-                Arguments.of(CreateCommentDto("1", "UnknownUser", "This is a simple comment")),
-                Arguments.of(CreateCommentDto("1001", "UnknownUser", "This is a simple comment"))
+        fun incorrect() = listOf(
+                Arguments {
+                    arrayOf(
+                            CreateCommentDto("1001", "LinusTorvalds", "This is a simple comment"),
+                            CreateCommentDto("1", "UnknownUser", "This is a simple comment"),
+                            CreateCommentDto("1001", "UnknownUser", "This is a simple comment")
+                    )
+                }
         )
+    }
+
+    private fun createBindingResult(obj: Any): BindingResult {
+        return DataBinder(obj).bindingResult
     }
 
     @Test

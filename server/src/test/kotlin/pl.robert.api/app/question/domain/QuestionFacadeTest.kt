@@ -26,19 +26,19 @@ class QuestionFacadeTest {
     }
 
     @Test
-    fun `Should query 5 questions by given ids`() {
+    fun `should query 5 questions by given ids`() {
         Assertions.assertEquals(5, facade.queryQuestionsByIds(listOf(1, 2, 3, 4, 5)).size)
     }
 
-    @ParameterizedTest
-    @MethodSource("correctAnswersWithIds")
+    @ParameterizedTest(name = "Correct")
+    @MethodSource("correct")
     @DisplayName("All answers should be correct")
     fun shouldCalculateAllAnswersCorrect(answers: List<Char>, ids: List<Long>) {
         Assertions.assertEquals(listOf('1', '1', '1', '1', '1'), facade.calculateCorrectAnswers(answers, ids))
     }
 
-    @ParameterizedTest
-    @MethodSource("incorrectAnswersWithIds")
+    @ParameterizedTest(name = "Incorrect")
+    @MethodSource("incorrect")
     @DisplayName("All answers should be incorrect")
     fun shouldCalculateAllAnswersIncorrect(answers: List<Char>, ids: List<Long>) {
         Assertions.assertEquals(listOf('0', '0', '0', '0', '0'), facade.calculateCorrectAnswers(answers, ids))
@@ -46,7 +46,7 @@ class QuestionFacadeTest {
 
     companion object {
         @JvmStatic
-        fun correctAnswersWithIds() = listOf(
+        fun correct() = listOf(
                 Arguments.of(listOf('b', 'a', 'd', 'b', 'd'), listOf<Long>(1, 2, 3, 4, 5)),
                 Arguments.of(listOf('c', 'a', 'c', 'd', 'a'), listOf<Long>(10, 20, 30, 40, 50)),
                 Arguments.of(listOf('d', 'c', 'b', 'a', 'a'), listOf<Long>(100, 51, 101, 27, 103)),
@@ -54,7 +54,7 @@ class QuestionFacadeTest {
         )
 
         @JvmStatic
-        fun incorrectAnswersWithIds() = listOf(
+        fun incorrect() = listOf(
                 Arguments.of(listOf('a', 'b', 'c', 'a', 'c'), listOf<Long>(1, 2, 3, 4, 5)),
                 Arguments.of(listOf('a', 'c', 'd', 'c', 'b'), listOf<Long>(10, 20, 30, 40, 50)),
                 Arguments.of(listOf('c', 'd', 'a', 'b', 'b'), listOf<Long>(100, 51, 101, 27, 103)),
