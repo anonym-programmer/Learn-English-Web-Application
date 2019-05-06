@@ -72,7 +72,7 @@ class OpponentService {
         opponent.setTotalGainedExperience(
                 String.valueOf(
                         Integer.parseInt(opponent.getGainedExperienceForCorrectAnswers()) +
-                        Integer.parseInt(opponent.getBonusExperienceForResult())
+                                Integer.parseInt(opponent.getBonusExperienceForResult())
                 )
         );
         userFacade.addExperience(opponent.getUser().getUsername(), Integer.parseInt(opponent.getTotalGainedExperience()));
@@ -91,8 +91,9 @@ class OpponentService {
                 return M_CHALLENGE_RESULT_LOSE;
             case F_CHALLENGE_RESULT_DRAW:
                 return M_CHALLENGE_RESULT_DRAW;
+            default:
+                return M_CHALLENGE_RESULT_NONE;
         }
-        return M_CHALLENGE_RESULT_NONE;
     }
 
     List<Character> transformAnswersStatus(String answersStatus) {

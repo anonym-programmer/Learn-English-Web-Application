@@ -34,10 +34,6 @@ public class CommentFacade {
         ));
     }
 
-    public boolean isPostExists(long id) {
-        return postFacade.isPostExists(id);
-    }
-
     public List<CommentQuery> queryCommentsByPost(long postId) {
         return commentService.queryCommentsByPost(postFacade.findPostById(postId));
     }

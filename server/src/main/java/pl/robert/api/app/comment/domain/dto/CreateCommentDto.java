@@ -10,6 +10,7 @@ import static pl.robert.api.app.shared.Constants.*;
 
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateCommentDto {
 

@@ -7,6 +7,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.comment.domain.CommentFacade;
+import pl.robert.api.app.post.domain.PostFacade;
 
 @RestController
 @RequestMapping("api/comment-query")
@@ -16,10 +17,11 @@ import pl.robert.api.app.comment.domain.CommentFacade;
 class CommentQueryController {
 
     CommentFacade facade;
+    PostFacade postFacade;
 
     @GetMapping("{id}")
     public HttpEntity<?> queryAllCommentsByPost(@PathVariable String id) {
-        if (!facade.isPostExists(Long.parseLong(id))) {
+        if (!postFacade.isPostExists(Long.parseLong(id))) {
             return ResponseEntity
                     .badRequest()
                     .build();
