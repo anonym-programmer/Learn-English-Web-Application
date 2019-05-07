@@ -9,6 +9,9 @@ import pl.robert.api.app.post.query.PostQuery;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
+import static pl.robert.api.app.shared.Constants.TYPE_NO;
+import static pl.robert.api.app.shared.Constants.TYPE_YES;
+
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 class PostService {
@@ -52,13 +55,9 @@ class PostService {
         repository.saveAndFlush(post);
     }
 
-    void decreaseDownVote(Post post) {
-        post.setDownVote(post.getDownVote() - 1);
-        repository.saveAndFlush(post);
-    }
-
-    void decreaseUpVote(Post post) {
-        post.setUpVote(post.getUpVote() - 1);
+    void swapTypeOfVote(String newType, Post post) {
+        if (newType.equalsIgnoreCase(TYPE_YES)) post.setDownVote(post.getDownVote() - 1);
+        else if (newType.equalsIgnoreCase(TYPE_NO)) post.setUpVote(post.getUpVote() - 1);
         repository.saveAndFlush(post);
     }
 

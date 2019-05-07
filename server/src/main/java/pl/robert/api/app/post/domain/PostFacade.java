@@ -16,45 +16,36 @@ import static pl.robert.api.app.shared.Constants.TYPE_YES;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class PostFacade {
 
-    PostService postService;
+    PostService service;
     UserFacade userFacade;
 
     public void add(CreatePostDto dto, String username) {
         userFacade.updateUserPosts(username);
         userFacade.addExperience(username, 40);
-        postService.saveAndFlush(PostFactory.create(dto, userFacade.findUserByUsername(username)));
+        service.saveAndFlush(PostFactory.create(dto, userFacade.findUserByUsername(username)));
     }
 
     public Page<PostQuery> findAll(Pageable pageable) {
-        return postService.findAll(pageable);
+        return service.findAll(pageable);
     }
 
     public Post findPostById(long id) {
-        return postService.findById(id);
+        return service.findById(id);
     }
 
     public void updatePostVote(Post post, char voteType) {
-        postService.updatePostVote(post, voteType);
+        service.updatePostVote(post, voteType);
     }
 
     public void swapTypeOfVote(String newType, Post post) {
-        if (newType.equalsIgnoreCase(TYPE_YES)) decreaseDownVote(post);
-        else if (newType.equalsIgnoreCase(TYPE_NO)) decreaseUpVote(post);
-    }
-
-    private void decreaseDownVote(Post post) {
-        postService.decreaseDownVote(post);
-    }
-
-    private void decreaseUpVote(Post post) {
-        postService.decreaseUpVote(post);
+        service.swapTypeOfVote(newType, post);
     }
 
     public boolean isPostExists(long id) {
-        return postService.isPostExists(id);
+        return service.isPostExists(id);
     }
 
     public PostQuery queryPost(long id) {
-        return PostQueryFactory.queryPost(postService.findById(id));
+        return PostQueryFactory.queryPost(service.findById(id));
     }
 }
