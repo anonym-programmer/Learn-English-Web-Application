@@ -24,7 +24,7 @@ class VoteController {
     VoteFacade facade;
 
     @PostMapping
-    public HttpEntity<?> addVote(@RequestBody @Valid CreateVoteDto dto, BindingResult result, Authentication auth) {
+    public HttpEntity<?> add(@RequestBody @Valid CreateVoteDto dto, BindingResult result, Authentication auth) {
         dto.setUsername(auth.getName());
         facade.checkInputData(dto, result);
         if (result.hasErrors()) {

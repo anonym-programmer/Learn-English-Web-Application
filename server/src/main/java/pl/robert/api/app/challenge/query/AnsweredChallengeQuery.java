@@ -9,8 +9,8 @@ import pl.robert.api.app.question.query.AnsweredQuestionQuery;
 
 import java.util.List;
 
-@Getter
 @Builder
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AnsweredChallengeQuery {

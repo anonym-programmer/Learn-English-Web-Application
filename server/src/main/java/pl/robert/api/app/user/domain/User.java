@@ -37,11 +37,8 @@ public class User {
     @Column(length = COL_LENGTH_ENCODED_PASSWORD, nullable = false)
     String password;
 
-    @Column(name = "is_enabled")
+    @Column(name = "is_enabled", nullable = false)
     boolean isEnabled;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    Set<Role> roles = new HashSet<>();
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     Token confirmationToken;
@@ -60,4 +57,7 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     List<Opponent> opponents;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    Set<Role> roles = new HashSet<>();
 }

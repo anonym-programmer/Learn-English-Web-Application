@@ -29,7 +29,7 @@ class QuestionService {
                 .map(question -> new QuestionQuery(
                         question.getId(),
                         question.getQuestion(),
-                        question.getAnswers().split(":", -1)))
+                        Arrays.asList(question.getAnswers().split(":", -1))))
                 .collect(Collectors.toList())
                 .subList(0, 5));
     }
@@ -40,7 +40,7 @@ class QuestionService {
                 .map(question -> new QuestionQuery(
                         question.getId(),
                         question.getQuestion(),
-                        question.getAnswers().split(":", -1)))
+                        Arrays.asList(question.getAnswers().split(":", -1))))
                 .filter(distinctByKey(QuestionQuery::getQuestionId))
                 .collect(Collectors.toList());
     }

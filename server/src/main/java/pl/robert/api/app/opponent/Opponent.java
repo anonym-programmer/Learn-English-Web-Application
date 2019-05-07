@@ -40,11 +40,11 @@ public class Opponent {
     String totalGainedExperience;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = COL_LENGTH_CHALLENGE_RESULT)
+    @Column(length = COL_LENGTH_CHALLENGE_RESULT, nullable = false)
     OpponentResult result;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
 
     @OneToMany(mappedBy = "attacker", cascade = CascadeType.REMOVE)

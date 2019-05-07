@@ -7,7 +7,7 @@
 
       <mat-form-field class="full-width">
         <mat-label>Text</mat-label>
-        <textarea matInput formControlName="text" maxlength="255" required rows="4"></textarea>
+        <textarea matInput formControlName="text" maxlength="500" required rows="4"></textarea>
         <mat-error class="error" *ngIf="text.invalid && (text.dirty || text.touched)">
           Enter some text
         </mat-error>

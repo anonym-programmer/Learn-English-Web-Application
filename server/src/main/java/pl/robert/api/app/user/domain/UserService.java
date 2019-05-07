@@ -58,19 +58,17 @@ class UserService {
     }
 
     Optional<AuthUserDto> findAuthByUsername(String username) {
-        User user = repository.findByUsername(username);
-        return Optional.of(AuthUserDto.builder()
-                .username(user.getUsername())
-                .password(user.getPassword())
-                .isEnabled(user.isEnabled())
-                .roles(user.getRoles())
-                .build());
+        return Optional.ofNullable(repository.findByUsername(username)).stream()
+                .map(user -> new AuthUserDto(
+                        username,
+                        user.getPassword(),
+                        user.isEnabled(),
+                        user.getRoles()))
+                .findFirst();
     }
 
     Page<UserQuery> findAll(Pageable pageable) {
-        Page<User> usersPage = repository.findAll(pageable);
-        int totalElements = (int) usersPage.getTotalElements();
-        return new PageImpl<>(usersPage
+        return new PageImpl<>(repository.findAll(pageable)
                 .stream()
                 .map(user -> new UserQuery(
                         String.valueOf(user.getId()),
@@ -79,7 +77,7 @@ class UserService {
                         user.getRoles().size() == 1 ? USER : USER_ADMIN,
                         user.isEnabled()))
                 .sorted(Comparator.comparing(UserQuery::getId))
-                .collect(Collectors.toList()), pageable, totalElements);
+                .collect(Collectors.toList()), pageable, repository.findAll(pageable).getTotalElements());
     }
 
     String queryRandomUser(String attackerUsername) {

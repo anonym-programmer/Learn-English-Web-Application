@@ -10,8 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static pl.robert.api.app.shared.Constants.COL_LENGTH_DATE;
-import static pl.robert.api.app.shared.Constants.COL_LENGTH_MAX_TITLE;
+import static pl.robert.api.app.shared.Constants.*;
 
 @Entity
 @Table(name = "posts")
@@ -29,7 +28,7 @@ public class Post {
     @Column(length = COL_LENGTH_MAX_TITLE, nullable = false)
     String title;
 
-    @Column(nullable = false)
+    @Column(length = COL_LENGTH_MAX_DESCRIPTION, nullable = false)
     String description;
 
     @Column(length = COL_LENGTH_DATE, nullable = false)
@@ -42,7 +41,7 @@ public class Post {
     int downVote;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)

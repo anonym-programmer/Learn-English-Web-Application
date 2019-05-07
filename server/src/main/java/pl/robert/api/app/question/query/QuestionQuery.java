@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
+import java.util.List;
+
 @Builder
 @Getter
 @AllArgsConstructor
@@ -14,5 +16,5 @@ public class QuestionQuery {
 
     Long questionId;
     String question;
-    String[] answers;
+    List<String> answers;
 }

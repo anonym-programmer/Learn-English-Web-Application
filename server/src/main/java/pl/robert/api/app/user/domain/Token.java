@@ -28,8 +28,8 @@ class Token {
     @Column(name = "created_date_in_seconds", length = COL_LENGTH_DATE_IN_SECONDS)
     String createdDateInSeconds;
 
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "user_id")
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
 
     Token(User user) {

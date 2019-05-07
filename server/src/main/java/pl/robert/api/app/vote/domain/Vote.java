@@ -21,17 +21,17 @@ public class Vote {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @ManyToOne
-    @JoinColumn(name = "post_id")
-    Post post;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    User user;
-
     @Column(nullable = false)
     LocalDateTime date;
 
     @Column(nullable = false)
     char type;
+
+    @ManyToOne
+    @JoinColumn(name = "post_id", nullable = false)
+    Post post;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    User user;
 }

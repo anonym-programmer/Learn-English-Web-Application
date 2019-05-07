@@ -16,5 +16,5 @@ public class AnsweredQuestionQuery {
 
     String question;
     List<String> answers;
-    char correctAnswer;
+    Character correctAnswer;
 }

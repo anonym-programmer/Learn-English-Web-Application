@@ -20,10 +20,10 @@ class UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(nullable = false)
+    @Column(length = COL_LENGTH_LEVEL, nullable = false)
     String level;
 
-    @Column(nullable = false)
+    @Column(length = COL_LENGTH_EXPERIENCE, nullable = false)
     String expierience;
 
     @Column(name = "current_rank", length = COL_LENGTH_RANK, nullable = false)
@@ -48,7 +48,7 @@ class UserDetails {
     String numberOfVotes;
 
     @OneToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
 
     @Transient

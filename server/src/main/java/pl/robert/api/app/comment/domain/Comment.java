@@ -8,6 +8,8 @@ import pl.robert.api.app.user.domain.User;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static pl.robert.api.app.shared.Constants.COL_LENGTH_MAX_TEXT;
+
 @Entity
 @Table(name = "comments")
 @Builder
@@ -21,17 +23,17 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
 
-    @Column(nullable = false)
+    @Column(length = COL_LENGTH_MAX_TEXT, nullable = false)
     String text;
 
     @Column(nullable = false)
     LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "post_id", nullable = false)
     Post post;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     User user;
 }

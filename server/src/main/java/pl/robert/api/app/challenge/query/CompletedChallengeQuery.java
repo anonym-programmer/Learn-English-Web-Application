@@ -6,8 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.FieldDefaults;
 
-@Getter
 @Builder
+@Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CompletedChallengeQuery {

@@ -2,7 +2,7 @@ package pl.robert.api.app.shared;
 
 public interface Constants {
 
-    /* error codes */
+    /** error codes **/
 
     String C_EXISTS = "exists";
     String C_MATCH = "match";
@@ -12,7 +12,7 @@ public interface Constants {
     String C_SENT ="sent";
 
 
-    /* user */
+    /** user **/
 
     int COL_LENGTH_MIN_USERNAME = 2;
     int COL_LENGTH_MAX_USERNAME = 20;
@@ -23,6 +23,8 @@ public interface Constants {
     int COL_LENGTH_CONFIRMATION_TOKEN = 36;
     int COL_LENGTH_DATE_IN_SECONDS = 11;
     int COL_LENGTH_RANK = 10;
+    int COL_LENGTH_LEVEL = 2;
+    int COL_LENGTH_EXPERIENCE = 6;
     int COL_LENGTH_CHALLENGE_SCORE = 5;
     int COL_LENGTH_FORUM_DETAILS = 5;
 
@@ -53,12 +55,12 @@ public interface Constants {
     String M_TOKEN_SENT = "Token has been already sent to the given email";
 
 
-    /* post */
+    /** post **/
 
     int COL_LENGTH_MAX_TITLE = 50;
     int COL_LENGTH_MIN_TITLE = 5;
     int COL_LENGTH_MIN_DESCRIPTION = 10;
-    int COL_LENGTH_MAX_DESCRIPTION = 255;
+    int COL_LENGTH_MAX_DESCRIPTION = 750;
     int COL_LENGTH_DATE = 10;
 
     String F_POST_ID = "postId";
@@ -71,7 +73,7 @@ public interface Constants {
     String M_POST_NOT_EXISTS = "Post id do not exists";
 
 
-    /* vote */
+    /** vote **/
 
     int COL_LENGTH_MIN_TYPE = 2;
     int COL_LENGTH_MAX_TYPE = 3;
@@ -86,16 +88,16 @@ public interface Constants {
     String M_TYPE_EXISTS = "You already voted this post";
 
 
-    /* comment */
+    /** comment **/
 
     int COL_LENGTH_MIN_TEXT = 10;
-    int COL_LENGTH_MAX_TEXT = 255;
+    int COL_LENGTH_MAX_TEXT = 500;
 
     String M_TEXT_EMPTY = "Text cannot be empty";
     String M_COMMENT_LENGTH = "Text of a comment should have between 10 and 255 characters";
 
 
-    /* challenge */
+    /** challenge **/
 
     int COL_LENGTH_GAINED_EXPERIENCE = 2;
     int COL_LENGTH_TOTAL_GAINED_EXPERIENCE = 3;
