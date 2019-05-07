@@ -1,7 +1,7 @@
 package pl.robert.api.app.comment.domain
 
+import org.junit.Test
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -25,7 +25,7 @@ class CommentFacadeTest {
 
     @ParameterizedTest(name = "Correct objects in given array")
     @MethodSource("correct")
-    fun `Should validate dto objects without errors`(dto: CreateCommentDto) {
+    fun `Shouldn't reject an errors on CreateCommentDto obj`(dto: CreateCommentDto) {
         val result = createBindingResult(dto)
         facade.checkInputData(dto, result)
         Assertions.assertFalse(result.hasErrors())
@@ -33,7 +33,7 @@ class CommentFacadeTest {
 
     @ParameterizedTest(name = "Incorrect objects in given array")
     @MethodSource("incorrect")
-    fun `Should validate dto objects with errors`(dto: CreateCommentDto) {
+    fun `Should reject an errors on CreateCommentDto obj`(dto: CreateCommentDto) {
         val result = createBindingResult(dto)
         facade.checkInputData(dto, result)
         Assertions.assertTrue(result.hasErrors())

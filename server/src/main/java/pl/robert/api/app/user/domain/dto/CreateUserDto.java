@@ -1,9 +1,6 @@
 package pl.robert.api.app.user.domain.dto;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.validation.constraints.Email;
@@ -14,6 +11,7 @@ import static pl.robert.api.app.shared.Constants.*;
 
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class CreateUserDto {
 

@@ -1,7 +1,7 @@
 package pl.robert.api.app.vote.domain
 
+import org.junit.Test
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -25,7 +25,7 @@ class VoteFacadeTest {
 
     @ParameterizedTest(name = "Correct objects in given array")
     @MethodSource("correct")
-    fun `Should validate dto objects without errors`(dto: CreateVoteDto) {
+    fun `Shouldn't reject an errors on CreateVoteDto obj`(dto: CreateVoteDto) {
         val result = createBindingResult(dto)
         facade.checkInputData(dto, result)
         Assertions.assertFalse(result.hasErrors())
@@ -33,7 +33,7 @@ class VoteFacadeTest {
 
     @ParameterizedTest(name = "Incorrect objects in given array")
     @MethodSource("incorrect")
-    fun `Should validate dto objects with errors`(dto: CreateVoteDto) {
+    fun `Should reject an errors on CreateVoteDto obj`(dto: CreateVoteDto) {
         val result = createBindingResult(dto)
         facade.checkInputData(dto, result)
         Assertions.assertTrue(result.hasErrors())
@@ -44,7 +44,7 @@ class VoteFacadeTest {
         fun correct() = listOf(
                 Arguments {
                     arrayOf(
-                            CreateVoteDto("1", "LinusTorvalds", "YES"),
+                            CreateVoteDto("1", "LinusTorvalds", "NO"),
                             CreateVoteDto("2", "LinusTorvalds", "YES"),
                             CreateVoteDto("3", "LinusTorvalds", "NO")
                     )
@@ -64,7 +64,7 @@ class VoteFacadeTest {
     }
 
     @Test
-    fun `Should reject errors on invalid post id, username and type of vote`() {
+    fun `Should reject an errors on invalid post id, username and type of vote`() {
         // Given initialized dto with wrong post id, username and type of vote
         val dto = CreateVoteDto("1001", "UnknownUsername", "PROBABLY")
         val result = createBindingResult(dto)
@@ -80,9 +80,9 @@ class VoteFacadeTest {
     }
 
     @Test
-    fun `Should reject error on the same type of vote`() {
+    fun `Should reject an error on the same type of vote`() {
         // Given initailized dto
-        val dto = CreateVoteDto("5", "LinusTorvalds", "YES")
+        val dto = CreateVoteDto("5", "Rob", "YES")
         val result = createBindingResult(dto)
 
         // When we check dto
@@ -102,7 +102,7 @@ class VoteFacadeTest {
     }
 
     @Test
-    fun `Should swap type of vote without error`() {
+    fun `Shouldn't reject an error on swap type of vote`() {
         // Given initailized dto
         val dto = CreateVoteDto("5", "LinusTorvalds", "YES")
         val result = createBindingResult(dto)

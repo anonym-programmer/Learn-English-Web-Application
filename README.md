@@ -1,4 +1,4 @@
-## Learn English Platform
+# Learn English Platform
 
 ### Table of Contents <hr/>
 * [General info](#general-info)
@@ -88,7 +88,7 @@ Default running ports:
 
 ### Tests
 
-Run all tests with FeatureTestSuite.kt class in src/test/kotlin/pl.robert.api
+Left click on src/test/kotlin folder and select "Run 'Tests in kotlin'"
 
 ### API
 

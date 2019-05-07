@@ -26,7 +26,7 @@ class QuestionFacadeTest {
     }
 
     @Test
-    fun `should query 5 questions by given ids`() {
+    fun `Should query 5 questions by given ids`() {
         Assertions.assertEquals(5, facade.queryQuestionsByIds(listOf(1, 2, 3, 4, 5)).size)
     }
 
