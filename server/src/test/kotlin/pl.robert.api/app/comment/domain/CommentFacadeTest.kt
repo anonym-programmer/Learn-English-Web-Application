@@ -44,9 +44,21 @@ class CommentFacadeTest {
         fun correct() = listOf(
                 Arguments {
                     arrayOf(
-                            CreateCommentDto("1", "LinusTorvalds", "This is a simple comment"),
-                            CreateCommentDto("3", "MarkZuckerberg", "This is a simple comment"),
-                            CreateCommentDto("5", "JamesGosling", "This is a simple comment")
+                            CreateCommentDto(
+                                    "1",
+                                    "LinusTorvalds",
+                                    "This is a simple comment"
+                            ),
+                            CreateCommentDto(
+                                    "3",
+                                    "MarkZuckerberg",
+                                    "This is a simple comment"
+                            ),
+                            CreateCommentDto(
+                                    "5",
+                                    "JamesGosling",
+                                    "This is a simple comment"
+                            )
                     )
                 }
         )
@@ -55,9 +67,21 @@ class CommentFacadeTest {
         fun incorrect() = listOf(
                 Arguments {
                     arrayOf(
-                            CreateCommentDto("1001", "LinusTorvalds", "This is a simple comment"),
-                            CreateCommentDto("1", "UnknownUser", "This is a simple comment"),
-                            CreateCommentDto("1001", "UnknownUser", "This is a simple comment")
+                            CreateCommentDto(
+                                    "1001",
+                                    "LinusTorvalds",
+                                    "This is a simple comment"
+                            ),
+                            CreateCommentDto(
+                                    "1",
+                                    "UnknownUser",
+                                    "This is a simple comment"
+                            ),
+                            CreateCommentDto(
+                                    "1001",
+                                    "UnknownUser",
+                                    "This is a simple comment"
+                            )
                     )
                 }
         )
@@ -70,13 +94,17 @@ class CommentFacadeTest {
     @Test
     fun `Should get a comment`() {
         //  Given initialized dto
-        val dto = CreateCommentDto("1", "LinusTorvalds", "This is a simple comment")
+        val dto = CreateCommentDto(
+                "1",
+                "LinusTorvalds",
+                "This is a simple comment"
+        )
 
         // When we add comment dto
         facade.add(dto)
 
         // Then system has this comment
-        Assertions.assertNotNull(repository.findById(dto.postId.toLong()).isPresent)
+        Assertions.assertNotNull(repository.findById(dto.postId.toLong()))
     }
 
     @Test

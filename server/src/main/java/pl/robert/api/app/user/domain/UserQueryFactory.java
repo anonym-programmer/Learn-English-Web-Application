@@ -15,22 +15,22 @@ class UserQueryFactory {
                 .build();
     }
 
-    static UserOwnProfileQuery queryUserOwnProfile(User user, UserDetails details) {
+    static UserOwnProfileQuery queryUserOwnProfile(User user) {
         return UserOwnProfileQuery.builder()
                 .username(user.getUsername())
                 .email(user.getEmail())
                 .roles(user.getRoles().size() == 1 ? USER : USER_ADMIN)
-                .level(details.getLevel())
-                .experience(details.getExpierience())
-                .currentRank(details.getCurrentRank())
-                .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
-                .currentExperienceInPercents(details.getCurrentExperienceInPercents())
-                .numberOfWins(details.getNumberOfWins())
-                .numberOfLoses(details.getNumberOfLoses())
-                .numberOfDraws(details.getNumberOfDraws())
-                .numberOfPosts(details.getNumberOfPosts())
-                .numberOfComments(details.getNumberOfComments())
-                .numberOfVotes(details.getNumberOfVotes())
+                .level(user.getUserDetails().getLevel())
+                .experience(user.getUserDetails().getExpierience())
+                .currentRank(user.getUserDetails().getCurrentRank())
+                .leftExperienceToTheNextLevel(user.getUserDetails().getLeftExperienceToTheNextLevel())
+                .currentExperienceInPercents(user.getUserDetails().getCurrentExperienceInPercents())
+                .numberOfWins(user.getUserDetails().getNumberOfWins())
+                .numberOfLoses(user.getUserDetails().getNumberOfLoses())
+                .numberOfDraws(user.getUserDetails().getNumberOfDraws())
+                .numberOfPosts(user.getUserDetails().getNumberOfPosts())
+                .numberOfComments(user.getUserDetails().getNumberOfComments())
+                .numberOfVotes(user.getUserDetails().getNumberOfVotes())
                 .build();
     }
 
@@ -54,25 +54,25 @@ class UserQueryFactory {
                 .build();
     }
 
-    static UserProfileQuery queryUserProfile(User user, UserDetails details) {
+    static UserProfileQuery queryUserProfile(User user) {
         return UserProfileQuery.builder()
                 .username(user.getUsername())
-                .level(details.getLevel())
-                .experience(details.getExpierience())
-                .currentRank(details.getCurrentRank())
-                .leftExperienceToTheNextLevel(details.getLeftExperienceToTheNextLevel())
-                .currentExperienceInPercents(details.getCurrentExperienceInPercents())
-                .numberOfWins(details.getNumberOfWins())
-                .numberOfLoses(details.getNumberOfLoses())
-                .numberOfDraws(details.getNumberOfDraws())
-                .numberOfPosts(details.getNumberOfPosts())
-                .numberOfComments(details.getNumberOfComments())
-                .numberOfVotes(details.getNumberOfVotes())
+                .level(user.getUserDetails().getLevel())
+                .experience(user.getUserDetails().getExpierience())
+                .currentRank(user.getUserDetails().getCurrentRank())
+                .leftExperienceToTheNextLevel(user.getUserDetails().getLeftExperienceToTheNextLevel())
+                .currentExperienceInPercents(user.getUserDetails().getCurrentExperienceInPercents())
+                .numberOfWins(user.getUserDetails().getNumberOfWins())
+                .numberOfLoses(user.getUserDetails().getNumberOfLoses())
+                .numberOfDraws(user.getUserDetails().getNumberOfDraws())
+                .numberOfPosts(user.getUserDetails().getNumberOfPosts())
+                .numberOfComments(user.getUserDetails().getNumberOfComments())
+                .numberOfVotes(user.getUserDetails().getNumberOfVotes())
                 .build();
     }
 
-    static RandomUserQuery queryRandomUser(String defenderUsername) {
-        return RandomUserQuery.builder()
+    static RandomUsernameQuery queryRandomUsername(String defenderUsername) {
+        return RandomUsernameQuery.builder()
                 .defenderUsername(defenderUsername)
                 .build();
     }

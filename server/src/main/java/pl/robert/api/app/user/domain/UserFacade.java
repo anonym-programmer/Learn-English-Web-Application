@@ -42,13 +42,11 @@ public class UserFacade {
     }
 
     public void add(CreateUserDto dto) {
-        User user = UserFactory.create(dto);
-        userService.saveAndFlush(user);
-        tokenService.generateRegisterToken(user);
+        userService.saveAndFlush(UserFactory.create(dto));
     }
 
-    public void generateResetPasswordToken(ForgotUserCredentialsDto dto) {
-        tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
+    public void deleteUserById(long id) {
+        userService.delete(userService.findById(id));
     }
 
     public void changePassword(User user, String newPassword) {
@@ -59,6 +57,18 @@ public class UserFacade {
     public void changeEmail(User user, String newEmail) {
         user.setEmail(newEmail);
         userService.saveAndFlush(user);
+    }
+
+    public boolean isUsernameNotExists(String username) {
+        return userService.isUsernameNotExist(username);
+    }
+
+    public void generateRegisterToken(String username) {
+        tokenService.generateRegisterToken(findUserByUsername(username));
+    }
+
+    public void generateResetPasswordToken(ForgotUserCredentialsDto dto) {
+        tokenService.generateResetPasswordToken(userService.findByEmail(dto.getEmail()));
     }
 
     public void deleteToken(String token) {
@@ -74,20 +84,48 @@ public class UserFacade {
         return tokenService.confirmRegisterToken(confirmationToken);
     }
 
-    public boolean isUsernameNotExists(String username) {
-        return userService.isUsernameNotExist(username);
+    public void addExperience(String username, int experience) {
+        detailsService.addExperience(findUserByUsername(username).getUserDetails(), experience);
+    }
+
+    public void incrementUserWins(String username) {
+        detailsService.incrementUserWins(findUserByUsername(username).getUserDetails());
+    }
+
+    public void incrementUserLoses(String username) {
+        detailsService.incrementUserLoses(findUserByUsername(username).getUserDetails());
+    }
+
+    public void incrementUserDraws(String username) {
+        detailsService.incrementUserDraws(findUserByUsername(username).getUserDetails());
+    }
+
+    public void incrementUserPosts(String username) {
+        detailsService.incrementUserPosts(findUserByUsername(username).getUserDetails());
+    }
+
+    public void incrementUserComments(String username) {
+        detailsService.incrementUserComments(findUserByUsername(username).getUserDetails());
+    }
+
+    public void incrementUserVotes(String username) {
+        detailsService.incrementUserVotes(findUserByUsername(username).getUserDetails());
     }
 
     public User findUserByConfirmationToken(String token) {
         return tokenService.findByConfirmationToken(token).getUser();
     }
 
+    public Page<UserQuery> findAll(Pageable pageable) {
+        return userService.findAll(pageable);
+    }
+
     public User findUserByUsername(String username) {
         return userService.findByUsername(username);
     }
 
-    public Optional<AuthUserDto> findAuthByUsername(String username) {
-        return userService.findAuthByUsername(username);
+    public Optional<SignInDto> querySignInByUsername(String username) {
+        return userService.querySignInByUsername(username);
     }
 
     public AuthUserQuery queryUserAuth(Authentication auth) {
@@ -95,42 +133,12 @@ public class UserFacade {
     }
 
     public UserOwnProfileQuery queryUserOwnProfile(String username) {
-        User user = findUserByUsername(username);
-        UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
-        detailsService.updateUserDetails(userDetails);
-        return UserQueryFactory.queryUserOwnProfile(user, userDetails);
-    }
-
-    public void addExperience(String username, int experience) {
-        detailsService.addExperience(findUserByUsername(username).getUserDetails(), experience);
-    }
-
-    public void updateUserWins(String username) {
-        detailsService.updateUserWins(findUserByUsername(username).getUserDetails());
-    }
-
-    public void updateUserLoses(String username) {
-        detailsService.updateUserLoses(findUserByUsername(username).getUserDetails());
-    }
-
-    public void updateUserDraws(String username) {
-        detailsService.updateUserDraws(findUserByUsername(username).getUserDetails());
+        detailsService.updateUserDetails(findUserByUsername(username).getUserDetails());
+        return UserQueryFactory.queryUserOwnProfile(findUserByUsername(username));
     }
 
     public UserChallengeProfileQuery queryUserChallengeProfile(String username) {
         return UserQueryFactory.queryUserChallengeProfile(username, userService.findByUsername(username).getUserDetails());
-    }
-
-    public void updateUserPosts(String username) {
-        detailsService.updateUserPosts(findUserByUsername(username).getUserDetails());
-    }
-
-    public void updateUserComments(String username) {
-        detailsService.updateUserComments(findUserByUsername(username).getUserDetails());
-    }
-
-    public void updateUserVotes(String username) {
-        detailsService.updateUserVotes(findUserByUsername(username).getUserDetails());
     }
 
     public UserForumProfileQuery queryUserForumProfile(String username) {
@@ -138,21 +146,11 @@ public class UserFacade {
     }
 
     public UserProfileQuery queryUserProfile(String username) {
-        User user = findUserByUsername(username);
-        UserDetails userDetails = detailsService.findUserDetailsById(user.getId());
-        detailsService.updateUserDetails(userDetails);
-        return UserQueryFactory.queryUserProfile(user, userDetails);
+        detailsService.updateUserDetails(findUserByUsername(username).getUserDetails());
+        return UserQueryFactory.queryUserProfile(findUserByUsername(username));
     }
 
-    public Page<UserQuery> findAll(Pageable pageable) {
-        return userService.findAll(pageable);
-    }
-
-    public void deleteUserById(long id) {
-        userService.delete(userService.findById(id));
-    }
-
-    public RandomUserQuery queryRandomUser(String attackerUsername) {
-        return UserQueryFactory.queryRandomUser(userService.queryRandomUser(attackerUsername));
+    public RandomUsernameQuery queryRandomUsername(String attackerUsername) {
+        return UserQueryFactory.queryRandomUsername(userService.queryRandomUsername(attackerUsername));
     }
 }

@@ -17,7 +17,7 @@ export class ChallengeService {
   readonly getRandomQuestionsUrl = '/api/question-query/random-questions';
   readonly submitUrl = '/api/challenge/submit';
   readonly submitPendingChallengeUrl = '/api/challenge/submit-pending';
-  readonly getRandomRivalUrl = '/api/user-query/random-user';
+  readonly getRandomRivalUrl = '/api/user-query/random-username';
   readonly getPendingChallengesUrl = '/api/challenge-query/defender-pending';
   readonly declinePendingChallengeUrl = '/api/challenge/';
   readonly getSubmitedChallengesUrl = '/api/challenge-query/attacker-pending';

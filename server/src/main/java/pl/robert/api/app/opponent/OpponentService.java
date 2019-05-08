@@ -57,15 +57,15 @@ class OpponentService {
         switch (result) {
             case WIN:
                 opponent.setBonusExperienceForResult(String.valueOf(numOfCorrectAnswers * 15));
-                userFacade.updateUserWins(opponent.getUser().getUsername());
+                userFacade.incrementUserWins(opponent.getUser().getUsername());
                 break;
             case LOSE:
                 opponent.setBonusExperienceForResult(String.valueOf(1));
-                userFacade.updateUserLoses(opponent.getUser().getUsername());
+                userFacade.incrementUserLoses(opponent.getUser().getUsername());
                 break;
             case DRAW:
                 opponent.setBonusExperienceForResult(String.valueOf(10));
-                userFacade.updateUserDraws(opponent.getUser().getUsername());
+                userFacade.incrementUserDraws(opponent.getUser().getUsername());
                 break;
         }
         opponent.setGainedExperienceForCorrectAnswers(String.valueOf(numOfCorrectAnswers * 15));

@@ -6,8 +6,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import pl.robert.api.app.question.domain.Question;
-import pl.robert.api.app.user.domain.dto.AuthUserDto;
+import pl.robert.api.app.user.domain.dto.SignInDto;
 import pl.robert.api.app.user.query.UserQuery;
 
 import java.util.*;
@@ -57,16 +56,6 @@ class UserService {
         return repository.findByUsername(username);
     }
 
-    Optional<AuthUserDto> findAuthByUsername(String username) {
-        return Optional.ofNullable(repository.findByUsername(username)).stream()
-                .map(user -> new AuthUserDto(
-                        username,
-                        user.getPassword(),
-                        user.isEnabled(),
-                        user.getRoles()))
-                .findFirst();
-    }
-
     Page<UserQuery> findAll(Pageable pageable) {
         return new PageImpl<>(repository.findAll(pageable)
                 .stream()
@@ -80,7 +69,17 @@ class UserService {
                 .collect(Collectors.toList()), pageable, repository.findAll(pageable).getTotalElements());
     }
 
-    String queryRandomUser(String attackerUsername) {
+    Optional<SignInDto> querySignInByUsername(String username) {
+        return Optional.ofNullable(repository.findByUsername(username)).stream()
+                .map(user -> new SignInDto(
+                        username,
+                        user.getPassword(),
+                        user.isEnabled(),
+                        user.getRoles()))
+                .findFirst();
+    }
+
+    String queryRandomUsername(String attackerUsername) {
         String defenderUsername;
         do {
             defenderUsername = repository.findById(

@@ -34,6 +34,7 @@ class BaseController {
         }
 
         facade.add(dto);
+        facade.generateRegisterToken(dto.getUsername());
         return ResponseEntity
                 .ok()
                 .build();

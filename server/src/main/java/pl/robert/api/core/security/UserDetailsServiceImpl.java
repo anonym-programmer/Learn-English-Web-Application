@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.robert.api.app.user.domain.UserFacade;
-import pl.robert.api.app.user.domain.dto.AuthUserDto;
+import pl.robert.api.app.user.domain.dto.SignInDto;
 
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -25,7 +25,8 @@ class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUserDto user = userFacade.findAuthByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found!"));
+        SignInDto user = userFacade.querySignInByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found!"));
 
         if (!user.isEnabled()) {
             user.setPassword(UUID.randomUUID().toString());

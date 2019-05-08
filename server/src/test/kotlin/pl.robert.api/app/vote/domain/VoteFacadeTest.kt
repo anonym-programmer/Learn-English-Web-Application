@@ -44,9 +44,18 @@ class VoteFacadeTest {
         fun correct() = listOf(
                 Arguments {
                     arrayOf(
-                            CreateVoteDto("1", "LinusTorvalds", "NO"),
-                            CreateVoteDto("2", "LinusTorvalds", "YES"),
-                            CreateVoteDto("3", "LinusTorvalds", "NO")
+                            CreateVoteDto(
+                                    "1",
+                                    "LinusTorvalds",
+                                    "NO"),
+                            CreateVoteDto(
+                                    "2",
+                                    "LinusTorvalds",
+                                    "YES"),
+                            CreateVoteDto(
+                                    "3",
+                                    "LinusTorvalds",
+                                    "NO")
                     )
                 }
         )
@@ -55,9 +64,21 @@ class VoteFacadeTest {
         fun incorrect() = listOf(
                 Arguments {
                     arrayOf(
-                            CreateVoteDto("1000", "LinusTorvalds", "YES"),
-                            CreateVoteDto("2", "UnknownUser", "YES"),
-                            CreateVoteDto("3", "LinusTorvalds", "ABC")
+                            CreateVoteDto(
+                                    "1000",
+                                    "LinusTorvalds",
+                                    "YES"
+                            ),
+                            CreateVoteDto(
+                                    "2",
+                                    "UnknownUser",
+                                    "YES"
+                            ),
+                            CreateVoteDto(
+                                    "3",
+                                    "LinusTorvalds",
+                                    "ABC"
+                            )
                     )
                 }
         )
@@ -66,7 +87,11 @@ class VoteFacadeTest {
     @Test
     fun `Should reject an errors on invalid post id, username and type of vote`() {
         // Given initialized dto with wrong post id, username and type of vote
-        val dto = CreateVoteDto("1001", "UnknownUsername", "PROBABLY")
+        val dto = CreateVoteDto(
+                "1001",
+                "UnknownUsername",
+                "PROBABLY"
+        )
         val result = createBindingResult(dto)
 
         // When we check dto
@@ -82,7 +107,11 @@ class VoteFacadeTest {
     @Test
     fun `Should reject an error on the same type of vote`() {
         // Given initailized dto
-        val dto = CreateVoteDto("5", "Rob", "YES")
+        val dto = CreateVoteDto(
+                "5",
+                "Rob",
+                "YES"
+        )
         val result = createBindingResult(dto)
 
         // When we check dto
@@ -104,7 +133,11 @@ class VoteFacadeTest {
     @Test
     fun `Shouldn't reject an error on swap type of vote`() {
         // Given initailized dto
-        val dto = CreateVoteDto("5", "LinusTorvalds", "YES")
+        val dto = CreateVoteDto(
+                "5",
+                "LinusTorvalds",
+                "YES"
+        )
         val result = createBindingResult(dto)
 
         // When we save
@@ -130,7 +163,11 @@ class VoteFacadeTest {
     @Test
     fun `Should get a vote`() {
         //  Given initialized dto
-        val dto = CreateVoteDto("1", "LinusTorvalds", "YES")
+        val dto = CreateVoteDto(
+                "1",
+                "LinusTorvalds",
+                "YES"
+        )
 
         // When we add vote dto
         facade.add(dto)

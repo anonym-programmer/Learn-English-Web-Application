@@ -25,7 +25,7 @@ public class CommentFacade {
     }
 
     public void add(CreateCommentDto dto) {
-        userFacade.updateUserComments(dto.getUsername());
+        userFacade.incrementUserComments(dto.getUsername());
         userFacade.addExperience(dto.getUsername(), 20);
         service.saveAndFlush(CommentFactory.create(
                 dto,

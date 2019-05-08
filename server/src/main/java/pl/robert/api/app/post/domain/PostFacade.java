@@ -20,7 +20,7 @@ public class PostFacade {
     UserFacade userFacade;
 
     public void add(CreatePostDto dto, String username) {
-        userFacade.updateUserPosts(username);
+        userFacade.incrementUserPosts(username);
         userFacade.addExperience(username, 40);
         service.saveAndFlush(PostFactory.create(dto, userFacade.findUserByUsername(username)));
     }

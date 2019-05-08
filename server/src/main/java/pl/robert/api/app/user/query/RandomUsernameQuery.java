@@ -10,7 +10,7 @@ import lombok.experimental.FieldDefaults;
 @Getter
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class RandomUserQuery {
+public class RandomUsernameQuery {
 
     String defenderUsername;
 }

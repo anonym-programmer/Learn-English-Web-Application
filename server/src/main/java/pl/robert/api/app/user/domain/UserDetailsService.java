@@ -97,41 +97,37 @@ class UserDetailsService {
         }
     }
 
-    UserDetails findUserDetailsById(long id) {
-        return repository.findUserDetailsById(id);
-    }
-
     void addExperience(UserDetails details, int experience) {
         details.setExpierience(String.valueOf(experience + Integer.parseInt(details.getExpierience())));
         repository.saveAndFlush(details);
     }
 
-    void updateUserWins(UserDetails details) {
+    void incrementUserWins(UserDetails details) {
         details.setNumberOfWins(String.valueOf(Integer.parseInt(details.getNumberOfWins()) + 1));
         repository.saveAndFlush(details);
     }
 
-    void updateUserLoses(UserDetails details) {
+    void incrementUserLoses(UserDetails details) {
         details.setNumberOfLoses(String.valueOf(Integer.parseInt(details.getNumberOfLoses()) + 1));
         repository.saveAndFlush(details);
     }
 
-    void updateUserDraws(UserDetails details) {
+    void incrementUserDraws(UserDetails details) {
         details.setNumberOfDraws(String.valueOf(Integer.parseInt(details.getNumberOfDraws()) + 1));
         repository.saveAndFlush(details);
     }
 
-    void updateUserPosts(UserDetails details) {
+    void incrementUserPosts(UserDetails details) {
         details.setNumberOfPosts(String.valueOf(Integer.parseInt(details.getNumberOfPosts()) + 1));
         repository.saveAndFlush(details);
     }
 
-    void updateUserComments(UserDetails details) {
+    void incrementUserComments(UserDetails details) {
         details.setNumberOfComments(String.valueOf(Integer.parseInt(details.getNumberOfComments()) + 1));
         repository.saveAndFlush(details);
     }
 
-    void updateUserVotes(UserDetails details) {
+    void incrementUserVotes(UserDetails details) {
         details.setNumberOfVotes(String.valueOf(Integer.parseInt(details.getNumberOfVotes()) + 1));
         repository.saveAndFlush(details);
     }

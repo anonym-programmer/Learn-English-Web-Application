@@ -50,7 +50,10 @@ class PostFacadeTest {
     @Test
     fun `Should get a post`() {
         // Given initialized dto
-        val dto = CreatePostDto("This is a simple title", "This is a simple description")
+        val dto = CreatePostDto(
+                "This is a simple title",
+                "This is a simple description"
+        )
 
         // When we add post dto
         facade.add(dto, "LinusTorvalds")

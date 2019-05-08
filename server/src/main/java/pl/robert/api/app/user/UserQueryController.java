@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import pl.robert.api.app.user.domain.UserFacade;
-import pl.robert.api.app.user.query.RandomUserQuery;
+import pl.robert.api.app.user.query.RandomUsernameQuery;
 import pl.robert.api.app.user.query.UserOwnProfileQuery;
 
 @RestController
@@ -58,8 +58,8 @@ class UserQueryController {
         return ResponseEntity.ok(facade.queryUserProfile(username));
     }
 
-    @GetMapping("random-user")
-    public HttpEntity<RandomUserQuery> queryRandomUser(Authentication auth) {
-        return ResponseEntity.ok(facade.queryRandomUser(auth.getName()));
+    @GetMapping("random-username")
+    public HttpEntity<RandomUsernameQuery> queryRandomUsername(Authentication auth) {
+        return ResponseEntity.ok(facade.queryRandomUsername(auth.getName()));
     }
 }
