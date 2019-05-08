@@ -80,11 +80,13 @@ class UserService {
     }
 
     String queryRandomUsername(String attackerUsername) {
+
+        if (repository.count() == 1) return attackerUsername;
+
         String defenderUsername;
+
         do {
-            defenderUsername = repository.findById(
-                    1L + (long) (Math.random() * (repository.count()))
-            ).getUsername();
+            defenderUsername = repository.findRandomUsername();
         } while (attackerUsername.equals(defenderUsername));
         return defenderUsername;
     }
