@@ -16,4 +16,6 @@ interface OpponentRepository extends JpaRepository<Opponent, Long> {
 
     @Query("SELECT o.id FROM Opponent o WHERE o.user.id = :userId AND o.result <> 'NONE'")
     List<Long> findIdsOfUserCompletedChallenges(@Param("userId") long userId);
+
+    Opponent findFirstByOrderByIdDesc();
 }

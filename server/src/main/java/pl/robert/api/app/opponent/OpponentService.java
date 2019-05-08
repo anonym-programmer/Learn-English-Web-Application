@@ -18,7 +18,7 @@ class OpponentService {
     OpponentRepository repository;
     UserFacade userFacade;
 
-    Opponent addOpponent(CreateOpponentDto dto) {
+    Opponent add(CreateOpponentDto dto) {
         return repository.save(OpponentFactory.create(dto));
     }
 

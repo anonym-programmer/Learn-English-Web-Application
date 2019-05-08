@@ -13,23 +13,11 @@ public class OpponentFacade {
 
     OpponentService service;
 
-    public Opponent addAndReturnOpponent(CreateOpponentDto dto) {
-        return service.addOpponent(dto);
+    public Opponent add(CreateOpponentDto dto) {
+        return service.add(dto);
     }
 
-    public List<Long> queryIdsOfAttackerPendingChallenges(long attackerId) {
-        return service.queryIdsOfAttackerPendingChallenges(attackerId);
-    }
-
-    public List<Long> queryIdsOfDefenderPendingChallenges(long defenderId) {
-        return service.queryIdsOfDefenderPendingChallenges(defenderId);
-    }
-
-    public List<Long> queryIdsOfUserCompletedChallenges(long userId) {
-        return service.queryIdsOfUserCompletedChallenges(userId);
-    }
-
-    public void updateAndSaveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {
+    public void saveOpponentsAfterChallenge(Opponent attacker, Opponent defender) {
         service.updateAndSaveOpponentsAfterChallenge(attacker, defender);
     }
 
@@ -43,5 +31,17 @@ public class OpponentFacade {
 
     public List<Character> transformAnswersStatus(String answersStatus) {
         return service.transformAnswersStatus(answersStatus);
+    }
+
+    public List<Long> queryIdsOfAttackerPendingChallenges(long attackerId) {
+        return service.queryIdsOfAttackerPendingChallenges(attackerId);
+    }
+
+    public List<Long> queryIdsOfDefenderPendingChallenges(long defenderId) {
+        return service.queryIdsOfDefenderPendingChallenges(defenderId);
+    }
+
+    public List<Long> queryIdsOfUserCompletedChallenges(long userId) {
+        return service.queryIdsOfUserCompletedChallenges(userId);
     }
 }

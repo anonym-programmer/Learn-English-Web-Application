@@ -33,14 +33,14 @@ class ChallengeService {
     void submitChallenge(SubmitChallengeDto dto) {
         repository.saveAndFlush(ChallengeFactory.create(
                 new CreateChallengeDto(
-                        opponentFacade.addAndReturnOpponent(
+                        opponentFacade.add(
                                 new CreateOpponentDto(
                                         transformAnswers(dto.getAnswers()),
                                         calculateCorrectAnswers(dto.getAnswers(), dto.getQuestionsIds()),
                                         userFacade.findUserByUsername(dto.getAttackerUsername())
                                 )
                         ),
-                        opponentFacade.addAndReturnOpponent(
+                        opponentFacade.add(
                                 new CreateOpponentDto(
                                         userFacade.findUserByUsername(dto.getDefenderUsername())
                                 )
@@ -56,7 +56,7 @@ class ChallengeService {
         challenge.getDefender().setMyAnswers(transformAnswers(dto.getAnswers()));
         challenge.getDefender().setAnswersStatus(calculateCorrectAnswers(dto.getAnswers(), dto.getQuestionsIds()));
 
-        opponentFacade.updateAndSaveOpponentsAfterChallenge(challenge.getAttacker(), challenge.getDefender());
+        opponentFacade.saveOpponentsAfterChallenge(challenge.getAttacker(), challenge.getDefender());
 
         challenge.setStatus(ChallengeStatus.COMPLETED);
         repository.save(challenge);
