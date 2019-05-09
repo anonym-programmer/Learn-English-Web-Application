@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -19,20 +20,29 @@ class QuestionService {
     QuestionRepository repository;
 
     List<QuestionQuery> queryRandomQuestions() {
-        List<Question> questionList = repository
-                .findAll()
-                .subList(0, (int) repository.count());
-        Collections.shuffle(questionList);
-
-        return List.copyOf(questionList
+        return repository.findAll().subList(0, (int) repository.count()).stream()
+                .collect(toShuffledList())
                 .stream()
                 .map(question -> new QuestionQuery(
                         question.getId(),
                         question.getQuestion(),
                         Arrays.asList(question.getAnswers().split(":", -1))))
                 .collect(Collectors.toList())
-                .subList(0, 5));
+                .subList(0, 5);
     }
+
+    @SuppressWarnings("unchecked")
+    private static <T> Collector<T, ?, List<T>> toShuffledList() {
+        return (Collector<T, ?, List<T>>) SHUFFLER;
+    }
+
+    private static final Collector<?, ?, ?> SHUFFLER = Collectors.collectingAndThen(
+            Collectors.toCollection(ArrayList::new),
+            list -> {
+                Collections.shuffle(list);
+                return list;
+            }
+    );
 
     List<QuestionQuery> queryQuestionsOfDefenderChallengeId(Challenge challenge) {
         return challenge.getQuestions()
@@ -51,8 +61,7 @@ class QuestionService {
     }
 
     List<Character> calculateCorrectAnswers(List<Character> answers, List<Long> questionsId) {
-        List<Character> correctAnswers = questionsId
-                .stream()
+        List<Character> correctAnswers = questionsId.stream()
                 .map(repository::findById)
                 .collect(Collectors.toList())
                 .stream()
@@ -70,12 +79,11 @@ class QuestionService {
     }
 
     List<Question> queryQuestionsByIds(List<Long> questionsIds) {
-        return List.copyOf(questionsIds
-                .stream()
+        return questionsIds.stream()
                 .map(repository::findById)
                 .collect(Collectors.toList())
                 .stream()
                 .map(Optional::get)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 }

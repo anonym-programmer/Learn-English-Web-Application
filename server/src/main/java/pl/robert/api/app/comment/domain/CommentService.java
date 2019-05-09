@@ -20,13 +20,12 @@ class CommentService {
     }
 
     List<CommentQuery> queryCommentsByPost(Post post) {
-        return List.copyOf(repository.findAllByPost(post)
-                .stream()
+        return repository.findAllByPost(post).stream()
                 .map(comment -> new CommentQuery(
                         comment.getUser().getUsername(),
                         String.valueOf(comment.getDate()).substring(0, 10),
                         String.valueOf(comment.getDate()).substring(11, 19),
                         comment.getText()))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 }

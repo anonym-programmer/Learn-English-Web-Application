@@ -82,30 +82,26 @@ class ChallengeService {
     }
 
     List<SubmitedChallengeQuery> queryAttackerPendingChallenges(String username) {
-        return List.copyOf(opponentFacade.queryIdsOfAttackerPendingChallenges(userFacade.findUserByUsername(username).getId())
-                .stream()
+        return opponentFacade.queryIdsOfAttackerPendingChallenges(userFacade.findUserByUsername(username).getId()).stream()
                 .map(repository::findByAttackerId)
-                .collect(Collectors.toList())
-                .stream()
+                .collect(Collectors.toList()).stream()
                 .map(challenge -> new SubmitedChallengeQuery(
                         challenge.getDefender().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     List<PendingChallengeQuery> queryDefenderPendingChallenges(String username) {
-        return List.copyOf(opponentFacade.queryIdsOfDefenderPendingChallenges(userFacade.findUserByUsername(username).getId())
-                .stream()
+        return opponentFacade.queryIdsOfDefenderPendingChallenges(userFacade.findUserByUsername(username).getId()).stream()
                 .map(repository::findByDefenderId)
-                .collect(Collectors.toList())
-                .stream()
+                .collect(Collectors.toList()).stream()
                 .map(challenge -> new PendingChallengeQuery(
                         String.valueOf(challenge.getId()),
                         challenge.getAttacker().getUser().getUsername(),
                         String.valueOf(challenge.getDateOfCreation()).substring(0, 10),
                         String.valueOf(challenge.getDateOfCreation()).substring(11, 19)))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
@@ -113,11 +109,9 @@ class ChallengeService {
     }
 
     List<CompletedChallengeQuery> queryCompletedChallenges(String username) {
-        return List.copyOf(opponentFacade.queryIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId())
-                .stream()
+        return opponentFacade.queryIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId()).stream()
                 .map(repository::findByDefenderOrAttackerId)
-                .collect(Collectors.toList())
-                .stream()
+                .collect(Collectors.toList()).stream()
                 .map(challenge -> new CompletedChallengeQuery(
                         String.valueOf(challenge.getId()),
                         challenge.getDefender().getUser().getUsername().equals(username) ?
@@ -128,7 +122,7 @@ class ChallengeService {
                         challenge.getDefender().getUser().getUsername().equals(username) ?
                                 String.valueOf(challenge.getDefender().getResult()) :
                                 String.valueOf(challenge.getAttacker().getResult())))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
     }
 
     CompletedChallengeDetailsQuery queryCompletedChallengeDetailsByChallengeId(String challengeId, String username) {
@@ -178,8 +172,7 @@ class ChallengeService {
         if (isUsernameEqualsAttackerUsername(username, challenge.getAttacker().getUser().getUsername())) {
 
             return AnsweredChallengeQuery.builder()
-                    .questions(challenge.getQuestions()
-                            .stream()
+                    .questions(challenge.getQuestions().stream()
                             .map(question -> new AnsweredQuestionQuery(
                                     question.getQuestion(),
                                     Arrays.asList(question.getAnswers().split(":", -1)),
@@ -192,8 +185,7 @@ class ChallengeService {
         }
 
         return AnsweredChallengeQuery.builder()
-                .questions(challenge.getQuestions()
-                        .stream()
+                .questions(challenge.getQuestions().stream()
                         .map(question -> new AnsweredQuestionQuery(
                                 question.getQuestion(),
                                 Arrays.asList(question.getAnswers().split(":", -1)),

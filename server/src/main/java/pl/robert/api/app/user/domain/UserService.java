@@ -57,8 +57,7 @@ class UserService {
     }
 
     Page<UserQuery> findAll(Pageable pageable) {
-        return new PageImpl<>(repository.findAll(pageable)
-                .stream()
+        return new PageImpl<>(repository.findAll(pageable).stream()
                 .map(user -> new UserQuery(
                         String.valueOf(user.getId()),
                         user.getUsername(),

@@ -11,10 +11,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @AllArgsConstructor
@@ -91,13 +88,10 @@ class TokenService {
     }
 
     void cleanAllExpiredTokens() {
-        List<Token> tokens = tokenRepository.findAll();
-        for (Token token : tokens) {
-            Token tokenToCheck = tokenRepository.findById(token.getId());
-            if (getCurrentTimeInSeconds() - Long.parseLong(tokenToCheck.getCreatedDateInSeconds()) > 900) {
-                tokenRepository.delete(tokenToCheck);
-            }
-        }
+        tokenRepository.findAll().stream()
+                .map(token -> tokenRepository.findById(token.getId()))
+                .filter(token -> (getCurrentTimeInSeconds() - Long.parseLong(token.getCreatedDateInSeconds())) > 900)
+                .forEach(tokenRepository::delete);
     }
 
     private long getCurrentTimeInSeconds() {

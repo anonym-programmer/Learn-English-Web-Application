@@ -25,8 +25,7 @@ class PostService {
     Page<PostQuery> findAll(Pageable pageable) {
         Page<Post> postsPage = repository.findAll(pageable);
         int totalElements = (int) postsPage.getTotalElements();
-        return new PageImpl<>(postsPage
-                .stream()
+        return new PageImpl<>(postsPage.stream()
                 .map(post -> new PostQuery(
                         String.valueOf(post.getId()),
                         post.getTitle(),
