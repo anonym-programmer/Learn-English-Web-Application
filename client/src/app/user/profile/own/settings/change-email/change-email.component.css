@@ -2,7 +2,11 @@ h1 {
   margin-top: 2%;
 }
 
-.mat-form-field, button {
-  margin-top: 5%;
+.mat-form-field {
   display: block;
+}
+
+button {
+  margin-top: 5%;
+  margin-left: -80%;
 }

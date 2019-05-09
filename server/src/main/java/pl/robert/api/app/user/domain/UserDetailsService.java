@@ -14,14 +14,16 @@ class UserDetailsService {
         repository.saveAndFlush(details);
     }
 
-    void updateUserDetails(UserDetails details) {
-        long currentExpierience = Long.parseLong(details.getExpierience());
+    User updateUserDetails(User user) {
+        long currentExpierience = Long.parseLong(user.getUserDetails().getExpierience());
 
         if (currentExpierience < 800) {
-            checkLowerOrEqualToGoldRank(details, currentExpierience);
+            checkLowerOrEqualToGoldRank(user.getUserDetails(), currentExpierience);
         } else {
-            checkHigherThanGoldRank(details, currentExpierience);
+            checkHigherThanGoldRank(user.getUserDetails(), currentExpierience);
         }
+
+        return user;
     }
 
     private void checkLowerOrEqualToGoldRank(UserDetails details, long currentExpierience) {

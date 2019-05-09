@@ -133,8 +133,7 @@ public class UserFacade {
     }
 
     public UserOwnProfileQuery queryUserOwnProfile(String username) {
-        detailsService.updateUserDetails(findUserByUsername(username).getUserDetails());
-        return UserQueryFactory.queryUserOwnProfile(findUserByUsername(username));
+        return UserQueryFactory.queryUserOwnProfile(detailsService.updateUserDetails(findUserByUsername(username)));
     }
 
     public UserChallengeProfileQuery queryUserChallengeProfile(String username) {
@@ -146,8 +145,7 @@ public class UserFacade {
     }
 
     public UserProfileQuery queryUserProfile(String username) {
-        detailsService.updateUserDetails(findUserByUsername(username).getUserDetails());
-        return UserQueryFactory.queryUserProfile(findUserByUsername(username));
+        return UserQueryFactory.queryUserProfile(detailsService.updateUserDetails(findUserByUsername(username)));
     }
 
     public RandomUsernameQuery queryRandomUsername(String attackerUsername) {

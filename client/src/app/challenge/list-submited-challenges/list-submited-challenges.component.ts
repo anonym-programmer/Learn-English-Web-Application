@@ -34,7 +34,7 @@ export class ListSubmitedChallengesComponent implements OnInit {
     this.challengeService.getRivalProfile(username).subscribe(data => {
       this.dialog.open(ShowRivalProfileComponent, {
         width: '20%',
-        height: '38%',
+        height: '35%',
         data: data
       });
     });
