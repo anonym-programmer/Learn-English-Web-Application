@@ -56,12 +56,12 @@ public class ChallengeFacade {
         return service.queryDefenderPendingChallenges(username);
     }
 
-    public List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
-        return service.queryQuestionsOfDefenderChallengeId(challengeId);
-    }
-
     public List<CompletedChallengeQuery> queryCompletedChallenges(String username) {
         return service.queryCompletedChallenges(username);
+    }
+
+    public List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
+        return service.queryQuestionsOfDefenderChallengeId(challengeId);
     }
 
     public CompletedChallengeDetailsQuery queryCompletedChallengeDetailsByChallengeId(String challengeId, String username) {

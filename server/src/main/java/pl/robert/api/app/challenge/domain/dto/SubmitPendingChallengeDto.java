@@ -11,6 +11,7 @@ import static pl.robert.api.app.shared.Constants.M_CHALLENGE_ID_EMPTY;
 
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SubmitPendingChallengeDto {
 
@@ -19,7 +20,7 @@ public class SubmitPendingChallengeDto {
 
     String defenderUsername;
 
-    final List<Long> questionsIds = new ArrayList<>(5);
+    List<Long> questionsIds = new ArrayList<>(5);
 
     List<Character> answers = new ArrayList<>(5);
 }

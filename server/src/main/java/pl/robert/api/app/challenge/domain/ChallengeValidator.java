@@ -58,10 +58,11 @@ class ChallengeValidator {
     }
 
     boolean isInputDataCorrect(DeleteChallengeDto dto) {
-        if (isChallengeIdCorrect(dto.getChallengeId()) && isDefenderUsernameCorrect(dto.getDefenderUsername())) {
 
+        if (isChallengeIdCorrect(dto.getChallengeId()) && isDefenderUsernameCorrect(dto.getDefenderUsername())) {
             return !(userFacade.isUsernameNotExists(dto.getDefenderUsername()) || service.isChallengeNotExists(dto.getChallengeId()));
         }
+
         return false;
     }
 

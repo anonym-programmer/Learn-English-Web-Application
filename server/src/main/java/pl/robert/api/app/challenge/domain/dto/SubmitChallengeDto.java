@@ -12,6 +12,7 @@ import static pl.robert.api.app.shared.Constants.M_DEFENDER_USERNAME_EMPTY;
 
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SubmitChallengeDto {
 
@@ -20,7 +21,7 @@ public class SubmitChallengeDto {
     @NotEmpty(message = M_DEFENDER_USERNAME_EMPTY)
     String defenderUsername;
 
-    final List<Long> questionsIds = new ArrayList<>(5);
+    List<Long> questionsIds = new ArrayList<>(5);
 
     List<Character> answers = new ArrayList<>(5);
 }

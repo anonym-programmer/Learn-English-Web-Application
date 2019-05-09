@@ -104,10 +104,6 @@ class ChallengeService {
                 .collect(Collectors.toList());
     }
 
-    List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
-        return questionFacade.queryQuestionsOfDefenderChallengeId(repository.findById(Long.parseLong(challengeId)));
-    }
-
     List<CompletedChallengeQuery> queryCompletedChallenges(String username) {
         return opponentFacade.queryIdsOfUserCompletedChallenges(userFacade.findUserByUsername(username).getId()).stream()
                 .map(repository::findByDefenderOrAttackerId)
@@ -123,6 +119,10 @@ class ChallengeService {
                                 String.valueOf(challenge.getDefender().getResult()) :
                                 String.valueOf(challenge.getAttacker().getResult())))
                 .collect(Collectors.toList());
+    }
+
+    List<QuestionQuery> queryQuestionsOfDefenderChallengeId(String challengeId) {
+        return questionFacade.queryQuestionsOfDefenderChallengeId(repository.findById(Long.parseLong(challengeId)));
     }
 
     CompletedChallengeDetailsQuery queryCompletedChallengeDetailsByChallengeId(String challengeId, String username) {

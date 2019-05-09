@@ -9,6 +9,7 @@ import static pl.robert.api.app.shared.Constants.M_DEFENDER_USERNAME_EMPTY;
 
 @Getter @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class MakeChallengeDto {
 
