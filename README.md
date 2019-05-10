@@ -127,7 +127,7 @@ API can be found at: http://localhost:8080/swagger-ui.html
 - [x] user can improve his rank by adding posts, comments or challenging other users
 
 <b>Challenges system</b>
-- [x] in Database there are over 100 questions
+- [x] in Database there are 200 questions
 - [x] each challenge contains 5 random questions with a, b, c, d options to answer
 - [x] challenged person can accept or decline challenge
 - [x] chosen rival get the same questions as you had
