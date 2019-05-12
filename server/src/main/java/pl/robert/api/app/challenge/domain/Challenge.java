@@ -2,7 +2,6 @@ package pl.robert.api.app.challenge.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import pl.robert.api.app.opponent.Opponent;
 import pl.robert.api.app.question.domain.Question;

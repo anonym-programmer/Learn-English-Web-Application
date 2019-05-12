@@ -26,7 +26,7 @@ I created this web application, because I wanted to learn basics of Angular and 
 * JPA
 * PostgreSQL
 * Lombok
-* Guava: Google Libraries for Java
+* Google Guava
 * SMTP protocol
 * SLF4J
 * Swagger
@@ -44,7 +44,6 @@ I created this web application, because I wanted to learn basics of Angular and 
 <b>Tools</b>
 * Intellij IDEA
 * DataGrip
-* pgAdmin
 * Postman
 
 ### Prerequisites
