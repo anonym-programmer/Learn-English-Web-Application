@@ -20,7 +20,8 @@ class QuestionService {
     QuestionRepository repository;
 
     List<QuestionQuery> queryRandomQuestions() {
-        return repository.findAll().subList(0, (int) repository.count()).stream()
+        return repository.findAll()
+                .stream()
                 .collect(toShuffledList())
                 .stream()
                 .map(question -> new QuestionQuery(
@@ -28,7 +29,10 @@ class QuestionService {
                         question.getQuestion(),
                         Arrays.asList(question.getAnswers().split(":", -1))))
                 .collect(Collectors.toList())
-                .subList(0, 5);
+                .subList(0, 5)
+                .stream()
+                .sorted(Comparator.comparing(QuestionQuery::getQuestionId).reversed())
+                .collect(Collectors.toList());
     }
 
     @SuppressWarnings("unchecked")
@@ -52,6 +56,7 @@ class QuestionService {
                         question.getQuestion(),
                         Arrays.asList(question.getAnswers().split(":", -1))))
                 .filter(distinctByKey(QuestionQuery::getQuestionId))
+                .sorted(Comparator.comparing(QuestionQuery::getQuestionId).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -84,6 +89,7 @@ class QuestionService {
                 .collect(Collectors.toList())
                 .stream()
                 .map(Optional::get)
+                .sorted(Comparator.comparing(Question::getId).reversed())
                 .collect(Collectors.toList());
     }
 }
