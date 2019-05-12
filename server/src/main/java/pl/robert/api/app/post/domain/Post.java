@@ -2,6 +2,7 @@ package pl.robert.api.app.post.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicUpdate;
 import pl.robert.api.app.comment.domain.Comment;
 import pl.robert.api.app.user.domain.User;
 import pl.robert.api.app.vote.domain.Vote;
@@ -15,6 +16,7 @@ import static pl.robert.api.app.shared.Constants.*;
 @Entity
 @Table(name = "posts")
 @Builder
+@DynamicUpdate
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

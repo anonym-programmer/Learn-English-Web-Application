@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.MailAuthenticationException;
-import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
@@ -27,23 +26,25 @@ class TokenService {
         Token registerToken = new Token(user);
         tokenRepository.saveAndFlush(registerToken);
 
-        try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-            String htmlMsg = "To confirm your account, please follow the link below:<br>" +
-                    "<a href='http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "'>" +
-                    "http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "</a>";
-            mimeMessage.setContent(htmlMsg, "text/html");
-            helper.setTo(user.getEmail());
-            helper.setSubject("Complete Registration!");
-            helper.setFrom("Rob");
-            mailSender.send(mimeMessage);
-        } catch (MessagingException | MailAuthenticationException e) {
-            tokenRepository.delete(registerToken);
-            userService.delete(user);
-            log.info("Deleting token and user cause {} appeared...", e.getClass());
-            throw new MailSendException("MessagingException | MailAuthenticationException");
-        }
+        new Thread(() -> {
+            try {
+                MimeMessage mimeMessage = mailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+                String htmlMsg = "To confirm your account, please follow the link below:<br>" +
+                        "<a href='http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "'>" +
+                        "http://localhost:4200/confirm-account?token=" + registerToken.getConfirmationToken() + "</a>";
+                mimeMessage.setContent(htmlMsg, "text/html");
+                helper.setTo(user.getEmail());
+                helper.setSubject("Complete Registration!");
+                helper.setFrom("Rob");
+                mailSender.send(mimeMessage);
+            } catch (MessagingException | MailAuthenticationException e) {
+                tokenRepository.delete(registerToken);
+                userService.delete(user);
+                log.info("Deleted token and user cause {} appeared...", e.getClass());
+                throw new MailAuthenticationException("MessagingException | MailAuthenticationException");
+            }
+        }).start();
     }
 
     boolean confirmRegisterToken(String confirmationToken) {
@@ -68,23 +69,25 @@ class TokenService {
         Token resetPasswordToken = new Token(user);
         tokenRepository.save(resetPasswordToken);
 
-        try {
-            MimeMessage mimeMessage = mailSender.createMimeMessage();
-            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
-            String htmlMsg = "Thank you for your password reset request. Your login is: <b>" + user.getUsername() + "</b><br>" +
-                    "Please follow the link below to reset your password:<br>" +
-                    "<a href='http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "'>" +
-                    "http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "</a>";
-            mimeMessage.setContent(htmlMsg, "text/html");
-            helper.setTo(user.getEmail());
-            helper.setSubject("Forgotten Password!");
-            helper.setFrom("Rob");
-            mailSender.send(mimeMessage);
-        } catch (MessagingException | MailAuthenticationException e) {
-            tokenRepository.delete(resetPasswordToken);
-            log.info("Deleted token cause {} appeared...", e.getClass());
-            throw new MailSendException("MailSendException | MailAuthenticationException");
-        }
+        new Thread(() -> {
+            try {
+                MimeMessage mimeMessage = mailSender.createMimeMessage();
+                MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, false, "UTF-8");
+                String htmlMsg = "Thank you for your password reset request. Your login is: <b>" + user.getUsername() + "</b><br>" +
+                        "Please follow the link below to reset your password:<br>" +
+                        "<a href='http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "'>" +
+                        "http://localhost:4200/reset-password?token=" + resetPasswordToken.getConfirmationToken() + "</a>";
+                mimeMessage.setContent(htmlMsg, "text/html");
+                helper.setTo(user.getEmail());
+                helper.setSubject("Forgotten Password!");
+                helper.setFrom("Rob");
+                mailSender.send(mimeMessage);
+            } catch (MessagingException | MailAuthenticationException e) {
+                tokenRepository.delete(resetPasswordToken);
+                log.info("Deleted token cause {} appeared...", e.getClass());
+                throw new MailAuthenticationException("MailSendException | MailAuthenticationException");
+            }
+        }).start();
     }
 
     void cleanAllExpiredTokens() {

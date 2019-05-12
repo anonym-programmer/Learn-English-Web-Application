@@ -2,6 +2,7 @@ package pl.robert.api.app.user.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import static pl.robert.api.app.shared.Constants.*;
 @Table(name = "user_details")
 @Builder
 @Getter @Setter
+@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)

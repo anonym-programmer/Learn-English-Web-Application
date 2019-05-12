@@ -2,6 +2,8 @@ package pl.robert.api.app.user.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import pl.robert.api.app.opponent.Opponent;
 import pl.robert.api.app.comment.domain.Comment;
 import pl.robert.api.app.post.domain.Post;
@@ -18,6 +20,7 @@ import static pl.robert.api.app.shared.Constants.COL_LENGTH_MAX_USERNAME;
 @Entity
 @Table(name = "users")
 @Builder
+@DynamicUpdate
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

@@ -2,6 +2,8 @@ package pl.robert.api.app.opponent;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import pl.robert.api.app.challenge.domain.Challenge;
 import pl.robert.api.app.user.domain.User;
 
@@ -14,6 +16,8 @@ import static pl.robert.api.app.shared.Constants.*;
 @Entity
 @Table(name = "oponents")
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor

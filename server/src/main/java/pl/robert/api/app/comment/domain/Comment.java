@@ -2,6 +2,7 @@ package pl.robert.api.app.comment.domain;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.DynamicUpdate;
 import pl.robert.api.app.post.domain.Post;
 import pl.robert.api.app.user.domain.User;
 
@@ -13,6 +14,7 @@ import static pl.robert.api.app.shared.Constants.COL_LENGTH_MAX_TEXT;
 @Entity
 @Table(name = "comments")
 @Builder
+@DynamicUpdate
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
