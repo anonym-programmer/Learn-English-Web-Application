@@ -9,10 +9,12 @@ import org.springframework.data.domain.Pageable;
 import pl.robert.api.app.user.domain.dto.SignInDto;
 import pl.robert.api.app.user.query.UserQuery;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static pl.robert.api.app.shared.Constants.*;
+import static pl.robert.api.app.shared.Constants.USER;
+import static pl.robert.api.app.shared.Constants.USER_ADMIN;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
@@ -20,16 +22,20 @@ class UserService {
 
     UserRepository repository;
 
-    void saveAndFlush(User user) {
-        repository.saveAndFlush(user);
+    void save(User user) {
+        repository.save(user);
     }
 
     void delete(User user) {
         repository.delete(user);
     }
 
-    boolean isntUserAnAdmin(long id) {
-        return repository.findById(id).getRoles().size() == 1;
+    boolean isNotUserAnAdmin(long id) {
+        Optional<User> user = repository.findById(id);
+        if (user.isEmpty()) {
+            throw new RuntimeException();
+        }
+        return user.get().getRoles().size() == 1;
     }
 
     boolean isUserByIdExist(Long id) {
@@ -45,7 +51,7 @@ class UserService {
     }
 
     User findById(long id) {
-        return repository.findById(id);
+        return repository.findById(id).orElseThrow(RuntimeException::new);
     }
 
     User findByEmail(String email) {

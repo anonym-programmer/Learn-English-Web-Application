@@ -68,7 +68,7 @@ class UserValidator {
         if (dto.getId() != null && !String.valueOf(dto.getId()).isEmpty()) {
 
             if (userService.isUserByIdExist(dto.getId())) {
-                return userService.isntUserAnAdmin(dto.getId());
+                return userService.isNotUserAnAdmin(dto.getId());
             }
         }
         return false;

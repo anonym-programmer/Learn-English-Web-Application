@@ -54,7 +54,7 @@ class TokenService {
             User user = userService.findByEmail(token.getUser().getEmail());
 
             user.setEnabled(true);
-            userService.saveAndFlush(user);
+            userService.save(user);
             detailsService.saveAndFlush(UserFactory.createDetails(user));
 
             tokenRepository.delete(token);

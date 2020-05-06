@@ -42,7 +42,7 @@ public class UserFacade {
     }
 
     public void add(CreateUserDto dto) {
-        userService.saveAndFlush(UserFactory.create(dto));
+        userService.save(UserFactory.create(dto));
     }
 
     public void deleteUserById(long id) {
@@ -51,12 +51,12 @@ public class UserFacade {
 
     public void changePassword(User user, String newPassword) {
         user.setPassword(UserFactory.passwordEncoder().encode(newPassword));
-        userService.saveAndFlush(user);
+        userService.save(user);
     }
 
     public void changeEmail(User user, String newEmail) {
         user.setEmail(newEmail);
-        userService.saveAndFlush(user);
+        userService.save(user);
     }
 
     public boolean isUsernameNotExists(String username) {
